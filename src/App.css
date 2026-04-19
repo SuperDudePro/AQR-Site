@@ -1,0 +1,73 @@
+:root {
+  color-scheme: dark;
+  --bg: #000000;
+  --text: #e8f4ff;
+  --muted: #9fb7cf;
+  --neon: #39a8ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  background: #000;
+}
+
+.hero {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.mark {
+  margin: 0;
+  color: var(--neon);
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: clamp(56px, 14vw, 180px);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-shadow:
+    0 0 8px rgba(57, 168, 255, 0.95),
+    0 0 22px rgba(57, 168, 255, 0.72),
+    0 0 50px rgba(57, 168, 255, 0.38);
+}
+
+.subhead {
+  margin: 28px 0 0;
+  color: var(--muted);
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: clamp(14px, 2.2vw, 24px);
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 20px;
+  }
+
+  .mark {
+    font-size: clamp(38px, 12vw, 96px);
+    letter-spacing: 0.06em;
+  }
+
+  .subhead {
+    margin-top: 20px;
+    letter-spacing: 0.14em;
+    line-height: 1.4;
+  }
+}
