@@ -5,7 +5,10 @@ import WhyAQR from "./WhyAQR";
 import "./index.css";
 
 function setChrome(page: "home" | "why") {
-  document.title = page === "why" ? "AQR | Why AQR" : "AQR";
+  document.title =
+    page === "why"
+      ? "Why AQR | Applied Quantitative Reasoning"
+      : "Applied Quantitative Reasoning | Vista PEAK Prep";
 
   const svg = `
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
@@ -36,7 +39,10 @@ function App() {
       const nextPage = getPage(window.location.hash || "");
       setPage(nextPage);
       setChrome(nextPage);
-      window.scrollTo({ top: 0, behavior: "auto" });
+
+      if (window.location.hash.startsWith("#/why-aqr")) {
+        window.scrollTo({ top: 0, behavior: "auto" });
+      }
     };
 
     handleHashChange();
