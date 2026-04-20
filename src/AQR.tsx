@@ -34,13 +34,6 @@ const previewCards = [
   },
 ];
 
-const pillars = [
-  "Real decisions",
-  "Real data",
-  "Real tools",
-  "Real communication",
-];
-
 const overviewItems = [
   "Project-based fourth-year math",
   "Built for real-world quantitative reasoning",
@@ -74,14 +67,12 @@ function AQR() {
           </nav>
         </header>
 
-        <div className="hero-grid">
-          <div className="hero-copy">
+        <div className="hero-grid hero-grid-single">
+          <div className="hero-copy hero-copy-single">
             <p className="eyebrow">Vista PEAK Prep • Launching Fall 2026</p>
             <h1 className="mark">AQR</h1>
             <p className="full-name">Applied Quantitative Reasoning</p>
-            <p className="hero-lead">
-              Serious math for real decisions.
-            </p>
+            <p className="hero-lead">Serious math for real decisions.</p>
             <p className="hero-text">
               A modern fourth-year math option built around real decisions,
               real data, real tools, and real communication.
@@ -98,20 +89,6 @@ function AQR() {
               </a>
             </div>
           </div>
-
-          <aside className="hero-panel" aria-label="Course highlights">
-            <p className="panel-label">Core signal</p>
-            <h2>Applied math with a clear purpose.</h2>
-            <p>
-              This homepage is the front door. It holds the argument, the
-              practical course details, and the future student-entry point.
-            </p>
-            <ul>
-              {pillars.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </aside>
         </div>
       </section>
 
@@ -142,17 +119,15 @@ function AQR() {
             </p>
             <p>
               This page will link to the full Why AQR argument. For now, the
-              homepage holds the main signal: this is a serious academic path,
-              not a side track.
+              homepage holds the main signal: this is a serious academic path
+              with a clear purpose.
             </p>
             <a className="button button-dark" href="#course-overview">
               Continue to course details
             </a>
           </div>
           <div className="quote-block">
-            <p>
-              “AQR is for students who want mathematics to do something.”
-            </p>
+            <p>“AQR is for students who want mathematics to do something.”</p>
           </div>
         </div>
       </section>
