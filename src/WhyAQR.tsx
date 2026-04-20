@@ -67,17 +67,17 @@ function WhyAQR({ onNavigateHome }: WhyAQRProps) {
     <main className="why-page" id="top">
       <section className="why-hero">
         <header className="why-topbar why-wrap">
-          <button className="why-brand" onClick={goHome}>
+          <button className="why-brand" onClick={goHome} type="button">
             <span className="why-brand-mark">AQR</span>
             <span className="why-brand-name">Applied Quantitative Reasoning</span>
           </button>
 
           <nav className="why-topnav" aria-label="Why AQR navigation">
-            <button onClick={goHome}>Home</button>
-            <button onClick={() => scrollToId("pathway")}>Pathway</button>
-            <button onClick={() => scrollToId("colorado")}>Colorado</button>
-            <button onClick={() => scrollToId("students-do")}>Students</button>
-            <button onClick={() => scrollToId("beyond-school")}>Beyond School</button>
+            <button onClick={goHome} type="button">Home</button>
+            <button onClick={() => scrollToId("pathway")} type="button">Pathway</button>
+            <button onClick={() => scrollToId("colorado")} type="button">Colorado</button>
+            <button onClick={() => scrollToId("students-do")} type="button">Students</button>
+            <button onClick={() => scrollToId("beyond-school")} type="button">Beyond School</button>
           </nav>
         </header>
 
@@ -94,10 +94,10 @@ function WhyAQR({ onNavigateHome }: WhyAQRProps) {
             designed for students who want mathematics to connect to life, work, information, and the choices they actually have to make.
           </p>
           <div className="why-actions">
-            <button className="why-button why-button-primary" onClick={() => scrollToId("pathway")}>
+            <button className="why-button why-button-home" onClick={() => scrollToId("pathway")} type="button">
               Read the case
             </button>
-            <button className="why-button why-button-secondary" onClick={goHome}>
+            <button className="why-button why-button-home" onClick={goHome} type="button">
               Back to home
             </button>
           </div>
@@ -106,7 +106,7 @@ function WhyAQR({ onNavigateHome }: WhyAQRProps) {
 
       <section className="why-section why-section-silver" id="pathway">
         <div className="why-wrap why-grid">
-          <div>
+          <div className="why-text-dark">
             <p className="why-section-kicker">A real pathway in modern mathematics</p>
             <h2>AQR belongs to something bigger.</h2>
             <p>
@@ -124,7 +124,7 @@ function WhyAQR({ onNavigateHome }: WhyAQRProps) {
               including the California State University general education pattern.
             </p>
           </div>
-          <aside className="why-callout-panel">
+          <aside className="why-callout-panel why-callout-panel-pathway">
             <p className="why-panel-label">The point</p>
             <p>
               AQR is not an isolated idea. It sits inside a larger movement toward applied quantitative reasoning, data literacy, modeling,
@@ -168,7 +168,7 @@ function WhyAQR({ onNavigateHome }: WhyAQRProps) {
               going. AQR is built to prepare students for that kind of work.
             </p>
           </div>
-          <div className="why-quote-panel why-quote-panel-dark">
+          <div className="why-quote-panel why-quote-panel-dark why-quote-panel-colorado">
             <p>
               “The Quantitative Reasoning Pathway is for students who want to connect mathematical concepts with practical applications,
               justify their reasoning, and evaluate quantitative arguments.”
@@ -216,7 +216,7 @@ function WhyAQR({ onNavigateHome }: WhyAQRProps) {
 
       <section className="why-section why-section-silver" id="beyond-school">
         <div className="why-wrap why-grid why-grid-wide">
-          <div>
+          <div className="why-text-dark">
             <p className="why-section-kicker">Why this matters beyond school</p>
             <h2>Modern work keeps moving toward this kind of math.</h2>
             <p>
@@ -230,7 +230,7 @@ function WhyAQR({ onNavigateHome }: WhyAQRProps) {
               entrepreneurship, and any field where people need to interpret information and make sound decisions.
             </p>
           </div>
-          <aside className="why-list-panel">
+          <aside className="why-list-panel why-list-panel-work">
             <p className="why-panel-label">What this work actually asks people to do</p>
             <ul>
               {workItems.map((item) => (
