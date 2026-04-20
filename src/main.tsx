@@ -7,39 +7,21 @@ import "./index.css";
 type PageName = "why-aqr" | null;
 
 function getCurrentPage(): PageName {
-  const page = new URLSearchParams(window.location.search).get("page");
-  return page === "why-aqr" ? "why-aqr" : null;
+  const params = new URLSearchParams(window.location.search);
+  return params.get("page") === "why-aqr" ? "why-aqr" : null;
 }
 
 function subscribe(callback: () => void) {
   const notify = () => callback();
-  const eventName = "aqr:navigation";
-
-  const originalPushState = window.history.pushState;
-  const originalReplaceState = window.history.replaceState;
-
-  window.history.pushState = function (...args) {
-    originalPushState.apply(this, args as Parameters<History["pushState"]>);
-    window.dispatchEvent(new Event(eventName));
-  };
-
-  window.history.replaceState = function (...args) {
-    originalReplaceState.apply(this, args as Parameters<History["replaceState"]>);
-    window.dispatchEvent(new Event(eventName));
-  };
 
   window.addEventListener("popstate", notify);
   window.addEventListener("hashchange", notify);
   window.addEventListener("pageshow", notify);
-  window.addEventListener(eventName, notify);
 
   return () => {
-    window.history.pushState = originalPushState;
-    window.history.replaceState = originalReplaceState;
     window.removeEventListener("popstate", notify);
     window.removeEventListener("hashchange", notify);
     window.removeEventListener("pageshow", notify);
-    window.removeEventListener(eventName, notify);
   };
 }
 
