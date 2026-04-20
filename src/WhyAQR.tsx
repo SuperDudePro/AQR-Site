@@ -82,12 +82,12 @@ function WhyAQR() {
     <main className="why-page-shell">
       <section className="why-hero" id="top">
         <header className="why-topbar">
-          <a className="why-brand" href="/" aria-label="Back to AQR home">
+          <a className="why-brand" href="./" aria-label="Back to AQR home">
             <span className="why-brand-mark">AQR</span>
             <span className="why-brand-name">Applied Quantitative Reasoning</span>
           </a>
           <nav className="why-nav" aria-label="Page navigation">
-            <a href="/">Home</a>
+            <a href="./">Home</a>
             <a href="#pathway">Pathway</a>
             <a href="#colorado">Colorado</a>
             <a href="#sources">Sources</a>
@@ -106,7 +106,7 @@ function WhyAQR() {
             <a className="why-button why-button-primary" href="#pathway">
               Read the case
             </a>
-            <a className="why-button why-button-secondary" href="/">
+            <a className="why-button why-button-secondary" href="./">
               Back to home
             </a>
           </div>

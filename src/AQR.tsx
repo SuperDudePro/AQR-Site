@@ -1,7 +1,9 @@
 import "./AQR.css";
 
+const WHY_PAGE = "?page=why-aqr";
+
 const navLinks = [
-  { label: "Why AQR", href: "#why-aqr" },
+  { label: "Why AQR", href: WHY_PAGE },
   { label: "Course Overview", href: "#course-overview" },
   { label: "How It Works", href: "#how-it-works" },
   { label: "Enter the Course", href: "#enter-course" },
@@ -13,8 +15,8 @@ const previewCards = [
     eyebrow: "Why this course matters",
     body:
       "The big argument: legitimacy, Colorado pathway alignment, university recognition, and why applied quantitative reasoning matters now.",
-    href: "#why-aqr",
-    cta: "Preview section",
+    href: WHY_PAGE,
+    cta: "Open page",
   },
   {
     title: "Course Overview",
@@ -78,7 +80,7 @@ function AQR() {
               real data, real tools, and real communication.
             </p>
             <div className="hero-actions">
-              <a className="button button-primary" href="#why-aqr">
+              <a className="button button-primary" href={WHY_PAGE}>
                 Why AQR
               </a>
               <a className="button button-secondary" href="#course-overview">
@@ -107,7 +109,7 @@ function AQR() {
         </div>
       </section>
 
-      <section className="silver-section" id="why-aqr">
+      <section className="silver-section" id="why-preview">
         <div className="content-wrap split-layout">
           <div>
             <p className="section-kicker">Why AQR</p>
@@ -118,12 +120,12 @@ function AQR() {
               decision-making, and practical application.
             </p>
             <p>
-              This page will link to the full Why AQR argument. For now, the
-              homepage holds the main signal: this is a serious academic path
-              with a clear purpose.
+              This section previews the argument. The full Why AQR page goes
+              deeper into Colorado pathway alignment, university recognition,
+              and workforce relevance.
             </p>
-            <a className="button button-dark" href="#course-overview">
-              Continue to course details
+            <a className="button button-dark" href={WHY_PAGE}>
+              Open the full Why AQR page
             </a>
           </div>
           <div className="quote-block">
