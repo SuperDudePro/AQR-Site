@@ -39,21 +39,6 @@ const sources = [
   },
 ];
 
-const practiceCards = [
-  {
-    title: "Track patterns",
-    body: "Students collect real data, organize it, and explain what it does and does not show.",
-  },
-  {
-    title: "Build tools",
-    body: "Students make decision-support tools and workflows instead of only solving textbook exercises.",
-  },
-  {
-    title: "Question claims",
-    body: "Students learn to spot bad comparisons, weak evidence, and misleading data displays.",
-  },
-];
-
 function scrollToId(id: string) {
   const el = document.getElementById(id);
   if (!el) return;
@@ -180,14 +165,14 @@ function WhyAQR({ onNavigateHome }: WhyAQRProps) {
             </p>
           </div>
         </div>
-        <div className="why-wrap why-practice-grid" aria-label="AQR student work examples">
-          {practiceCards.map((card) => (
-            <article key={card.title} className="why-practice-card">
-              <p className="why-panel-label">AQR in practice</p>
-              <h3>{card.title}</h3>
-              <p>{card.body}</p>
-            </article>
-          ))}
+
+        <div className="why-wrap why-image-wrap">
+          <figure className="why-image-card">
+            <img
+              src="/AQR_What_Students_Do_Banner.png"
+              alt="AQR students compare options, analyze patterns, evaluate claims, and use quantitative reasoning for real decisions and real-world pathways."
+            />
+          </figure>
         </div>
       </section>
 
