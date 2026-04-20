@@ -1,7 +1,7 @@
 import "./AQR.css";
 
 type AQRProps = {
-  onNavigateWhy: () => void;
+  onNavigateWhy?: () => void;
 };
 
 const previewCards = [
@@ -38,6 +38,14 @@ function scrollToId(id: string) {
 }
 
 function AQR({ onNavigateWhy }: AQRProps) {
+  const navigateWhy = () => {
+    if (onNavigateWhy) {
+      onNavigateWhy();
+      return;
+    }
+    window.location.hash = "#/why-aqr";
+  };
+
   return (
     <main className="aqr-page">
       <section className="aqr-hero" id="top">
@@ -47,7 +55,7 @@ function AQR({ onNavigateWhy }: AQRProps) {
             <span className="aqr-brand-name">Applied Quantitative Reasoning</span>
           </button>
           <nav className="aqr-topnav" aria-label="Primary">
-            <button onClick={onNavigateWhy} type="button">Why AQR</button>
+            <button onClick={navigateWhy} type="button">Why AQR</button>
             <button onClick={() => scrollToId("enter-course")} type="button">Student Entry</button>
             <button onClick={() => scrollToId("course-overview")} type="button">Course Overview</button>
           </nav>
@@ -63,7 +71,7 @@ function AQR({ onNavigateWhy }: AQRProps) {
             real tools, and real communication.
           </p>
           <div className="aqr-hero-actions">
-            <button className="aqr-button aqr-button-top" onClick={onNavigateWhy} type="button">
+            <button className="aqr-button aqr-button-top" onClick={navigateWhy} type="button">
               Why AQR
             </button>
             <button className="aqr-button aqr-button-top" onClick={() => scrollToId("enter-course")} type="button">
@@ -85,7 +93,7 @@ function AQR({ onNavigateWhy }: AQRProps) {
               <p>{card.body}</p>
               <button
                 className="aqr-card-link"
-                onClick={() => (card.targetId ? scrollToId(card.targetId) : onNavigateWhy())}
+                onClick={() => (card.targetId ? scrollToId(card.targetId) : navigateWhy())}
                 type="button"
               >
                 {card.cta}
@@ -109,7 +117,7 @@ function AQR({ onNavigateWhy }: AQRProps) {
               This section previews the argument. The full Why AQR page goes deeper
               into Colorado pathway alignment, university recognition, and workforce relevance.
             </p>
-            <button className="aqr-button aqr-button-dark" onClick={onNavigateWhy} type="button">
+            <button className="aqr-button aqr-button-dark" onClick={navigateWhy} type="button">
               Open the full Why AQR page
             </button>
           </div>
