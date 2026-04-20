@@ -1,17 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import AQR from "./AQR";
 import WhyAQR from "./WhyAQR";
 import "./index.css";
 
-type Page = "home" | "why-aqr";
-
-function getPageFromHash(hash: string): Page {
-  return hash.startsWith("#/why-aqr") ? "why-aqr" : "home";
-}
-
-function setSiteChrome(page: Page) {
-  document.title = page === "why-aqr" ? "AQR | Why AQR" : "AQR";
+function setChrome(page: "home" | "why") {
+  document.title = page === "why" ? "AQR | Why AQR" : "AQR";
 
   const svg = `
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
@@ -30,21 +24,27 @@ function setSiteChrome(page: Page) {
   link.href = `data:image/svg+xml,${encodeURIComponent(svg)}`;
 }
 
-function AppRouter() {
-  const [hash, setHash] = useState<string>(() => window.location.hash || "");
-  const page = useMemo(() => getPageFromHash(hash), [hash]);
-
-  useEffect(() => {
-    const onHashChange = () => setHash(window.location.hash || "");
-    window.addEventListener("hashchange", onHashChange);
-    return () => window.removeEventListener("hashchange", onHashChange);
-  }, []);
-
-  useEffect(() => {
-    setSiteChrome(page);
-  }, [page]);
-
-  return page === "why-aqr" ? <WhyAQR /> : <AQR />;
+function getPage(hash: string) {
+  return hash.startsWith("#/why-aqr") ? "why" : "home";
 }
 
-ReactDOM.createRoot(document.getElementById("root")!).render(<AppRouter />);
+function App() {
+  const [page, setPage] = useState<"home" | "why">(() => getPage(window.location.hash || ""));
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const nextPage = getPage(window.location.hash || "");
+      setPage(nextPage);
+      setChrome(nextPage);
+      window.scrollTo({ top: 0, behavior: "auto" });
+    };
+
+    handleHashChange();
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
+
+  return page === "why" ? <WhyAQR /> : <AQR />;
+}
+
+ReactDOM.createRoot(document.getElementById("root")!).render(<App />);

@@ -1,37 +1,44 @@
 import "./AQR.css";
 
-const WHY_PAGE = "#/why-aqr";
+const openWhyPage = () => {
+  window.location.hash = "#/why-aqr";
+};
 
-const navLinks = [
-  { label: "Why AQR", href: WHY_PAGE },
-  { label: "Course Overview", href: "#course-overview" },
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Student Entry", href: "#enter-course" },
-];
+const goHomeSection = (id: string) => {
+  if (window.location.hash) {
+    history.replaceState(null, "", window.location.pathname + window.location.search);
+  }
+  requestAnimationFrame(() => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  });
+};
 
 const previewCards = [
   {
     title: "Why AQR",
     eyebrow: "Why this course matters",
     body:
-      "AQR sits inside a real quantitative-reasoning pathway: Colorado alignment, university recognition, and real-world relevance.",
-    href: WHY_PAGE,
-    cta: "Read more",
+      "Colorado alignment, university recognition, and real-world relevance. This is the core signal page for the course.",
+    action: () => openWhyPage(),
+    cta: "Read the full page",
   },
   {
     title: "Course Overview",
     eyebrow: "Practical details",
     body:
       "The future home for grade levels, credit, prerequisite, year-long format, and honors or extension information.",
-    href: "#course-overview",
-    cta: "See section",
+    action: () => goHomeSection("course-overview"),
+    cta: "See the section",
   },
   {
     title: "Student Entry",
     eyebrow: "Course access",
     body:
-      "A reserved space for the student-facing course area. This will become the direct path into the live course materials.",
-    href: "#enter-course",
+      "A reserved space for the live student-facing course area so enrolled students can get straight to the work.",
+    action: () => goHomeSection("enter-course"),
     cta: "Go there",
   },
 ];
@@ -39,80 +46,69 @@ const previewCards = [
 const overviewItems = [
   "Project-based fourth-year math",
   "Real decisions, real data, real tools",
-  "Built around reasoning and communication",
-  "Designed for multiple levels of support and challenge",
-];
-
-const futureLinks = [
-  "Quick facts",
-  "Year structure",
-  "Quarter themes",
-  "Sample projects",
-  "Student course entry",
+  "Reasoning, communication, and decision-making",
+  "Built with multiple levels of support and challenge",
 ];
 
 function AQR() {
   return (
-    <main className="site-shell">
-      <section className="hero-section" id="top">
-        <header className="topbar">
-          <a className="brand-lockup" href="#top" aria-label="AQR home">
-            <span className="brand-mark">AQR</span>
-            <span className="brand-name">Applied Quantitative Reasoning</span>
-          </a>
-          <nav className="topnav" aria-label="Primary">
-            {navLinks.map((link) => (
-              <a key={link.label} href={link.href}>
-                {link.label}
-              </a>
-            ))}
+    <main className="aqr-page">
+      <section className="aqr-hero" id="top">
+        <header className="aqr-topbar aqr-wrap">
+          <button className="aqr-brand" onClick={() => goHomeSection("top")}>
+            <span className="aqr-brand-mark">AQR</span>
+            <span className="aqr-brand-name">Applied Quantitative Reasoning</span>
+          </button>
+          <nav className="aqr-topnav" aria-label="Primary">
+            <button onClick={openWhyPage}>Why AQR</button>
+            <button onClick={() => goHomeSection("course-overview")}>Course Overview</button>
+            <button onClick={() => goHomeSection("how-it-works")}>How It Works</button>
+            <button onClick={() => goHomeSection("enter-course")}>Student Entry</button>
           </nav>
         </header>
 
-        <div className="hero-grid">
-          <div className="hero-copy">
-            <p className="eyebrow">Vista PEAK Prep • Launching Fall 2026</p>
-            <h1 className="mark">AQR</h1>
-            <p className="full-name">Applied Quantitative Reasoning</p>
-            <p className="hero-lead">Serious math for real decisions.</p>
-            <p className="hero-text">
-              A modern fourth-year math option built around real decisions, real data,
-              real tools, and real communication.
-            </p>
-            <div className="hero-actions">
-              <a className="button button-top" href={WHY_PAGE}>
-                Why AQR
-              </a>
-              <a className="button button-top" href="#course-overview">
-                Course Overview
-              </a>
-              <a className="button button-top" href="#enter-course">
-                Enter the Course
-              </a>
-            </div>
+        <div className="aqr-wrap aqr-hero-inner">
+          <p className="aqr-eyebrow">Vista PEAK Prep • Launching Fall 2026</p>
+          <h1 className="aqr-mark">AQR</h1>
+          <p className="aqr-full-name">Applied Quantitative Reasoning</p>
+          <p className="aqr-lead">Serious math for real decisions.</p>
+          <p className="aqr-hero-text">
+            A modern fourth-year math option built around real decisions, real data,
+            real tools, and real communication.
+          </p>
+          <div className="aqr-hero-actions">
+            <button className="aqr-button aqr-button-top" onClick={openWhyPage}>
+              Why AQR
+            </button>
+            <button className="aqr-button aqr-button-top" onClick={() => goHomeSection("course-overview")}>
+              Course Overview
+            </button>
+            <button className="aqr-button aqr-button-top" onClick={() => goHomeSection("enter-course")}>
+              Enter the Course
+            </button>
           </div>
         </div>
       </section>
 
-      <section className="nav-cards-section" aria-label="Site pathways">
-        <div className="content-wrap card-grid">
+      <section className="aqr-cards-section">
+        <div className="aqr-wrap aqr-card-grid">
           {previewCards.map((card) => (
-            <article key={card.title} className="feature-card">
-              <p className="card-eyebrow">{card.eyebrow}</p>
+            <article key={card.title} className="aqr-card">
+              <p className="aqr-card-eyebrow">{card.eyebrow}</p>
               <h3>{card.title}</h3>
               <p>{card.body}</p>
-              <a className="card-link" href={card.href}>
+              <button className="aqr-card-link" onClick={card.action}>
                 {card.cta}
-              </a>
+              </button>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="silver-section" id="why-preview">
-        <div className="content-wrap split-layout">
+      <section className="aqr-section aqr-section-silver" id="why-preview">
+        <div className="aqr-wrap aqr-split">
           <div>
-            <p className="section-kicker bright-kicker">Why AQR</p>
+            <p className="aqr-kicker aqr-kicker-bright">Why AQR</p>
             <h2>A real pathway in modern mathematics.</h2>
             <p>
               Applied Quantitative Reasoning belongs to the broader world of
@@ -123,27 +119,27 @@ function AQR() {
               This section previews the argument. The full Why AQR page goes deeper
               into Colorado pathway alignment, university recognition, and workforce relevance.
             </p>
-            <a className="button button-dark" href={WHY_PAGE}>
+            <button className="aqr-button aqr-button-dark" onClick={openWhyPage}>
               Open the full Why AQR page
-            </a>
+            </button>
           </div>
-          <div className="quote-block">
+          <div className="aqr-quote-panel">
             <p>“AQR is for students who want mathematics to do something.”</p>
           </div>
         </div>
       </section>
 
-      <section className="graphite-band" id="how-it-works">
-        <div className="content-wrap">
-          <p className="section-kicker bright-kicker">How It Works</p>
+      <section className="aqr-section aqr-section-graphite" id="how-it-works">
+        <div className="aqr-wrap">
+          <p className="aqr-kicker aqr-kicker-bright">How It Works</p>
           <h2>Built for applied learning.</h2>
-          <p className="section-lead">
+          <p className="aqr-section-lead">
             Students work with real inputs, real data, and real artifacts. Later,
             this section can point directly into the course structure and project pages.
           </p>
-          <div className="pill-row">
+          <div className="aqr-pill-row">
             {overviewItems.map((item) => (
-              <div key={item} className="pill-card">
+              <div key={item} className="aqr-pill-card">
                 {item}
               </div>
             ))}
@@ -151,60 +147,51 @@ function AQR() {
         </div>
       </section>
 
-      <section className="overview-section" id="course-overview">
-        <div className="content-wrap overview-grid">
+      <section className="aqr-section aqr-section-black" id="course-overview">
+        <div className="aqr-wrap aqr-overview-grid">
           <div>
-            <p className="section-kicker">Course Overview</p>
+            <p className="aqr-kicker">Course Overview</p>
             <h2>Space held for the practical course page.</h2>
             <p>
-              This is where the public-facing course details will live next: grade
-              levels, credit, prerequisite, course length, and the honors or extension path.
+              This is where the public-facing course details will live next: grade levels,
+              credit, prerequisite, course length, and the honors or extension path.
             </p>
             <p>
               The homepage can introduce those details without turning the hero into a junk drawer.
             </p>
           </div>
-          <div className="overview-card">
-            <p className="panel-label">Coming next</p>
+          <div className="aqr-overview-card">
+            <p className="aqr-panel-label">Coming next</p>
             <ul>
-              {futureLinks.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
+              <li>Quick facts</li>
+              <li>Year structure</li>
+              <li>Quarter themes</li>
+              <li>Sample projects</li>
+              <li>Student course entry</li>
             </ul>
           </div>
         </div>
       </section>
 
-      <section className="enter-section" id="enter-course">
-        <div className="content-wrap enter-grid">
+      <section className="aqr-section aqr-section-silver" id="enter-course">
+        <div className="aqr-wrap aqr-enter-grid">
           <div>
-            <p className="section-kicker">Student Entry</p>
+            <p className="aqr-kicker">Student Entry</p>
             <h2>Reserved space for entering the course.</h2>
             <p>
               This area is being held for the student-facing course entry. When ready,
-              it can use a simple password gate and point students into the live class materials.
+              it can use a simple passcode and become the direct path into the live materials.
             </p>
           </div>
-          <div className="enter-card">
-            <p className="panel-label">Planned entry</p>
-            <div className="password-chip">AQRVPP</div>
-            <p className="fine-print">
-              Placeholder only for now. The actual student-entry experience can be added
-              once the course materials are ready.
+          <div className="aqr-enter-card">
+            <p className="aqr-panel-label">Held for later</p>
+            <div className="aqr-password-chip">AQRVPP</div>
+            <p className="aqr-fine-print">
+              A simple student-facing gate can live here later without changing the overall site structure.
             </p>
-            <button className="button button-primary" type="button" disabled>
-              Enter the Course
-            </button>
           </div>
         </div>
       </section>
-
-      <footer className="site-footer">
-        <div className="content-wrap footer-inner">
-          <p className="footer-mark">AQR</p>
-          <p>Applied Quantitative Reasoning • Vista PEAK Prep</p>
-        </div>
-      </footer>
     </main>
   );
 }
