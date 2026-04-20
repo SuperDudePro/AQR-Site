@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import AQR from "./AQR";
 import WhyAQR from "./WhyAQR";
@@ -26,9 +26,35 @@ function useSiteChrome(page: string | null) {
   }, [page]);
 }
 
+function getCurrentPage() {
+  return new URLSearchParams(window.location.search).get("page");
+}
+
 function AppRouter() {
-  const page = new URLSearchParams(window.location.search).get("page");
+  const [page, setPage] = useState<string | null>(() => getCurrentPage());
   useSiteChrome(page);
+
+  useEffect(() => {
+    const syncPage = () => setPage(getCurrentPage());
+
+    window.addEventListener("popstate", syncPage);
+    window.addEventListener("hashchange", syncPage);
+
+    const observer = new MutationObserver(() => {
+      syncPage();
+    });
+    observer.observe(document.querySelector("title") ?? document.head, {
+      subtree: true,
+      childList: true,
+      characterData: true,
+    });
+
+    return () => {
+      window.removeEventListener("popstate", syncPage);
+      window.removeEventListener("hashchange", syncPage);
+      observer.disconnect();
+    };
+  }, []);
 
   if (page === "why-aqr") {
     return <WhyAQR />;
