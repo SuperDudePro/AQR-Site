@@ -15,9 +15,9 @@ const previewCards = [
   },
   {
     title: "Course Overview",
-    eyebrow: "How the year works",
+    eyebrow: "What is coming next",
     body:
-      "The main quarter arc, project families, and the practical structure of the course all live together here.",
+      "A single holding section for the year structure, project families, and course details as the site keeps getting built.",
     targetId: "course-overview",
     cta: "See the section",
   },
@@ -28,29 +28,6 @@ const previewCards = [
       "A reserved space for the live student-facing course area so enrolled students can get straight to the work.",
     targetId: "enter-course",
     cta: "Go there",
-  },
-];
-
-const quarterItems = [
-  {
-    quarter: "Q1",
-    title: "Know Yourself",
-    body: "Students build practical study-help tools, class-support tools, and source-grounded workflows using real materials.",
-  },
-  {
-    quarter: "Q2",
-    title: "Track Yourself",
-    body: "Students collect and analyze real data tied to time use, habits, surveys, and pattern finding.",
-  },
-  {
-    quarter: "Q3",
-    title: "Build a Decision Tool / App",
-    body: "Students create a decision-support tool, app-like workflow, or Gem that compares options and makes tradeoffs visible.",
-  },
-  {
-    quarter: "Q4",
-    title: "Don’t Get Played",
-    body: "Students finish with a short media and data reasoning unit focused on claims, evidence, bias, and everyday judgment.",
   },
 ];
 
@@ -105,7 +82,7 @@ function AQR({ onNavigateWhy }: AQRProps) {
           {previewCards.map((card) => (
             <article key={card.title} className="aqr-card">
               <p className="aqr-card-eyebrow">{card.eyebrow}</p>
-              <h3>{card.title}</h3>
+              <h3 className="aqr-card-title">{card.title}</h3>
               <p>{card.body}</p>
               <button
                 className="aqr-card-link"
@@ -123,7 +100,7 @@ function AQR({ onNavigateWhy }: AQRProps) {
         <div className="aqr-wrap aqr-split">
           <div>
             <p className="aqr-kicker aqr-kicker-bright">Why AQR</p>
-            <h2>A real pathway in modern mathematics.</h2>
+            <h2 className="aqr-heading-blue">A real pathway in modern mathematics.</h2>
             <p>
               Applied Quantitative Reasoning belongs to the broader world of
               quantitative reasoning: data, modeling, evidence, uncertainty,
@@ -137,8 +114,10 @@ function AQR({ onNavigateWhy }: AQRProps) {
               Open the full Why AQR page
             </button>
           </div>
-          <div className="aqr-quote-panel">
-            <p>“AQR is for students who want mathematics to do something.”</p>
+          <div className="aqr-quote-column">
+            <div className="aqr-quote-panel">
+              <p>“AQR is for students who want mathematics to do something.”</p>
+            </div>
           </div>
         </div>
       </section>
@@ -152,38 +131,10 @@ function AQR({ onNavigateWhy }: AQRProps) {
       </section>
 
       <section className="aqr-section aqr-section-graphite" id="course-overview">
-        <div className="aqr-wrap aqr-combined-grid">
-          <div>
-            <p className="aqr-kicker aqr-kicker-bright">Course Overview</p>
-            <h2>One year, four project families, one clear structure.</h2>
-            <p>
-              AQR runs as one main quarter-level project family per quarter, supported by weekly checkpoints,
-              smaller artifacts, and milestone work.
-            </p>
-            <p>
-              The year moves through four phases: Know Yourself, Track Yourself, Build a Decision Tool / App,
-              and Don’t Get Played. That keeps the course concrete without turning the homepage into a junk drawer.
-            </p>
-            <div className="aqr-combined-card">
-              <p className="aqr-panel-label">What holds the year together</p>
-              <ul>
-                <li>Project-based fourth-year math</li>
-                <li>Real decisions, real data, real tools</li>
-                <li>One common backbone with support and extension lanes</li>
-                <li>Weekly checkpoints that keep the pass path visible</li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="aqr-quarter-grid">
-            {quarterItems.map((item) => (
-              <article key={item.quarter} className="aqr-quarter-card">
-                <p className="aqr-quarter-label">{item.quarter}</p>
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
-              </article>
-            ))}
-          </div>
+        <div className="aqr-wrap aqr-overview-hold">
+          <p className="aqr-kicker aqr-kicker-bright">Course Overview</p>
+          <h2 className="aqr-heading-blue">Course Overview</h2>
+          <p className="aqr-coming-soon">More information soon!</p>
         </div>
       </section>
 
@@ -191,7 +142,7 @@ function AQR({ onNavigateWhy }: AQRProps) {
         <div className="aqr-wrap aqr-enter-grid">
           <div>
             <p className="aqr-kicker aqr-kicker-bright">Student Entry</p>
-            <h2>Reserved space for entering the course.</h2>
+            <h2 className="aqr-heading-blue">Reserved space for entering the course.</h2>
             <p>
               This area is being held for the student-facing course entry. When ready,
               it can use a simple passcode and become the direct path into the live materials.
