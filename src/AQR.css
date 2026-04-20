@@ -177,6 +177,7 @@
 }
 
 .aqr-card-eyebrow,
+.aqr-kicker,
 .aqr-panel-label {
   color: var(--muted);
 }
@@ -208,6 +209,7 @@
 
 .aqr-section {
   padding: 74px 0;
+  scroll-margin-top: 24px;
 }
 
 .aqr-section h2 {
@@ -250,12 +252,16 @@
   align-items: start;
 }
 
-.aqr-kicker {
-  color: var(--text-dark);
-}
-
 .aqr-kicker-bright {
   color: var(--neon);
+}
+
+.aqr-section-silver .aqr-kicker,
+.aqr-section-silver .aqr-panel-label,
+.aqr-overview-card .aqr-panel-label,
+.aqr-enter-card .aqr-panel-label,
+.aqr-section-silver .aqr-fine-print {
+  color: var(--text-dark);
 }
 
 .aqr-quote-panel,
@@ -343,7 +349,6 @@
 }
 
 .aqr-fine-print {
-  color: var(--text-dark);
   opacity: 0.86;
 }
 

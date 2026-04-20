@@ -1,19 +1,7 @@
 import "./AQR.css";
 
-const openWhyPage = () => {
-  window.location.hash = "#/why-aqr";
-};
-
-const goHomeSection = (id: string) => {
-  if (window.location.hash) {
-    history.replaceState(null, "", window.location.pathname + window.location.search);
-  }
-  requestAnimationFrame(() => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  });
+type AQRProps = {
+  onNavigateWhy: () => void;
 };
 
 const previewCards = [
@@ -22,7 +10,7 @@ const previewCards = [
     eyebrow: "Why this course matters",
     body:
       "Colorado alignment, university recognition, and real-world relevance. This is the core signal page for the course.",
-    action: () => openWhyPage(),
+    targetId: null,
     cta: "Read the full page",
   },
   {
@@ -30,7 +18,7 @@ const previewCards = [
     eyebrow: "Practical details",
     body:
       "The future home for grade levels, credit, prerequisite, year-long format, and honors or extension information.",
-    action: () => goHomeSection("course-overview"),
+    targetId: "course-overview",
     cta: "See the section",
   },
   {
@@ -38,7 +26,7 @@ const previewCards = [
     eyebrow: "Course access",
     body:
       "A reserved space for the live student-facing course area so enrolled students can get straight to the work.",
-    action: () => goHomeSection("enter-course"),
+    targetId: "enter-course",
     cta: "Go there",
   },
 ];
@@ -50,20 +38,27 @@ const overviewItems = [
   "Built with multiple levels of support and challenge",
 ];
 
-function AQR() {
+function scrollToId(id: string) {
+  const el = document.getElementById(id);
+  if (!el) return;
+
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function AQR({ onNavigateWhy }: AQRProps) {
   return (
     <main className="aqr-page">
       <section className="aqr-hero" id="top">
         <header className="aqr-topbar aqr-wrap">
-          <button className="aqr-brand" onClick={() => goHomeSection("top")}>
+          <button className="aqr-brand" onClick={() => scrollToId("top")} type="button">
             <span className="aqr-brand-mark">AQR</span>
             <span className="aqr-brand-name">Applied Quantitative Reasoning</span>
           </button>
           <nav className="aqr-topnav" aria-label="Primary">
-            <button onClick={openWhyPage}>Why AQR</button>
-            <button onClick={() => goHomeSection("course-overview")}>Course Overview</button>
-            <button onClick={() => goHomeSection("how-it-works")}>How It Works</button>
-            <button onClick={() => goHomeSection("enter-course")}>Student Entry</button>
+            <button onClick={onNavigateWhy} type="button">Why AQR</button>
+            <button onClick={() => scrollToId("enter-course")} type="button">Student Entry</button>
+            <button onClick={() => scrollToId("course-overview")} type="button">Course Overview</button>
+            <button onClick={() => scrollToId("how-it-works")} type="button">How It Works</button>
           </nav>
         </header>
 
@@ -77,27 +72,31 @@ function AQR() {
             real tools, and real communication.
           </p>
           <div className="aqr-hero-actions">
-            <button className="aqr-button aqr-button-top" onClick={openWhyPage}>
+            <button className="aqr-button aqr-button-top" onClick={onNavigateWhy} type="button">
               Why AQR
             </button>
-            <button className="aqr-button aqr-button-top" onClick={() => goHomeSection("course-overview")}>
-              Course Overview
+            <button className="aqr-button aqr-button-top" onClick={() => scrollToId("enter-course")} type="button">
+              Student Entry
             </button>
-            <button className="aqr-button aqr-button-top" onClick={() => goHomeSection("enter-course")}>
-              Enter the Course
+            <button className="aqr-button aqr-button-top" onClick={() => scrollToId("course-overview")} type="button">
+              Course Overview
             </button>
           </div>
         </div>
       </section>
 
-      <section className="aqr-cards-section">
+      <section className="aqr-cards-section" aria-label="Homepage preview links">
         <div className="aqr-wrap aqr-card-grid">
           {previewCards.map((card) => (
             <article key={card.title} className="aqr-card">
               <p className="aqr-card-eyebrow">{card.eyebrow}</p>
               <h3>{card.title}</h3>
               <p>{card.body}</p>
-              <button className="aqr-card-link" onClick={card.action}>
+              <button
+                className="aqr-card-link"
+                onClick={() => (card.targetId ? scrollToId(card.targetId) : onNavigateWhy())}
+                type="button"
+              >
                 {card.cta}
               </button>
             </article>
@@ -119,7 +118,7 @@ function AQR() {
               This section previews the argument. The full Why AQR page goes deeper
               into Colorado pathway alignment, university recognition, and workforce relevance.
             </p>
-            <button className="aqr-button aqr-button-dark" onClick={openWhyPage}>
+            <button className="aqr-button aqr-button-dark" onClick={onNavigateWhy} type="button">
               Open the full Why AQR page
             </button>
           </div>
@@ -157,17 +156,18 @@ function AQR() {
               credit, prerequisite, course length, and the honors or extension path.
             </p>
             <p>
-              The homepage can introduce those details without turning the hero into a junk drawer.
+              A later Course Structure page can carry the year flow and project arc without
+              turning the homepage into a junk drawer.
             </p>
           </div>
           <div className="aqr-overview-card">
             <p className="aqr-panel-label">Coming next</p>
             <ul>
               <li>Quick facts</li>
-              <li>Year structure</li>
-              <li>Quarter themes</li>
+              <li>Course structure</li>
               <li>Sample projects</li>
               <li>Student course entry</li>
+              <li>Family-facing overview language</li>
             </ul>
           </div>
         </div>

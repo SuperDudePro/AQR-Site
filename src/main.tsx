@@ -4,8 +4,12 @@ import AQR from "./AQR";
 import WhyAQR from "./WhyAQR";
 import "./index.css";
 
-function setChrome(page: "home" | "why") {
-  document.title = page === "why" ? "AQR | Why AQR" : "AQR";
+type Route = "home" | "why";
+
+const WHY_HASH = "#/why-aqr";
+
+function setChrome(route: Route) {
+  document.title = route === "why" ? "AQR | Why AQR" : "AQR";
 
   const svg = `
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
@@ -24,27 +28,43 @@ function setChrome(page: "home" | "why") {
   link.href = `data:image/svg+xml,${encodeURIComponent(svg)}`;
 }
 
-function getPage(hash: string) {
-  return hash.startsWith("#/why-aqr") ? "why" : "home";
+function getRoute(hash: string): Route {
+  return hash.startsWith(WHY_HASH) ? "why" : "home";
+}
+
+function navigate(route: Route) {
+  const nextHash = route === "why" ? WHY_HASH : "";
+
+  if (window.location.hash === nextHash) {
+    setChrome(route);
+    window.scrollTo({ top: 0, behavior: "auto" });
+    return;
+  }
+
+  window.location.hash = nextHash;
 }
 
 function App() {
-  const [page, setPage] = useState<"home" | "why">(() => getPage(window.location.hash || ""));
+  const [route, setRoute] = useState<Route>(() => getRoute(window.location.hash || ""));
 
   useEffect(() => {
-    const handleHashChange = () => {
-      const nextPage = getPage(window.location.hash || "");
-      setPage(nextPage);
-      setChrome(nextPage);
+    const syncRoute = () => {
+      const nextRoute = getRoute(window.location.hash || "");
+      setRoute(nextRoute);
+      setChrome(nextRoute);
       window.scrollTo({ top: 0, behavior: "auto" });
     };
 
-    handleHashChange();
-    window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
+    syncRoute();
+    window.addEventListener("hashchange", syncRoute);
+    return () => window.removeEventListener("hashchange", syncRoute);
   }, []);
 
-  return page === "why" ? <WhyAQR /> : <AQR />;
+  return route === "why" ? (
+    <WhyAQR onNavigateHome={() => navigate("home")} />
+  ) : (
+    <AQR onNavigateWhy={() => navigate("why")} />
+  );
 }
 
 ReactDOM.createRoot(document.getElementById("root")!).render(<App />);

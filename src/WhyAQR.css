@@ -131,6 +131,7 @@
 
 .why-section {
   padding: 82px 0;
+  scroll-margin-top: 24px;
 }
 
 .why-section-dark {
@@ -180,7 +181,8 @@
 .why-quote-panel p,
 .why-list-panel li,
 .why-callout-panel p,
-.why-source-link {
+.why-source-link,
+.why-practice-card p {
   font-size: 1.12rem;
   line-height: 1.82;
 }
@@ -192,13 +194,14 @@
 .why-quote-panel,
 .why-list-panel,
 .why-callout-panel,
-.why-image-card {
+.why-practice-card {
   border-radius: 28px;
   padding: 30px;
 }
 
 .why-quote-panel,
-.why-list-panel {
+.why-list-panel,
+.why-practice-card {
   background: rgba(255, 255, 255, 0.84);
   color: var(--text-dark);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
@@ -225,21 +228,21 @@
   border: 1px solid rgba(57, 168, 255, 0.22);
 }
 
-.why-image-wrap {
+.why-practice-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
   margin-top: 30px;
 }
 
-.why-image-card {
-  overflow: hidden;
-  padding: 0;
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(57, 168, 255, 0.18);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
+.why-practice-card h3 {
+  margin: 0 0 12px;
+  font-size: 1.35rem;
+  line-height: 1.2;
 }
 
-.why-image-card img {
-  width: 100%;
-  height: auto;
+.why-practice-card p {
+  margin: 0;
 }
 
 .why-sources-wrap {
@@ -272,7 +275,8 @@
 @media (max-width: 900px) {
   .why-grid,
   .why-grid-equal,
-  .why-sources-grid {
+  .why-sources-grid,
+  .why-practice-grid {
     grid-template-columns: 1fr;
   }
 }
