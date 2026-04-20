@@ -34,7 +34,6 @@ const previewCards = [
 function scrollToId(id: string) {
   const el = document.getElementById(id);
   if (!el) return;
-
   el.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
@@ -100,7 +99,7 @@ function AQR({ onNavigateWhy }: AQRProps) {
         <div className="aqr-wrap aqr-split">
           <div>
             <p className="aqr-kicker aqr-kicker-bright">Why AQR</p>
-            <h2 className="aqr-heading-blue">A real pathway in modern mathematics.</h2>
+            <h2 className="aqr-heading-dark">A real pathway in modern mathematics.</h2>
             <p>
               Applied Quantitative Reasoning belongs to the broader world of
               quantitative reasoning: data, modeling, evidence, uncertainty,
@@ -115,7 +114,7 @@ function AQR({ onNavigateWhy }: AQRProps) {
             </button>
           </div>
           <div className="aqr-quote-column">
-            <div className="aqr-quote-panel">
+            <div className="aqr-quote-panel aqr-quote-panel-bright">
               <p>“AQR is for students who want mathematics to do something.”</p>
             </div>
           </div>
@@ -123,16 +122,15 @@ function AQR({ onNavigateWhy }: AQRProps) {
       </section>
 
       <section className="aqr-banner-section" aria-label="Course overview visual">
-        <div className="aqr-wrap">
+        <div className="aqr-wrap aqr-banner-wrap">
           <div className="aqr-banner-card">
             <img src="/AQR_How_It_Works_Banner.png" alt="AQR course overview visual" />
           </div>
         </div>
       </section>
 
-      <section className="aqr-section aqr-section-graphite" id="course-overview">
+      <section className="aqr-section aqr-section-black" id="course-overview">
         <div className="aqr-wrap aqr-overview-hold">
-          <p className="aqr-kicker aqr-kicker-bright">Course Overview</p>
           <h2 className="aqr-heading-blue">Course Overview</h2>
           <p className="aqr-coming-soon">More information soon!</p>
         </div>
