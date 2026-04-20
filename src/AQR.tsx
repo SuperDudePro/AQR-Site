@@ -15,9 +15,9 @@ const previewCards = [
   },
   {
     title: "Course Overview",
-    eyebrow: "Practical details",
+    eyebrow: "How the year works",
     body:
-      "The future home for grade levels, credit, prerequisite, year-long format, and honors or extension information.",
+      "The main quarter arc, project families, and the practical structure of the course all live together here.",
     targetId: "course-overview",
     cta: "See the section",
   },
@@ -31,11 +31,27 @@ const previewCards = [
   },
 ];
 
-const overviewItems = [
-  "Project-based fourth-year math",
-  "Real decisions, real data, real tools",
-  "Reasoning, communication, and decision-making",
-  "Built with multiple levels of support and challenge",
+const quarterItems = [
+  {
+    quarter: "Q1",
+    title: "Know Yourself",
+    body: "Students build practical study-help tools, class-support tools, and source-grounded workflows using real materials.",
+  },
+  {
+    quarter: "Q2",
+    title: "Track Yourself",
+    body: "Students collect and analyze real data tied to time use, habits, surveys, and pattern finding.",
+  },
+  {
+    quarter: "Q3",
+    title: "Build a Decision Tool / App",
+    body: "Students create a decision-support tool, app-like workflow, or Gem that compares options and makes tradeoffs visible.",
+  },
+  {
+    quarter: "Q4",
+    title: "Don’t Get Played",
+    body: "Students finish with a short media and data reasoning unit focused on claims, evidence, bias, and everyday judgment.",
+  },
 ];
 
 function scrollToId(id: string) {
@@ -58,7 +74,6 @@ function AQR({ onNavigateWhy }: AQRProps) {
             <button onClick={onNavigateWhy} type="button">Why AQR</button>
             <button onClick={() => scrollToId("enter-course")} type="button">Student Entry</button>
             <button onClick={() => scrollToId("course-overview")} type="button">Course Overview</button>
-            <button onClick={() => scrollToId("how-it-works")} type="button">How It Works</button>
           </nav>
         </header>
 
@@ -128,47 +143,46 @@ function AQR({ onNavigateWhy }: AQRProps) {
         </div>
       </section>
 
-      <section className="aqr-section aqr-section-graphite" id="how-it-works">
+      <section className="aqr-banner-section" aria-label="Course overview visual">
         <div className="aqr-wrap">
-          <p className="aqr-kicker aqr-kicker-bright">How It Works</p>
-          <h2>Built for applied learning.</h2>
-          <p className="aqr-section-lead">
-            Students work with real inputs, real data, and real artifacts. Later,
-            this section can point directly into the course structure and project pages.
-          </p>
-          <div className="aqr-pill-row">
-            {overviewItems.map((item) => (
-              <div key={item} className="aqr-pill-card">
-                {item}
-              </div>
-            ))}
+          <div className="aqr-banner-card">
+            <img src="/AQR_How_It_Works_Banner.png" alt="AQR course overview visual" />
           </div>
         </div>
       </section>
 
-      <section className="aqr-section aqr-section-black" id="course-overview">
-        <div className="aqr-wrap aqr-overview-grid">
+      <section className="aqr-section aqr-section-graphite" id="course-overview">
+        <div className="aqr-wrap aqr-combined-grid">
           <div>
-            <p className="aqr-kicker">Course Overview</p>
-            <h2>Space held for the practical course page.</h2>
+            <p className="aqr-kicker aqr-kicker-bright">Course Overview</p>
+            <h2>One year, four project families, one clear structure.</h2>
             <p>
-              This is where the public-facing course details will live next: grade levels,
-              credit, prerequisite, course length, and the honors or extension path.
+              AQR runs as one main quarter-level project family per quarter, supported by weekly checkpoints,
+              smaller artifacts, and milestone work.
             </p>
             <p>
-              A later Course Structure page can carry the year flow and project arc without
-              turning the homepage into a junk drawer.
+              The year moves through four phases: Know Yourself, Track Yourself, Build a Decision Tool / App,
+              and Don’t Get Played. That keeps the course concrete without turning the homepage into a junk drawer.
             </p>
+            <div className="aqr-combined-card">
+              <p className="aqr-panel-label">What holds the year together</p>
+              <ul>
+                <li>Project-based fourth-year math</li>
+                <li>Real decisions, real data, real tools</li>
+                <li>One common backbone with support and extension lanes</li>
+                <li>Weekly checkpoints that keep the pass path visible</li>
+              </ul>
+            </div>
           </div>
-          <div className="aqr-overview-card">
-            <p className="aqr-panel-label">Coming next</p>
-            <ul>
-              <li>Quick facts</li>
-              <li>Course structure</li>
-              <li>Sample projects</li>
-              <li>Student course entry</li>
-              <li>Family-facing overview language</li>
-            </ul>
+
+          <div className="aqr-quarter-grid">
+            {quarterItems.map((item) => (
+              <article key={item.quarter} className="aqr-quarter-card">
+                <p className="aqr-quarter-label">{item.quarter}</p>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -176,14 +190,14 @@ function AQR({ onNavigateWhy }: AQRProps) {
       <section className="aqr-section aqr-section-silver" id="enter-course">
         <div className="aqr-wrap aqr-enter-grid">
           <div>
-            <p className="aqr-kicker">Student Entry</p>
+            <p className="aqr-kicker aqr-kicker-bright">Student Entry</p>
             <h2>Reserved space for entering the course.</h2>
             <p>
               This area is being held for the student-facing course entry. When ready,
               it can use a simple passcode and become the direct path into the live materials.
             </p>
           </div>
-          <div className="aqr-enter-card">
+          <div className="aqr-enter-card aqr-enter-card-bright">
             <p className="aqr-panel-label">Held for later</p>
             <div className="aqr-password-chip">AQRVPP</div>
             <p className="aqr-fine-print">
