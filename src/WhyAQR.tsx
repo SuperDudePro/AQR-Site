@@ -2,7 +2,7 @@ import "./WhyAQR.css";
 
 const HOME_PAGE = "#top";
 const WHY_ROOT = "#/why-aqr";
-const bannerSrc = `${import.meta.env.BASE_URL}AQR_What_Students_Do_Banner.png`;
+const bannerSrc = "/AQR_What_Students_Do_Banner.png";
 
 const universityLinks = [
   { name: "Stanford", detail: "Applied Quantitative Reasoning is one of Stanford's eight Ways of Thinking / Ways of Doing categories.", href: "https://ways.stanford.edu/about/ways-categories/applied-quantitative-reasoning-aqr" },
