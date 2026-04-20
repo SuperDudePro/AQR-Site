@@ -4,32 +4,42 @@ import AQR from "./AQR";
 import WhyAQR from "./WhyAQR";
 import "./index.css";
 
-type PageName = "why-aqr" | null;
+type Route = {
+  page: "home" | "why-aqr";
+  section?: string;
+};
 
-function getCurrentPage(): PageName {
-  const params = new URLSearchParams(window.location.search);
-  return params.get("page") === "why-aqr" ? "why-aqr" : null;
-}
+function parseHash(): Route {
+  const hash = window.location.hash || "";
 
-function subscribe(callback: () => void) {
-  const notify = () => callback();
+  if (hash.startsWith("#/why-aqr")) {
+    const rest = hash.slice("#/why-aqr".length).replace(/^\//, "");
+    return {
+      page: "why-aqr",
+      section: rest || undefined,
+    };
+  }
 
-  window.addEventListener("popstate", notify);
-  window.addEventListener("hashchange", notify);
-  window.addEventListener("pageshow", notify);
-
-  return () => {
-    window.removeEventListener("popstate", notify);
-    window.removeEventListener("hashchange", notify);
-    window.removeEventListener("pageshow", notify);
+  return {
+    page: "home",
+    section: hash.startsWith("#") ? hash.slice(1) || undefined : undefined,
   };
 }
 
-function useCurrentPage(): PageName {
-  return useSyncExternalStore(subscribe, getCurrentPage, () => null);
+function subscribe(callback: () => void) {
+  window.addEventListener("hashchange", callback);
+  window.addEventListener("pageshow", callback);
+  return () => {
+    window.removeEventListener("hashchange", callback);
+    window.removeEventListener("pageshow", callback);
+  };
 }
 
-function useSiteChrome(page: PageName) {
+function useRoute(): Route {
+  return useSyncExternalStore(subscribe, parseHash, () => ({ page: "home" }));
+}
+
+function useSiteChrome(page: Route["page"]) {
   useEffect(() => {
     document.title = page === "why-aqr" ? "AQR | Why AQR" : "AQR";
 
@@ -51,11 +61,34 @@ function useSiteChrome(page: PageName) {
   }, [page]);
 }
 
-function AppRouter() {
-  const page = useCurrentPage();
-  useSiteChrome(page);
+function useScrollToSection(route: Route) {
+  useEffect(() => {
+    const id = route.section;
 
-  return page === "why-aqr" ? <WhyAQR /> : <AQR />;
+    const scroll = () => {
+      if (!id || id === "top" || id === "home") {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+        return;
+      }
+
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "auto", block: "start" });
+      } else {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      }
+    };
+
+    requestAnimationFrame(scroll);
+  }, [route.page, route.section]);
+}
+
+function AppRouter() {
+  const route = useRoute();
+  useSiteChrome(route.page);
+  useScrollToSection(route);
+
+  return route.page === "why-aqr" ? <WhyAQR /> : <AQR />;
 }
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

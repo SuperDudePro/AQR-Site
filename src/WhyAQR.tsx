@@ -1,6 +1,8 @@
 import "./WhyAQR.css";
 
-const HOME_PAGE = "?";
+const HOME_PAGE = "#top";
+const WHY_ROOT = "#/why-aqr";
+const bannerSrc = `${import.meta.env.BASE_URL}AQR_What_Students_Do_Banner.png`;
 
 const universityLinks = [
   { name: "Stanford", detail: "Applied Quantitative Reasoning is one of Stanford's eight Ways of Thinking / Ways of Doing categories.", href: "https://ways.stanford.edu/about/ways-categories/applied-quantitative-reasoning-aqr" },
@@ -42,9 +44,9 @@ function WhyAQR() {
           </a>
           <nav className="why-nav" aria-label="Page navigation">
             <a href={HOME_PAGE}>Home</a>
-            <a href="#pathway">Pathway</a>
-            <a href="#colorado">Colorado</a>
-            <a href="#sources">Sources</a>
+            <a href={`${WHY_ROOT}/pathway`}>Pathway</a>
+            <a href={`${WHY_ROOT}/colorado`}>Colorado</a>
+            <a href={`${WHY_ROOT}/sources`}>Sources</a>
           </nav>
         </header>
 
@@ -56,7 +58,7 @@ function WhyAQR() {
             to life, work, information, and the choices they actually have to make.
           </p>
           <div className="why-actions">
-            <a className="why-button why-button-primary" href="#pathway">Read the case</a>
+            <a className="why-button why-button-primary" href={`${WHY_ROOT}/pathway`}>Read the case</a>
             <a className="why-button why-button-secondary" href={HOME_PAGE}>Back to home</a>
           </div>
         </div>
@@ -80,9 +82,10 @@ function WhyAQR() {
           </div>
           <div className="why-card-grid">
             {universityLinks.map((item) => (
-              <a key={item.name} className="why-uni-card" href={item.href} target="_blank" rel="noreferrer">
-                <span className="uni-name">{item.name}</span>
+              <a key={item.name} className="why-card" href={item.href} target="_blank" rel="noreferrer">
+                <span className="why-card-name">{item.name}</span>
                 <span>{item.detail}</span>
+                <span className="why-card-link">Open source ↗</span>
               </a>
             ))}
           </div>
@@ -105,7 +108,7 @@ function WhyAQR() {
               is already going.
             </p>
           </div>
-          <div className="why-callout-panel">
+          <div className="why-callout-panel why-mini-panel">
             <p className="callout-label">What AQR prepares students to do</p>
             <p>
               Most high school math courses are not designed primarily to prepare students for the Quantitative
@@ -133,7 +136,11 @@ function WhyAQR() {
             </p>
           </div>
           <div className="why-image-card">
-            <img src="/AQR_What_Students_Do_Banner.png" alt="AQR students comparing options, analyzing patterns, evaluating claims, and making real decisions" />
+            <img
+              src={bannerSrc}
+              alt="AQR students comparing options, analyzing patterns, evaluating claims, and making real decisions"
+              loading="lazy"
+            />
           </div>
         </div>
       </section>
@@ -142,12 +149,14 @@ function WhyAQR() {
         <div className="why-wrap why-grid why-grid-wide">
           <div>
             <p className="why-kicker">Why this matters beyond school</p>
-            <h2>These are the skills real life keeps asking for.</h2>
+            <h2>Preparation for what comes next.</h2>
             <p>
-              Many jobs now ask people to read data, compare tradeoffs, work with technology,
-              judge evidence, and make decisions under uncertainty. The World Economic Forum identifies
-              analytical thinking as the top core skill for employers and points to AI and data skills as the
-              fastest-growing skill areas over the next five years.
+              Many jobs now ask people to read data, compare tradeoffs, work with technology, judge evidence,
+              and make decisions under uncertainty. Employers are moving in that direction as well.
+            </p>
+            <p>
+              The World Economic Forum identifies analytical thinking as the top core skill for employers and
+              points to AI and data skills as the fastest-growing skill areas over the next five years.
               NACE includes Critical Thinking and Technology among its career-readiness competencies.
             </p>
             <p>
