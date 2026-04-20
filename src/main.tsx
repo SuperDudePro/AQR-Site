@@ -1,10 +1,53 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useSyncExternalStore } from "react";
 import ReactDOM from "react-dom/client";
 import AQR from "./AQR";
 import WhyAQR from "./WhyAQR";
 import "./index.css";
 
-function useSiteChrome(page: string | null) {
+type PageName = "why-aqr" | null;
+
+function getCurrentPage(): PageName {
+  const page = new URLSearchParams(window.location.search).get("page");
+  return page === "why-aqr" ? "why-aqr" : null;
+}
+
+function subscribe(callback: () => void) {
+  const notify = () => callback();
+  const eventName = "aqr:navigation";
+
+  const originalPushState = window.history.pushState;
+  const originalReplaceState = window.history.replaceState;
+
+  window.history.pushState = function (...args) {
+    originalPushState.apply(this, args as Parameters<History["pushState"]>);
+    window.dispatchEvent(new Event(eventName));
+  };
+
+  window.history.replaceState = function (...args) {
+    originalReplaceState.apply(this, args as Parameters<History["replaceState"]>);
+    window.dispatchEvent(new Event(eventName));
+  };
+
+  window.addEventListener("popstate", notify);
+  window.addEventListener("hashchange", notify);
+  window.addEventListener("pageshow", notify);
+  window.addEventListener(eventName, notify);
+
+  return () => {
+    window.history.pushState = originalPushState;
+    window.history.replaceState = originalReplaceState;
+    window.removeEventListener("popstate", notify);
+    window.removeEventListener("hashchange", notify);
+    window.removeEventListener("pageshow", notify);
+    window.removeEventListener(eventName, notify);
+  };
+}
+
+function useCurrentPage(): PageName {
+  return useSyncExternalStore(subscribe, getCurrentPage, () => null);
+}
+
+function useSiteChrome(page: PageName) {
   useEffect(() => {
     document.title = page === "why-aqr" ? "AQR | Why AQR" : "AQR";
 
@@ -13,7 +56,6 @@ function useSiteChrome(page: string | null) {
         <rect width="64" height="64" rx="12" fill="#000000"/>
         <text x="32" y="40" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#39a8ff">AQR</text>
       </svg>`;
-    const href = `data:image/svg+xml,${encodeURIComponent(svg)}`;
 
     let link = document.querySelector("link[rel='icon']") as HTMLLinkElement | null;
     if (!link) {
@@ -21,46 +63,17 @@ function useSiteChrome(page: string | null) {
       link.rel = "icon";
       document.head.appendChild(link);
     }
+
     link.type = "image/svg+xml";
-    link.href = href;
+    link.href = `data:image/svg+xml,${encodeURIComponent(svg)}`;
   }, [page]);
 }
 
-function getCurrentPage() {
-  return new URLSearchParams(window.location.search).get("page");
-}
-
 function AppRouter() {
-  const [page, setPage] = useState<string | null>(() => getCurrentPage());
+  const page = useCurrentPage();
   useSiteChrome(page);
 
-  useEffect(() => {
-    const syncPage = () => setPage(getCurrentPage());
-
-    window.addEventListener("popstate", syncPage);
-    window.addEventListener("hashchange", syncPage);
-
-    const observer = new MutationObserver(() => {
-      syncPage();
-    });
-    observer.observe(document.querySelector("title") ?? document.head, {
-      subtree: true,
-      childList: true,
-      characterData: true,
-    });
-
-    return () => {
-      window.removeEventListener("popstate", syncPage);
-      window.removeEventListener("hashchange", syncPage);
-      observer.disconnect();
-    };
-  }, []);
-
-  if (page === "why-aqr") {
-    return <WhyAQR />;
-  }
-
-  return <AQR />;
+  return page === "why-aqr" ? <WhyAQR /> : <AQR />;
 }
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
