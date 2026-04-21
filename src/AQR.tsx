@@ -10,7 +10,7 @@ type PreviewCard = {
   body: string;
   href: string;
   cta: string;
-  onClick?: (event: any) => void;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 };
 
 function scrollToId(id: string) {
@@ -29,7 +29,7 @@ function AQR({ onNavigateWhy }: AQRProps) {
   };
 
   const handleHomeAnchor =
-    (id: string) => (event: any) => {
+    (id: string) => (event: React.MouseEvent<HTMLAnchorElement>) => {
       event.preventDefault();
       scrollToId(id);
     };
@@ -41,7 +41,7 @@ function AQR({ onNavigateWhy }: AQRProps) {
       body:
         "Colorado alignment, university recognition, and real-world relevance. This is the core signal page for the course.",
       href: "#/why-aqr",
-      cta: "Read the full page",
+      cta: "Open Why AQR",
       onClick: (event) => {
         event.preventDefault();
         navigateWhy();
@@ -53,7 +53,7 @@ function AQR({ onNavigateWhy }: AQRProps) {
       body:
         "A single holding section for the year structure, project families, and course details as the site keeps getting built.",
       href: "#course-overview",
-      cta: "See the section",
+      cta: "Open Course Overview",
       onClick: handleHomeAnchor("course-overview"),
     },
     {
@@ -62,7 +62,7 @@ function AQR({ onNavigateWhy }: AQRProps) {
       body:
         "A reserved space for the live student-facing course area so enrolled students can get straight to the work.",
       href: "#enter-course",
-      cta: "Go there",
+      cta: "Open Student Entry",
       onClick: handleHomeAnchor("enter-course"),
     },
   ];
@@ -80,8 +80,14 @@ function AQR({ onNavigateWhy }: AQRProps) {
             <span className="aqr-brand-name">Applied Quantitative Reasoning</span>
           </a>
 
-          <nav className="aqr-topnav" aria-label="Primary">
-            <a href="#/why-aqr" onClick={(event) => { event.preventDefault(); navigateWhy(); }}>
+          <nav className="aqr-topnav" aria-label="Primary" role="navigation">
+            <a
+              href="#/why-aqr"
+              onClick={(event) => {
+                event.preventDefault();
+                navigateWhy();
+              }}
+            >
               Why AQR
             </a>
             <a href="#enter-course" onClick={handleHomeAnchor("enter-course")}>
@@ -187,10 +193,23 @@ function AQR({ onNavigateWhy }: AQRProps) {
               Course overview visual
             </h2>
             <div className="aqr-banner-card">
-              <img
-                src="/AQR_How_It_Works_Banner.png"
-                alt="Illustrated banner showing the AQR course overview"
-              />
+              <picture className="aqr-banner-picture">
+                <source
+                  type="image/webp"
+                  srcSet="/AQR_How_It_Works_Banner-1024.webp 1024w, /AQR_How_It_Works_Banner-1600.webp 1600w, /AQR_How_It_Works_Banner.webp 2048w"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 92vw, 1060px"
+                />
+                <img
+                  src="/AQR_How_It_Works_Banner.png"
+                  alt="Illustrated banner showing the AQR course overview"
+                  width={2048}
+                  height={868}
+                  decoding="async"
+                  fetchPriority="high"
+                  loading="eager"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 92vw, 1060px"
+                />
+              </picture>
             </div>
           </div>
         </section>

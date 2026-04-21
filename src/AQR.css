@@ -505,3 +505,13 @@
     width: 100%;
   }
 }
+
+.aqr-banner-picture {
+  display: block;
+}
+
+.aqr-banner-picture img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
