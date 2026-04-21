@@ -118,7 +118,7 @@ function QuarterDetail({ quarter, onNavigateHome, onNavigateOverview }: QuarterD
             <span className="quarter-brand-name">Applied Quantitative Reasoning</span>
           </a>
 
-          <nav className="quarter-topnav" aria-label="Quarter page navigation" role="navigation">
+          <nav className="quarter-topnav" aria-label="Quarter page navigation">
             <a href="#" onClick={goHome}>Home</a>
             <a href="#/course-overview" onClick={goOverview}>Course Overview</a>
             <a href={detail.href} aria-current="page">{detail.navLabel}</a>

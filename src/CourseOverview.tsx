@@ -92,7 +92,7 @@ function CourseOverview({ onNavigateHome, onNavigateWhy }: CourseOverviewProps) 
             <span className="overview-brand-name">Applied Quantitative Reasoning</span>
           </a>
 
-          <nav className="overview-topnav" aria-label="Course Overview navigation" role="navigation">
+          <nav className="overview-topnav" aria-label="Course Overview navigation">
             <a href="#" onClick={goHome}>Home</a>
             <a href="#/why-aqr" onClick={goWhy}>Why AQR</a>
             <a href="#/course-overview" aria-current="page">Course Overview</a>
@@ -108,7 +108,7 @@ function CourseOverview({ onNavigateHome, onNavigateWhy }: CourseOverviewProps) 
             <p className="overview-hero-lead">
               Applied Quantitative Reasoning is a project-based math elective built around real decisions,
               real data, real tools, and real communication. This page lays out the broad shape of the course
-              without turning it into the full student course space.
+              without trying to serve as the full student course space.
             </p>
           </div>
         </section>

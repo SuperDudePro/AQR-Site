@@ -36,12 +36,11 @@
 
 .overview-site-header {
   padding-top: 0;
+  padding-bottom: 30px;
 }
 
 .overview-hero {
-  background:
-    radial-gradient(circle at top center, rgba(57, 168, 255, 0.12), transparent 42%),
-    linear-gradient(180deg, #05080c 0%, #000000 100%);
+  background: #000000;
 }
 
 .overview-topbar {
@@ -130,7 +129,7 @@
 .overview-hero-inner {
   max-width: 920px;
   text-align: center;
-  padding: 70px 0 0;
+  padding: 40px 0 0;
 }
 
 .overview-kicker,
@@ -215,8 +214,8 @@
 
 .overview-section-silver p,
 .overview-facts-list li {
-  color: #18222c;
-  font-weight: 500;
+  color: #0f1720;
+  font-weight: 600;
 }
 
 .overview-facts-panel {
@@ -224,6 +223,7 @@
   margin: auto;
   align-self: center;
   justify-self: center;
+  text-align: left;
   padding: 28px;
   border-radius: 28px;
   background: rgba(255, 255, 255, 0.9);
@@ -242,21 +242,23 @@
 }
 
 .overview-section-head {
-  max-width: 900px;
-  margin-bottom: 28px;
+  max-width: 1120px;
+  margin-bottom: 36px;
 }
 
 .overview-section-intro {
-  color: var(--muted);
+  color: #cfd9e3;
+  max-width: 1100px;
 }
 
 .overview-quarter-grid {
   list-style: none;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
+  max-width: 980px;
 }
 
 .overview-quarter-list-item {
@@ -269,11 +271,11 @@
   height: 100%;
   padding: 26px;
   border-radius: 28px;
-  background: linear-gradient(180deg, rgba(18, 24, 31, 0.92) 0%, rgba(8, 11, 15, 0.98) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--text);
+  background: linear-gradient(180deg, #d3d9df 0%, #c4ccd4 100%);
+  border: 1px solid rgba(17, 24, 32, 0.12);
+  color: #111820;
   text-decoration: none;
-  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.18);
   transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -286,7 +288,7 @@
 
 .overview-quarter-card-title {
   margin: 0 0 10px;
-  color: var(--offwhite);
+  color: #111820;
   font-size: 1.45rem;
   line-height: 1.18;
 }
@@ -298,11 +300,12 @@
 }
 
 .overview-quarter-card-focus strong {
-  color: var(--offwhite);
+  color: #111820;
 }
 
 .overview-quarter-card-body {
-  color: var(--muted);
+  color: #22303b;
+  font-weight: 600;
 }
 
 .overview-quarter-card-link {
@@ -345,7 +348,7 @@
 
   .overview-hero-inner {
     text-align: left;
-    padding-top: 48px;
+    padding-top: 28px;
   }
 }
 

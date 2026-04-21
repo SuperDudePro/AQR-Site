@@ -34,12 +34,11 @@
 
 .quarter-site-header {
   padding-top: 0;
+  padding-bottom: 30px;
 }
 
 .quarter-hero {
-  background:
-    radial-gradient(circle at top center, rgba(57, 168, 255, 0.12), transparent 42%),
-    linear-gradient(180deg, #05080c 0%, #000000 100%);
+  background: #000000;
 }
 
 .quarter-topbar {
@@ -133,7 +132,7 @@
 .quarter-hero-inner {
   max-width: 920px;
   text-align: center;
-  padding: 70px 0 0;
+  padding: 40px 0 0;
 }
 
 .quarter-hero-links {
@@ -181,7 +180,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1.16fr) minmax(300px, 0.84fr);
   gap: 32px;
-  align-items: start;
+  align-items: center;
 }
 
 .quarter-text-dark,
@@ -213,8 +212,8 @@
 }
 
 .quarter-section-silver p {
-  color: #18222c;
-  font-weight: 500;
+  color: #0f1720;
+  font-weight: 600;
 }
 
 .quarter-callout-panel {
@@ -222,6 +221,7 @@
   margin: auto;
   align-self: center;
   justify-self: center;
+  text-align: left;
   padding: 28px;
   border-radius: 28px;
   background: rgba(255, 255, 255, 0.9);
@@ -268,7 +268,7 @@
 
   .quarter-hero-inner {
     text-align: left;
-    padding-top: 48px;
+    padding-top: 28px;
   }
 
   .quarter-hero-links {

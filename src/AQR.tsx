@@ -240,7 +240,7 @@ function AQR({ onNavigateWhy, onNavigateOverview }: AQRProps) {
             <p className="aqr-kicker aqr-kicker-bright">Course Overview</p>
             <h2 className="aqr-heading-blue" id="aqr-course-overview-title">See the year structure at a glance.</h2>
             <p className="aqr-overview-preview-text">
-              The public course overview page now lays out the basic course facts and the quarter-by-quarter structure.
+              The course overview page lays out the basic course facts and the quarter-by-quarter structure.
             </p>
             <a
               className="aqr-button aqr-button-top"
