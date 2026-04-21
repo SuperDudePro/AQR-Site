@@ -1,5 +1,11 @@
-.why-page {
+.why-site-shell {
   min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.why-page {
+  min-height: 0;
   background: var(--bg);
   color: var(--text);
 }
@@ -9,11 +15,47 @@
   margin: 0 auto;
 }
 
+.why-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.why-skip-link {
+  position: absolute;
+  top: -48px;
+  left: 20px;
+  z-index: 1000;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #091019;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+}
+
+.why-skip-link:focus {
+  top: 14px;
+}
+
+.why-site-header {
+  padding-top: 0;
+}
+
 .why-hero {
-  padding: 24px 0 84px;
   background:
     radial-gradient(circle at top center, rgba(57, 168, 255, 0.12), transparent 42%),
     linear-gradient(180deg, #05080c 0%, #000000 100%);
+}
+
+.why-hero-main {
+  padding: 0 0 84px;
 }
 
 .why-topbar {
@@ -21,6 +63,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 24px;
+  padding-top: 24px;
   margin-bottom: 68px;
 }
 
@@ -32,6 +75,7 @@
   border: 0;
   background: transparent;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .why-brand-mark {
@@ -57,38 +101,50 @@
   flex-wrap: wrap;
 }
 
-.why-topnav button,
 .why-topnav a,
 .why-button {
   min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 0 18px;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: rgba(255, 255, 255, 0.035);
   color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
   cursor: pointer;
   transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-.why-topnav button:hover,
-.why-topnav button:focus-visible,
 .why-topnav a:hover,
-.why-topnav a:focus-visible {
+.why-topnav a:focus-visible,
+.why-button:hover,
+.why-button:focus-visible {
   background: rgba(57, 168, 255, 0.18);
   border-color: rgba(57, 168, 255, 0.7);
   box-shadow: 0 0 18px rgba(57, 168, 255, 0.22);
   transform: translateY(-1px);
 }
 
-.why-button-home {
+.why-topnav a:focus-visible,
+.why-brand:focus-visible,
+.why-button:focus-visible,
+.why-card:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.85);
+  outline-offset: 3px;
+}
+
+.why-button-primary {
   background: rgba(57, 168, 255, 0.18);
   border-color: rgba(57, 168, 255, 0.7);
   box-shadow: 0 0 18px rgba(57, 168, 255, 0.22);
   color: var(--text);
 }
 
-.why-button-home:hover,
-.why-button-home:focus-visible {
+.why-button-primary:hover,
+.why-button-primary:focus-visible {
   background: rgba(57, 168, 255, 0.3);
   border-color: rgba(122, 206, 255, 1);
   box-shadow: 0 0 28px rgba(57, 168, 255, 0.4);
@@ -141,6 +197,7 @@
 
 .why-section {
   padding: 78px 0;
+  scroll-margin-top: 24px;
 }
 
 .why-section-silver {
@@ -190,7 +247,8 @@
 .why-quote-panel p,
 .why-list-panel li,
 .why-callout-panel p,
-.why-bottom-callout p {
+.why-bottom-callout p,
+.why-footer p {
   font-size: 1.08rem;
   line-height: 1.78;
 }
@@ -365,6 +423,22 @@
   font-weight: 800;
 }
 
+.why-footer {
+  background: #000000;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.why-footer-inner {
+  padding: 22px 0 40px;
+}
+
+.why-footer p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
 @media (max-width: 980px) {
   .why-card-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -412,7 +486,7 @@
     width: 100%;
   }
 
-  .why-topnav button,
+  .why-topnav a,
   .why-button {
     width: 100%;
   }
