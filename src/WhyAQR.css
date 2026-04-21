@@ -114,6 +114,11 @@
   color: var(--neon);
 }
 
+.why-section-silver p {
+  color: #18222c;
+  font-weight: 500;
+}
+
 .why-callout-panel,
 .why-quote-panel,
 .why-list-panel,

@@ -130,6 +130,7 @@
 .overview-hero-inner {
   max-width: 920px;
   text-align: center;
+  padding: 70px 0 0;
 }
 
 .overview-kicker,
@@ -212,7 +213,17 @@
   margin: 0 0 18px;
 }
 
+.overview-section-silver p,
+.overview-facts-list li {
+  color: #18222c;
+  font-weight: 500;
+}
+
 .overview-facts-panel {
+  width: min(100%, 380px);
+  margin: auto;
+  align-self: center;
+  justify-self: center;
   padding: 28px;
   border-radius: 28px;
   background: rgba(255, 255, 255, 0.9);
@@ -334,6 +345,7 @@
 
   .overview-hero-inner {
     text-align: left;
+    padding-top: 48px;
   }
 }
 

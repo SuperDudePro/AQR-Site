@@ -265,3 +265,8 @@
     width: 100%;
   }
 }
+
+.site-footer-school {
+  color: var(--neon);
+  font-weight: 700;
+}

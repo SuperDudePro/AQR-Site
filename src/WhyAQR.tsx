@@ -1,3 +1,4 @@
+import type { MouseEvent } from "react";
 import "./WhyAQR.css";
 
 type WhyAQRProps = {
@@ -48,7 +49,7 @@ const workItems = [
 ];
 
 function WhyAQR({ onNavigateHome }: WhyAQRProps) {
-  const goHome = (event?: React.MouseEvent<HTMLAnchorElement>) => {
+  const goHome = (event?: MouseEvent<HTMLAnchorElement>) => {
     if (event) {
       event.preventDefault();
     }
@@ -304,7 +305,7 @@ function WhyAQR({ onNavigateHome }: WhyAQRProps) {
 
       <footer className="why-footer">
         <div className="why-wrap why-footer-inner">
-          <p>Applied Quantitative Reasoning • Vista PEAK Prep • Site in progress</p>
+          <p>© 2026 Applied Quantitative Reasoning • <span className="site-footer-school">Vista PEAK Prep</span></p>
         </div>
       </footer>
     </div>

@@ -61,7 +61,7 @@ function AQR({ onNavigateWhy, onNavigateOverview }: AQRProps) {
       title: "Course Overview",
       eyebrow: "How the year is structured",
       body:
-        "A public-facing view of prerequisites, course positioning, quarter focus, and how the year fits together.",
+        "A clear view of prerequisites, course positioning, quarter focus, and how the year fits together.",
       href: "#/course-overview",
       cta: "Open Course Overview",
       onClick: (event) => {
@@ -275,7 +275,7 @@ function AQR({ onNavigateWhy, onNavigateOverview }: AQRProps) {
 
       <footer className="aqr-footer">
         <div className="aqr-wrap aqr-footer-inner">
-          <p>Applied Quantitative Reasoning • Vista PEAK Prep • Site in progress • Updated April 21, 2026</p>
+          <p>© 2026 Applied Quantitative Reasoning • <span className="site-footer-school">Vista PEAK Prep</span></p>
         </div>
       </footer>
     </div>

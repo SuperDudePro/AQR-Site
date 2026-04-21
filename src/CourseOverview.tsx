@@ -104,11 +104,11 @@ function CourseOverview({ onNavigateHome, onNavigateWhy }: CourseOverviewProps) 
         <section className="overview-hero overview-hero-main" aria-labelledby="overview-page-title">
           <div className="overview-wrap overview-hero-inner">
             <p className="overview-kicker">Course Overview</p>
-            <h1 id="overview-page-title">A public-facing look at how AQR is built.</h1>
+            <h1 id="overview-page-title">A clear look at how AQR is built.</h1>
             <p className="overview-hero-lead">
               Applied Quantitative Reasoning is a project-based math elective built around real decisions,
               real data, real tools, and real communication. This page lays out the broad shape of the course
-              without turning it into the full student-facing materials.
+              without turning it into the full student course space.
             </p>
           </div>
         </section>
@@ -120,7 +120,7 @@ function CourseOverview({ onNavigateHome, onNavigateWhy }: CourseOverviewProps) 
               <h2 id="overview-basics-title">What this course is, who it is for, and how it is positioned.</h2>
               <p>
                 AQR is a math elective for grades 11–12 and may count toward the fourth-year math requirement.
-                It is designed as a serious public-facing option for students who want math to connect more clearly
+                It is designed as a serious math option for students who want math to connect more clearly
                 to real decisions, data, tools, and communication.
               </p>
               <p>
@@ -134,7 +134,7 @@ function CourseOverview({ onNavigateHome, onNavigateWhy }: CourseOverviewProps) 
               </p>
             </div>
             <div className="overview-facts-panel">
-              <p className="overview-panel-label">Public course facts</p>
+              <p className="overview-panel-label">Course facts</p>
               <ul className="overview-facts-list">
                 <li><strong>Credit:</strong> Math elective</li>
                 <li><strong>Counts toward:</strong> 4th-year math pathway</li>
@@ -151,9 +151,9 @@ function CourseOverview({ onNavigateHome, onNavigateWhy }: CourseOverviewProps) 
           <div className="overview-wrap">
             <div className="overview-section-head">
               <p className="overview-section-kicker">Quarter structure</p>
-              <h2 id="overview-quarters-title">Four quarters, each with a distinct public-facing focus.</h2>
+              <h2 id="overview-quarters-title">Four quarters, each with a distinct focus.</h2>
               <p className="overview-section-intro">
-                Each quarter has one main project family. The public pages below are light for now, but the structure is real.
+                Each quarter has one main project family. The quarter pages are light for now, but the structure is real.
               </p>
             </div>
             <ul className="overview-quarter-grid" role="list">
@@ -188,7 +188,9 @@ function CourseOverview({ onNavigateHome, onNavigateWhy }: CourseOverviewProps) 
 
       <footer className="overview-footer">
         <div className="overview-wrap overview-footer-inner">
-          <p>Applied Quantitative Reasoning • Vista PEAK Prep • Course overview • Updated April 21, 2026</p>
+          <p>
+            © 2026 Applied Quantitative Reasoning • <span className="site-footer-school">Vista PEAK Prep</span>
+          </p>
         </div>
       </footer>
     </div>
