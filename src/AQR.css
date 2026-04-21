@@ -248,15 +248,14 @@
   display: block;
 }
 
-.aqr-overview-hold {
+.aqr-overview-preview {
   text-align: center;
 }
 
-.aqr-coming-soon {
-  margin: 0;
-  font-size: clamp(1.8rem, 4vw, 3rem);
-  font-weight: 800;
-  color: var(--offwhite);
+.aqr-overview-preview-text {
+  max-width: 760px;
+  margin: 0 auto 26px;
+  color: var(--muted);
 }
 
 .aqr-enter-card {
@@ -274,7 +273,12 @@
 }
 
 .aqr-panel-label {
+  margin: 0 0 12px;
   color: #1679c7;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .aqr-password-chip {
@@ -311,5 +315,18 @@
 @media (max-width: 760px) {
   .aqr-hero-inner {
     padding-top: 48px;
+    text-align: left;
+  }
+
+  .aqr-hero-actions {
+    justify-content: flex-start;
+  }
+
+  .aqr-overview-preview {
+    text-align: left;
+  }
+
+  .aqr-overview-preview-text {
+    margin-left: 0;
   }
 }

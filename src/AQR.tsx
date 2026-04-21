@@ -1,7 +1,9 @@
+import type { MouseEvent } from "react";
 import "./AQR.css";
 
 type AQRProps = {
   onNavigateWhy?: () => void;
+  onNavigateOverview?: () => void;
 };
 
 type PreviewCard = {
@@ -10,7 +12,7 @@ type PreviewCard = {
   body: string;
   href: string;
   cta: string;
-  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+  onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
 };
 
 function scrollToId(id: string) {
@@ -19,7 +21,7 @@ function scrollToId(id: string) {
   el.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-function AQR({ onNavigateWhy }: AQRProps) {
+function AQR({ onNavigateWhy, onNavigateOverview }: AQRProps) {
   const navigateWhy = () => {
     if (onNavigateWhy) {
       onNavigateWhy();
@@ -28,8 +30,16 @@ function AQR({ onNavigateWhy }: AQRProps) {
     window.location.hash = "#/why-aqr";
   };
 
+  const navigateOverview = () => {
+    if (onNavigateOverview) {
+      onNavigateOverview();
+      return;
+    }
+    window.location.hash = "#/course-overview";
+  };
+
   const handleHomeAnchor =
-    (id: string) => (event: React.MouseEvent<HTMLAnchorElement>) => {
+    (id: string) => (event: MouseEvent<HTMLAnchorElement>) => {
       event.preventDefault();
       scrollToId(id);
     };
@@ -49,18 +59,20 @@ function AQR({ onNavigateWhy }: AQRProps) {
     },
     {
       title: "Course Overview",
-      eyebrow: "What is coming next",
+      eyebrow: "How the year is structured",
       body:
-        "A single holding section for the year structure, project families, and course details as the site keeps getting built.",
-      href: "#course-overview",
+        "A public-facing view of prerequisites, course positioning, quarter focus, and how the year fits together.",
+      href: "#/course-overview",
       cta: "Open Course Overview",
-      onClick: handleHomeAnchor("course-overview"),
+      onClick: (event) => {
+        event.preventDefault();
+        navigateOverview();
+      },
     },
     {
       title: "Student Course Space",
       eyebrow: "Course access",
-      body:
-        "This area is for student course access.",
+      body: "This area is for student course access.",
       href: "#enter-course",
       cta: "Open Student Course Space",
       onClick: handleHomeAnchor("enter-course"),
@@ -90,7 +102,13 @@ function AQR({ onNavigateWhy }: AQRProps) {
             >
               Why AQR
             </a>
-            <a href="#course-overview" onClick={handleHomeAnchor("course-overview")}>
+            <a
+              href="#/course-overview"
+              onClick={(event) => {
+                event.preventDefault();
+                navigateOverview();
+              }}
+            >
               Course Overview
             </a>
             <a href="#enter-course" onClick={handleHomeAnchor("enter-course")}>
@@ -122,7 +140,14 @@ function AQR({ onNavigateWhy }: AQRProps) {
               >
                 Why AQR
               </a>
-              <a className="aqr-button aqr-button-top" href="#course-overview" onClick={handleHomeAnchor("course-overview")}>
+              <a
+                className="aqr-button aqr-button-top"
+                href="#/course-overview"
+                onClick={(event) => {
+                  event.preventDefault();
+                  navigateOverview();
+                }}
+              >
                 Course Overview
               </a>
               <a className="aqr-button aqr-button-top" href="#enter-course" onClick={handleHomeAnchor("enter-course")}>
@@ -210,10 +235,23 @@ function AQR({ onNavigateWhy }: AQRProps) {
           </div>
         </section>
 
-        <section className="aqr-section aqr-section-black" id="course-overview" aria-labelledby="aqr-course-overview-title">
-          <div className="aqr-wrap aqr-overview-hold">
-            <h2 className="aqr-heading-blue" id="aqr-course-overview-title">Course Overview</h2>
-            <p className="aqr-coming-soon">More information soon!</p>
+        <section className="aqr-section aqr-section-black" id="course-overview-preview" aria-labelledby="aqr-course-overview-title">
+          <div className="aqr-wrap aqr-overview-preview">
+            <p className="aqr-kicker aqr-kicker-bright">Course Overview</p>
+            <h2 className="aqr-heading-blue" id="aqr-course-overview-title">See the year structure at a glance.</h2>
+            <p className="aqr-overview-preview-text">
+              The public course overview page now lays out the basic course facts and the quarter-by-quarter structure.
+            </p>
+            <a
+              className="aqr-button aqr-button-top"
+              href="#/course-overview"
+              onClick={(event) => {
+                event.preventDefault();
+                navigateOverview();
+              }}
+            >
+              Open Course Overview
+            </a>
           </div>
         </section>
 
@@ -237,7 +275,7 @@ function AQR({ onNavigateWhy }: AQRProps) {
 
       <footer className="aqr-footer">
         <div className="aqr-wrap aqr-footer-inner">
-          <p>Applied Quantitative Reasoning • Vista PEAK Prep • Site in progress • Updated April 20, 2026</p>
+          <p>Applied Quantitative Reasoning • Vista PEAK Prep • Site in progress • Updated April 21, 2026</p>
         </div>
       </footer>
     </div>

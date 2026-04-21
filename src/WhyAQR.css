@@ -109,6 +109,11 @@
   color: #111820;
 }
 
+.why-text-dark .why-section-kicker,
+.why-text-dark .why-panel-label {
+  color: var(--neon);
+}
+
 .why-callout-panel,
 .why-quote-panel,
 .why-list-panel,
