@@ -92,7 +92,7 @@ function CourseOverview({ onNavigateHome, onNavigateWhy }: CourseOverviewProps) 
             <span className="overview-brand-name">Applied Quantitative Reasoning</span>
           </a>
 
-          <nav className="overview-topnav" aria-label="Course Overview navigation">
+          <nav className="overview-topnav" aria-label="Course Overview navigation" role="navigation">
             <a href="#" onClick={goHome}>Home</a>
             <a href="#/why-aqr" onClick={goWhy}>Why AQR</a>
             <a href="#/course-overview" aria-current="page">Course Overview</a>
@@ -108,7 +108,7 @@ function CourseOverview({ onNavigateHome, onNavigateWhy }: CourseOverviewProps) 
             <p className="overview-hero-lead">
               Applied Quantitative Reasoning is a project-based math elective built around real decisions,
               real data, real tools, and real communication. This page lays out the broad shape of the course
-              without trying to serve as the full student course space.
+              without turning it into the full student course space.
             </p>
           </div>
         </section>
@@ -124,13 +124,13 @@ function CourseOverview({ onNavigateHome, onNavigateWhy }: CourseOverviewProps) 
                 to real decisions, data, tools, and communication.
               </p>
               <p>
-                The course is especially built to work for a senior-heavy population, including ESS / CLDE students,
-                math-averse students, credit-driven students, disengaged students, and stronger students who want an
-                extension lane inside the same course structure.
+                At Vista PEAK, the course will likely serve a senior-heavy group. It is designed as a strong fourth-year
+                math option with room for different levels of support and challenge inside the same course.
               </p>
               <p>
                 The working prerequisite is Integrated 2 / Geometry or teacher recommendation. Honors extensions are
-                available by quarter through deeper independence, stronger analysis, and more polished final work.
+                available by quarter through deeper independence, richer analysis, and more polished final work for
+                students seeking more challenge.
               </p>
             </div>
             <div className="overview-facts-panel">
