@@ -76,7 +76,7 @@ function WhyAQR({ onNavigateHome }: WhyAQRProps) {
           </a>
 
           <nav className="why-topnav" aria-label="Why AQR navigation" role="navigation">
-            <a href="#top">Top</a>
+            <a href="#" onClick={goHome}>Home</a>
             <a href="#pathway">Pathway</a>
             <a href="#colorado">Colorado</a>
             <a href="#students-do">Students</a>

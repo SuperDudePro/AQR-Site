@@ -1,140 +1,4 @@
-.aqr-site-shell {
-  min-height: 100vh;
-  background: var(--bg);
-  color: var(--text);
-}
-
-.aqr-page {
-  min-height: 0;
-  background: var(--bg);
-  color: var(--text);
-}
-
-.aqr-wrap {
-  width: min(100% - 40px, 1200px);
-  margin: 0 auto;
-}
-
-.aqr-visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.aqr-skip-link {
-  position: absolute;
-  top: -48px;
-  left: 20px;
-  z-index: 1000;
-  padding: 10px 14px;
-  border-radius: 12px;
-  background: #ffffff;
-  color: #091019;
-  text-decoration: none;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
-}
-
-.aqr-skip-link:focus {
-  top: 14px;
-}
-
-.aqr-site-header {
-  padding-top: 0;
-}
-
-.aqr-topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding-top: 26px;
-}
-
-.aqr-brand {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 14px;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.aqr-brand-mark {
-  color: var(--neon);
-  font-family: "Consolas", "Courier New", monospace;
-  font-size: 1.4rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  text-shadow: var(--shadow-blue);
-}
-
-.aqr-brand-name {
-  color: var(--muted);
-  font-size: 0.92rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.aqr-topnav {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-
-.aqr-topnav a,
-.aqr-button-top {
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 18px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.035);
-  color: var(--text);
-  text-decoration: none;
-  cursor: pointer;
-  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-.aqr-topnav a:hover,
-.aqr-topnav a:focus-visible {
-  background: rgba(57, 168, 255, 0.18);
-  border-color: rgba(57, 168, 255, 0.7);
-  box-shadow: 0 0 18px rgba(57, 168, 255, 0.22);
-  transform: translateY(-1px);
-}
-
-.aqr-topnav a:focus-visible,
-.aqr-brand:focus-visible,
-.aqr-button:focus-visible,
-.aqr-card-link:focus-visible {
-  outline: 3px solid rgba(255, 255, 255, 0.85);
-  outline-offset: 3px;
-}
-
-.aqr-button-top {
-  background: rgba(57, 168, 255, 0.18);
-  border-color: rgba(57, 168, 255, 0.7);
-  box-shadow: 0 0 18px rgba(57, 168, 255, 0.22);
-}
-
-.aqr-button-top:hover,
-.aqr-button-top:focus-visible {
-  background: rgba(57, 168, 255, 0.3);
-  border-color: rgba(122, 206, 255, 1);
-  box-shadow: 0 0 28px rgba(57, 168, 255, 0.4);
-  transform: translateY(-1px);
-}
+@import "./AQR.shared.css";
 
 .aqr-hero {
   background:
@@ -199,21 +63,8 @@
 }
 
 .aqr-hero-actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  flex-wrap: wrap;
   margin-top: 28px;
-}
-
-.aqr-button {
-  min-height: 48px;
-  padding: 0 22px;
-  border-radius: 999px;
-  cursor: pointer;
-  font-weight: 700;
-  text-decoration: none;
+  justify-content: center;
 }
 
 .aqr-cards-section {
@@ -246,9 +97,9 @@
 .aqr-card-eyebrow {
   margin: 0 0 10px;
   color: var(--neon);
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   font-weight: 800;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
@@ -286,15 +137,6 @@
 .aqr-section-silver {
   background: linear-gradient(180deg, #d3d9df 0%, #c4ccd4 100%);
   color: var(--text-dark);
-}
-
-.aqr-kicker {
-  margin: 0 0 12px;
-  color: var(--muted);
-  font-size: 0.86rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
 }
 
 .aqr-kicker-bright {
@@ -392,6 +234,8 @@
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
 }
 
+.aqr-banner-picture,
+.aqr-banner-picture img,
 .aqr-banner-card img {
   width: 100%;
   height: auto;
@@ -424,12 +268,7 @@
 }
 
 .aqr-panel-label {
-  margin: 0 0 12px;
   color: #1679c7;
-  font-size: 0.82rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
 }
 
 .aqr-password-chip {
@@ -451,22 +290,6 @@
   color: #2b3742;
 }
 
-.aqr-footer {
-  background: #000000;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.aqr-footer-inner {
-  padding: 22px 0 40px;
-}
-
-.aqr-footer p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
 @media (max-width: 960px) {
   .aqr-card-grid,
   .aqr-split,
@@ -480,38 +303,7 @@
 }
 
 @media (max-width: 760px) {
-  .aqr-wrap {
-    width: min(100% - 24px, 1200px);
-  }
-
-  .aqr-topbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
   .aqr-hero-inner {
     padding-top: 48px;
   }
-}
-
-@media (max-width: 560px) {
-  .aqr-topnav,
-  .aqr-hero-actions {
-    width: 100%;
-  }
-
-  .aqr-topnav a,
-  .aqr-button-top {
-    width: 100%;
-  }
-}
-
-.aqr-banner-picture {
-  display: block;
-}
-
-.aqr-banner-picture img {
-  width: 100%;
-  height: auto;
-  display: block;
 }

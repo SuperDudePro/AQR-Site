@@ -225,7 +225,7 @@ function AQR({ onNavigateWhy }: AQRProps) {
           <div className="aqr-wrap aqr-enter-grid">
             <div>
               <p className="aqr-kicker aqr-kicker-bright">Student Entry</p>
-              <h2 className="aqr-heading-blue" id="aqr-student-entry-title">Reserved space for entering the course.</h2>
+              <h2 className="aqr-heading-dark" id="aqr-student-entry-title">Reserved space for entering the course.</h2>
               <p>
                 This area is being held for the student-facing course entry. When ready,
                 it can use a simple passcode and become the direct path into the live materials.
