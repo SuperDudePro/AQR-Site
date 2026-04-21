@@ -1,9 +1,7 @@
 @import "./AQR.shared.css";
 
 .why-hero {
-  background:
-    radial-gradient(circle at top center, rgba(57, 168, 255, 0.12), transparent 42%),
-    linear-gradient(180deg, #05080c 0%, #000000 100%);
+  background: #000000;
 }
 
 .why-hero-main {
