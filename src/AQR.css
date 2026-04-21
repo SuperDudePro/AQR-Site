@@ -171,6 +171,12 @@
   line-height: 1.75;
 }
 
+.aqr-why-preview-copy p:not(.aqr-kicker) {
+  color: #1c2530;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
 .aqr-button-dark {
   border: 1px solid rgba(57, 168, 255, 0.32);
   background: rgba(9, 18, 26, 0.92);

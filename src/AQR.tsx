@@ -57,12 +57,12 @@ function AQR({ onNavigateWhy }: AQRProps) {
       onClick: handleHomeAnchor("course-overview"),
     },
     {
-      title: "Student Entry",
+      title: "Student Course Space",
       eyebrow: "Course access",
       body:
-        "A reserved space for the live student-facing course area so enrolled students can get straight to the work.",
+        "This area is for student course access.",
       href: "#enter-course",
-      cta: "Open Student Entry",
+      cta: "Open Student Course Space",
       onClick: handleHomeAnchor("enter-course"),
     },
   ];
@@ -90,11 +90,11 @@ function AQR({ onNavigateWhy }: AQRProps) {
             >
               Why AQR
             </a>
-            <a href="#enter-course" onClick={handleHomeAnchor("enter-course")}>
-              Student Entry
-            </a>
             <a href="#course-overview" onClick={handleHomeAnchor("course-overview")}>
               Course Overview
+            </a>
+            <a href="#enter-course" onClick={handleHomeAnchor("enter-course")}>
+              Student Course Space
             </a>
           </nav>
         </div>
@@ -122,11 +122,11 @@ function AQR({ onNavigateWhy }: AQRProps) {
               >
                 Why AQR
               </a>
-              <a className="aqr-button aqr-button-top" href="#enter-course" onClick={handleHomeAnchor("enter-course")}>
-                Student Entry
-              </a>
               <a className="aqr-button aqr-button-top" href="#course-overview" onClick={handleHomeAnchor("course-overview")}>
                 Course Overview
+              </a>
+              <a className="aqr-button aqr-button-top" href="#enter-course" onClick={handleHomeAnchor("enter-course")}>
+                Student Course Space
               </a>
             </div>
           </div>
@@ -155,7 +155,7 @@ function AQR({ onNavigateWhy }: AQRProps) {
         </section>
 
         <section className="aqr-section aqr-section-silver" id="why-preview" aria-labelledby="aqr-why-preview-title">
-          <div className="aqr-wrap aqr-split">
+          <div className="aqr-wrap aqr-split aqr-why-preview-copy">
             <div>
               <p className="aqr-kicker aqr-kicker-bright">Why AQR</p>
               <h2 className="aqr-heading-dark" id="aqr-why-preview-title">A real pathway in modern mathematics.</h2>
@@ -163,10 +163,6 @@ function AQR({ onNavigateWhy }: AQRProps) {
                 Applied Quantitative Reasoning belongs to the broader world of
                 quantitative reasoning: data, modeling, evidence, uncertainty,
                 decision-making, and practical application.
-              </p>
-              <p>
-                This section previews the argument. The full Why AQR page goes deeper
-                into Colorado pathway alignment, university recognition, and workforce relevance.
               </p>
               <a
                 className="aqr-button aqr-button-dark"
@@ -224,18 +220,15 @@ function AQR({ onNavigateWhy }: AQRProps) {
         <section className="aqr-section aqr-section-silver" id="enter-course" aria-labelledby="aqr-student-entry-title">
           <div className="aqr-wrap aqr-enter-grid">
             <div>
-              <p className="aqr-kicker aqr-kicker-bright">Student Entry</p>
-              <h2 className="aqr-heading-dark" id="aqr-student-entry-title">Reserved space for entering the course.</h2>
-              <p>
-                This area is being held for the student-facing course entry. When ready,
-                it can use a simple passcode and become the direct path into the live materials.
-              </p>
+              <p className="aqr-kicker aqr-kicker-bright">Student Course Space</p>
+              <h2 className="aqr-heading-dark" id="aqr-student-entry-title">Student Course Space</h2>
+              <p>This area is for student course access.</p>
             </div>
             <div className="aqr-enter-card aqr-enter-card-bright">
-              <p className="aqr-panel-label">Held for later</p>
-              <div className="aqr-password-chip">AQRVPP</div>
+              <p className="aqr-panel-label">Live student access</p>
+              <div className="aqr-password-chip">Enter with course passcode</div>
               <p className="aqr-fine-print">
-                A simple student-facing gate can live here later without changing the overall site structure.
+                Use the current class passcode to open the live student course space, weekly materials, and project links.
               </p>
             </div>
           </div>
@@ -244,7 +237,7 @@ function AQR({ onNavigateWhy }: AQRProps) {
 
       <footer className="aqr-footer">
         <div className="aqr-wrap aqr-footer-inner">
-          <p>Applied Quantitative Reasoning • Vista PEAK Prep • Site in progress</p>
+          <p>Applied Quantitative Reasoning • Vista PEAK Prep • Site in progress • Updated April 20, 2026</p>
         </div>
       </footer>
     </div>
