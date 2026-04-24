@@ -100,7 +100,7 @@ function WhyAQR({ onNavigateHome }: WhyAQRProps) {
               AQR is a project-based fourth-year math option built around real decisions, real data, real tools, and real communication. It is
               designed for students who want mathematics to connect to life, work, information, and the choices they actually have to make.
             </p>
-            <div className="why-actions" aria-label="Page actions">
+            <div className="why-actions" role="group" aria-label="Page actions">
               <a className="why-button why-button-primary" href="#pathway">
                 Read the case
               </a>
