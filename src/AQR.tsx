@@ -69,15 +69,7 @@ function AQR({ onNavigateWhy, onNavigateOverview }: AQRProps) {
         navigateOverview();
       },
     },
-    {
-      title: "Student Course Space",
-      eyebrow: "Course access",
-      body: "This area is for student course access.",
-      href: "#enter-course",
-      cta: "Open Student Course Space",
-      onClick: handleHomeAnchor("enter-course"),
-    },
-  ];
+    ];
 
   return (
     <div className="aqr-site-shell">
@@ -110,11 +102,7 @@ function AQR({ onNavigateWhy, onNavigateOverview }: AQRProps) {
               }}
             >
               Course Overview
-            </a>
-            <a href="#enter-course" onClick={handleHomeAnchor("enter-course")}>
-              Student Course Space
-            </a>
-          </nav>
+            </a></nav>
         </div>
       </header>
 
@@ -149,11 +137,7 @@ function AQR({ onNavigateWhy, onNavigateOverview }: AQRProps) {
                 }}
               >
                 Course Overview
-              </a>
-              <a className="aqr-button aqr-button-top" href="#enter-course" onClick={handleHomeAnchor("enter-course")}>
-                Student Course Space
-              </a>
-            </div>
+              </a></div>
           </div>
         </section>
 
@@ -255,22 +239,7 @@ function AQR({ onNavigateWhy, onNavigateOverview }: AQRProps) {
           </div>
         </section>
 
-        <section className="aqr-section aqr-section-silver" id="enter-course" aria-labelledby="aqr-student-entry-title">
-          <div className="aqr-wrap aqr-enter-grid">
-            <div>
-              <p className="aqr-kicker aqr-kicker-bright">Student Course Space</p>
-              <h2 className="aqr-heading-dark" id="aqr-student-entry-title">Student Course Space</h2>
-              <p>This area is for student course access.</p>
-            </div>
-            <div className="aqr-enter-card aqr-enter-card-bright">
-              <p className="aqr-panel-label">Live student access</p>
-              <div className="aqr-password-chip">Enter with course passcode</div>
-              <p className="aqr-fine-print">
-                Use the current class passcode to open the live student course space, weekly materials, and project links.
-              </p>
-            </div>
-          </div>
-        </section>
+        
       </main>
 
       <footer className="aqr-footer">
