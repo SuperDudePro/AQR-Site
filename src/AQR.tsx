@@ -112,12 +112,12 @@ function AQR({ onNavigateWhy, onNavigateOverview }: AQRProps) {
             <p className="aqr-eyebrow">Vista PEAK Prep • Launching Fall 2026</p>
             <h1 className="aqr-mark" id="aqr-home-title">AQR</h1>
             <p className="aqr-full-name">Applied Quantitative Reasoning</p>
-            <p className="aqr-lead">Serious math for real decisions.</p>
+            <h2 className="aqr-lead">Serious math for real decisions.</h2>
             <p className="aqr-hero-text">
               A modern fourth-year math option built around real decisions, real data,
               real tools, and real communication.
             </p>
-            <div className="aqr-hero-actions" aria-label="Page actions">
+            <div className="aqr-hero-actions" role="group" aria-label="Page actions">
               <a
                 className="aqr-button aqr-button-top"
                 href="#/why-aqr"
