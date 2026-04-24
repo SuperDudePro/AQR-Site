@@ -365,3 +365,8 @@
     padding: 62px 0;
   }
 }
+
+/* WCAG scan fix: quarter-card kicker text sits on the silver card background. */
+.overview-quarter-card .overview-card-kicker {
+  color: #00558a;
+}
