@@ -131,7 +131,7 @@ function QuarterDetail({ quarter, onNavigateHome, onNavigateOverview }: QuarterD
           <div className="quarter-wrap quarter-hero-inner">
             <p className="quarter-kicker">Quarter Page</p>
             <h1 id="quarter-page-title">{detail.title}</h1>
-            <p className="quarter-hero-lead">{detail.dates}</p>
+            <h2 className="quarter-hero-lead">{detail.dates}</h2>
             <nav className="quarter-hero-links" aria-label="Jump to a quarter page">
               {quarterNavOrder.map((item) => (
                 <a
