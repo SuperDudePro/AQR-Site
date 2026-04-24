@@ -219,15 +219,15 @@ function AQR({ onNavigateWhy, onNavigateOverview }: AQRProps) {
           </div>
         </section>
 
-        <section className="aqr-section aqr-section-black" id="course-overview-preview" aria-labelledby="aqr-course-overview-title">
+        <section className="aqr-section aqr-section-silver" id="course-overview-preview" aria-labelledby="aqr-course-overview-title">
           <div className="aqr-wrap aqr-overview-preview">
             <p className="aqr-kicker aqr-kicker-bright">Course Overview</p>
-            <h2 className="aqr-heading-blue" id="aqr-course-overview-title">See the year structure at a glance.</h2>
+            <h2 className="aqr-heading-dark" id="aqr-course-overview-title">See the year structure at a glance.</h2>
             <p className="aqr-overview-preview-text">
               The course overview page lays out the basic course facts and the quarter-by-quarter structure.
             </p>
             <a
-              className="aqr-button aqr-button-top"
+              className="aqr-button aqr-button-dark"
               href="#/course-overview"
               onClick={(event) => {
                 event.preventDefault();
