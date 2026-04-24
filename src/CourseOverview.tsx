@@ -108,7 +108,7 @@ function CourseOverview({ onNavigateHome, onNavigateWhy }: CourseOverviewProps) 
             <p className="overview-hero-lead">
               Applied Quantitative Reasoning is a project-based math elective built around real decisions,
               real data, real tools, and real communication. This page lays out the broad shape of the course
-              without turning it into the full student course space.
+              without turning it into the full set of internal teaching materials.
             </p>
           </div>
         </section>

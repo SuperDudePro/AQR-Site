@@ -109,7 +109,7 @@
 
 .why-text-dark .why-section-kicker,
 .why-text-dark .why-panel-label {
-  color: var(--neon);
+  color: #00558a;
 }
 
 .why-section-silver p {
@@ -158,7 +158,7 @@
 }
 
 .why-callout-panel-pathway .why-panel-label {
-  color: #1178d1;
+  color: #00558a;
 }
 
 .why-quote-panel-dark {
