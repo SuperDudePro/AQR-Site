@@ -8,6 +8,45 @@ import "./index.css";
 
 type Page = "home" | "why" | "overview" | "q1" | "q2" | "q3" | "q4";
 
+const GA_TRACKING_ID = "G-L6Y4XCS8L7";
+
+declare global {
+  interface Window {
+    dataLayer?: unknown[];
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
+function ensureGoogleAnalytics() {
+  if (document.querySelector(`script[src="https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}"]`)) {
+    return;
+  }
+
+  const script = document.createElement("script");
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`;
+  document.head.appendChild(script);
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function gtag(...args: unknown[]) {
+    window.dataLayer?.push(args);
+  };
+
+  window.gtag("js", new Date());
+}
+
+function trackPageView(page: Page) {
+  ensureGoogleAnalytics();
+  window.gtag?.("config", GA_TRACKING_ID, {
+    page_title: document.title,
+    page_path: `${window.location.pathname}${window.location.hash || "#"}`,
+    page_location: window.location.href,
+    page_referrer: document.referrer,
+    page_aqr_section: page,
+  });
+}
+
+
 function setChrome(page: Page) {
   const titles: Record<Page, string> = {
     home: "Applied Quantitative Reasoning | Vista PEAK Prep",
@@ -56,6 +95,7 @@ function App() {
       const nextPage = getPage(window.location.hash || "");
       setPage(nextPage);
       setChrome(nextPage);
+      trackPageView(nextPage);
       window.scrollTo({ top: 0, behavior: "auto" });
     };
 
