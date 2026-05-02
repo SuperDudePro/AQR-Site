@@ -84,6 +84,10 @@
   letter-spacing: -0.03em;
 }
 
+.why-section-silver h2 {
+  font-weight: 900;
+}
+
 .why-section p,
 .why-card p,
 .why-quote-panel p,
@@ -314,7 +318,9 @@
 }
 
 .why-section-graphite .why-section-kicker,
-.why-section-graphite .why-panel-label {
+.why-section-black .why-section-kicker,
+.why-section-graphite .why-panel-label,
+.why-section-black .why-panel-label {
   color: #9bdcff;
 }
 
