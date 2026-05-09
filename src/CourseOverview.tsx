@@ -193,8 +193,6 @@ function CourseOverview({ onNavigateHome, onNavigateWhy, onNavigatePosters }: Co
                     <a
                       className="overview-quarter-card"
                       href={quarter.href}
-                      aria-labelledby={`${headingId} ${metaId}`}
-                      aria-describedby={focusId}
                     >
                       <p className="overview-card-kicker">{quarter.title.split(" - ")[0]}</p>
                       <h3 id={headingId} className="overview-quarter-card-title">{quarter.title}</h3>
