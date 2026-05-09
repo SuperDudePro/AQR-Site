@@ -142,7 +142,8 @@
 
 .quarter-kicker,
 .quarter-section-kicker,
-.quarter-panel-label {
+.quarter-panel-label,
+.quarter-card-kicker {
   margin: 0 0 12px;
   color: var(--neon);
   font-size: 1rem;
@@ -176,6 +177,11 @@
   color: var(--text-dark);
 }
 
+.quarter-section-black {
+  background: #040608;
+  color: var(--text);
+}
+
 .quarter-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.16fr) minmax(300px, 0.84fr);
@@ -190,7 +196,8 @@
 }
 
 .quarter-text-dark .quarter-section-kicker,
-.quarter-text-dark .quarter-panel-label {
+.quarter-text-dark .quarter-panel-label,
+.quarter-section-head-dark .quarter-section-kicker {
   color: #00558a;
 }
 
@@ -202,6 +209,7 @@
 }
 
 .quarter-section p,
+.quarter-section li,
 .quarter-footer p {
   font-size: 1.08rem;
   line-height: 1.78;
@@ -211,7 +219,8 @@
   margin: 0 0 18px;
 }
 
-.quarter-section-silver p {
+.quarter-section-silver p,
+.quarter-section-silver li {
   color: #0f1720;
   font-weight: 600;
 }
@@ -228,6 +237,76 @@
   color: var(--text-dark);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
   border: 2px solid rgba(57, 168, 255, 0.68);
+}
+
+.quarter-section-head {
+  max-width: 1040px;
+  margin-bottom: 34px;
+}
+
+.quarter-section-head p:not(.quarter-section-kicker) {
+  color: #cfd9e3;
+  max-width: 900px;
+}
+
+.quarter-section-head-dark p:not(.quarter-section-kicker) {
+  color: #0f1720;
+  font-weight: 600;
+}
+
+.quarter-detail-grid,
+.quarter-lens-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.quarter-detail-card,
+.quarter-lens-card {
+  min-width: 0;
+  padding: 28px;
+  border-radius: 28px;
+  background: #12181f;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.22);
+}
+
+.quarter-detail-card ul,
+.quarter-lens-card ul {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.quarter-detail-card li {
+  margin-bottom: 12px;
+  color: #d8e7f6;
+}
+
+.quarter-lens-card {
+  background: #ffffff;
+  color: var(--text-dark);
+  border: 2px solid rgba(0, 85, 138, 0.28);
+}
+
+.quarter-lens-card h3 {
+  margin: 0 0 12px;
+  color: #111820;
+  font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+  line-height: 1.16;
+}
+
+.quarter-lens-card .quarter-card-kicker {
+  color: #00558a;
+}
+
+.quarter-lens-card p {
+  color: #0f1720;
+  font-weight: 600;
+}
+
+.quarter-lens-question {
+  color: #00558a !important;
+  font-weight: 800 !important;
 }
 
 .quarter-footer {
@@ -251,7 +330,9 @@
 }
 
 @media (max-width: 960px) {
-  .quarter-grid {
+  .quarter-grid,
+  .quarter-detail-grid,
+  .quarter-lens-grid {
     grid-template-columns: 1fr;
   }
 }
