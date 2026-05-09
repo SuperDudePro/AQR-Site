@@ -220,7 +220,7 @@ function QuarterDetail({ quarter, onNavigateHome, onNavigateOverview }: QuarterD
       return;
     }
 
-    window.location.hash = "";
+    window.location.hash = "#/";
     window.scrollTo({ top: 0, behavior: "auto" });
   };
 
@@ -244,13 +244,13 @@ function QuarterDetail({ quarter, onNavigateHome, onNavigateOverview }: QuarterD
 
       <header className="quarter-site-header quarter-hero">
         <div className="quarter-topbar quarter-wrap">
-          <a className="quarter-brand" href="#" onClick={goHome}>
+          <a className="quarter-brand" href="#/" onClick={goHome}>
             <span className="quarter-brand-mark">AQR</span>
             <span className="quarter-brand-name">Applied Quantitative Reasoning</span>
           </a>
 
           <nav className="quarter-topnav" aria-label="Quarter page navigation">
-            <a href="#" onClick={goHome}>Home</a>
+            <a href="#/" onClick={goHome}>Home</a>
             <a href="#/course-overview" onClick={goOverview}>Course Overview</a>
             <a href="#/classroom-posters">Posters</a>
             <a href={detail.href} aria-current="page">{detail.navLabel}</a>

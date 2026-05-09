@@ -33,6 +33,7 @@ function ClassroomPosters({ currentHash, onNavigateHome, onNavigateOverview }: C
   const isAllPostersPage = activeSlug === "all";
   const activeType = getPosterType(activeSlug);
   const activePosterType = activeType && activeType.posters.length > 0 ? activeType : null;
+  const isUnknownPosterRoute = activeSlug !== null && !isAllPostersPage && !activePosterType;
 
   const goHome = (event?: MouseEvent<HTMLAnchorElement>) => {
     if (event) event.preventDefault();
@@ -42,7 +43,7 @@ function ClassroomPosters({ currentHash, onNavigateHome, onNavigateOverview }: C
       return;
     }
 
-    window.location.hash = "";
+    window.location.hash = "#/";
     window.scrollTo({ top: 0, behavior: "auto" });
   };
 
@@ -66,22 +67,22 @@ function ClassroomPosters({ currentHash, onNavigateHome, onNavigateOverview }: C
 
       <header className="poster-site-header poster-hero">
         <div className="poster-topbar poster-wrap">
-          <a className="poster-brand" href="#" onClick={goHome}>
+          <a className="poster-brand" href="#/" onClick={goHome}>
             <span className="poster-brand-mark">AQR</span>
             <span className="poster-brand-name">Applied Quantitative Reasoning</span>
           </a>
 
           <nav className="poster-topnav" aria-label="Classroom Posters navigation">
-            <a href="#" onClick={goHome}>Home</a>
+            <a href="#/" onClick={goHome}>Home</a>
             <a href="#/course-overview" onClick={goOverview}>Course Overview</a>
-            <a href="#/classroom-posters" aria-current={!activePosterType && !isAllPostersPage ? "page" : undefined}>Posters</a>
+            <a href="#/classroom-posters" aria-current={!activePosterType && !isAllPostersPage && !isUnknownPosterRoute ? "page" : undefined}>Posters</a>
             <a href="#/classroom-posters/all" aria-current={isAllPostersPage ? "page" : undefined}>All Posters</a>
           </nav>
         </div>
       </header>
 
       <main className="poster-page" id="poster-main-content">
-        {!activePosterType && !isAllPostersPage ? (
+        {!activePosterType && !isAllPostersPage && !isUnknownPosterRoute ? (
           <>
             <section className="poster-hero poster-hero-main" aria-labelledby="poster-page-title">
               <div className="poster-wrap poster-hero-inner">
@@ -178,24 +179,24 @@ function ClassroomPosters({ currentHash, onNavigateHome, onNavigateOverview }: C
                 <div className="poster-file-grid">
                   {allPublishedPosters.map((poster) => (
                     <article className="poster-file-card" key={`${poster.typeSlug}-${poster.title}-${poster.png}`}>
-                      <a className="poster-image-link" href={poster.png} aria-label={`Open PNG for ${poster.title}`}>
+                      <a className="poster-image-link" href={poster.png} aria-label={`Open PNG preview for ${poster.title}`}>
                         <img src={poster.png} alt={poster.alt} loading="lazy" />
                       </a>
                       <div className="poster-file-copy">
                         <p className="poster-card-kicker poster-type-label">{poster.typeTitle}</p>
                         <h3>{poster.title}</h3>
-                        <div className="poster-file-actions" aria-label={`${poster.title} download options`}>
-                          <a href={poster.pdf}>Download PDF</a>
-                          <a href={poster.png}>Download PNG</a>
+                        <div className="poster-file-actions" role="group" aria-label={`${poster.title} download options`}>
+                          <a href={poster.pdf} download>Download PDF</a>
+                          <a href={poster.png} download>Download PNG</a>
                         </div>
                       </div>
                     </article>
                   ))}
                 </div>
 
-                <p className="poster-back-link">
+                <nav className="poster-back-link" aria-label="Poster page navigation">
                   <a href="#/classroom-posters">Back to poster types</a>
-                </p>
+                </nav>
               </div>
             </section>
           </>
@@ -222,29 +223,54 @@ function ClassroomPosters({ currentHash, onNavigateHome, onNavigateOverview }: C
 
                 <div className="poster-file-grid">
                   {activePosterType.posters.map((poster) => (
-                    <article className="poster-file-card" key={poster.title}>
-                      <a className="poster-image-link" href={poster.png} aria-label={`Open PNG for ${poster.title}`}>
+                    <article className="poster-file-card" key={`${poster.title}-${poster.png}`}>
+                      <a className="poster-image-link" href={poster.png} aria-label={`Open PNG preview for ${poster.title}`}>
                         <img src={poster.png} alt={poster.alt} loading="lazy" />
                       </a>
                       <div className="poster-file-copy">
                         <h3>{poster.title}</h3>
-                        <div className="poster-file-actions" aria-label={`${poster.title} download options`}>
-                          <a href={poster.pdf}>Download PDF</a>
-                          <a href={poster.png}>Download PNG</a>
+                        <div className="poster-file-actions" role="group" aria-label={`${poster.title} download options`}>
+                          <a href={poster.pdf} download>Download PDF</a>
+                          <a href={poster.png} download>Download PNG</a>
                         </div>
                       </div>
                     </article>
                   ))}
                 </div>
 
-                <p className="poster-back-link">
+                <nav className="poster-back-link" aria-label="Poster page navigation">
                   <a href="#/classroom-posters">Back to all poster types</a>
                   <a href="#/classroom-posters/all">See all posters</a>
-                </p>
+                </nav>
               </div>
             </section>
           </>
-        ) : null}
+        ) : (
+          <>
+            <section className="poster-hero poster-hero-main" aria-labelledby="poster-not-found-title">
+              <div className="poster-wrap poster-hero-inner">
+                <p className="poster-kicker">Classroom Posters</p>
+                <h1 id="poster-not-found-title">Poster type not found.</h1>
+                <p className="poster-hero-lead">
+                  That poster link does not match a published poster type. Use the poster index to find the current files.
+                </p>
+              </div>
+            </section>
+
+            <section className="poster-section poster-section-silver" aria-labelledby="poster-not-found-actions-title">
+              <div className="poster-wrap">
+                <div className="poster-empty-panel">
+                  <p className="poster-panel-label" id="poster-not-found-actions-title">Available routes</p>
+                  <p>Open the poster index or the all-posters view.</p>
+                  <nav className="poster-back-link" aria-label="Poster page navigation">
+                    <a href="#/classroom-posters">Back to poster types</a>
+                    <a href="#/classroom-posters/all">See all posters</a>
+                  </nav>
+                </div>
+              </div>
+            </section>
+          </>
+        )}
       </main>
 
       <footer className="poster-footer">

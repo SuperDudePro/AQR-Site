@@ -74,7 +74,7 @@ function CourseOverview({ onNavigateHome, onNavigateWhy, onNavigatePosters }: Co
       return;
     }
 
-    window.location.hash = "";
+    window.location.hash = "#/";
     window.scrollTo({ top: 0, behavior: "auto" });
   };
 
@@ -110,13 +110,13 @@ function CourseOverview({ onNavigateHome, onNavigateWhy, onNavigatePosters }: Co
 
       <header className="overview-site-header overview-hero">
         <div className="overview-topbar overview-wrap">
-          <a className="overview-brand" href="#" onClick={goHome}>
+          <a className="overview-brand" href="#/" onClick={goHome}>
             <span className="overview-brand-mark">AQR</span>
             <span className="overview-brand-name">Applied Quantitative Reasoning</span>
           </a>
 
           <nav className="overview-topnav" aria-label="Course Overview navigation" role="navigation">
-            <a href="#" onClick={goHome}>Home</a>
+            <a href="#/" onClick={goHome}>Home</a>
             <a href="#/why-aqr" onClick={goWhy}>Why AQR</a>
             <a href="#/course-overview" aria-current="page">Course Overview</a>
             <a href="#/classroom-posters" onClick={goPosters}>Posters</a>
@@ -205,7 +205,7 @@ function CourseOverview({ onNavigateHome, onNavigateWhy, onNavigatePosters }: Co
                       <p className="overview-quarter-card-tools">
                         <strong>Tool focus:</strong> {quarter.toolFocus}
                       </p>
-                      <div className="overview-quarter-card-mini" aria-label={`${quarter.title} mini-themes`}>
+                      <div className="overview-quarter-card-mini" role="group" aria-label={`${quarter.title} mini-themes`}>
                         <strong>Mini-themes:</strong>
                         <ul className="overview-chip-list">
                           {quarter.miniThemes.map((theme) => (
