@@ -37,7 +37,7 @@ export const posterTypes: PosterType[] = [
     title: "Quantitative Reasoning Question Posters",
     eyebrow: "Questions students should hear all year",
     summary:
-      "Short question posters that become classroom language: compared to what, per what, what is being measured, and what does this prove?",
+      "Short question posters that become classroom language: compared to what, what does this prove, per what, what is being measured, and what would change your mind?",
     audienceUse:
       "Use these around the room as thinking prompts during warm-ups, graph checks, surveys, project conferences, and revisions.",
     posters: [
@@ -47,6 +47,18 @@ export const posterTypes: PosterType[] = [
         png: "/posters/compared_to_what_24x36_3600x5400.png",
         pdf: "/posters/compared_to_what_24x36.pdf",
       },
+      {
+        title: "What Does This Prove?",
+        alt: "AQR classroom poster: What Does This Prove?",
+        png: "/posters/what_does_this_prove_24x36_3600x5400.png",
+        pdf: "/posters/what_does_this_prove_24x36.pdf",
+      },
+      {
+        title: "What Does This Prove? — Second Design",
+        alt: "AQR classroom poster: What Does This Prove, second design",
+        png: "/posters/what_does_this_prove_24x36_3600x5400%20(1).png",
+        pdf: "/posters/what_does_this_prove_24x36%20(1).pdf",
+      },
     ],
   },
   {
@@ -54,7 +66,7 @@ export const posterTypes: PosterType[] = [
     title: "Data / Anti-BS Posters",
     eyebrow: "Do not get played by charts and claims",
     summary:
-      "Posters for misleading graphs, weak evidence, cherry-picked data, sampling problems, and correlation-versus-causation warnings.",
+      "Posters for misleading graphs, weak evidence, cherry-picked data, sampling problems, bad survey design, and correlation-versus-causation warnings.",
     audienceUse:
       "Use these during Q1 graph checks, Q2 data interpretation, and the Q4 Don't Get Played unit.",
     posters: [
@@ -63,6 +75,18 @@ export const posterTypes: PosterType[] = [
         alt: "AQR classroom poster: Correlation Is Not Causation",
         png: "/posters/correlation_is_not_causation_24x36_3600x5400.png",
         pdf: "/posters/correlation_is_not_causation_24x36.pdf",
+      },
+      {
+        title: "A Graph Is an Argument",
+        alt: "AQR classroom poster: A Graph Is an Argument",
+        png: "/posters/a_graph_is_an_argument_24x36_3600x5400.png",
+        pdf: "/posters/a_graph_is_an_argument_24x36.pdf",
+      },
+      {
+        title: "Bad Survey, Bad Data",
+        alt: "AQR classroom poster: Bad Survey, Bad Data",
+        png: "/posters/bad_survey_bad_data_24x36_3600x5400.png",
+        pdf: "/posters/bad_survey_bad_data_24x36.pdf",
       },
     ],
   },
@@ -74,7 +98,14 @@ export const posterTypes: PosterType[] = [
       "Posters for tradeoffs, criteria, weighting, assumptions, sensitivity checks, testing, and recommendations.",
     audienceUse:
       "Use these heavily in Q3 when students build decision tools and explain how their recommendation logic works.",
-    posters: [],
+    posters: [
+      {
+        title: "A Decision Is a Tradeoff",
+        alt: "AQR classroom poster: A Decision Is a Tradeoff",
+        png: "/posters/a_decision_is_a_tradeoff_24x36_3600x5400.png",
+        pdf: "/posters/a_decision_is_a_tradeoff_24x36.pdf",
+      },
+    ],
   },
   {
     slug: "ai-tool-use",
@@ -84,7 +115,14 @@ export const posterTypes: PosterType[] = [
       "Posters about AI judgment, source grounding, prompts, responsibility, and tool-supported thinking.",
     audienceUse:
       "Use these when students work with Gemini, source-grounded workflows, feedback prompts, and revision.",
-    posters: [],
+    posters: [
+      {
+        title: "The Tool Is Not the Thinking",
+        alt: "AQR classroom poster: The Tool Is Not the Thinking",
+        png: "/posters/the_tool_is_not_the_thinking_24x36_3600x5400.png",
+        pdf: "/posters/the_tool_is_not_the_thinking_24x36.pdf",
+      },
+    ],
   },
   {
     slug: "pass-path-work-habits",
@@ -100,6 +138,12 @@ export const posterTypes: PosterType[] = [
         alt: "AQR classroom poster: Don't Disappear",
         png: "/posters/dont_disappear_24x36_3600x5400.png",
         pdf: "/posters/dont_disappear_24x36.pdf",
+      },
+      {
+        title: "Revision Is the Work",
+        alt: "AQR classroom poster: Revision Is the Work",
+        png: "/posters/revision_is_the_work_24x36_3600x5400.png",
+        pdf: "/posters/revision_is_the_work_24x36.pdf",
       },
       {
         title: "10 Things That Require Zero Talent — Respect Final",
@@ -136,6 +180,12 @@ export const posterTypes: PosterType[] = [
         png: "/posters/name_the_claim_24x36_3600x5400.png",
         pdf: "/posters/name_the_claim_24x36.pdf",
       },
+      {
+        title: "Find the Flaw",
+        alt: "AQR classroom poster: Find the Flaw",
+        png: "/posters/find_the_flaw_24x36_3600x5400.png",
+        pdf: "/posters/find_the_flaw_24x36.pdf",
+      },
     ],
   },
   {
@@ -143,7 +193,7 @@ export const posterTypes: PosterType[] = [
     title: "Quotation Posters",
     eyebrow: "Depth and human weight",
     summary:
-      "Quote posters for struggle, courage, learning, humility, revision, truth, endurance, and simplicity.",
+      "Quote posters for struggle, courage, learning, humility, revision, truth, endurance, responsibility, and simplicity.",
     audienceUse:
       "Use these to give the room some intellectual and human weight without turning the wall into generic motivational wallpaper.",
     posters: [
@@ -152,6 +202,18 @@ export const posterTypes: PosterType[] = [
         alt: "Classroom quotation poster: He who has a why to live can bear almost any how",
         png: "/posters/nietzsche_why_poster_24x36_3600x5400.png",
         pdf: "/posters/nietzsche_why_poster_24x36.pdf",
+      },
+      {
+        title: "Frankl: Choose Your Attitude",
+        alt: "Classroom quotation poster: Frankl, choose your attitude",
+        png: "/posters/frankl_choose_attitude_24x36_3600x5400.png",
+        pdf: "/posters/frankl_choose_attitude_24x36.pdf",
+      },
+      {
+        title: "Douglass: Struggle and Progress",
+        alt: "Classroom quotation poster: Frederick Douglass, struggle and progress",
+        png: "/posters/douglass_struggle_progress_24x36_3600x5400.png",
+        pdf: "/posters/douglass_struggle_progress_24x36.pdf",
       },
     ],
   },
