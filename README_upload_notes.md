@@ -1,41 +1,59 @@
-# AQR Site Poster Batch 01 - All 9 Posters
+# AQR Site Public Posters + Quarter Content Update
 
-This package does not edit GitHub directly. It gives you the corrected files to upload manually.
+This package consolidates the previous quarter-content update, classroom-posters page, and corrected all-9 poster data into one upload set.
 
-## Replace this code file
+## What this fixes
+
+- Adds a visible `Posters` link on the home page navigation.
+- Adds a `Classroom Posters` preview card on the home page.
+- Adds a visible `Posters` link on the Course Overview navigation.
+- Adds a visible `Posters` link on the Quarter Detail navigation.
+- Adds the `/classroom-posters` route through the hash router.
+- Includes the classroom posters page and poster type/detail views.
+- Includes the corrected all-9 `posterData.ts` poster batch.
+- Keeps the expanded quarter descriptions, mini-themes, and tool-focus language.
+
+## Files to upload / replace
+
+Copy these into your repo:
 
 ```text
+src/AQR.tsx
+src/ClassroomPosters.tsx
+src/ClassroomPosters.css
+src/CourseOverview.tsx
+src/CourseOverview.css
+src/QuarterDetail.tsx
+src/QuarterDetail.css
+src/main.tsx
 src/posterData.ts
+public/posters/README_posters.md
 ```
 
-This version includes all 9 poster designs that are currently in the Drive folder.
+## Poster route
 
-## Upload poster assets
+The visible public page is:
 
-Download the poster files from the Drive folder and place them here in the site repo:
+```text
+#/classroom-posters
+```
+
+Example:
+
+```text
+https://your-site.com/#/classroom-posters
+```
+
+## Poster assets
+
+The code expects poster files under:
 
 ```text
 public/posters/
 ```
 
-See:
+The corrected all-9 `posterData.ts` references the poster filenames from the Drive batch. Upload the matching PNG/PDF files from Drive into `public/posters/`.
 
-```text
-public/posters/README_posters_batch_01_all_9.md
-```
+## Note
 
-for the exact filename list.
-
-## What changed from the prior package
-
-The prior package treated two `10 Things That Require Zero Talent` files as older variants and excluded them. That was wrong for your current intent.
-
-This package includes all three `10 Things` designs as separate poster entries:
-
-1. `10_things_0_talent_respect_final_24x36_3600x5400.png` / `.pdf`
-2. `poster_01_blue_grunge_10_things_24x36_3600x5400.png` / `.pdf`
-3. `10_things_zero_talent_24x36_3600x5400.png` / `_print.pdf`
-
-## Still hidden
-
-The Decision-Making / Model and AI / Tool-Use poster types remain hidden because there are no poster files from those categories in this batch.
+This package does not directly modify GitHub. It is meant for manual upload.

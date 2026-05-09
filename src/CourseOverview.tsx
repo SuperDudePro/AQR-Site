@@ -4,6 +4,7 @@ import "./CourseOverview.css";
 type CourseOverviewProps = {
   onNavigateHome?: () => void;
   onNavigateWhy?: () => void;
+  onNavigatePosters?: () => void;
 };
 
 type QuarterCard = {
@@ -11,6 +12,8 @@ type QuarterCard = {
   title: string;
   dates: string;
   focus: string;
+  toolFocus: string;
+  miniThemes: string[];
   body: string;
   href: string;
 };
@@ -18,43 +21,51 @@ type QuarterCard = {
 const quarterCards: QuarterCard[] = [
   {
     key: "q1",
-    title: "Quarter 1 — Know Yourself",
+    title: "Quarter 1 - Know Yourself",
     dates: "Aug 6 to Oct 8, 2026",
     focus: "AI-supported study/help tools and class-support tools",
+    toolFocus: "Gemini for work help; NotebookLM or source-grounded alternatives for approved source sets",
+    miniThemes: ["Misleading graphs / visual tricks", "Units, quantities, and what is being measured"],
     body:
-      "Students learn how AQR works, build routines for using school-approved tools well, and create one useful support tool for studying, organizing, or getting better help.",
+      "Students learn how AQR works, set up practical routines, and build one useful support tool for studying, organizing, or getting better help. The emphasis is tool use with judgment: useful sources, clear scope, approval, testing, and revision.",
     href: "#/quarter-1",
   },
   {
     key: "q2",
-    title: "Quarter 2 — Track Yourself",
+    title: "Quarter 2 - Track Yourself",
     dates: "Oct 19 to Dec 17, 2026",
     focus: "Self-tracking, time use, survey/data analysis, and pattern finding",
+    toolFocus: "Google Forms and Sheets for collecting, cleaning, displaying, and explaining data",
+    miniThemes: ["Correlation vs causation", "Sampling, bias, and bad survey questions"],
     body:
-      "Students collect real data, organize it, create displays, and make one honest claim about what the data shows while also explaining what it does not prove.",
+      "Students collect real data, organize it, create displays, and make one honest claim about what the data shows. The work stays tight: one question, one real dataset, one useful display, one supported claim, and one clear limitation.",
     href: "#/quarter-2",
   },
   {
     key: "q3",
-    title: "Quarter 3 — Build a Decision Tool / App",
+    title: "Quarter 3 - Build a Decision Tool / App",
     dates: "Jan 6 to Mar 11, 2027",
     focus: "Student-built decision tool, app-like workflow, or Gem",
+    toolFocus: "Gemini Gems, Docs, Slides, or structured workflows that make decision logic visible",
+    miniThemes: ["Risk and uncertainty", "Model assumptions, weighting, and sensitivity"],
     body:
-      "Students build a tool that helps a real user compare options, weigh criteria, see tradeoffs, test the logic, and reach a clearer recommendation.",
+      "Students build a tool that helps a real user compare options, weigh criteria, see tradeoffs, test the logic, and reach a clearer recommendation. The point is not coding prestige. The point is a useful decision process that can be explained and improved.",
     href: "#/quarter-3",
   },
   {
     key: "q4",
-    title: "Quarter 4 — Don’t Get Played",
+    title: "Quarter 4 - Don't Get Played",
     dates: "Mar 22 to May 24, 2027",
     focus: "Short anti-BS, media/data reasoning unit",
+    toolFocus: "Search, source checks, screenshots, Docs/Slides, and AI as a critique assistant rather than an answer machine",
+    miniThemes: ["Claim/evidence critique and misleading displays", "Causation, sampling, risk, source trust, and reasonable belief"],
     body:
-      "Students practice reading claims, graphs, statistics, sources, and AI output more carefully so they can decide what to trust, question, or reject.",
+      "Students practice reading claims, graphs, statistics, sources, and AI output more carefully. The year closes with practical skepticism: what should a reasonable person trust, question, or reject?",
     href: "#/quarter-4",
   },
 ];
 
-function CourseOverview({ onNavigateHome, onNavigateWhy }: CourseOverviewProps) {
+function CourseOverview({ onNavigateHome, onNavigateWhy, onNavigatePosters }: CourseOverviewProps) {
   const goHome = (event?: MouseEvent<HTMLAnchorElement>) => {
     if (event) event.preventDefault();
 
@@ -79,6 +90,18 @@ function CourseOverview({ onNavigateHome, onNavigateWhy }: CourseOverviewProps) 
     window.scrollTo({ top: 0, behavior: "auto" });
   };
 
+  const goPosters = (event?: MouseEvent<HTMLAnchorElement>) => {
+    if (event) event.preventDefault();
+
+    if (onNavigatePosters) {
+      onNavigatePosters();
+      return;
+    }
+
+    window.location.hash = "#/classroom-posters";
+    window.scrollTo({ top: 0, behavior: "auto" });
+  };
+
   return (
     <div className="overview-site-shell">
       <a className="overview-skip-link" href="#overview-main-content">
@@ -96,6 +119,7 @@ function CourseOverview({ onNavigateHome, onNavigateWhy }: CourseOverviewProps) 
             <a href="#" onClick={goHome}>Home</a>
             <a href="#/why-aqr" onClick={goWhy}>Why AQR</a>
             <a href="#/course-overview" aria-current="page">Course Overview</a>
+            <a href="#/classroom-posters" onClick={goPosters}>Posters</a>
           </nav>
         </div>
       </header>
@@ -129,9 +153,9 @@ function CourseOverview({ onNavigateHome, onNavigateWhy }: CourseOverviewProps) 
                 traditional upper-math courses, while still leaving room for stronger extension work.
               </p>
               <p>
-                The year is organized around one main project family per quarter. Each quarter also uses two short,
-                recurring quantitative-reasoning lenses so students repeatedly practice reading numbers, evidence,
-                models, and claims more carefully.
+                The year uses one main project family per quarter, supported by two short recurring quantitative-reasoning
+                lenses. Those lenses show up through warm-ups, quick investigations, small artifacts, project prompts,
+                and checkpoint work rather than becoming separate full units.
               </p>
             </div>
             <div className="overview-facts-panel">
@@ -142,6 +166,7 @@ function CourseOverview({ onNavigateHome, onNavigateWhy }: CourseOverviewProps) 
                 <li><strong>Grades:</strong> 11-12</li>
                 <li><strong>Prerequisite:</strong> Integrated 2 / Geometry or teacher recommendation</li>
                 <li><strong>Format:</strong> Project-based with checkpoints and milestone work</li>
+                <li><strong>Tools:</strong> Google Workspace, Gemini, and source-grounded workflows</li>
                 <li><strong>Honors option:</strong> Available through quarter-level extensions</li>
               </ul>
             </div>
@@ -171,12 +196,23 @@ function CourseOverview({ onNavigateHome, onNavigateWhy }: CourseOverviewProps) 
                       aria-labelledby={`${headingId} ${metaId}`}
                       aria-describedby={focusId}
                     >
-                      <p className="overview-card-kicker">{quarter.title.split(" — ")[0]}</p>
+                      <p className="overview-card-kicker">{quarter.title.split(" - ")[0]}</p>
                       <h3 id={headingId} className="overview-quarter-card-title">{quarter.title}</h3>
                       <p id={metaId} className="overview-quarter-card-dates">{quarter.dates}</p>
                       <p id={focusId} className="overview-quarter-card-focus">
-                        <strong>Main focus:</strong> {quarter.focus}
+                        <strong>Main project:</strong> {quarter.focus}
                       </p>
+                      <p className="overview-quarter-card-tools">
+                        <strong>Tool focus:</strong> {quarter.toolFocus}
+                      </p>
+                      <div className="overview-quarter-card-mini" aria-label={`${quarter.title} mini-themes`}>
+                        <strong>Mini-themes:</strong>
+                        <ul className="overview-chip-list">
+                          {quarter.miniThemes.map((theme) => (
+                            <li key={theme}>{theme}</li>
+                          ))}
+                        </ul>
+                      </div>
                       <p className="overview-quarter-card-body">{quarter.body}</p>
                       <span className="overview-quarter-card-link">Open quarter page</span>
                     </a>

@@ -4,6 +4,7 @@ import "./AQR.css";
 type AQRProps = {
   onNavigateWhy?: () => void;
   onNavigateOverview?: () => void;
+  onNavigatePosters?: () => void;
 };
 
 type PreviewCard = {
@@ -21,7 +22,7 @@ function scrollToId(id: string) {
   el.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-function AQR({ onNavigateWhy, onNavigateOverview }: AQRProps) {
+function AQR({ onNavigateWhy, onNavigateOverview, onNavigatePosters }: AQRProps) {
   const navigateWhy = () => {
     if (onNavigateWhy) {
       onNavigateWhy();
@@ -36,6 +37,14 @@ function AQR({ onNavigateWhy, onNavigateOverview }: AQRProps) {
       return;
     }
     window.location.hash = "#/course-overview";
+  };
+
+  const navigatePosters = () => {
+    if (onNavigatePosters) {
+      onNavigatePosters();
+      return;
+    }
+    window.location.hash = "#/classroom-posters";
   };
 
   const handleHomeAnchor =
@@ -61,7 +70,7 @@ function AQR({ onNavigateWhy, onNavigateOverview }: AQRProps) {
       title: "Course Overview",
       eyebrow: "How the year is structured",
       body:
-        "A clear view of prerequisites, course positioning, quarter focus, and how the year fits together.",
+        "A clear view of prerequisites, course positioning, quarter focus, mini-themes, and how the year fits together.",
       href: "#/course-overview",
       cta: "Open Course Overview",
       onClick: (event) => {
@@ -69,7 +78,19 @@ function AQR({ onNavigateWhy, onNavigateOverview }: AQRProps) {
         navigateOverview();
       },
     },
-    ];
+    {
+      title: "Classroom Posters",
+      eyebrow: "AQR wall materials",
+      body:
+        "Printable poster files for classroom thinking moves, data skepticism, decision-making, AI use, and the visible pass path.",
+      href: "#/classroom-posters",
+      cta: "Open Posters",
+      onClick: (event) => {
+        event.preventDefault();
+        navigatePosters();
+      },
+    },
+  ];
 
   return (
     <div className="aqr-site-shell">
@@ -102,7 +123,17 @@ function AQR({ onNavigateWhy, onNavigateOverview }: AQRProps) {
               }}
             >
               Course Overview
-            </a></nav>
+            </a>
+            <a
+              href="#/classroom-posters"
+              onClick={(event) => {
+                event.preventDefault();
+                navigatePosters();
+              }}
+            >
+              Posters
+            </a>
+          </nav>
         </div>
       </header>
 
@@ -137,7 +168,18 @@ function AQR({ onNavigateWhy, onNavigateOverview }: AQRProps) {
                 }}
               >
                 Course Overview
-              </a></div>
+              </a>
+              <a
+                className="aqr-button aqr-button-top"
+                href="#/classroom-posters"
+                onClick={(event) => {
+                  event.preventDefault();
+                  navigatePosters();
+                }}
+              >
+                Posters
+              </a>
+            </div>
           </div>
         </section>
 
@@ -186,7 +228,7 @@ function AQR({ onNavigateWhy, onNavigateOverview }: AQRProps) {
             </div>
             <div className="aqr-quote-column">
               <div className="aqr-quote-panel aqr-quote-panel-bright">
-                <p>“AQR is for students who want mathematics to do something.”</p>
+                <p>"AQR is for students who want mathematics to do something."</p>
               </div>
             </div>
           </div>
@@ -224,7 +266,7 @@ function AQR({ onNavigateWhy, onNavigateOverview }: AQRProps) {
             <p className="aqr-kicker aqr-kicker-bright">Course Overview</p>
             <h2 className="aqr-heading-dark" id="aqr-course-overview-title">See the year structure at a glance.</h2>
             <p className="aqr-overview-preview-text">
-              The course overview page lays out the basic course facts and the quarter-by-quarter structure.
+              The course overview page lays out the course facts, the quarter-by-quarter structure, the mini-themes, and the tool focus.
             </p>
             <a
               className="aqr-button aqr-button-dark"
@@ -238,8 +280,6 @@ function AQR({ onNavigateWhy, onNavigateOverview }: AQRProps) {
             </a>
           </div>
         </section>
-
-        
       </main>
 
       <footer className="aqr-footer">

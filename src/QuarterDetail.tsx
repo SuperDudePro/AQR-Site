@@ -252,6 +252,7 @@ function QuarterDetail({ quarter, onNavigateHome, onNavigateOverview }: QuarterD
           <nav className="quarter-topnav" aria-label="Quarter page navigation">
             <a href="#" onClick={goHome}>Home</a>
             <a href="#/course-overview" onClick={goOverview}>Course Overview</a>
+            <a href="#/classroom-posters">Posters</a>
             <a href={detail.href} aria-current="page">{detail.navLabel}</a>
           </nav>
         </div>

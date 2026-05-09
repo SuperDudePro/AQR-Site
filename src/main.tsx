@@ -4,9 +4,10 @@ import AQR from "./AQR";
 import WhyAQR from "./WhyAQR";
 import CourseOverview from "./CourseOverview";
 import QuarterDetail from "./QuarterDetail";
+import ClassroomPosters from "./ClassroomPosters";
 import "./index.css";
 
-type Page = "home" | "why" | "overview" | "q1" | "q2" | "q3" | "q4";
+type Page = "home" | "why" | "overview" | "q1" | "q2" | "q3" | "q4" | "posters";
 
 const GA_TRACKING_ID = "G-L6Y4XCS8L7";
 
@@ -46,7 +47,6 @@ function trackPageView(page: Page) {
   });
 }
 
-
 function setChrome(page: Page) {
   const titles: Record<Page, string> = {
     home: "Applied Quantitative Reasoning | Vista PEAK Prep",
@@ -56,6 +56,7 @@ function setChrome(page: Page) {
     q2: "Quarter 2 | Applied Quantitative Reasoning",
     q3: "Quarter 3 | Applied Quantitative Reasoning",
     q4: "Quarter 4 | Applied Quantitative Reasoning",
+    posters: "Classroom Posters | Applied Quantitative Reasoning",
   };
 
   document.title = titles[page];
@@ -80,6 +81,7 @@ function setChrome(page: Page) {
 function getPage(hash: string): Page {
   if (hash.startsWith("#/why-aqr")) return "why";
   if (hash.startsWith("#/course-overview")) return "overview";
+  if (hash.startsWith("#/classroom-posters")) return "posters";
   if (hash.startsWith("#/quarter-1")) return "q1";
   if (hash.startsWith("#/quarter-2")) return "q2";
   if (hash.startsWith("#/quarter-3")) return "q3";
@@ -110,6 +112,10 @@ function App() {
 
   if (page === "overview") {
     return <CourseOverview />;
+  }
+
+  if (page === "posters") {
+    return <ClassroomPosters />;
   }
 
   if (page === "q1") {
