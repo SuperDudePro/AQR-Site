@@ -127,8 +127,12 @@ function ClassroomPosters({ currentHash, onNavigateHome, onNavigateOverview }: C
                         return (
                           <li className="poster-type-list-item" key={type.slug}>
                             <a className="poster-type-card" href={`#/classroom-posters/${type.slug}`}>
-                              <div className="poster-type-preview" aria-hidden="true">
-                                <img src={samplePoster.png} alt="" loading="lazy" />
+                              <div className="poster-type-preview">
+                                <img
+                                  src={samplePoster.png}
+                                  alt={`Sample ${type.title} design: ${samplePoster.title}`}
+                                  loading="lazy"
+                                />
                               </div>
                               <div className="poster-type-copy">
                                 <p className="poster-card-kicker">{type.eyebrow}</p>
@@ -179,7 +183,7 @@ function ClassroomPosters({ currentHash, onNavigateHome, onNavigateOverview }: C
                 <div className="poster-file-grid">
                   {allPublishedPosters.map((poster) => (
                     <article className="poster-file-card" key={`${poster.typeSlug}-${poster.title}-${poster.png}`}>
-                      <a className="poster-image-link" href={poster.png} aria-label={`Open PNG preview for ${poster.title}`}>
+                      <a className="poster-image-link" href={poster.png}>
                         <img src={poster.png} alt={poster.alt} loading="lazy" />
                       </a>
                       <div className="poster-file-copy">
@@ -224,7 +228,7 @@ function ClassroomPosters({ currentHash, onNavigateHome, onNavigateOverview }: C
                 <div className="poster-file-grid">
                   {activePosterType.posters.map((poster) => (
                     <article className="poster-file-card" key={`${poster.title}-${poster.png}`}>
-                      <a className="poster-image-link" href={poster.png} aria-label={`Open PNG preview for ${poster.title}`}>
+                      <a className="poster-image-link" href={poster.png}>
                         <img src={poster.png} alt={poster.alt} loading="lazy" />
                       </a>
                       <div className="poster-file-copy">
