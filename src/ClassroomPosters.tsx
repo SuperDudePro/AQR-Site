@@ -3,18 +3,19 @@ import { getPosterType, publishedPosterTypes } from "./posterData";
 import "./ClassroomPosters.css";
 
 type ClassroomPostersProps = {
+  currentHash?: string;
   onNavigateHome?: () => void;
   onNavigateOverview?: () => void;
 };
 
-function getPosterSlugFromHash() {
+function getPosterSlugFromHash(currentHash = window.location.hash) {
   const prefix = "#/classroom-posters/";
-  if (!window.location.hash.startsWith(prefix)) return null;
-  return window.location.hash.slice(prefix.length).replace(/\/$/, "") || null;
+  if (!currentHash.startsWith(prefix)) return null;
+  return currentHash.slice(prefix.length).replace(/\/$/, "") || null;
 }
 
-function ClassroomPosters({ onNavigateHome, onNavigateOverview }: ClassroomPostersProps) {
-  const activeSlug = getPosterSlugFromHash();
+function ClassroomPosters({ currentHash, onNavigateHome, onNavigateOverview }: ClassroomPostersProps) {
+  const activeSlug = getPosterSlugFromHash(currentHash);
   const activeType = getPosterType(activeSlug);
   const activePosterType = activeType && activeType.posters.length > 0 ? activeType : null;
 
@@ -72,7 +73,7 @@ function ClassroomPosters({ onNavigateHome, onNavigateOverview }: ClassroomPoste
                 <h1 id="poster-page-title">AQR posters people can use, print, or borrow.</h1>
                 <p className="poster-hero-lead">
                   These are public-facing classroom poster files for AQR. Only poster types with finished files are shown.
-                  As more poster sets are completed, add the PNG/PDF files and update the poster data list.
+                  Each type starts with a sample image; open the type page to see the rest of that poster set.
                 </p>
               </div>
             </section>
@@ -83,23 +84,34 @@ function ClassroomPosters({ onNavigateHome, onNavigateOverview }: ClassroomPoste
                   <p className="poster-section-kicker">Available poster types</p>
                   <h2 id="poster-types-title">Finished sets appear here.</h2>
                   <p>
-                    The hidden poster families are still part of the AQR wall system, but they do not appear on this page until at least one printable poster file is ready.
+                    Each card shows one representative poster from that type. Hidden poster families stay off the page until at least one printable poster file is ready.
                   </p>
                 </div>
 
                 {publishedPosterTypes.length > 0 ? (
                   <ul className="poster-type-grid" role="list">
-                    {publishedPosterTypes.map((type) => (
-                      <li className="poster-type-list-item" key={type.slug}>
-                        <a className="poster-type-card" href={`#/classroom-posters/${type.slug}`}>
-                          <p className="poster-card-kicker">{type.eyebrow}</p>
-                          <h3>{type.title}</h3>
-                          <p>{type.summary}</p>
-                          <span className="poster-count">{type.posters.length} printable file{type.posters.length === 1 ? "" : "s"}</span>
-                          <span className="poster-card-link">Open poster type</span>
-                        </a>
-                      </li>
-                    ))}
+                    {publishedPosterTypes.map((type) => {
+                      const samplePoster = type.posters[0];
+
+                      return (
+                        <li className="poster-type-list-item" key={type.slug}>
+                          <a className="poster-type-card" href={`#/classroom-posters/${type.slug}`}>
+                            <div className="poster-type-preview" aria-hidden="true">
+                              <img src={samplePoster.png} alt="" loading="lazy" />
+                            </div>
+                            <div className="poster-type-copy">
+                              <p className="poster-card-kicker">{type.eyebrow}</p>
+                              <h3>{type.title}</h3>
+                              <p>{type.summary}</p>
+                              <span className="poster-count">
+                                {type.posters.length} poster design{type.posters.length === 1 ? "" : "s"}
+                              </span>
+                              <span className="poster-card-link">Open poster type</span>
+                            </div>
+                          </a>
+                        </li>
+                      );
+                    })}
                   </ul>
                 ) : (
                   <div className="poster-empty-panel">

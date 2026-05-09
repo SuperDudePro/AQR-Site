@@ -9,6 +9,11 @@ import "./index.css";
 
 type Page = "home" | "why" | "overview" | "q1" | "q2" | "q3" | "q4" | "posters";
 
+type RouteState = {
+  page: Page;
+  hash: string;
+};
+
 const GA_TRACKING_ID = "G-L6Y4XCS8L7";
 
 declare global {
@@ -89,15 +94,23 @@ function getPage(hash: string): Page {
   return "home";
 }
 
+function getRouteState(): RouteState {
+  const hash = window.location.hash || "";
+  return {
+    page: getPage(hash),
+    hash,
+  };
+}
+
 function App() {
-  const [page, setPage] = useState<Page>(() => getPage(window.location.hash || ""));
+  const [route, setRoute] = useState<RouteState>(() => getRouteState());
 
   useEffect(() => {
     const handleHashChange = () => {
-      const nextPage = getPage(window.location.hash || "");
-      setPage(nextPage);
-      setChrome(nextPage);
-      trackPageView(nextPage);
+      const nextRoute = getRouteState();
+      setRoute(nextRoute);
+      setChrome(nextRoute.page);
+      trackPageView(nextRoute.page);
       window.scrollTo({ top: 0, behavior: "auto" });
     };
 
@@ -106,31 +119,31 @@ function App() {
     return () => window.removeEventListener("hashchange", handleHashChange);
   }, []);
 
-  if (page === "why") {
+  if (route.page === "why") {
     return <WhyAQR />;
   }
 
-  if (page === "overview") {
+  if (route.page === "overview") {
     return <CourseOverview />;
   }
 
-  if (page === "posters") {
-    return <ClassroomPosters />;
+  if (route.page === "posters") {
+    return <ClassroomPosters currentHash={route.hash} />;
   }
 
-  if (page === "q1") {
+  if (route.page === "q1") {
     return <QuarterDetail quarter="q1" />;
   }
 
-  if (page === "q2") {
+  if (route.page === "q2") {
     return <QuarterDetail quarter="q2" />;
   }
 
-  if (page === "q3") {
+  if (route.page === "q3") {
     return <QuarterDetail quarter="q3" />;
   }
 
-  if (page === "q4") {
+  if (route.page === "q4") {
     return <QuarterDetail quarter="q4" />;
   }
 

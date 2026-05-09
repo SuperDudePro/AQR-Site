@@ -237,6 +237,34 @@
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.1);
 }
 
+.poster-type-card {
+  padding: 18px;
+  overflow: hidden;
+}
+
+.poster-type-preview {
+  overflow: hidden;
+  border-radius: 20px;
+  background: #eef2f6;
+  border: 1px solid rgba(0, 85, 138, 0.18);
+}
+
+.poster-type-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  object-fit: contain;
+  background: #f6f8fb;
+}
+
+.poster-type-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 22px 10px 4px;
+}
+
 .poster-type-card:hover,
 .poster-type-card:focus-visible {
   border-color: #00558a;
@@ -267,6 +295,15 @@
   margin-top: auto;
   color: #00558a;
   font-weight: 900;
+}
+
+.poster-type-card:hover .poster-type-preview img,
+.poster-type-card:focus-visible .poster-type-preview img {
+  transform: scale(1.015);
+}
+
+.poster-type-preview img {
+  transition: transform 0.2s ease;
 }
 
 .poster-empty-panel code {
