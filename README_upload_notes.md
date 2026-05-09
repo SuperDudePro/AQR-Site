@@ -1,50 +1,30 @@
-# AQR poster data update — 20 poster designs
+# AQR Poster Page - All Posters View Update
 
-Use this package to update the site code so the Classroom Posters page recognizes the new poster entries.
+Purpose: add a visible way to browse every finished poster without choosing a category first.
 
-## Primary file to replace
+Replace these files in the site:
 
-Replace:
+- `src/ClassroomPosters.tsx`
+- `src/ClassroomPosters.css`
 
-```text
-src/posterData.ts
-```
+Included for safety/currentness:
 
-with the version in this package.
+- `src/posterData.ts` — current 20-poster data file from the last poster update.
 
-## Optional supporting files
+New route:
 
-This ZIP also includes the current poster page/component files from the previous corrected package:
+- `#/classroom-posters/all`
 
-```text
-src/ClassroomPosters.tsx
-src/ClassroomPosters.css
-src/main.tsx
-src/AQR.tsx
-src/CourseOverview.tsx
-src/CourseOverview.css
-src/QuarterDetail.tsx
-src/QuarterDetail.css
-```
+Visible changes:
 
-If your site already has the poster page working, you probably only need `src/posterData.ts`.
+- The poster top navigation now includes `All Posters`.
+- The main Classroom Posters page includes a large `See every finished poster in one place` card.
+- Each category page includes a `See all posters` button near the bottom.
+- The All Posters page displays every poster in one grid and labels each poster with its type.
 
-## Poster assets
+Asset reminder:
 
-This package does not include the poster PNG/PDF binaries. It assumes you already uploaded them into:
+This package does not include the actual poster image/PDF assets. The code expects the PNG/PDF files to already exist in:
 
-```text
-public/posters/
-```
+- `public/posters/`
 
-The expected filenames are listed in:
-
-```text
-public/posters/README_posters.md
-```
-
-## Current count
-
-The code now recognizes 20 poster designs across 8 poster types.
-
-The two `What Does This Prove?` designs are intentionally both included as separate posters.
