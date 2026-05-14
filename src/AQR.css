@@ -3,13 +3,14 @@
   --aqr-graphite: #111827;
   --aqr-graphite-2: #1f2937;
   --aqr-blue: #39a8ff;
-  --aqr-blue-dark: #1173b8;
+  --aqr-blue-text: #075985;
+  --aqr-blue-on-dark: #8bd3ff;
   --aqr-blue-soft: #dff3ff;
   --aqr-white: #ffffff;
   --aqr-silver: #f3f5f7;
   --aqr-silver-2: #e5e7eb;
   --aqr-text: #172033;
-  --aqr-muted: #5b6474;
+  --aqr-muted: #374151;
   --aqr-border: rgba(17, 24, 39, 0.14);
   --aqr-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
   --aqr-radius-lg: 28px;
@@ -105,7 +106,7 @@ img {
   gap: 12px;
   color: var(--aqr-white);
   text-decoration: none;
-  font-weight: 800;
+  font-weight: 750;
 }
 
 .aqr-brand-mark {
@@ -116,9 +117,10 @@ img {
   min-width: 48px;
   height: 48px;
   border-radius: 14px;
-  background: var(--aqr-blue);
+  background: var(--aqr-white);
   color: var(--aqr-black);
-  font-size: 0.95rem;
+  font-size: 0.86rem;
+  font-weight: 700;
   letter-spacing: 0.04em;
 }
 
@@ -143,7 +145,7 @@ img {
   justify-content: center;
   padding: 10px 14px;
   border-radius: 999px;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.92);
   text-decoration: none;
   font-size: 0.95rem;
   font-weight: 750;
@@ -151,7 +153,7 @@ img {
 
 .aqr-topnav a:hover,
 .aqr-topnav a:focus-visible {
-  background: rgba(57, 168, 255, 0.18);
+  background: rgba(139, 211, 255, 0.18);
   color: var(--aqr-white);
   outline: 2px solid transparent;
 }
@@ -160,10 +162,9 @@ img {
   background: var(--aqr-white);
 }
 
+/* Solid background avoids automated contrast tools losing the text/background relationship on gradients. */
 .aqr-hero {
-  background:
-    radial-gradient(circle at 16% 20%, rgba(57, 168, 255, 0.32), transparent 34%),
-    linear-gradient(135deg, #02040a 0%, #0c1320 48%, #05070a 100%);
+  background: var(--aqr-black);
   color: var(--aqr-white);
 }
 
@@ -183,11 +184,24 @@ img {
 .aqr-kicker,
 .aqr-card-eyebrow {
   margin: 0 0 12px;
-  color: var(--aqr-blue);
+  color: var(--aqr-blue-text);
   font-size: 0.82rem;
-  font-weight: 850;
+  font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+.aqr-hero .aqr-eyebrow,
+.aqr-hero .aqr-kicker {
+  color: var(--aqr-blue-on-dark);
+}
+
+.aqr-card-eyebrow,
+.aqr-section-silver .aqr-kicker,
+.aqr-banner-section .aqr-kicker,
+.aqr-overview-preview .aqr-kicker,
+.aqr-why-preview-copy .aqr-kicker {
+  color: var(--aqr-blue-text);
 }
 
 .aqr-mark {
@@ -200,9 +214,9 @@ img {
 
 .aqr-full-name {
   margin: 18px 0 0;
-  color: var(--aqr-blue);
-  font-size: clamp(1.2rem, 2.6vw, 2rem);
-  font-weight: 850;
+  color: var(--aqr-blue-on-dark);
+  font-size: clamp(1rem, 1.7vw, 1.28rem);
+  font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -219,7 +233,7 @@ img {
 .aqr-hero-text {
   max-width: 720px;
   margin: 22px auto 0;
-  color: rgba(255, 255, 255, 0.86);
+  color: rgba(255, 255, 255, 0.9);
   font-size: clamp(1.05rem, 2vw, 1.35rem);
 }
 
@@ -330,10 +344,12 @@ img {
 }
 
 .aqr-kicker-bright {
-  color: var(--aqr-blue-dark);
+  color: var(--aqr-blue-text);
 }
 
-.aqr-heading-dark {
+.aqr-heading-dark,
+#aqr-preview-title,
+#aqr-banner-title {
   margin: 0 0 16px;
   color: var(--aqr-black);
   font-size: clamp(2rem, 4vw, 3.5rem);
@@ -356,10 +372,10 @@ img {
   width: 100%;
   padding: 34px;
   border-radius: var(--aqr-radius-lg);
-  font-size: clamp(1.35rem, 3vw, 2.25rem);
-  line-height: 1.05;
-  font-weight: 900;
-  letter-spacing: -0.05em;
+  font-size: clamp(1.18rem, 2vw, 1.55rem);
+  line-height: 1.18;
+  font-weight: 750;
+  letter-spacing: -0.02em;
   box-shadow: var(--aqr-shadow);
 }
 
@@ -367,7 +383,8 @@ img {
   margin: 0;
 }
 
-.aqr-quote-panel-bright {
+.aqr-quote-panel-bright,
+.aqr-quote-panel-bright p {
   background: var(--aqr-blue);
   color: var(--aqr-black);
 }
@@ -422,8 +439,36 @@ img {
 }
 
 .site-footer-school {
-  color: var(--aqr-blue);
+  color: var(--aqr-blue-on-dark);
   font-weight: 800;
+}
+
+/* Emergency accessibility scan fix: make home-page link targets meet 44px touch-target guidance. */
+.aqr-button,
+.aqr-card-link {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Scanner-clean contrast overrides for the home page. */
+.aqr-card-eyebrow,
+.aqr-kicker-bright {
+  color: var(--aqr-blue-text) !important;
+}
+
+#aqr-preview-title,
+#aqr-banner-title {
+  color: var(--aqr-black) !important;
+}
+
+.aqr-brand-mark {
+  background: var(--aqr-white) !important;
+  color: var(--aqr-black) !important;
+}
+
+.aqr-quote-panel-bright,
+.aqr-quote-panel-bright p {
+  color: var(--aqr-black) !important;
 }
 
 @media (max-width: 860px) {
