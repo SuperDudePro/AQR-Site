@@ -74,14 +74,8 @@ export const posterTypes: PosterType[] = [
       {
         title: "What Does This Prove? — Second Design",
         alt: "AQR classroom poster: What Does This Prove, second design",
-        png: "/posters/what_does_this_prove_2_24x36_3600x5400.png",
-        pdf: "/posters/what_does_this_prove_2_24x36.pdf",
-      },
-      {
-        title: "What Would Change Your Mind?",
-        alt: "AQR classroom poster: What Would Change Your Mind?",
-        png: "/posters/what_would_change_your_mind_final_2026_05_13_24x36_3600x5400.png",
-        pdf: "/posters/what_would_change_your_mind_final_2026_05_13_24x36.pdf",
+        png: "/posters/what_does_this_prove_24x36_3600x5400%20(1).png",
+        pdf: "/posters/what_does_this_prove_24x36%20(1).pdf",
       },
       {
         title: "Is That Reasonable?",
@@ -138,14 +132,14 @@ export const posterTypes: PosterType[] = [
       {
         title: "Weighting Is a Value Statement",
         alt: "AQR classroom poster: Weighting Is a Value Statement",
-        png: "/posters/weighting_is_a_value_statement_24x36_3600x5400.png",
-        pdf: "/posters/weighting_is_a_value_statement_24x36.pdf",
+        png: "/posters/weighting%20is%20a%20_24x36_3600x5400.png",
+        pdf: "/posters/weighting%20is%20a_24x36.pdf",
       },
       {
         title: "Know the User",
         alt: "AQR classroom poster: Know the User",
-        png: "/posters/know_the_user_24x36_3600x5400.png",
-        pdf: "/posters/know_the_user_24x36.pdf",
+        png: "/posters/know_the_user_3600x5400.png",
+        pdf: "/posters/know_the_user_24x36%20(2).pdf",
       },
     ],
   },
@@ -272,11 +266,22 @@ export const posterTypes: PosterType[] = [
       {
         title: "Camus: Invincible Summer",
         alt: "Classroom quotation poster: Albert Camus, invincible summer",
-        png: "/posters/camus_quote_space_24x36_3600x5400.png",
-        pdf: "/posters/camus_quote_space_24x36.pdf",
+        png: "/posters/camus_invincible_summer_FINAL_3600x5400.png",
+        pdf: "/posters/camus_invincible_summer_FINAL_24x36.pdf",
+      },
+      {
+        title: "Eliot: Be Still",
+        alt: "Classroom quotation poster: T. S. Eliot, be still",
+        png: "/posters/eliot_be_still_FINAL_3600x5400.png",
+        pdf: "/posters/eliot_be_still_FINAL_24x36.pdf",
       },
     ],
   },
 ];
+
+export const getPosterType = (slug: string | null | undefined): PosterType | undefined => {
+  if (!slug) return undefined;
+  return posterTypes.find((type) => type.slug === slug);
+};
 
 export const publishedPosterTypes = posterTypes.filter((type) => type.posters.length > 0);
