@@ -74,8 +74,8 @@ export const posterTypes: PosterType[] = [
       {
         title: "What Does This Prove? — Second Design",
         alt: "AQR classroom poster: What Does This Prove, second design",
-        png: "/posters/what_does_this_prove_24x36_3600x5400%20(1).png",
-        pdf: "/posters/what_does_this_prove_24x36%20(1).pdf",
+        png: "/posters/what_does_this_prove_2_24x36_3600x5400.png",
+        pdf: "/posters/what_does_this_prove_2_24x36.pdf",
       },
       {
         title: "Is That Reasonable?",
