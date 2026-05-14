@@ -36,6 +36,12 @@ export const posterTypes: PosterType[] = [
         png: "/posters/not_just_answers_3600x5400.png",
         pdf: "/posters/not_just_answers_24x36.pdf",
       },
+      {
+        title: "Serious Math, Different Path",
+        alt: "AQR classroom poster: Serious Math, Different Path",
+        png: "/posters/serious_math_different_path_3600x5400.png",
+        pdf: "/posters/serious_math_different_path_24x36.pdf",
+      },
     ],
   },
   {
@@ -70,6 +76,18 @@ export const posterTypes: PosterType[] = [
         alt: "AQR classroom poster: What Does This Prove, second design",
         png: "/posters/what_does_this_prove_2_24x36_3600x5400.png",
         pdf: "/posters/what_does_this_prove_2_24x36.pdf",
+      },
+      {
+        title: "What Would Change Your Mind?",
+        alt: "AQR classroom poster: What Would Change Your Mind?",
+        png: "/posters/what_would_change_your_mind_final_2026_05_13_24x36_3600x5400.png",
+        pdf: "/posters/what_would_change_your_mind_final_2026_05_13_24x36.pdf",
+      },
+      {
+        title: "Is That Reasonable?",
+        alt: "AQR classroom poster: Is That Reasonable?",
+        png: "/posters/is_that_reasonable_24x36_3600x5400.png",
+        pdf: "/posters/is_that_reasonable_24x36.pdf",
       },
     ],
   },
@@ -117,6 +135,18 @@ export const posterTypes: PosterType[] = [
         png: "/posters/a_decision_is_a_tradeoff_24x36_3600x5400.png",
         pdf: "/posters/a_decision_is_a_tradeoff_24x36.pdf",
       },
+      {
+        title: "Weighting Is a Value Statement",
+        alt: "AQR classroom poster: Weighting Is a Value Statement",
+        png: "/posters/weighting_is_a_value_statement_24x36_3600x5400.png",
+        pdf: "/posters/weighting_is_a_value_statement_24x36.pdf",
+      },
+      {
+        title: "Know the User",
+        alt: "AQR classroom poster: Know the User",
+        png: "/posters/know_the_user_24x36_3600x5400.png",
+        pdf: "/posters/know_the_user_24x36.pdf",
+      },
     ],
   },
   {
@@ -156,6 +186,12 @@ export const posterTypes: PosterType[] = [
         alt: "AQR classroom poster: Don't Disappear",
         png: "/posters/dont_disappear_24x36_3600x5400.png",
         pdf: "/posters/dont_disappear_24x36.pdf",
+      },
+      {
+        title: "Ask Earlier",
+        alt: "AQR classroom poster: Ask Earlier",
+        png: "/posters/ask_earlier_24x36_3600x5400.png",
+        pdf: "/posters/ask_earlier_24x36.pdf",
       },
       {
         title: "Revision Is the Work",
@@ -233,13 +269,14 @@ export const posterTypes: PosterType[] = [
         png: "/posters/douglass_struggle_progress_24x36_3600x5400.png",
         pdf: "/posters/douglass_struggle_progress_24x36.pdf",
       },
+      {
+        title: "Camus: Invincible Summer",
+        alt: "Classroom quotation poster: Albert Camus, invincible summer",
+        png: "/posters/camus_quote_space_24x36_3600x5400.png",
+        pdf: "/posters/camus_quote_space_24x36.pdf",
+      },
     ],
   },
 ];
 
 export const publishedPosterTypes = posterTypes.filter((type) => type.posters.length > 0);
-
-export function getPosterType(slug: string | null) {
-  if (!slug) return null;
-  return posterTypes.find((type) => type.slug === slug) ?? null;
-}
