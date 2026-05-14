@@ -36,12 +36,6 @@ export const posterTypes: PosterType[] = [
         png: "/posters/not_just_answers_3600x5400.png",
         pdf: "/posters/not_just_answers_24x36.pdf",
       },
-      {
-        title: "Serious Math, Different Path",
-        alt: "AQR classroom poster: Serious Math, Different Path",
-        png: "/posters/serious_math_different_path_3600x5400.png",
-        pdf: "/posters/serious_math_different_path_24x36.pdf",
-      },
     ],
   },
   {
@@ -60,6 +54,12 @@ export const posterTypes: PosterType[] = [
         pdf: "/posters/compared_to_what_24x36.pdf",
       },
       {
+        title: "What Are We Measuring?",
+        alt: "AQR classroom poster: What Are We Measuring?",
+        png: "/posters/what_are_we_measuring_final_2026_05_13_24x36_3600x5400.png",
+        pdf: "/posters/what_are_we_measuring_final_2026_05_13_24x36.pdf",
+      },
+      {
         title: "What Does This Prove?",
         alt: "AQR classroom poster: What Does This Prove?",
         png: "/posters/what_does_this_prove_24x36_3600x5400.png",
@@ -70,12 +70,6 @@ export const posterTypes: PosterType[] = [
         alt: "AQR classroom poster: What Does This Prove, second design",
         png: "/posters/what_does_this_prove_2_24x36_3600x5400.png",
         pdf: "/posters/what_does_this_prove_2_24x36.pdf",
-      },
-      {
-        title: "Is That Reasonable?",
-        alt: "AQR classroom poster: Is That Reasonable?",
-        png: "/posters/is_that_reasonable_24x36_3600x5400.png",
-        pdf: "/posters/is_that_reasonable_24x36.pdf",
       },
     ],
   },
@@ -123,18 +117,6 @@ export const posterTypes: PosterType[] = [
         png: "/posters/a_decision_is_a_tradeoff_24x36_3600x5400.png",
         pdf: "/posters/a_decision_is_a_tradeoff_24x36.pdf",
       },
-      {
-        title: "Weighting Is a Value Statement",
-        alt: "AQR classroom poster: Weighting Is a Value Statement",
-        png: "/posters/weighting is a _24x36_3600x5400.png",
-        pdf: "/posters/weighting is a_24x36.pdf",
-      },
-      {
-        title: "Know the User",
-        alt: "AQR classroom poster: Know the User",
-        png: "/posters/know_the_user_3600x5400.png",
-        pdf: "/posters/know_the_user_24x36 (2).pdf",
-      },
     ],
   },
   {
@@ -151,6 +133,12 @@ export const posterTypes: PosterType[] = [
         alt: "AQR classroom poster: The Tool Is Not the Thinking",
         png: "/posters/the_tool_is_not_the_thinking_24x36_3600x5400.png",
         pdf: "/posters/the_tool_is_not_the_thinking_24x36.pdf",
+      },
+      {
+        title: "Use AI Like a Coach",
+        alt: "AQR classroom poster: Use AI Like a Coach",
+        png: "/posters/ai_as_a_coach_in_learning_24x36_3600x5400.png",
+        pdf: "/posters/ai_as_a_coach_in_learning_24x36.pdf",
       },
     ],
   },
@@ -174,12 +162,6 @@ export const posterTypes: PosterType[] = [
         alt: "AQR classroom poster: Revision Is the Work",
         png: "/posters/revision_is_the_work_24x36_3600x5400.png",
         pdf: "/posters/revision_is_the_work_24x36.pdf",
-      },
-      {
-        title: "Ask Earlier",
-        alt: "AQR classroom poster: Ask Earlier",
-        png: "/posters/ask_earlier_24x36_3600x5400.png",
-        pdf: "/posters/ask_earlier_24x36.pdf",
       },
       {
         title: "10 Things That Require Zero Talent — Respect Final",
@@ -250,12 +232,6 @@ export const posterTypes: PosterType[] = [
         alt: "Classroom quotation poster: Frederick Douglass, struggle and progress",
         png: "/posters/douglass_struggle_progress_24x36_3600x5400.png",
         pdf: "/posters/douglass_struggle_progress_24x36.pdf",
-      },
-      {
-        title: "Camus: Invincible Summer",
-        alt: "Classroom quotation poster: Camus, invincible summer",
-        png: "/posters/camus_invincible_summer_FINAL_3600x5400.png",
-        pdf: "/posters/camus_invincible_summer_FINAL_24x36.pdf",
       },
     ],
   },
