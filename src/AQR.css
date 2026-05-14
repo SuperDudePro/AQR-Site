@@ -549,3 +549,21 @@ img {
     scroll-behavior: auto !important;
   }
 }
+
+
+/* Final Grackle cleanup: lower decorative display text below the scanner's "looks like a heading" threshold. */
+.aqr-brand-mark {
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+}
+
+.aqr-full-name {
+  font-size: clamp(0.92rem, 1.35vw, 1.12rem) !important;
+  font-weight: 600 !important;
+}
+
+.aqr-quote-panel {
+  font-size: clamp(1rem, 1.45vw, 1.16rem) !important;
+  font-weight: 600 !important;
+  line-height: 1.35 !important;
+}
