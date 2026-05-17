@@ -404,3 +404,9 @@
 .overview-quarter-card .overview-card-kicker {
   color: #00558a;
 }
+
+/* Restore AQR glowing blue page title treatment. */
+.overview-hero h1 {
+  color: #39a8ff;
+  text-shadow: 0 0 18px rgba(57, 168, 255, 0.42), 0 0 42px rgba(57, 168, 255, 0.2);
+}

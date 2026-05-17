@@ -567,3 +567,15 @@ img {
   font-weight: 600 !important;
   line-height: 1.35 !important;
 }
+
+/* Restore AQR glowing blue hero title treatment. The old neon/glow color was #39a8ff. */
+:root {
+  --aqr-title-blue: #39a8ff;
+  --aqr-title-glow: 0 0 18px rgba(57, 168, 255, 0.42), 0 0 42px rgba(57, 168, 255, 0.2);
+}
+
+.aqr-mark,
+.aqr-lead {
+  color: var(--aqr-title-blue) !important;
+  text-shadow: var(--aqr-title-glow);
+}
