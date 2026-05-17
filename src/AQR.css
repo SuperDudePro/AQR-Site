@@ -52,7 +52,10 @@
   margin: 0;
   color: var(--neon);
   font-family: "Consolas", "Courier New", monospace;
+  font-size: clamp(64px, 16vw, 180px);
+  font-weight: 300;
   line-height: 0.92;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   text-shadow:
     0 0 8px rgba(57, 168, 255, 0.95),
@@ -62,9 +65,9 @@
 
 .aqr-mark-text {
   display: block;
-  font-size: clamp(64px, 16vw, 180px);
-  font-weight: 300;
-  letter-spacing: 0.08em;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
 }
 
 .aqr-full-name {
