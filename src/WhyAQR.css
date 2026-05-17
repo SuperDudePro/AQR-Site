@@ -132,9 +132,11 @@
 
 .why-hero h1 {
   margin: 0;
+  color: var(--neon);
   font-size: clamp(2.4rem, 5vw, 4.3rem);
   line-height: 1.02;
   letter-spacing: -0.04em;
+  text-shadow: 0 0 18px rgba(57, 168, 255, 0.42), 0 0 42px rgba(57, 168, 255, 0.2);
 }
 
 .why-hero-lead {
@@ -214,8 +216,8 @@
   border-radius: 28px;
   background: #ffffff;
   color: var(--text-dark);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-  border: 2px solid #00558a;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(0, 85, 138, 0.28);
 }
 
 .why-check-list {
@@ -244,18 +246,18 @@
   flex-direction: column;
   padding: 26px;
   border-radius: 28px;
-  background: #d8dde2;
-  border: 2px solid rgba(122, 206, 255, 0.22);
+  background: #ffffff;
+  border: 1px solid rgba(0, 85, 138, 0.22);
   color: #111820;
   text-decoration: none;
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
   transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .why-card:hover,
 .why-card:focus-visible {
-  border-color: #7aceff;
-  box-shadow: 0 0 28px rgba(57, 168, 255, 0.22);
+  border-color: #00558a;
+  box-shadow: 0 12px 36px rgba(0, 85, 138, 0.18);
   transform: translateY(-2px);
 }
 
@@ -330,10 +332,4 @@
   .why-card {
     min-height: 0;
   }
-}
-
-/* Restore AQR glowing blue page title treatment. */
-.why-hero h1 {
-  color: #39a8ff;
-  text-shadow: 0 0 18px rgba(57, 168, 255, 0.42), 0 0 42px rgba(57, 168, 255, 0.2);
 }
