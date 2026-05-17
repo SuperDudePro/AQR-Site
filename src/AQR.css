@@ -5,12 +5,29 @@
    - 44px touch targets
    - high-contrast text/link colors
    - visible focus states from the shared stylesheet
+   - scanner-readable solid backgrounds behind text
 */
 
 .aqr-hero {
+  position: relative;
+  overflow: hidden;
+  background: #000000;
+}
+
+.aqr-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
   background:
     radial-gradient(circle at top center, rgba(57, 168, 255, 0.14), transparent 42%),
     linear-gradient(180deg, #05080c 0%, #000000 100%);
+}
+
+.aqr-hero > * {
+  position: relative;
+  z-index: 1;
 }
 
 .aqr-hero-main {
@@ -35,10 +52,7 @@
   margin: 0;
   color: var(--neon);
   font-family: "Consolas", "Courier New", monospace;
-  font-size: clamp(64px, 16vw, 180px);
-  font-weight: 300;
   line-height: 0.92;
-  letter-spacing: 0.08em;
   text-transform: uppercase;
   text-shadow:
     0 0 8px rgba(57, 168, 255, 0.95),
@@ -46,12 +60,21 @@
     0 0 50px rgba(57, 168, 255, 0.38);
 }
 
+.aqr-mark-text {
+  display: block;
+  font-size: clamp(64px, 16vw, 180px);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+}
+
 .aqr-full-name {
+  display: block;
   margin: 18px 0 0;
   color: var(--neon);
   font-family: "Consolas", "Courier New", monospace;
   font-size: clamp(16px, 2vw, 28px);
   font-weight: 700;
+  line-height: 1.2;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   text-shadow: 0 0 14px rgba(57, 168, 255, 0.36);
@@ -103,12 +126,28 @@
 }
 
 .aqr-card {
+  position: relative;
+  overflow: hidden;
   height: 100%;
   border-radius: 24px;
   border: 1px solid rgba(255, 255, 255, 0.09);
-  background: linear-gradient(180deg, rgba(18, 24, 31, 0.92) 0%, rgba(8, 11, 15, 0.98) 100%);
+  background: #12181f;
   padding: 26px;
   box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
+}
+
+.aqr-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(18, 24, 31, 0.92) 0%, rgba(8, 11, 15, 0.98) 100%);
+}
+
+.aqr-card > * {
+  position: relative;
+  z-index: 1;
 }
 
 .aqr-card-eyebrow {
@@ -166,8 +205,24 @@
 }
 
 .aqr-section-silver {
-  background: linear-gradient(180deg, #d3d9df 0%, #c4ccd4 100%);
+  position: relative;
+  overflow: hidden;
+  background: #d3d9df;
   color: var(--text-dark);
+}
+
+.aqr-section-silver::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, #d3d9df 0%, #c4ccd4 100%);
+}
+
+.aqr-section-silver > .aqr-wrap {
+  position: relative;
+  z-index: 1;
 }
 
 .aqr-heading-blue {
@@ -210,14 +265,14 @@
   min-height: 52px;
   padding: 0 24px;
   border: 2px solid #0a1118;
-  background: rgba(57, 168, 255, 0.9);
+  background: #39a8ff;
   color: #0a1118;
   font-weight: 800;
 }
 
 .aqr-button-dark:hover,
 .aqr-button-dark:focus-visible {
-  background: rgba(122, 206, 255, 0.95);
+  background: #7aceff;
   border-color: #0a1118;
 }
 
@@ -236,7 +291,7 @@
   text-align: center;
   border-radius: 28px;
   padding: 28px;
-  background: rgba(255, 255, 255, 0.92);
+  background: #ffffff;
   box-shadow: 0 16px 34px rgba(0, 0, 0, 0.12);
 }
 
@@ -253,8 +308,24 @@
 }
 
 .aqr-banner-section {
-  background: linear-gradient(180deg, #5a646d 0%, #454e57 100%);
+  position: relative;
+  overflow: hidden;
+  background: #5a646d;
   padding: 72px 0;
+}
+
+.aqr-banner-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, #5a646d 0%, #454e57 100%);
+}
+
+.aqr-banner-section > .aqr-wrap {
+  position: relative;
+  z-index: 1;
 }
 
 .aqr-banner-wrap {
