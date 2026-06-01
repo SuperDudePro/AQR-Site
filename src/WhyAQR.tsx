@@ -24,10 +24,10 @@ const sourceCards: SourceCard[] = [
   },
   {
     name: "Yale",
-    title: "Yale requires quantitative reasoning course credits.",
+    title: "Yale College requires quantitative reasoning course credits.",
     summary:
-      "Yale treats quantitative reasoning as part of the broader foundation students need across fields.",
-    href: "https://catalog.yale.edu/dus/distributional-requirements/quantitative-reasoning/",
+      "Yale College treats quantitative reasoning as part of the broader foundation students need across fields.",
+    href: "https://catalog.yale.edu/ycps/yale-college/distributional-requirements/",
   },
   {
     name: "Michigan",
@@ -45,10 +45,10 @@ const sourceCards: SourceCard[] = [
   },
   {
     name: "CSU",
-    title: "California State University includes quantitative reasoning in general education.",
+    title: "California State University includes Mathematical Concepts and Quantitative Reasoning in GE.",
     summary:
-      "CSU's broader general education structure also points toward quantitative reasoning as a durable college-readiness skill.",
-    href: "https://www.calstate.edu/csu-system/administration/academic-and-student-affairs/academic-programs-innovations-and-faculty-development/Pages/general-education-policy.aspx",
+      "CSU's current general education structure also points toward quantitative reasoning as a durable college-readiness skill.",
+    href: "https://transferprograms.calstate.edu/general-education/csu-general-education-ge-requirements",
   },
 ];
 
