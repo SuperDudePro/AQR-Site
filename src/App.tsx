@@ -45,14 +45,14 @@ function ensureGoogleAnalytics() {
   };
 
   window.gtag("js", new Date());
+  window.gtag("config", GA_TRACKING_ID, {
+    send_page_view: false,
+  });
   analyticsInitialized = true;
 }
 
 function shouldTrackAnalytics() {
-  return (
-    TRACKED_HOSTS.has(window.location.hostname.toLowerCase()) &&
-    navigator.doNotTrack !== "1"
-  );
+  return TRACKED_HOSTS.has(window.location.hostname.toLowerCase());
 }
 
 function trackPageView(page: Page) {
@@ -61,12 +61,12 @@ function trackPageView(page: Page) {
   }
 
   ensureGoogleAnalytics();
-  window.gtag?.("config", GA_TRACKING_ID, {
+  window.gtag?.("event", "page_view", {
     page_title: document.title,
-    page_path: `${window.location.pathname}${window.location.hash || "#/"}`,
+    page_path: `${window.location.pathname}${window.location.search}${window.location.hash || "#/"}`,
     page_location: window.location.href,
     page_referrer: document.referrer,
-    page_aqr_section: page,
+    aqr_section: page,
   });
 }
 
