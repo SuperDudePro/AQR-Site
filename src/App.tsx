@@ -42,6 +42,7 @@ function ensureGoogleAnalytics() {
   window.gtag("js", new Date());
   window.gtag("config", GA_TRACKING_ID, {
     send_page_view: false,
+    debug_mode: true,
   });
   analyticsInitialized = true;
 }
@@ -62,6 +63,7 @@ function trackPageView(page: Page) {
     page_location: window.location.href,
     page_referrer: document.referrer,
     aqr_section: page,
+    debug_mode: true,
   });
 }
 
