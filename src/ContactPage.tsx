@@ -47,8 +47,8 @@ function ContactPage() {
         Skip to main content
       </a>
 
-      <header className="contact-hero">
-        <div className="contact-topbar contact-wrap">
+      <header className="contact-header">
+        <div className="contact-topbar contact-wrap contact-header-wrap">
           <a className="contact-brand" href="#/">
             <span className="contact-brand-mark">AQR</span>
             <span className="contact-brand-name">Applied Quantitative Reasoning</span>
@@ -65,14 +65,11 @@ function ContactPage() {
       </header>
 
       <main className="contact-main" id="contact-main-content">
-        <section className="contact-hero contact-section" aria-labelledby="contact-page-title">
-          <div className="contact-wrap">
+        <section className="contact-section" aria-labelledby="contact-page-title">
+          <div className="contact-wrap contact-content-wrap">
             <div className="contact-intro">
               <p className="contact-kicker">Contact</p>
-              <h1 className="contact-title" id="contact-page-title">Send a note about AQR.</h1>
-              <p className="contact-text">
-                Questions, corrections, implementation ideas, source suggestions, and serious objections can go here. This is a practical course site, so useful feedback is better than polite silence.
-              </p>
+              <h1 className="contact-title" id="contact-page-title">Questions and comments are welcome.</h1>
             </div>
 
             <form className="contact-form" onSubmit={handleSubmit}>
