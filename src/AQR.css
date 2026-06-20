@@ -20,9 +20,7 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background:
-    radial-gradient(circle at top center, rgba(57, 168, 255, 0.14), transparent 42%),
-    linear-gradient(180deg, #05080c 0%, #000000 100%);
+  background: #000000;
 }
 
 .aqr-hero > * {
@@ -32,6 +30,12 @@
 
 .aqr-hero-main {
   padding: 0 0 36px;
+}
+
+.aqr-hero-main::before {
+  background:
+    radial-gradient(circle at center 58%, rgba(57, 168, 255, 0.16), transparent 44%),
+    linear-gradient(180deg, #000000 0%, #000000 18%, #05080c 52%, #000000 100%);
 }
 
 .aqr-hero-inner {
