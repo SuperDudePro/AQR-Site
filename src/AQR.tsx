@@ -304,10 +304,7 @@ function AQR({ onNavigateWhy, onNavigateOverview, onNavigatePosters, onNavigateC
         <section className="aqr-section aqr-contact-section" aria-labelledby="aqr-contact-title">
           <div className="aqr-wrap aqr-overview-preview">
             <p className="aqr-kicker">Contact</p>
-            <h2 className="aqr-heading-light" id="aqr-contact-title">Questions, corrections, or useful objections?</h2>
-            <p className="aqr-contact-text">
-              Send a note if something is unclear, inaccurate, missing, or worth improving before AQR goes live.
-            </p>
+            <h2 className="aqr-heading-light" id="aqr-contact-title">Questions or comments?</h2>
             <a
               className="aqr-button aqr-button-top"
               href="#/contact"
