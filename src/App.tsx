@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import AQR from "./AQR";
 import ClassroomPosters from "./ClassroomPosters";
+import ContactPage from "./ContactPage";
 import CourseOverview from "./CourseOverview";
 import QuarterDetail from "./QuarterDetail";
 import WhyAQR from "./WhyAQR";
 
-type Page = "home" | "why" | "overview" | "q1" | "q2" | "q3" | "q4" | "posters";
+type Page = "home" | "why" | "overview" | "q1" | "q2" | "q3" | "q4" | "posters" | "contact";
 
 type RouteState = {
   page: Page;
@@ -75,6 +76,7 @@ function setChrome(page: Page) {
     q3: "Quarter 3 | Applied Quantitative Reasoning",
     q4: "Quarter 4 | Applied Quantitative Reasoning",
     posters: "Classroom Posters | Applied Quantitative Reasoning",
+    contact: "Contact | Applied Quantitative Reasoning",
   };
 
   document.title = titles[page];
@@ -104,6 +106,7 @@ function getPage(hash: string): Page {
   if (hash.startsWith("#/quarter-2")) return "q2";
   if (hash.startsWith("#/quarter-3")) return "q3";
   if (hash.startsWith("#/quarter-4")) return "q4";
+  if (hash.startsWith("#/contact")) return "contact";
   return "home";
 }
 
@@ -142,6 +145,10 @@ function App() {
 
   if (route.page === "posters") {
     return <ClassroomPosters currentHash={route.hash} />;
+  }
+
+  if (route.page === "contact") {
+    return <ContactPage />;
   }
 
   if (route.page === "q1") {
