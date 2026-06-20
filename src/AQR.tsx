@@ -5,6 +5,7 @@ type AQRProps = {
   onNavigateWhy?: () => void;
   onNavigateOverview?: () => void;
   onNavigatePosters?: () => void;
+  onNavigateContact?: () => void;
 };
 
 type PreviewCard = {
@@ -22,7 +23,7 @@ function scrollToId(id: string) {
   el.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-function AQR({ onNavigateWhy, onNavigateOverview, onNavigatePosters }: AQRProps) {
+function AQR({ onNavigateWhy, onNavigateOverview, onNavigatePosters, onNavigateContact }: AQRProps) {
   const navigateWhy = () => {
     if (onNavigateWhy) {
       onNavigateWhy();
@@ -45,6 +46,14 @@ function AQR({ onNavigateWhy, onNavigateOverview, onNavigatePosters }: AQRProps)
       return;
     }
     window.location.hash = "#/classroom-posters";
+  };
+
+  const navigateContact = () => {
+    if (onNavigateContact) {
+      onNavigateContact();
+      return;
+    }
+    window.location.hash = "#/contact";
   };
 
   const handleHomeAnchor =
@@ -132,6 +141,15 @@ function AQR({ onNavigateWhy, onNavigateOverview, onNavigatePosters }: AQRProps)
               }}
             >
               Posters
+            </a>
+            <a
+              href="#/contact"
+              onClick={(event) => {
+                event.preventDefault();
+                navigateContact();
+              }}
+            >
+              Contact
             </a>
           </nav>
         </div>
@@ -282,11 +300,31 @@ function AQR({ onNavigateWhy, onNavigateOverview, onNavigatePosters }: AQRProps)
             </a>
           </div>
         </section>
+
+        <section className="aqr-section aqr-contact-section" aria-labelledby="aqr-contact-title">
+          <div className="aqr-wrap aqr-overview-preview">
+            <p className="aqr-kicker">Contact</p>
+            <h2 className="aqr-heading-light" id="aqr-contact-title">Questions, corrections, or useful objections?</h2>
+            <p className="aqr-contact-text">
+              Send a note if something is unclear, inaccurate, missing, or worth improving before AQR goes live.
+            </p>
+            <a
+              className="aqr-button aqr-button-top"
+              href="#/contact"
+              onClick={(event) => {
+                event.preventDefault();
+                navigateContact();
+              }}
+            >
+              Contact AQR
+            </a>
+          </div>
+        </section>
       </main>
 
       <footer className="aqr-footer">
         <div className="aqr-wrap aqr-footer-inner">
-          <p>© 2026 Applied Quantitative Reasoning • <span className="site-footer-school">Vista PEAK Prep</span></p>
+          <p>© 2026 Applied Quantitative Reasoning • <span className="site-footer-school">Vista PEAK Prep</span> • <a className="site-footer-link" href="#/contact">Contact</a></p>
         </div>
       </footer>
     </div>
