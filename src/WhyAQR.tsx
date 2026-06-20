@@ -70,6 +70,7 @@ function WhyAQR() {
             <a href="#/">Home</a>
             <a href="#/course-overview">Course Overview</a>
             <a href="#/classroom-posters">Posters</a>
+            <a href="#/contact">Contact</a>
             <a href="#/why-aqr" aria-current="page">
               Why AQR
             </a>
@@ -194,7 +195,7 @@ function WhyAQR() {
       <footer className="why-footer">
         <div className="why-wrap why-footer-inner">
           <p>
-            © 2026 Applied Quantitative Reasoning • <span className="site-footer-school">Vista PEAK Prep</span>
+            © 2026 Applied Quantitative Reasoning • <span className="site-footer-school">Vista PEAK Prep</span> • <a className="site-footer-link" href="#/contact">Contact</a>
           </p>
         </div>
       </footer>
