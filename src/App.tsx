@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import AQR from "./AQR";
 import ClassroomPosters from "./ClassroomPosters";
 import ContactPage from "./ContactPage";
@@ -136,38 +137,83 @@ function App() {
   }, []);
 
   if (route.page === "why") {
-    return <WhyAQR />;
+    return (
+      <>
+        <WhyAQR />
+        <Analytics />
+      </>
+    );
   }
 
   if (route.page === "overview") {
-    return <CourseOverview />;
+    return (
+      <>
+        <CourseOverview />
+        <Analytics />
+      </>
+    );
   }
 
   if (route.page === "posters") {
-    return <ClassroomPosters currentHash={route.hash} />;
+    return (
+      <>
+        <ClassroomPosters currentHash={route.hash} />
+        <Analytics />
+      </>
+    );
   }
 
   if (route.page === "contact") {
-    return <ContactPage />;
+    return (
+      <>
+        <ContactPage />
+        <Analytics />
+      </>
+    );
   }
 
   if (route.page === "q1") {
-    return <QuarterDetail quarter="q1" />;
+    return (
+      <>
+        <QuarterDetail quarter="q1" />
+        <Analytics />
+      </>
+    );
   }
 
   if (route.page === "q2") {
-    return <QuarterDetail quarter="q2" />;
+    return (
+      <>
+        <QuarterDetail quarter="q2" />
+        <Analytics />
+      </>
+    );
   }
 
   if (route.page === "q3") {
-    return <QuarterDetail quarter="q3" />;
+    return (
+      <>
+        <QuarterDetail quarter="q3" />
+        <Analytics />
+      </>
+    );
   }
 
   if (route.page === "q4") {
-    return <QuarterDetail quarter="q4" />;
+    return (
+      <>
+        <QuarterDetail quarter="q4" />
+        <Analytics />
+      </>
+    );
   }
 
-  return <AQR />;
+  return (
+    <>
+      <AQR />
+      <Analytics />
+    </>
+  );
 }
 
 export default App;
