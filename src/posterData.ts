@@ -60,6 +60,30 @@ export const posterTypes: PosterType[] = [
         pdf: "/posters/compared_to_what_24x36.pdf",
       },
       {
+        title: "Per What?",
+        alt: "AQR classroom poster: Per What?",
+        png: "/posters/per_what_24x36_3600x5400.png",
+        pdf: "/posters/per_what_24x36.pdf",
+      },
+      {
+        title: "Who Is Missing?",
+        alt: "AQR classroom poster: Who Is Missing?",
+        png: "/posters/who_is_missing_24x36_3600x5400.png",
+        pdf: "/posters/who_is_missing_24x36.pdf",
+      },
+      {
+        title: "Where Did the Number Come From?",
+        alt: "AQR classroom poster: Where Did the Number Come From?",
+        png: "/posters/where_did_the_number_come_from_24x36_3600x5400.png",
+        pdf: "/posters/where_did_the_number_come_from_24x36.pdf",
+      },
+      {
+        title: "What Is the Claim?",
+        alt: "AQR classroom poster: What Is the Claim?",
+        png: "/posters/what_is_the_claim_24x36_3600x5400.png",
+        pdf: "/posters/what_is_the_claim_24x36.pdf",
+      },
+      {
         title: "What Are We Measuring?",
         alt: "AQR classroom poster: What Are We Measuring?",
         png: "/posters/what_are_we_measuring_final_2026_05_13_24x36_3600x5400.png",
@@ -111,6 +135,12 @@ export const posterTypes: PosterType[] = [
         alt: "AQR classroom poster: Bad Survey, Bad Data",
         png: "/posters/bad_survey_bad_data_24x36_3600x5400.png",
         pdf: "/posters/bad_survey_bad_data_24x36.pdf",
+      },
+      {
+        title: "Scale Changes the Story",
+        alt: "AQR classroom poster: Scale Changes the Story",
+        png: "/posters/scale_changes_the_story_24x36_3600x5400.png",
+        pdf: "/posters/scale_changes_the_story_24x36.pdf",
       },
     ],
   },
@@ -175,6 +205,18 @@ export const posterTypes: PosterType[] = [
     audienceUse:
       "Use these near assignment boards, weekly checkpoint areas, or conferencing spaces.",
     posters: [
+      {
+        title: "Stuck? Work the Help Path",
+        alt: "AQR classroom poster: Stuck? Work the Help Path",
+        png: "/posters/stuck_work_the_help_path_24x36_3600x5400.png",
+        pdf: "/posters/stuck_work_the_help_path_24x36.pdf",
+      },
+      {
+        title: "Proof of Progress",
+        alt: "AQR classroom poster: Proof of Progress",
+        png: "/posters/proof_of_progress_24x36_3600x5400.png",
+        pdf: "/posters/proof_of_progress_24x36.pdf",
+      },
       {
         title: "Don't Disappear",
         alt: "AQR classroom poster: Don't Disappear",
@@ -274,6 +316,18 @@ export const posterTypes: PosterType[] = [
         alt: "Classroom quotation poster: T. S. Eliot, be still",
         png: "/posters/eliot_be_still_FINAL_3600x5400.png",
         pdf: "/posters/eliot_be_still_FINAL_24x36.pdf",
+      },
+      {
+        title: "Marie Curie: Understand More, Fear Less",
+        alt: "Classroom quotation poster: Marie Curie, understand more, fear less",
+        png: "/posters/marie_curie_understand_more_fear_less_24x36_3600x5400.png",
+        pdf: "/posters/marie_curie_understand_more_fear_less_24x36.pdf",
+      },
+      {
+        title: "Saint-Exupéry: Nothing Left to Take Away",
+        alt: "Classroom quotation poster: Antoine de Saint-Exupery, nothing left to take away",
+        png: "/posters/antoine_de_saint_exupery_perfection_24x36_3600x5400.png",
+        pdf: "/posters/antoine_de_saint_exupery_perfection_24x36.pdf",
       },
     ],
   },
