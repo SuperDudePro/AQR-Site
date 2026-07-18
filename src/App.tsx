@@ -68,8 +68,7 @@ const PAGE_META: Record<Page, PageMeta> = {
   },
   contact: {
     title: "Contact | Applied Quantitative Reasoning",
-    description:
-      "Contact Applied Quantitative Reasoning at Vista PEAK Prep with questions or comments about the course and public resources.",
+    description: "Contact Applied Quantitative Reasoning at Vista PEAK Prep with questions or comments about the course and public resources.",
   },
 };
 
@@ -105,34 +104,13 @@ function getPage(pathname: string): Page {
   return "home";
 }
 
-function isAppPath(pathname: string) {
-  const path = normalizePath(pathname);
-  return (
-    path === "/" ||
-    path === "/why-aqr" ||
-    path === "/course-overview" ||
-    path === "/quarter-1" ||
-    path === "/quarter-2" ||
-    path === "/quarter-3" ||
-    path === "/quarter-4" ||
-    path === "/classroom-posters" ||
-    path.startsWith("/classroom-posters/") ||
-    path === "/contact"
-  );
-}
-
 function getRouteState(): RouteState {
   const legacyPath = legacyHashToPath(window.location.hash);
   if (legacyPath) {
     window.history.replaceState({}, "", `${legacyPath}${window.location.search}`);
   }
 
-  const requestedPath = normalizePath(window.location.pathname);
-  const path = isAppPath(requestedPath) ? requestedPath : "/";
-  if (path !== requestedPath) {
-    window.history.replaceState({}, "", `/${window.location.search}`);
-  }
-
+  const path = normalizePath(window.location.pathname);
   return {
     page: getPage(path),
     path,
@@ -183,6 +161,13 @@ function upsertMeta(name: string, content: string) {
   meta.content = content;
 }
 
+function rewriteLegacyLinks() {
+  document.querySelectorAll<HTMLAnchorElement>("a[href^='#/']").forEach((anchor) => {
+    const href = anchor.getAttribute("href");
+    if (href) anchor.setAttribute("href", normalizePath(href.slice(1)));
+  });
+}
+
 function setChrome(route: RouteState) {
   const meta = PAGE_META[route.page];
   document.title = meta.title;
@@ -212,14 +197,6 @@ function setChrome(route: RouteState) {
   icon.href = `data:image/svg+xml,${encodeURIComponent(svg)}`;
 }
 
-function rewriteLegacyLinks() {
-  document.querySelectorAll<HTMLAnchorElement>('a[href^="#/"]').forEach((anchor) => {
-    const href = anchor.getAttribute("href");
-    if (!href) return;
-    anchor.setAttribute("href", normalizePath(href.slice(1)));
-  });
-}
-
 function App() {
   const [route, setRoute] = useState<RouteState>(() => getRouteState());
 
@@ -230,37 +207,32 @@ function App() {
       setChrome(nextRoute);
       trackPageView(nextRoute);
       window.scrollTo({ top: 0, behavior: "auto" });
+      window.requestAnimationFrame(rewriteLegacyLinks);
     };
 
     const handleInternalLink = (event: MouseEvent) => {
-      if (
-        event.defaultPrevented ||
-        event.button !== 0 ||
-        event.metaKey ||
-        event.ctrlKey ||
-        event.shiftKey ||
-        event.altKey
-      ) {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
         return;
       }
 
       const target = event.target as Element | null;
       const anchor = target?.closest("a") as HTMLAnchorElement | null;
-      if (!anchor || anchor.hasAttribute("download") || anchor.target === "_blank") return;
+      if (!anchor) return;
 
-      const rawHref = anchor.getAttribute("href");
-      if (!rawHref || rawHref.startsWith("#") || rawHref.startsWith("mailto:") || rawHref.startsWith("tel:")) {
-        return;
-      }
+      const href = anchor.getAttribute("href");
+      if (!href) return;
 
-      const url = new URL(anchor.href, window.location.href);
-      if (url.origin !== window.location.origin || !isAppPath(url.pathname)) return;
+      const nextPath = href.startsWith("#/")
+        ? normalizePath(href.slice(1))
+        : href.startsWith("/") && !href.startsWith("//")
+          ? normalizePath(href)
+          : null;
+
+      if (!nextPath || anchor.hasAttribute("download")) return;
 
       event.preventDefault();
-      const nextUrl = `${normalizePath(url.pathname)}${url.search}`;
-      const currentUrl = `${normalizePath(window.location.pathname)}${window.location.search}`;
-      if (nextUrl !== currentUrl) {
-        window.history.pushState({}, "", nextUrl);
+      if (nextPath !== normalizePath(window.location.pathname)) {
+        window.history.pushState({}, "", nextPath);
       }
       applyRoute();
     };
@@ -275,7 +247,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    rewriteLegacyLinks();
+    window.requestAnimationFrame(rewriteLegacyLinks);
   }, [route.path]);
 
   if (route.page === "why") return <WhyAQR />;
