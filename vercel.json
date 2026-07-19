@@ -1,8 +1,19 @@
 {
-  "rewrites": [
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "routes": [
+    { "handle": "filesystem" },
     {
-      "source": "/((?!api/|assets/|posters/|sitemap\\.xml$|robots\\.txt$).*)",
-      "destination": "/index.html"
+      "src": "^/(why-aqr|course-overview|quarter-[1-4]|contact)/?$",
+      "dest": "/index.html"
+    },
+    {
+      "src": "^/classroom-posters(?:/(all|aqr-identity|qr-questions|data-anti-bs|decision-model|ai-tool-use|pass-path-work-habits|thinking-moves|quotation-posters))?/?$",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/.*",
+      "dest": "/404.html",
+      "status": 404
     }
   ]
 }
