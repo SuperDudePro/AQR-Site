@@ -1,0 +1,43 @@
+/*
+ * Sitewide border-weight test.
+ * Preserve each component's existing border color and style while making
+ * buttons and framed content panels visually substantial again.
+ */
+
+/* Buttons and navigation pills */
+.aqr-topnav a,
+.aqr-button-top,
+.aqr-button-dark,
+.why-topnav a,
+.why-button,
+.overview-topnav a,
+.quarter-topnav a,
+.quarter-button-nav,
+.poster-topnav a,
+.poster-file-actions a,
+.poster-back-link a,
+.contact-topnav a,
+.contact-button {
+  border-width: 3px !important;
+}
+
+/* Cards, callouts, framed previews, and form fields */
+.aqr-card,
+.aqr-quote-panel-bright,
+.why-callout-panel,
+.why-card,
+.overview-facts-panel,
+.overview-quarter-card,
+.quarter-callout-panel,
+.quarter-detail-card,
+.quarter-lens-card,
+.poster-type-card,
+.poster-empty-panel,
+.poster-file-card,
+.poster-type-preview,
+.poster-image-link,
+.poster-all-card,
+.contact-field input,
+.contact-field textarea {
+  border-width: 3px !important;
+}
