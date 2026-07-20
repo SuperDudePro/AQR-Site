@@ -107,8 +107,9 @@ const vercel = existsSync(vercelPath) ? readFileSync(vercelPath, 'utf8') : '';
 if (!vercel) fail('vercel.json', '(missing)', 'Vercel route configuration is missing');
 for (const route of routes) {
   if (route === '/') continue;
+  const quarterCovered = /^\/quarter-[1-4]$/.test(route) && vercel.includes('quarter-[1-4]');
   const token = route.startsWith('/classroom-posters/') ? route.split('/').at(-1) : route.slice(1);
-  if (!vercel.includes(token)) fail('vercel.json', route, 'sitemap route is not represented in the SPA rewrites');
+  if (!quarterCovered && !vercel.includes(token)) fail('vercel.json', route, 'sitemap route is not represented in the SPA rewrites');
 }
 
 if (errors.length) {
