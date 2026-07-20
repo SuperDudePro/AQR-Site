@@ -1,0 +1,17 @@
+{
+  "canonicalOrigin": "https://appliedquantitativereasoning.com",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.appliedquantitativereasoning.com"
+        }
+      ],
+      "destination": "https://appliedquantitativereasoning.com/:path*",
+      "permanent": true,
+      "note": "Canonicalize the retired www host."
+    }
+  ]
+}
