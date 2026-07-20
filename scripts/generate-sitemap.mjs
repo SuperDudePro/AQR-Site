@@ -5,22 +5,30 @@ const today = new Date().toISOString().slice(0, 10);
 const appSource = fs.readFileSync('src/App.tsx', 'utf8');
 const posterSource = fs.readFileSync('src/posterData.ts', 'utf8');
 
+function normalizePath(value) {
+  const normalized = value.trim().replace(/\/{2,}/g, '/').replace(/\/+$/, '');
+  return normalized || '/';
+}
+
 const paths = new Set(['/']);
 
 for (const match of appSource.matchAll(/path\s*===\s*["']([^"']+)["']/g)) {
-  paths.add(match[1]);
+  paths.add(normalizePath(match[1]));
 }
 for (const match of appSource.matchAll(/path\.startsWith\(["']([^"']+)["']\)/g)) {
-  paths.add(match[1]);
+  paths.add(normalizePath(match[1]));
 }
 
 paths.add('/classroom-posters/all');
 for (const match of posterSource.matchAll(/slug:\s*["']([^"']+)["']/g)) {
-  paths.add(`/classroom-posters/${match[1]}`);
+  const slug = match[1].trim().replace(/^\/+|\/+$/g, '');
+  if (slug) paths.add(`/classroom-posters/${slug}`);
 }
 
 const urls = [...paths]
+  .map(normalizePath)
   .filter((path) => path.startsWith('/'))
+  .filter((path, index, all) => all.indexOf(path) === index)
   .sort((a, b) => (a === '/' ? -1 : b === '/' ? 1 : a.localeCompare(b)));
 
 const escapeXml = (value) =>
