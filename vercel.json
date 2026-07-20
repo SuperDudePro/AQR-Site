@@ -3,12 +3,7 @@
   "redirects": [
     {
       "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.appliedquantitativereasoning.com"
-        }
-      ],
+      "has": [{ "type": "host", "value": "www.appliedquantitativereasoning.com" }],
       "destination": "https://appliedquantitativereasoning.com/:path*",
       "permanent": true
     }
@@ -16,17 +11,13 @@
   "routes": [
     { "handle": "filesystem" },
     {
-      "src": "^/(why-aqr|course-overview|quarter-[1-4]|contact)/?$",
+      "src": "^/(why-aqr|course-overview|quarter-[1-4]|resources|contact)/?$",
       "dest": "/index.html"
     },
     {
       "src": "^/classroom-posters(?:/(all|aqr-identity|qr-questions|data-anti-bs|decision-model|ai-tool-use|pass-path-work-habits|thinking-moves|quotation-posters))?/?$",
       "dest": "/index.html"
     },
-    {
-      "src": "/.*",
-      "dest": "/404.html",
-      "status": 404
-    }
+    { "src": "/.*", "dest": "/404.html", "status": 404 }
   ]
 }
