@@ -6,9 +6,10 @@ import CourseOverview from "./CourseOverview";
 import QuarterDetail from "./QuarterDetail";
 import ResourceLibrary from "./ResourceLibrary";
 import StudentGuide from "./StudentGuide";
+import VocabularyPage from "./VocabularyPage";
 import WhyAQR from "./WhyAQR";
 
-type Page = "home" | "why" | "overview" | "guide" | "q1" | "q2" | "q3" | "q4" | "posters" | "resources" | "contact";
+type Page = "home" | "why" | "overview" | "guide" | "vocabulary" | "vocabCore" | "vocabQ1" | "vocabQ2" | "vocabQ3" | "vocabQ4" | "q1" | "q2" | "q3" | "q4" | "posters" | "resources" | "contact";
 type RouteState = { page: Page; path: string };
 type PageMeta = { title: string; description: string };
 const GA_TRACKING_ID = "G-L6Y4XCS8L7";
@@ -19,12 +20,18 @@ const PAGE_META: Record<Page, PageMeta> = {
   why: { title: "Why AQR | Applied Quantitative Reasoning", description: "Why Applied Quantitative Reasoning is a serious modern math pathway built around data, evidence, uncertainty, modeling, and practical decisions." },
   overview: { title: "Course Overview | Applied Quantitative Reasoning", description: "A clear overview of the AQR year arc, quarter project families, sequential quantitative-reasoning focus windows, tools, checkpoints, and course pathways." },
   guide: { title: "Student Guide | Applied Quantitative Reasoning", description: "A practical guide to AQR classroom routines, progress expectations, responsible tool use, discussion, language support, and getting help." },
+  vocabulary: { title: "Vocabulary | Applied Quantitative Reasoning", description: "The AQR vocabulary hub, organized into core course language and Quarter 1 through Quarter 4 sections." },
+  vocabCore: { title: "Core AQR Vocabulary | Applied Quantitative Reasoning", description: "Core language used across AQR for evidence, decisions, models, tradeoffs, uncertainty, revision, and explanation." },
+  vocabQ1: { title: "Quarter 1 Vocabulary | Applied Quantitative Reasoning", description: "Quarter 1 vocabulary for self-data, measurement, learner evidence, claims, visuals, and AI confidence." },
+  vocabQ2: { title: "Quarter 2 Vocabulary | Applied Quantitative Reasoning", description: "Quarter 2 vocabulary for surveys, samples, bias, data displays, correlation, causation, and limitations." },
+  vocabQ3: { title: "Quarter 3 Vocabulary | Applied Quantitative Reasoning", description: "Quarter 3 vocabulary for criteria, tradeoffs, risk, cost, uncertainty, assumptions, weighting, and sensitivity." },
+  vocabQ4: { title: "Quarter 4 Vocabulary | Applied Quantitative Reasoning", description: "Quarter 4 vocabulary for claims, evidence, misleading displays, source trust, reasonable belief, and critique." },
   q1: { title: "Quarter 1: Know Yourself | Applied Quantitative Reasoning", description: "Build a portable learner profile, model the pass path, and create a personalized learning agent or support workflow based on real evidence." },
   q2: { title: "Quarter 2: Track Yourself | Applied Quantitative Reasoning", description: "Collect and analyze real data while examining survey quality, sampling, bias, correlation, causation, and honest limitations." },
   q3: { title: "Quarter 3: Build a Decision Tool | Applied Quantitative Reasoning", description: "Build and test a decision tool using options, criteria, tradeoffs, risk, cost, uncertainty, assumptions, weighting, and sensitivity." },
   q4: { title: "Quarter 4: Don’t Get Played | Applied Quantitative Reasoning", description: "Practical skepticism about claims, graphs, statistics, samples, sources, AI output, and misleading evidence." },
   posters: { title: "Classroom Posters | Applied Quantitative Reasoning", description: "Printable AQR classroom posters for quantitative reasoning, data skepticism, decision-making, AI use, work habits, and thinking moves." },
-  resources: { title: "Resource Finder | Applied Quantitative Reasoning", description: "Search AQR course pages, quarter plans, poster categories, and finished printable posters." },
+  resources: { title: "Resource Finder | Applied Quantitative Reasoning", description: "Search AQR course pages, quarter plans, vocabulary, poster categories, and finished printable posters." },
   contact: { title: "Contact | Applied Quantitative Reasoning", description: "Contact Applied Quantitative Reasoning at Vista PEAK Prep with questions or comments about the course and public resources." },
 };
 let analyticsInitialized = false;
@@ -36,6 +43,12 @@ function getPage(pathname: string): Page {
   if (path === "/why-aqr") return "why";
   if (path === "/course-overview") return "overview";
   if (path === "/student-guide") return "guide";
+  if (path === "/vocabulary") return "vocabulary";
+  if (path === "/vocabulary/core") return "vocabCore";
+  if (path === "/vocabulary/quarter-1") return "vocabQ1";
+  if (path === "/vocabulary/quarter-2") return "vocabQ2";
+  if (path === "/vocabulary/quarter-3") return "vocabQ3";
+  if (path === "/vocabulary/quarter-4") return "vocabQ4";
   if (path === "/quarter-1") return "q1";
   if (path === "/quarter-2") return "q2";
   if (path === "/quarter-3") return "q3";
@@ -106,6 +119,12 @@ function App() {
   if (route.page === "why") return <WhyAQR />;
   if (route.page === "overview") return <CourseOverview />;
   if (route.page === "guide") return <StudentGuide />;
+  if (route.page === "vocabulary") return <VocabularyPage />;
+  if (route.page === "vocabCore") return <VocabularyPage section="core" />;
+  if (route.page === "vocabQ1") return <VocabularyPage section="q1" />;
+  if (route.page === "vocabQ2") return <VocabularyPage section="q2" />;
+  if (route.page === "vocabQ3") return <VocabularyPage section="q3" />;
+  if (route.page === "vocabQ4") return <VocabularyPage section="q4" />;
   if (route.page === "posters") return <ClassroomPosters currentHash={`#${route.path}`} />;
   if (route.page === "resources") return <ResourceLibrary />;
   if (route.page === "contact") return <ContactPage />;
