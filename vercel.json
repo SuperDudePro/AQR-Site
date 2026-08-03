@@ -11,7 +11,7 @@
   "routes": [
     { "handle": "filesystem" },
     {
-      "src": "^/(why-aqr|course-overview|student-guide|quarter-[1-4]|resources|contact)/?$",
+      "src": "^/(why-aqr|course-overview|student-guide|vocabulary(?:/(core|quarter-[1-4]))?|quarter-[1-4]|resources|contact)/?$",
       "dest": "/index.html"
     },
     {
