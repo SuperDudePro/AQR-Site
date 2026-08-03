@@ -5,9 +5,10 @@ import ContactPage from "./ContactPage";
 import CourseOverview from "./CourseOverview";
 import QuarterDetail from "./QuarterDetail";
 import ResourceLibrary from "./ResourceLibrary";
+import StudentGuide from "./StudentGuide";
 import WhyAQR from "./WhyAQR";
 
-type Page = "home" | "why" | "overview" | "q1" | "q2" | "q3" | "q4" | "posters" | "resources" | "contact";
+type Page = "home" | "why" | "overview" | "guide" | "q1" | "q2" | "q3" | "q4" | "posters" | "resources" | "contact";
 type RouteState = { page: Page; path: string };
 type PageMeta = { title: string; description: string };
 const GA_TRACKING_ID = "G-L6Y4XCS8L7";
@@ -17,6 +18,7 @@ const PAGE_META: Record<Page, PageMeta> = {
   home: { title: "Applied Quantitative Reasoning | Vista PEAK Prep", description: "Applied Quantitative Reasoning at Vista PEAK Prep: serious math for real decisions, real data, real tools, and real communication." },
   why: { title: "Why AQR | Applied Quantitative Reasoning", description: "Why Applied Quantitative Reasoning is a serious modern math pathway built around data, evidence, uncertainty, modeling, and practical decisions." },
   overview: { title: "Course Overview | Applied Quantitative Reasoning", description: "A clear overview of the AQR year arc, quarter project families, sequential quantitative-reasoning focus windows, tools, checkpoints, and course pathways." },
+  guide: { title: "Student Guide | Applied Quantitative Reasoning", description: "A practical guide to AQR classroom routines, progress expectations, responsible tool use, discussion, language support, and getting help." },
   q1: { title: "Quarter 1: Know Yourself | Applied Quantitative Reasoning", description: "Build a portable learner profile, model the pass path, and create a personalized learning agent or support workflow based on real evidence." },
   q2: { title: "Quarter 2: Track Yourself | Applied Quantitative Reasoning", description: "Collect and analyze real data while examining survey quality, sampling, bias, correlation, causation, and honest limitations." },
   q3: { title: "Quarter 3: Build a Decision Tool | Applied Quantitative Reasoning", description: "Build and test a decision tool using options, criteria, tradeoffs, risk, cost, uncertainty, assumptions, weighting, and sensitivity." },
@@ -33,6 +35,7 @@ function getPage(pathname: string): Page {
   const path = normalizePath(pathname);
   if (path === "/why-aqr") return "why";
   if (path === "/course-overview") return "overview";
+  if (path === "/student-guide") return "guide";
   if (path === "/quarter-1") return "q1";
   if (path === "/quarter-2") return "q2";
   if (path === "/quarter-3") return "q3";
@@ -102,6 +105,7 @@ function App() {
   useEffect(() => { window.requestAnimationFrame(rewriteLegacyLinks); }, [route.path]);
   if (route.page === "why") return <WhyAQR />;
   if (route.page === "overview") return <CourseOverview />;
+  if (route.page === "guide") return <StudentGuide />;
   if (route.page === "posters") return <ClassroomPosters currentHash={`#${route.path}`} />;
   if (route.page === "resources") return <ResourceLibrary />;
   if (route.page === "contact") return <ContactPage />;
