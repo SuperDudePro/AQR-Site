@@ -16,7 +16,7 @@ function VocabularyHeader() {
         <nav className="vocab-topnav" aria-label="Vocabulary navigation">
           <a href="/">Home</a>
           <a href="/course-overview">Course Overview</a>
-          <a href="/student-guide">Student Guide</a>
+          <a href="/student-guide">Student Guide and Expectations</a>
           <a href="/vocabulary" aria-current="page">Vocabulary</a>
         </nav>
       </div>
@@ -34,9 +34,7 @@ function VocabularyHub() {
           <div className="vocab-wrap vocab-hero-inner">
             <p className="vocab-kicker">AQR Vocabulary</p>
             <h1 id="vocab-page-title">Learn the language of the course.</h1>
-            <p className="vocab-hero-lead">
-              Vocabulary is organized in the same order students encounter it: core words first, then Quarter 1 through Quarter 4.
-            </p>
+            <p className="vocab-hero-lead">Vocabulary is organized in the same order students encounter it: core words first, then Quarter 1 through Quarter 4.</p>
           </div>
         </section>
 
@@ -62,7 +60,7 @@ function VocabularyHub() {
             <div className="vocab-section-head">
               <p className="vocab-section-kicker">Vocabulary sections</p>
               <h2 id="vocab-sections-title">Start with core language, then move through the year.</h2>
-              <p>Each section is published from the approved AQR vocabulary source as it is completed.</p>
+              <p>All five sections are published from the approved AQR Vocabulary Booklet for 2026-27.</p>
             </div>
             <ol className="vocab-section-grid">
               {vocabularySections.map((item, index) => (
@@ -72,7 +70,7 @@ function VocabularyHub() {
                     <p className="vocab-card-kicker">{item.label}</p>
                     <h3>{item.title}</h3>
                     <p>{item.description}</p>
-                    <span className="vocab-card-link">{item.status === "published" ? `Open ${item.terms.length} terms` : "Open section framework"}</span>
+                    <span className="vocab-card-link">Open {item.terms.length} terms</span>
                   </a>
                 </li>
               ))}
@@ -88,7 +86,6 @@ function VocabularyHub() {
 function VocabularySectionPage({ section }: { section: VocabularySectionKey }) {
   const data = getVocabularySection(section);
   if (!data) return <VocabularyHub />;
-  const isPublished = data.status === "published" && data.terms.length > 0;
 
   return (
     <div className="vocab-site-shell">
@@ -104,43 +101,31 @@ function VocabularySectionPage({ section }: { section: VocabularySectionKey }) {
           </div>
         </section>
 
-        {isPublished ? (
-          <section className="vocab-section vocab-section-silver" aria-labelledby="vocab-published-title">
-            <div className="vocab-wrap">
-              <div className="vocab-section-head vocab-section-head-dark">
-                <p className="vocab-section-kicker">Published vocabulary</p>
-                <h2 id="vocab-published-title">{data.terms.length} terms in the standard AQR format.</h2>
-                <p>Start with the plain-language meaning, then use the fuller definition and sentence stem as the term becomes familiar.</p>
-              </div>
-              <ol className="vocab-term-list">
-                {data.terms.map((item) => (
-                  <li key={item.term} className="vocab-term-item">
-                    <article className="vocab-term-card">
-                      <h3>{item.term}</h3>
-                      <dl className="vocab-term-details">
-                        <div><dt>Full definition</dt><dd>{item.fullDefinition}</dd></div>
-                        <div><dt>Plain language</dt><dd>{item.plainLanguage}</dd></div>
-                        <div><dt>How we use it in AQR</dt><dd>{item.aqrUse}</dd></div>
-                        <div><dt>Example question or sentence stem</dt><dd>{item.questionStem}</dd></div>
-                      </dl>
-                    </article>
-                  </li>
-                ))}
-              </ol>
+        <section className="vocab-section vocab-section-silver" aria-labelledby="vocab-published-title">
+          <div className="vocab-wrap">
+            <div className="vocab-section-head vocab-section-head-dark">
+              <p className="vocab-section-kicker">Published vocabulary</p>
+              <h2 id="vocab-published-title">{data.terms.length} terms in the standard AQR format.</h2>
+              <p>Start with the plain-language meaning, then use the fuller definition and sentence stem as the term becomes familiar.</p>
             </div>
-          </section>
-        ) : (
-          <section className="vocab-section vocab-section-silver">
-            <div className="vocab-wrap vocab-framework-panel">
-              <p className="vocab-section-kicker">Framework ready</p>
-              <h2>Terms will appear here in the standard AQR format.</h2>
-              <p>The page, route, data model, and reusable display structure are ready. Approved vocabulary content has not yet been published for this section.</p>
-              <div className="vocab-entry-example" aria-label="Vocabulary entry structure">
-                <span>Term</span><span>Full definition</span><span>Plain language</span><span>AQR use</span><span>Question or stem</span>
-              </div>
-            </div>
-          </section>
-        )}
+            <ol className="vocab-term-list">
+              {data.terms.map((item) => (
+                <li key={item.term} className="vocab-term-item">
+                  <article className="vocab-term-card">
+                    <p className="vocab-card-kicker">{item.group}</p>
+                    <h3>{item.term}</h3>
+                    <dl className="vocab-term-details">
+                      <div><dt>Full definition</dt><dd>{item.fullDefinition}</dd></div>
+                      <div><dt>Plain language</dt><dd>{item.plainLanguage}</dd></div>
+                      <div><dt>How we use it in AQR</dt><dd>{item.aqrUse}</dd></div>
+                      <div><dt>Example question or sentence stem</dt><dd>{item.questionStem}</dd></div>
+                    </dl>
+                  </article>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
       </main>
       <footer className="vocab-footer"><div className="vocab-wrap vocab-footer-inner"><p>© 2026 Applied Quantitative Reasoning • <span className="site-footer-school">Vista PEAK Prep</span></p></div></footer>
     </div>
