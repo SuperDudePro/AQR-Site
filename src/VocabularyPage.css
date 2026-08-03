@@ -32,6 +32,7 @@
 .vocab-format-list strong { color: #00558a; }
 .vocab-format-list span { color: #18222c; line-height: 1.5; }
 .vocab-section-head { max-width: 980px; margin-bottom: 36px; }
+.vocab-section-head-dark p { color: #24303a; }
 .vocab-section-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 16px; }
 .vocab-section-grid li { min-width: 0; }
 .vocab-section-card { display: flex; flex-direction: column; min-height: 100%; padding: 24px; border-radius: 26px; border: 2px solid rgba(122,206,255,.45); background: linear-gradient(180deg, rgba(37,60,130,.98), rgba(4,74,120,.94)); color: #fff; text-decoration: none; box-shadow: 0 18px 34px rgba(0,0,0,.28); }
@@ -44,10 +45,18 @@
 .vocab-framework-panel { max-width: 920px; }
 .vocab-entry-example { margin-top: 28px; display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 10px; }
 .vocab-entry-example span { min-height: 86px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 14px; border-radius: 16px; background: #fff; border: 2px solid #00558a; color: #111820; font-weight: 800; }
+.vocab-term-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 22px; }
+.vocab-term-card { overflow: hidden; border-radius: 24px; background: #fff; border: 1px solid rgba(0,85,138,.22); box-shadow: 0 16px 34px rgba(17,24,32,.12); }
+.vocab-term-card h3 { margin: 0; padding: 22px 26px; background: linear-gradient(135deg, #253c82, #00558a); color: #fff; font-size: clamp(1.45rem, 2.5vw, 2rem); }
+.vocab-term-details { margin: 0; }
+.vocab-term-details div { display: grid; grid-template-columns: minmax(180px,.32fr) minmax(0,1fr); gap: 24px; padding: 20px 26px; border-top: 1px solid #d9e1e8; }
+.vocab-term-details div:first-child { border-top: 0; }
+.vocab-term-details dt { color: #00558a; font-weight: 900; line-height: 1.45; }
+.vocab-term-details dd { margin: 0; color: #18222c; line-height: 1.65; }
 .vocab-footer { background: #000; border-top: 1px solid rgba(255,255,255,.08); }
 .vocab-footer-inner { padding: 22px 0 40px; }
 .vocab-footer p { margin: 0; color: var(--muted); }
 
 @media (max-width: 1060px) { .vocab-section-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
-@media (max-width: 760px) { .vocab-wrap { width: min(100% - 24px,1200px); } .vocab-topbar { flex-direction: column; align-items: flex-start; } .vocab-hero-inner { text-align: left; } .vocab-intro-grid, .vocab-entry-example { grid-template-columns: 1fr; } }
-@media (max-width: 560px) { .vocab-topnav, .vocab-topnav a { width: 100%; } .vocab-section-grid { grid-template-columns: 1fr; } .vocab-format-list li { grid-template-columns: 1fr; } }
+@media (max-width: 760px) { .vocab-wrap { width: min(100% - 24px,1200px); } .vocab-topbar { flex-direction: column; align-items: flex-start; } .vocab-hero-inner { text-align: left; } .vocab-intro-grid, .vocab-entry-example, .vocab-term-details div { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .vocab-topnav, .vocab-topnav a { width: 100%; } .vocab-section-grid { grid-template-columns: 1fr; } .vocab-format-list li { grid-template-columns: 1fr; } .vocab-term-card h3, .vocab-term-details div { padding-left: 18px; padding-right: 18px; } }
