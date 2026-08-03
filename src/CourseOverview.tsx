@@ -93,11 +93,18 @@ const hubCards: HubCard[] = [
     cta: "View the year arc",
   },
   {
-    eyebrow: "Student Guide",
+    eyebrow: "Quarter Pages",
+    title: "Open the detailed quarter plans",
+    body: "Each quarter page explains the main project, the quantitative-reasoning focus windows, the tools, and the expected student work.",
+    href: "#quarter-pages",
+    cta: "Browse quarter pages",
+  },
+  {
+    eyebrow: "Student Expectations",
     title: "Know how the class works",
     body: "Daily routines, progress expectations, responsible tool use, discussion norms, and available support will live together in one clear guide.",
     href: "#student-guide-preview",
-    cta: "Preview the guide",
+    cta: "Preview expectations",
   },
   {
     eyebrow: "Vocabulary",
@@ -105,13 +112,6 @@ const hubCards: HubCard[] = [
     body: "Core words and quarter-by-quarter vocabulary will connect directly to the classroom poster system and the work students are doing.",
     href: "#vocabulary-preview",
     cta: "Preview vocabulary",
-  },
-  {
-    eyebrow: "Quarter Pages",
-    title: "Open the detailed quarter plans",
-    body: "Each quarter page explains the main project, the quantitative-reasoning focus windows, the tools, and the expected student work.",
-    href: "#quarter-pages",
-    cta: "Browse quarter pages",
   },
 ];
 
