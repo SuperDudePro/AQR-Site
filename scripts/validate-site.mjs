@@ -108,8 +108,9 @@ if (!vercel) fail('vercel.json', '(missing)', 'Vercel route configuration is mis
 for (const route of routes) {
   if (route === '/') continue;
   const quarterCovered = /^\/quarter-[1-4]$/.test(route) && vercel.includes('quarter-[1-4]');
+  const vocabularyCovered = /^\/vocabulary(?:\/(?:core|quarter-[1-4]))?$/.test(route) && vercel.includes('vocabulary(?:/(core|quarter-[1-4]))?');
   const token = route.startsWith('/classroom-posters/') ? route.split('/').at(-1) : route.slice(1);
-  if (!quarterCovered && !vercel.includes(token)) fail('vercel.json', route, 'sitemap route is not represented in the SPA rewrites');
+  if (!quarterCovered && !vocabularyCovered && !vercel.includes(token)) fail('vercel.json', route, 'sitemap route is not represented in the SPA rewrites');
 }
 
 if (errors.length) {
