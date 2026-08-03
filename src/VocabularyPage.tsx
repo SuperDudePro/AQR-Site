@@ -45,7 +45,7 @@ function VocabularyHub() {
             <div>
               <p className="vocab-section-kicker">How each entry works</p>
               <h2 id="vocab-how-title">More useful than a word-and-definition list.</h2>
-              <p>Every finished entry will use the same five-part structure so students can study it, discuss it, and use it in real work.</p>
+              <p>Every published entry uses the same five-part structure so students can study it, discuss it, and use it in real work.</p>
             </div>
             <ol className="vocab-format-list">
               <li><strong>Term</strong><span>The academic or quantitative-reasoning word.</span></li>
@@ -62,7 +62,7 @@ function VocabularyHub() {
             <div className="vocab-section-head">
               <p className="vocab-section-kicker">Vocabulary sections</p>
               <h2 id="vocab-sections-title">Start with core language, then move through the year.</h2>
-              <p>The framework is in place now. Core and quarter term sets will be filled from the approved AQR vocabulary source in the next builds.</p>
+              <p>Each section is published from the approved AQR vocabulary source as it is completed.</p>
             </div>
             <ol className="vocab-section-grid">
               {vocabularySections.map((item, index) => (
@@ -72,7 +72,7 @@ function VocabularyHub() {
                     <p className="vocab-card-kicker">{item.label}</p>
                     <h3>{item.title}</h3>
                     <p>{item.description}</p>
-                    <span className="vocab-card-link">Open section framework</span>
+                    <span className="vocab-card-link">{item.status === "published" ? `Open ${item.terms.length} terms` : "Open section framework"}</span>
                   </a>
                 </li>
               ))}
@@ -88,6 +88,7 @@ function VocabularyHub() {
 function VocabularySectionPage({ section }: { section: VocabularySectionKey }) {
   const data = getVocabularySection(section);
   if (!data) return <VocabularyHub />;
+  const isPublished = data.status === "published" && data.terms.length > 0;
 
   return (
     <div className="vocab-site-shell">
@@ -102,16 +103,44 @@ function VocabularySectionPage({ section }: { section: VocabularySectionKey }) {
             <a className="vocab-back-link" href="/vocabulary">Back to all vocabulary sections</a>
           </div>
         </section>
-        <section className="vocab-section vocab-section-silver">
-          <div className="vocab-wrap vocab-framework-panel">
-            <p className="vocab-section-kicker">Framework ready</p>
-            <h2>Terms will appear here in the standard AQR format.</h2>
-            <p>This phase establishes the page, route, data model, and reusable display structure. It does not invent or replace the approved vocabulary content.</p>
-            <div className="vocab-entry-example" aria-label="Vocabulary entry structure">
-              <span>Term</span><span>Full definition</span><span>Plain language</span><span>AQR use</span><span>Question or stem</span>
+
+        {isPublished ? (
+          <section className="vocab-section vocab-section-silver" aria-labelledby="vocab-published-title">
+            <div className="vocab-wrap">
+              <div className="vocab-section-head vocab-section-head-dark">
+                <p className="vocab-section-kicker">Published vocabulary</p>
+                <h2 id="vocab-published-title">{data.terms.length} terms in the standard AQR format.</h2>
+                <p>Start with the plain-language meaning, then use the fuller definition and sentence stem as the term becomes familiar.</p>
+              </div>
+              <ol className="vocab-term-list">
+                {data.terms.map((item) => (
+                  <li key={item.term} className="vocab-term-item">
+                    <article className="vocab-term-card">
+                      <h3>{item.term}</h3>
+                      <dl className="vocab-term-details">
+                        <div><dt>Full definition</dt><dd>{item.fullDefinition}</dd></div>
+                        <div><dt>Plain language</dt><dd>{item.plainLanguage}</dd></div>
+                        <div><dt>How we use it in AQR</dt><dd>{item.aqrUse}</dd></div>
+                        <div><dt>Example question or sentence stem</dt><dd>{item.questionStem}</dd></div>
+                      </dl>
+                    </article>
+                  </li>
+                ))}
+              </ol>
             </div>
-          </div>
-        </section>
+          </section>
+        ) : (
+          <section className="vocab-section vocab-section-silver">
+            <div className="vocab-wrap vocab-framework-panel">
+              <p className="vocab-section-kicker">Framework ready</p>
+              <h2>Terms will appear here in the standard AQR format.</h2>
+              <p>The page, route, data model, and reusable display structure are ready. Approved vocabulary content has not yet been published for this section.</p>
+              <div className="vocab-entry-example" aria-label="Vocabulary entry structure">
+                <span>Term</span><span>Full definition</span><span>Plain language</span><span>AQR use</span><span>Question or stem</span>
+              </div>
+            </div>
+          </section>
+        )}
       </main>
       <footer className="vocab-footer"><div className="vocab-wrap vocab-footer-inner"><p>© 2026 Applied Quantitative Reasoning • <span className="site-footer-school">Vista PEAK Prep</span></p></div></footer>
     </div>
