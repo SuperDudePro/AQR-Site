@@ -10,6 +10,7 @@ type CourseOverviewProps = {
 type QuarterCard = {
   key: "q1" | "q2" | "q3" | "q4";
   title: string;
+  shortTitle: string;
   dates: string;
   focus: string;
   toolFocus: string;
@@ -18,10 +19,19 @@ type QuarterCard = {
   href: string;
 };
 
+type HubCard = {
+  eyebrow: string;
+  title: string;
+  body: string;
+  href: string;
+  cta: string;
+};
+
 const quarterCards: QuarterCard[] = [
   {
     key: "q1",
     title: "Quarter 1 - Know Yourself",
+    shortTitle: "Know Yourself",
     dates: "Aug 6 to Oct 8, 2026",
     focus: "Portable learner profile and personalized learning agent",
     toolFocus: "Drive, Calendar, email, Gemini, profile files, screenshots, and a simple pass-path spreadsheet model",
@@ -31,33 +41,36 @@ const quarterCards: QuarterCard[] = [
     ],
     body:
       "Students build a portable profile of how they learn, what helps, what gets in the way, and what kind of support they need. They use that evidence to create, test, and revise a personalized learning agent or structured support workflow.",
-    href: "#/quarter-1",
+    href: "/quarter-1",
   },
   {
     key: "q2",
     title: "Quarter 2 - Track Yourself",
+    shortTitle: "Track Yourself",
     dates: "Oct 19 to Dec 17, 2026",
     focus: "Self-tracking, time use, survey/data analysis, and pattern finding",
     toolFocus: "Google Forms and Sheets for collecting, cleaning, displaying, and explaining real data",
     miniThemes: ["Sampling, bias, and bad survey questions", "Correlation vs causation"],
     body:
       "Students collect real data, organize it, create a useful display, and make one honest claim about what the data shows. The work stays tight: one question, one manageable dataset, one supported claim, and one clear limitation.",
-    href: "#/quarter-2",
+    href: "/quarter-2",
   },
   {
     key: "q3",
     title: "Quarter 3 - Build a Decision Tool / App",
+    shortTitle: "Build a Decision Tool",
     dates: "Jan 6 to Mar 11, 2027",
     focus: "Student-built decision tool, app-like workflow, or Gem",
     toolFocus: "Gemini, Docs, Sheets, Slides, Forms, or structured workflows that make decision logic visible",
     miniThemes: ["Risk, cost, and uncertainty", "Model assumptions, weighting, and sensitivity"],
     body:
       "Students build a tool that helps a real user compare options, weigh criteria, see tradeoffs, test the logic, and reach a clearer recommendation. The point is not coding prestige. The point is a useful decision process that can be explained, tested, and improved.",
-    href: "#/quarter-3",
+    href: "/quarter-3",
   },
   {
     key: "q4",
     title: "Quarter 4 - Don't Get Played",
+    shortTitle: "Don't Get Played",
     dates: "Mar 22 to May 24, 2027",
     focus: "Short anti-BS, media/data reasoning unit",
     toolFocus: "Search, source checks, screenshots, Docs/Slides, and AI as a critique assistant rather than an answer machine",
@@ -67,7 +80,38 @@ const quarterCards: QuarterCard[] = [
     ],
     body:
       "Students practice reading claims, graphs, statistics, sources, and AI output more carefully. The year closes with practical skepticism: what should a reasonable person believe, question, or reject?",
-    href: "#/quarter-4",
+    href: "/quarter-4",
+  },
+];
+
+const hubCards: HubCard[] = [
+  {
+    eyebrow: "Year at a glance",
+    title: "Follow the full course arc",
+    body: "See how the four quarters move from self-knowledge to data, decision-making, and practical skepticism.",
+    href: "#year-at-a-glance",
+    cta: "View the year arc",
+  },
+  {
+    eyebrow: "Student Guide",
+    title: "Know how the class works",
+    body: "Daily routines, progress expectations, responsible tool use, discussion norms, and available support will live together in one clear guide.",
+    href: "#student-guide-preview",
+    cta: "Preview the guide",
+  },
+  {
+    eyebrow: "Vocabulary",
+    title: "Learn the language of AQR",
+    body: "Core words and quarter-by-quarter vocabulary will connect directly to the classroom poster system and the work students are doing.",
+    href: "#vocabulary-preview",
+    cta: "Preview vocabulary",
+  },
+  {
+    eyebrow: "Quarter Pages",
+    title: "Open the detailed quarter plans",
+    body: "Each quarter page explains the main project, the quantitative-reasoning focus windows, the tools, and the expected student work.",
+    href: "#quarter-pages",
+    cta: "Browse quarter pages",
   },
 ];
 
@@ -80,8 +124,7 @@ function CourseOverview({ onNavigateHome, onNavigateWhy, onNavigatePosters }: Co
       return;
     }
 
-    window.location.hash = "#/";
-    window.scrollTo({ top: 0, behavior: "auto" });
+    window.location.href = "/";
   };
 
   const goWhy = (event?: MouseEvent<HTMLAnchorElement>) => {
@@ -92,8 +135,7 @@ function CourseOverview({ onNavigateHome, onNavigateWhy, onNavigatePosters }: Co
       return;
     }
 
-    window.location.hash = "#/why-aqr";
-    window.scrollTo({ top: 0, behavior: "auto" });
+    window.location.href = "/why-aqr";
   };
 
   const goPosters = (event?: MouseEvent<HTMLAnchorElement>) => {
@@ -104,8 +146,7 @@ function CourseOverview({ onNavigateHome, onNavigateWhy, onNavigatePosters }: Co
       return;
     }
 
-    window.location.hash = "#/classroom-posters";
-    window.scrollTo({ top: 0, behavior: "auto" });
+    window.location.href = "/classroom-posters";
   };
 
   return (
@@ -116,16 +157,16 @@ function CourseOverview({ onNavigateHome, onNavigateWhy, onNavigatePosters }: Co
 
       <header className="overview-site-header overview-hero">
         <div className="overview-topbar overview-wrap">
-          <a className="overview-brand" href="#/" onClick={goHome}>
+          <a className="overview-brand" href="/" onClick={goHome}>
             <span className="overview-brand-mark">AQR</span>
             <span className="overview-brand-name">Applied Quantitative Reasoning</span>
           </a>
 
           <nav className="overview-topnav" aria-label="Course Overview navigation" role="navigation">
-            <a href="#/" onClick={goHome}>Home</a>
-            <a href="#/why-aqr" onClick={goWhy}>Why AQR</a>
-            <a href="#/course-overview" aria-current="page">Course Overview</a>
-            <a href="#/classroom-posters" onClick={goPosters}>Posters</a>
+            <a href="/" onClick={goHome}>Home</a>
+            <a href="/why-aqr" onClick={goWhy}>Why AQR</a>
+            <a href="/course-overview" aria-current="page">Course Overview</a>
+            <a href="/classroom-posters" onClick={goPosters}>Posters</a>
           </nav>
         </div>
       </header>
@@ -137,9 +178,60 @@ function CourseOverview({ onNavigateHome, onNavigateWhy, onNavigatePosters }: Co
             <h1 id="overview-page-title">A clear look at how AQR is built.</h1>
             <p className="overview-hero-lead">
               Applied Quantitative Reasoning is a project-based math elective built around real decisions,
-              real data, real tools, and real communication. Students use quantitative reasoning to build useful
-              artifacts, interpret evidence, compare options, and explain decisions in plain language.
+              real data, real tools, and real communication. This page is the main doorway into the year,
+              the quarter plans, the student guide, and the vocabulary system.
             </p>
+          </div>
+        </section>
+
+        <section className="overview-section overview-section-silver" aria-labelledby="overview-hub-title">
+          <div className="overview-wrap">
+            <div className="overview-section-head overview-section-head-dark">
+              <p className="overview-section-kicker">Course hub</p>
+              <h2 id="overview-hub-title">Start here, then go deeper only when you need to.</h2>
+              <p>
+                The course overview keeps the big picture visible. Detailed pages sit underneath it so students,
+                families, and staff can quickly find the level of information they need.
+              </p>
+            </div>
+            <ul className="overview-hub-grid" role="list">
+              {hubCards.map((card) => (
+                <li key={card.title}>
+                  <a className="overview-hub-card" href={card.href}>
+                    <p className="overview-card-kicker">{card.eyebrow}</p>
+                    <h3>{card.title}</h3>
+                    <p>{card.body}</p>
+                    <span>{card.cta}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section className="overview-section overview-section-black" id="year-at-a-glance" aria-labelledby="overview-year-title">
+          <div className="overview-wrap">
+            <div className="overview-section-head">
+              <p className="overview-section-kicker">Year at a glance</p>
+              <h2 id="overview-year-title">Know yourself. Track yourself. Build a decision tool. Don&apos;t get played.</h2>
+              <p className="overview-section-intro">
+                The year is designed as one connected progression. Each quarter produces a useful artifact while
+                strengthening the same habits: define the problem, use evidence, make the reasoning visible,
+                test the result, and communicate the decision clearly.
+              </p>
+            </div>
+            <ol className="overview-year-spine" aria-label="AQR four-quarter course sequence">
+              {quarterCards.map((quarter, index) => (
+                <li key={quarter.key} className={`overview-year-step overview-year-step-${quarter.key}`}>
+                  <a href={quarter.href}>
+                    <span className="overview-year-number">{index + 1}</span>
+                    <span className="overview-year-quarter">Quarter {index + 1}</span>
+                    <strong>{quarter.shortTitle}</strong>
+                    <span className="overview-year-focus">{quarter.focus}</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
           </div>
         </section>
 
@@ -147,7 +239,7 @@ function CourseOverview({ onNavigateHome, onNavigateWhy, onNavigatePosters }: Co
           <div className="overview-wrap overview-basics-grid">
             <div className="overview-text-dark">
               <p className="overview-section-kicker">At a glance</p>
-              <h2 id="overview-basics-title">One year arc, four project families, and a visible path through the work.</h2>
+              <h2 id="overview-basics-title">One common course, a visible pass path, and room to extend.</h2>
               <p>
                 AQR is a math elective for grades 11-12 and may count toward the fourth-year math requirement.
                 It is designed as a serious math option for students who want math to connect more clearly
@@ -178,14 +270,13 @@ function CourseOverview({ onNavigateHome, onNavigateWhy, onNavigatePosters }: Co
           </div>
         </section>
 
-        <section className="overview-section overview-section-black" aria-labelledby="overview-quarters-title">
+        <section className="overview-section overview-section-black" id="quarter-pages" aria-labelledby="overview-quarters-title">
           <div className="overview-wrap">
             <div className="overview-section-head">
-              <p className="overview-section-kicker">Quarter structure</p>
-              <h2 id="overview-quarters-title">Know yourself. Track yourself. Build a decision tool. Don&apos;t get played.</h2>
+              <p className="overview-section-kicker">Quarter pages</p>
+              <h2 id="overview-quarters-title">Open the quarter you need.</h2>
               <p className="overview-section-intro">
-                The year moves from self-knowledge and personalized support, to real data, to visible decision logic,
-                to practical skepticism about claims, graphs, statistics, sources, AI output, and evidence.
+                Each page explains the main project, the tools, the two sequential focus windows, and the student work in plain language.
               </p>
             </div>
             <ul className="overview-quarter-grid" role="list">
@@ -195,10 +286,7 @@ function CourseOverview({ onNavigateHome, onNavigateWhy, onNavigatePosters }: Co
                 const focusId = `${quarter.key}-focus`;
                 return (
                   <li key={quarter.key} className="overview-quarter-list-item">
-                    <a
-                      className="overview-quarter-card"
-                      href={quarter.href}
-                    >
+                    <a className="overview-quarter-card" href={quarter.href}>
                       <p className="overview-card-kicker">{quarter.title.split(" - ")[0]}</p>
                       <h3 id={headingId} className="overview-quarter-card-title">{quarter.title}</h3>
                       <p id={metaId} className="overview-quarter-card-dates">{quarter.dates}</p>
@@ -208,7 +296,7 @@ function CourseOverview({ onNavigateHome, onNavigateWhy, onNavigatePosters }: Co
                       <p className="overview-quarter-card-tools">
                         <strong>Tool focus:</strong> {quarter.toolFocus}
                       </p>
-                      <div className="overview-quarter-card-mini" role="group" aria-label={`${quarter.title} mini-themes`}>
+                      <div className="overview-quarter-card-mini" role="group" aria-label={`${quarter.title} focus windows`}>
                         <strong>Focus windows:</strong>
                         <ul className="overview-chip-list">
                           {quarter.miniThemes.map((theme) => (
@@ -223,6 +311,44 @@ function CourseOverview({ onNavigateHome, onNavigateWhy, onNavigatePosters }: Co
                 );
               })}
             </ul>
+          </div>
+        </section>
+
+        <section className="overview-section overview-section-silver overview-preview-section" id="student-guide-preview" aria-labelledby="overview-guide-title">
+          <div className="overview-wrap overview-preview-grid">
+            <div>
+              <p className="overview-section-kicker">Student Guide</p>
+              <h2 id="overview-guide-title">One practical guide, organized around how students actually use it.</h2>
+              <p>
+                The guide will keep daily routines, progress expectations, tool and AI use, discussion norms,
+                and available support together instead of scattering them across separate documents.
+              </p>
+            </div>
+            <ul className="overview-preview-list">
+              <li><strong>Be ready and follow the room</strong><span>Daily flow, materials, phone and tardy expectations, and visible routines.</span></li>
+              <li><strong>Do real work and show progress</strong><span>Checkpoints, learning process, revision, the pass path, and responsible tool use.</span></li>
+              <li><strong>Think, talk, and get support</strong><span>Discussion moves, vocabulary, language supports, conferencing, scaffolds, and extension.</span></li>
+            </ul>
+          </div>
+        </section>
+
+        <section className="overview-section overview-section-black overview-preview-section" id="vocabulary-preview" aria-labelledby="overview-vocabulary-title">
+          <div className="overview-wrap overview-preview-grid">
+            <div>
+              <p className="overview-section-kicker">Vocabulary</p>
+              <h2 id="overview-vocabulary-title">The language of the course will match the posters and the work.</h2>
+              <p className="overview-section-intro">
+                Core AQR words will appear first, followed by quarter-by-quarter vocabulary in the same sequence students encounter it.
+                Each term will include a full definition, plain-language meaning, AQR use, and a useful question or sentence stem.
+              </p>
+            </div>
+            <div className="overview-vocabulary-map" aria-label="Vocabulary page structure">
+              <span>Core AQR Words</span>
+              <span>Quarter 1</span>
+              <span>Quarter 2</span>
+              <span>Quarter 3</span>
+              <span>Quarter 4</span>
+            </div>
           </div>
         </section>
       </main>
