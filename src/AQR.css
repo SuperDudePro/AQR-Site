@@ -382,6 +382,14 @@
   color: #00558a;
 }
 
+.aqr-overview-preview .aqr-button-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 220px;
+  text-decoration: none;
+}
+
 @media (max-width: 960px) {
   .aqr-card-grid,
   .aqr-split,
