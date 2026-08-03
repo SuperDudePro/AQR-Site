@@ -37,41 +37,43 @@ const quarterDetails: Record<QuarterPageKey, QuarterDetailRecord> = {
     title: "Quarter 1 — Know Yourself",
     navLabel: "Quarter 1",
     dates: "Aug 6 to Oct 8, 2026",
-    focus: "AI-supported study/help tools and class-support tools",
+    focus: "Portable learner profile and personalized learning agent",
     purpose:
-      "Quarter 1 establishes the course culture, tool norms, approval routines, and first useful AQR artifact. Students learn how to use school-approved tools responsibly while building something that helps with real class work or a real personal school need.",
+      "Quarter 1 establishes the course culture, tool norms, pass-path expectations, and first major AQR build. Students gather evidence about how they learn, what helps, what creates friction, and what kind of support they need.",
     fit:
-      "The point is not to make a flashy AI product. The point is to build a practical support tool, explain how it helps, and show that the source material and workflow are trustworthy enough to use.",
+      "The learner profile is the source material for the tool. Students use it to create a personalized learning agent, Gemini workflow, Gem, NotebookLM workflow if approved, or structured fallback support system. The goal is useful customization, not a generic chatbot.",
     plainLanguage:
-      "Students learn how this class works, how to use AI and Google tools without outsourcing their thinking, and how to build one useful support system they can actually revise and use.",
+      "Students figure out what kind of help actually works for them, build that knowledge into a reusable profile, and use it to create a support tool they can test and improve.",
     studentWork: [
-      "a learner or support-needs profile",
-      "a school-tool workflow for getting useful help, feedback, or explanations",
-      "a source-grounded study/help tool or class-support tool",
-      "a short test-and-revision note explaining what improved",
+      "a simple pass-path spreadsheet model",
+      "a portable learner profile built from surveys, inventories, reflections, and self-data",
+      "personalized learning-agent instructions tied to profile evidence",
+      "a working support tool or structured fallback workflow",
+      "one real test, one revision, and a short explanation of what changed",
     ],
     mathFocus: [
-      "organizing information so it can be used",
-      "identifying quantities, units, comparisons, and relationships",
-      "checking whether a visual or number is trying to mislead",
-      "explaining a tool's usefulness in plain language",
+      "modeling the pass path and testing scenarios in a simple spreadsheet",
+      "interpreting self-data without confusing confidence, preference, habit, mood, and ability",
+      "questioning what a scale, survey, or rating actually measures",
+      "organizing evidence into a usable profile",
+      "testing and revising a tool based on evidence",
     ],
     miniThemes: [
       {
-        title: "Misleading graphs / visual tricks",
-        question: "What is the visual trying to make me believe?",
+        title: "What are we measuring? Self-data, scales, units, and meaning",
+        question: "What exactly is being measured, counted, rated, or compared?",
         description:
-          "Students practice reading displays carefully so they notice scale choices, missing context, and visual tricks before trusting a graph.",
+          "Students examine the meaning and limits of their own survey results, ratings, comfort checks, and self-data before using those results to make decisions about support.",
       },
       {
-        title: "Units, quantities, and what is being measured",
-        question: "What exactly is being counted, measured, compared, or converted?",
+        title: "Misleading visuals, claims, and AI confidence",
+        question: "What is this trying to make me believe?",
         description:
-          "Students learn to slow down around units, denominators, rates, labels, and reasonableness before treating a number as meaningful.",
+          "Students check graph tricks, dashboard claims, fake precision, and confident AI output while they build and test their learning agents.",
       },
     ],
     closing:
-      "By the end of Q1, students should have a useful artifact, a clearer sense of how they work, and a better understanding of how tools can support thinking without replacing it.",
+      "By the end of Q1, students should have a portable learner profile, a useful personalized support workflow, real proof-of-progress habits, and evidence that testing changed the tool.",
     href: "#/quarter-1",
   },
   q2: {
@@ -96,24 +98,25 @@ const quarterDetails: Record<QuarterPageKey, QuarterDetailRecord> = {
       "collecting and organizing real data",
       "choosing displays that match the data",
       "summarizing patterns without overstating them",
+      "identifying sample, bias, and measurement problems",
       "separating association from proof of cause",
     ],
     miniThemes: [
+      {
+        title: "Sampling, bias, and bad survey questions",
+        question: "Who is included, who is missing, and why does that matter?",
+        description:
+          "Students examine survey design, biased questions, response bias, and the limits of data collected from a small or uneven group before they make claims.",
+      },
       {
         title: "Correlation vs causation",
         question: "What is actually proven here?",
         description:
           "Students look at patterns in student data, surveys, and media claims and practice saying what the evidence can and cannot prove.",
       },
-      {
-        title: "Sampling, bias, and bad survey questions",
-        question: "Who is included, who is missing, and why does that matter?",
-        description:
-          "Students examine survey design, biased questions, response bias, and the limits of data collected from a small or uneven group.",
-      },
     ],
     closing:
-      "By the end of Q2, students should be able to make a supported claim from data and be honest about the limitations, bias, or uncertainty around that claim.",
+      "By the end of Q2, students should be able to make a supported claim from data and be honest about the limitations, bias, uncertainty, or alternative explanations around that claim.",
     href: "#/quarter-2",
   },
   q3: {
@@ -125,27 +128,29 @@ const quarterDetails: Record<QuarterPageKey, QuarterDetailRecord> = {
     purpose:
       "Quarter 3 is the second major build quarter. Students create a decision-support tool, app-like workflow, or Gem that helps a real user compare options and make a clearer recommendation.",
     fit:
-      "This is no longer a business-modeling quarter. The central question is whether the tool makes a real decision clearer by showing options, criteria, tradeoffs, assumptions, and reasons.",
+      "The central question is whether the tool makes a real decision clearer by showing options, criteria, tradeoffs, costs, risks, assumptions, and reasons. The interface can stay simple as long as the logic is visible and testable.",
     plainLanguage:
-      "Students build a tool that helps someone decide. The tool does not need to be fancy, but its logic has to be visible and it has to survive at least one real test and revision.",
+      "Students build a tool that helps someone decide. The tool does not need to be fancy, but its reasoning has to be visible and it has to survive at least one real test and revision.",
     studentWork: [
       "one clear decision question for a real or realistic user",
-      "a comparison of options, criteria, and tradeoffs",
-      "a visible rule set, prompt structure, or decision logic",
+      "a comparison of at least three options and three criteria",
+      "a visible rule set, criteria table, prompt structure, or decision logic",
+      "a risk, cost, or uncertainty check",
       "a tested and revised recommendation workflow",
     ],
     mathFocus: [
-      "defining variables, criteria, and constraints",
+      "defining variables, criteria, constraints, and tradeoffs",
+      "comparing costs, risks, consequences, and uncertainty",
       "weighting or prioritizing what matters",
       "testing how sensitive a recommendation is to changed inputs",
       "using evidence and assumptions responsibly",
     ],
     miniThemes: [
       {
-        title: "Risk and uncertainty",
-        question: "How sure are we, and what could go wrong?",
+        title: "Risk, cost, and uncertainty",
+        question: "What could this cost, what could go wrong, and how sure are we?",
         description:
-          "Students practice using confidence language, risk checks, likely failure cases, and simple probability or consequence thinking when decisions are uncertain.",
+          "Students examine money, time, effort, opportunity cost, failure cases, confidence, and uncertainty before treating a recommendation as settled.",
       },
       {
         title: "Model assumptions, weighting, and sensitivity",
@@ -173,13 +178,14 @@ const quarterDetails: Record<QuarterPageKey, QuarterDetailRecord> = {
     studentWork: [
       "short claim and evidence checks",
       "misleading graph or media critiques",
-      "bias, sampling, or source-trust notes",
-      "a final explanation of what a reasonable person should believe or question",
+      "bias, sampling, causation, risk, or source-trust notes",
+      "a final explanation of what a reasonable person should believe, question, or do next",
     ],
     mathFocus: [
       "reading claims before reacting to them",
       "checking evidence, sources, samples, and displays",
       "spotting weak comparisons and overclaims",
+      "distinguishing association from causation",
       "using plain language to explain reasonable belief",
     ],
     miniThemes: [
@@ -325,17 +331,17 @@ function QuarterDetail({ quarter, onNavigateHome, onNavigateOverview }: QuarterD
         <section className="quarter-section quarter-section-silver" aria-labelledby="quarter-lenses-title">
           <div className="quarter-wrap">
             <div className="quarter-section-head quarter-section-head-dark">
-              <p className="quarter-section-kicker">Recurring QR lenses</p>
-              <h2 id="quarter-lenses-title">Two short-focus themes run alongside the main project.</h2>
+              <p className="quarter-section-kicker">Sequential QR focus windows</p>
+              <h2 id="quarter-lenses-title">Two short-focus themes support the main project.</h2>
               <p>
-                These are not separate full units. They show up through warm-ups, short examples,
-                quick investigations, small artifacts, and project-connected questions.
+                These are not separate full units or two hidden courses running at once. One focus window usually
+                carries the first half of the quarter and the second carries the next half, with short callbacks later.
               </p>
             </div>
             <div className="quarter-lens-grid">
               {detail.miniThemes.map((theme) => (
                 <article className="quarter-lens-card" key={theme.title}>
-                  <p className="quarter-card-kicker">Mini-theme lens</p>
+                  <p className="quarter-card-kicker">Focus window</p>
                   <h3>{theme.title}</h3>
                   <p className="quarter-lens-question">{theme.question}</p>
                   <p>{theme.description}</p>
