@@ -16,7 +16,7 @@ function VocabularyHeader() {
         <nav className="vocab-topnav" aria-label="Vocabulary navigation">
           <a href="/">Home</a>
           <a href="/course-overview">Course Overview</a>
-          <a href="/student-guide">Student Guide and Expectations</a>
+          <a href="/student-guide">Student Guide</a>
           <a href="/vocabulary" aria-current="page">Vocabulary</a>
         </nav>
       </div>
