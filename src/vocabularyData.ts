@@ -1,7 +1,15 @@
+import { coreTerms } from "./vocabularyCore";
+import { q1Terms } from "./vocabularyQ1";
+import { q2Terms } from "./vocabularyQ2";
+import { q3Terms } from "./vocabularyQ3";
+import { q4Terms } from "./vocabularyQ4";
+
 export type VocabularySectionKey = "core" | "q1" | "q2" | "q3" | "q4";
+export type VocabularyGroup = "Core — must use repeatedly" | "Quarter-essential" | "Recognize and begin using" | "Extension vocabulary";
 
 export type VocabularyTerm = {
   term: string;
+  group: VocabularyGroup;
   fullDefinition: string;
   plainLanguage: string;
   aqrUse: string;
@@ -18,169 +26,12 @@ export type VocabularySection = {
   terms: VocabularyTerm[];
 };
 
-const coreTerms: VocabularyTerm[] = [
-  {
-    term: "Analyze",
-    fullDefinition: "To analyze means to break a situation, claim, dataset, model, or decision into meaningful parts and examine how those parts relate to one another.",
-    plainLanguage: "Look closely at the parts and how they work together.",
-    aqrUse: "When a direction says analyze, you should do more than describe; you should examine relationships, patterns, causes, limits, or structure.",
-    questionStem: "When I analyze this, I notice ______.",
-  },
-  {
-    term: "Assumption",
-    fullDefinition: "An assumption is something treated as true, stable, or reasonable so that thinking or modeling can continue, even though it may not be fully known or proven. Assumptions should be stated and tested when possible.",
-    plainLanguage: "Something we are treating as true for now.",
-    aqrUse: "You will name assumptions behind surveys, models, decision rules, AI output, and recommendations instead of hiding them.",
-    questionStem: "This recommendation assumes that ______.",
-  },
-  {
-    term: "Benefit",
-    fullDefinition: "A benefit is a useful, desirable, or positive result that may come from a choice, action, tool, or policy. Benefits may be immediate or long-term and may matter differently to different people.",
-    plainLanguage: "Something good you may gain from a choice.",
-    aqrUse: "You will compare benefits with costs, risks, and constraints instead of assuming the option with the most benefits is automatically best.",
-    questionStem: "The main benefit of this option is ______.",
-  },
-  {
-    term: "Claim",
-    fullDefinition: "A claim is a statement that says something is true, likely, important, better, worse, or worth doing. Claims should be clear enough that evidence can support, challenge, or revise them.",
-    plainLanguage: "A statement that someone says is true.",
-    aqrUse: "You will identify claims in your own work, in graphs and media, and in AI output before deciding whether the evidence supports them.",
-    questionStem: "The claim being made is ______.",
-  },
-  {
-    term: "Constraint",
-    fullDefinition: "A constraint is a requirement, boundary, limit, or condition that reduces the choices available or rules out options that do not fit. Constraints may involve time, money, access, rules, tools, location, or other resources.",
-    plainLanguage: "Something that limits what you can do or which choices will work.",
-    aqrUse: "We identify constraints early so recommendations are realistic for the actual person and situation.",
-    questionStem: "One constraint affecting this decision is ______ because ______.",
-  },
-  {
-    term: "Cost",
-    fullDefinition: "A cost is anything a choice requires, uses, or gives up. Costs can include money, time, effort, attention, materials, opportunity, stress, or consequences.",
-    plainLanguage: "What you have to spend, use, or give up.",
-    aqrUse: "AQR treats cost broadly so a decision is not judged only by its price tag.",
-    questionStem: "One cost of this option is ______.",
-  },
-  {
-    term: "Criterion",
-    fullDefinition: "A criterion is a standard, feature, or rule used to judge, compare, or score options. The plural is criteria. Good criteria are connected to the actual decision and can be explained clearly.",
-    plainLanguage: "Something you use to judge which option is better.",
-    aqrUse: "In decision work, you identify criteria before choosing a winner so the comparison is visible and fair.",
-    questionStem: "One important criterion for this decision is ______.",
-  },
-  {
-    term: "Data",
-    fullDefinition: "Data are recorded facts, measurements, observations, categories, or responses collected for analysis. Data may be numerical, categorical, self-reported, observed, or produced by a tool.",
-    plainLanguage: "Information that has been collected and recorded.",
-    aqrUse: "We collect and organize real data, then ask what it shows, what it does not show, and whether it is good enough to support a claim.",
-    questionStem: "The data we would need are ______.",
-  },
-  {
-    term: "Decision",
-    fullDefinition: "A decision is a choice among two or more possible actions, options, or responses. A strong decision considers goals, evidence, constraints, trade-offs, risk, and uncertainty before selecting what to do.",
-    plainLanguage: "A choice about what to do.",
-    aqrUse: "Many AQR tasks ask you to compare options and make a supported choice instead of guessing or choosing only by feeling.",
-    questionStem: "The decision I need to make is ______.",
-  },
-  {
-    term: "Evaluate",
-    fullDefinition: "To evaluate means to judge the quality, strength, usefulness, credibility, or reasonableness of something by using clear criteria and evidence.",
-    plainLanguage: "Decide how good or trustworthy something is, and explain why.",
-    aqrUse: "You will evaluate sources, claims, models, data displays, AI output, and recommendations rather than accepting them automatically.",
-    questionStem: "I would evaluate this as strong or weak because ______.",
-  },
-  {
-    term: "Evidence",
-    fullDefinition: "Evidence is relevant information used to support, challenge, or test a claim, explanation, conclusion, or recommendation. Evidence is stronger when it comes from appropriate data, reliable methods, and credible sources.",
-    plainLanguage: "Information that helps show whether a claim is believable.",
-    aqrUse: "AQR requires you to point to the information behind your reasoning instead of relying only on confidence or opinion.",
-    questionStem: "The strongest evidence for this claim is ______.",
-  },
-  {
-    term: "Interpret",
-    fullDefinition: "To interpret means to explain the meaning of information in its context. Interpretation connects numbers, words, graphs, or results to the real situation they represent.",
-    plainLanguage: "Explain what the information means.",
-    aqrUse: "You will interpret data and tool outputs instead of only reporting numbers or copying what a graph says.",
-    questionStem: "I interpret this result to mean ______.",
-  },
-  {
-    term: "Justify",
-    fullDefinition: "To justify means to support a claim, choice, method, or recommendation with relevant evidence and clear reasoning. A justification answers the question, ‘How do you know?’",
-    plainLanguage: "Give reasons and evidence that show why your answer makes sense.",
-    aqrUse: "AQR expects you to explain the why behind your work, especially during oral questions and project defenses.",
-    questionStem: "I can justify my choice by pointing to ______.",
-  },
-  {
-    term: "Limitation",
-    fullDefinition: "A limitation is a boundary, weakness, missing piece, or condition that restricts what data, a method, a model, a source, or a conclusion can show. A limitation is not always a mistake; sometimes it is an unavoidable boundary.",
-    plainLanguage: "Something that keeps the result from telling the whole story.",
-    aqrUse: "Every major AQR product should name what it cannot prove, predict, or handle well.",
-    questionStem: "One limitation of this result is ______.",
-  },
-  {
-    term: "Model",
-    fullDefinition: "A model is a simplified representation of a real situation, relationship, system, or decision. Models may use words, diagrams, tables, graphs, formulas, rules, or digital tools to help explain, compare, predict, or decide.",
-    plainLanguage: "A useful simplified version of something real.",
-    aqrUse: "We build and critique models while remembering that every model includes some features and leaves others out.",
-    questionStem: "This model includes ______ but leaves out ______.",
-  },
-  {
-    term: "Reasoning",
-    fullDefinition: "Reasoning is the logical connection between information and a conclusion. It explains why the evidence matters, how ideas are connected, and why a decision or claim makes sense.",
-    plainLanguage: "The thinking that connects evidence to an answer.",
-    aqrUse: "You will make your reasoning visible in writing, speaking, models, tables, graphs, and tool outputs so another person can follow it.",
-    questionStem: "This evidence supports my conclusion because ______.",
-  },
-  {
-    term: "Recommendation",
-    fullDefinition: "A recommendation is a supported judgment about what a person, group, or organization should choose or do. A responsible recommendation explains its criteria, evidence, assumptions, trade-offs, risks, and limitations.",
-    plainLanguage: "Advice that is backed by reasons and evidence.",
-    aqrUse: "Your recommendation should help a real person make a clearer decision, not claim to be a perfect answer for everyone.",
-    questionStem: "Based on the evidence, I recommend ______ because ______.",
-  },
-  {
-    term: "Revision",
-    fullDefinition: "Revision is a purposeful change made after feedback, testing, new evidence, reflection, or recognition of a problem. Revision improves the quality, accuracy, clarity, or usefulness of work.",
-    plainLanguage: "Changing your work to make it better after learning something.",
-    aqrUse: "Testing and revision are part of the work, not punishment for getting the first version wrong.",
-    questionStem: "I revised ______ because ______.",
-  },
-  {
-    term: "Risk",
-    fullDefinition: "Risk is the possibility that an unwanted event, loss, failure, or harmful outcome may occur. Risk includes both the chance of the outcome and how serious its consequences would be.",
-    plainLanguage: "What could go wrong and how much it could matter.",
-    aqrUse: "We identify risks before making recommendations and consider whether they can be reduced, accepted, or avoided.",
-    questionStem: "One important risk is ______.",
-  },
-  {
-    term: "Trade-off",
-    fullDefinition: "A trade-off occurs when improving or gaining one thing requires accepting less of something else. Trade-offs are common when time, money, attention, or other resources are limited.",
-    plainLanguage: "Getting one thing means giving up or accepting less of another.",
-    aqrUse: "AQR makes trade-offs visible so recommendations do not pretend that a choice gives every benefit with no loss.",
-    questionStem: "The main trade-off is ______ in exchange for ______.",
-  },
-  {
-    term: "Uncertainty",
-    fullDefinition: "Uncertainty is the part of a situation that is unknown, difficult to measure, unpredictable, or likely to change. Uncertainty limits how confident a conclusion or recommendation should be.",
-    plainLanguage: "What we do not know or cannot predict exactly.",
-    aqrUse: "You will use honest confidence language and avoid pretending that incomplete evidence gives a certain answer.",
-    questionStem: "We are uncertain about ______, so ______.",
-  },
-  {
-    term: "Variable",
-    fullDefinition: "A variable is a quantity, category, feature, condition, or input that can take different values. Variables may be measured, changed, compared, or used in a model.",
-    plainLanguage: "Something that can change or have different values.",
-    aqrUse: "You will identify variables in learner profiles, datasets, surveys, decision tools, and claims about relationships.",
-    questionStem: "The variable that may affect the result is ______.",
-  },
-];
-
 export const vocabularySections: VocabularySection[] = [
   {
     key: "core",
     label: "Core AQR Words",
     title: "The words used across the whole course",
-    description: "Shared language for evidence, decisions, models, tradeoffs, uncertainty, revision, and explanation.",
+    description: "Words that should become normal classroom language across the entire year.",
     route: "/vocabulary/core",
     status: "published",
     terms: coreTerms,
@@ -189,37 +40,37 @@ export const vocabularySections: VocabularySection[] = [
     key: "q1",
     label: "Quarter 1",
     title: "Know Yourself",
-    description: "Vocabulary connected to self-data, measurement, scales, learner evidence, claims, visuals, and AI confidence.",
+    description: "Vocabulary for learner profiles, measurement, confidence, habits, comprehension, and personalized learning support.",
     route: "/vocabulary/quarter-1",
-    status: "framework",
-    terms: [],
+    status: "published",
+    terms: q1Terms,
   },
   {
     key: "q2",
     label: "Quarter 2",
     title: "Track Yourself",
-    description: "Vocabulary connected to surveys, samples, bias, data displays, patterns, correlation, causation, and limitations.",
+    description: "Vocabulary for data collection, surveys, samples, graphs, patterns, correlation, causation, and honest conclusions.",
     route: "/vocabulary/quarter-2",
-    status: "framework",
-    terms: [],
+    status: "published",
+    terms: q2Terms,
   },
   {
     key: "q3",
     label: "Quarter 3",
-    title: "Build a Decision Tool",
-    description: "Vocabulary connected to criteria, tradeoffs, risk, cost, uncertainty, assumptions, weighting, and sensitivity.",
+    title: "Build a Decision Tool / App",
+    description: "Vocabulary for choices, criteria, costs, risks, decision rules, testing, and revision.",
     route: "/vocabulary/quarter-3",
-    status: "framework",
-    terms: [],
+    status: "published",
+    terms: q3Terms,
   },
   {
     key: "q4",
     label: "Quarter 4",
-    title: "Don’t Get Played",
-    description: "Vocabulary connected to claims, evidence, misleading displays, source trust, reasonable belief, and critique.",
+    title: "Don't Get Played",
+    description: "Vocabulary for claims, evidence, sources, misleading displays, credibility, and reasonable belief.",
     route: "/vocabulary/quarter-4",
-    status: "framework",
-    terms: [],
+    status: "published",
+    terms: q4Terms,
   },
 ];
 

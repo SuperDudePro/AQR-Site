@@ -52,10 +52,10 @@ export default function StudentGuide() {
       <header className="guide-site-header">
         <div className="guide-topbar guide-wrap">
           <a className="guide-brand" href="/"><span className="guide-brand-mark">AQR</span><span className="guide-brand-name">Applied Quantitative Reasoning</span></a>
-          <nav className="guide-topnav" aria-label="Student guide navigation">
+          <nav className="guide-topnav" aria-label="Student Guide and Expectations navigation">
             <a href="/">Home</a>
             <a href="/course-overview">Course Overview</a>
-            <a href="/student-guide" aria-current="page">Student Guide</a>
+            <a href="/student-guide" aria-current="page">Student Guide and Expectations</a>
             <a href="/classroom-posters">Posters</a>
           </nav>
         </div>
@@ -64,9 +64,9 @@ export default function StudentGuide() {
       <main id="guide-main-content">
         <section className="guide-hero">
           <div className="guide-wrap guide-hero-inner">
-            <p className="guide-kicker">Student Guide</p>
+            <p className="guide-kicker">Student Guide and Expectations</p>
             <h1>How to work, make progress, and get support in AQR.</h1>
-            <p className="guide-hero-lead">One page for the routines and expectations students actually need. The goal is not more rules. The goal is a class that is clear, usable, and hard to get lost in.</p>
+            <p className="guide-hero-lead">One page for the routines, supports, and expectations students actually need. The goal is not more rules. The goal is a class that is clear, usable, and hard to get lost in.</p>
             <nav className="guide-jump-links" aria-label="Jump to a guide section">
               {sections.map((section) => <a key={section.id} href={`#${section.id}`}>{section.number} {section.title}</a>)}
             </nav>
