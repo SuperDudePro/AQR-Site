@@ -115,42 +115,10 @@ function AQR({ onNavigateWhy, onNavigateOverview, onNavigatePosters, onNavigateC
           </a>
 
           <nav className="aqr-topnav" aria-label="Primary" role="navigation">
-            <a
-              href="#/why-aqr"
-              onClick={(event) => {
-                event.preventDefault();
-                navigateWhy();
-              }}
-            >
-              Why AQR
-            </a>
-            <a
-              href="#/course-overview"
-              onClick={(event) => {
-                event.preventDefault();
-                navigateOverview();
-              }}
-            >
-              Course Overview
-            </a>
-            <a
-              href="#/classroom-posters"
-              onClick={(event) => {
-                event.preventDefault();
-                navigatePosters();
-              }}
-            >
-              Posters
-            </a>
-            <a
-              href="#/contact"
-              onClick={(event) => {
-                event.preventDefault();
-                navigateContact();
-              }}
-            >
-              Contact
-            </a>
+            <a href="#/why-aqr" onClick={(event) => { event.preventDefault(); navigateWhy(); }}>Why AQR</a>
+            <a href="#/course-overview" onClick={(event) => { event.preventDefault(); navigateOverview(); }}>Course Overview</a>
+            <a href="#/classroom-posters" onClick={(event) => { event.preventDefault(); navigatePosters(); }}>Posters</a>
+            <a href="#/contact" onClick={(event) => { event.preventDefault(); navigateContact(); }}>Contact</a>
           </nav>
         </div>
       </header>
@@ -164,50 +132,18 @@ function AQR({ onNavigateWhy, onNavigateOverview, onNavigatePosters, onNavigateC
               <span className="aqr-full-name">Applied Quantitative Reasoning</span>
             </h1>
             <h2 className="aqr-lead">Serious math for real decisions.</h2>
-            <p className="aqr-hero-text">
-              A modern fourth-year math option built around real decisions, real data,
-              real tools, and real communication.
-            </p>
+            <p className="aqr-hero-text">A modern fourth-year math option built around real decisions, real data, real tools, and real communication.</p>
             <div className="aqr-hero-actions" role="group" aria-label="Page actions">
-              <a
-                className="aqr-button aqr-button-top"
-                href="#/why-aqr"
-                onClick={(event) => {
-                  event.preventDefault();
-                  navigateWhy();
-                }}
-              >
-                Why AQR
-              </a>
-              <a
-                className="aqr-button aqr-button-top"
-                href="#/course-overview"
-                onClick={(event) => {
-                  event.preventDefault();
-                  navigateOverview();
-                }}
-              >
-                Course Overview
-              </a>
-              <a
-                className="aqr-button aqr-button-top"
-                href="#/classroom-posters"
-                onClick={(event) => {
-                  event.preventDefault();
-                  navigatePosters();
-                }}
-              >
-                Posters
-              </a>
+              <a className="aqr-button aqr-button-top" href="#/why-aqr" onClick={(event) => { event.preventDefault(); navigateWhy(); }}>Why AQR</a>
+              <a className="aqr-button aqr-button-top" href="#/course-overview" onClick={(event) => { event.preventDefault(); navigateOverview(); }}>Course Overview</a>
+              <a className="aqr-button aqr-button-top" href="#/classroom-posters" onClick={(event) => { event.preventDefault(); navigatePosters(); }}>Posters</a>
             </div>
           </div>
         </section>
 
         <section className="aqr-cards-section" aria-labelledby="aqr-preview-title">
           <div className="aqr-wrap">
-            <h2 className="aqr-visually-hidden" id="aqr-preview-title">
-              Page preview links
-            </h2>
+            <h2 className="aqr-visually-hidden" id="aqr-preview-title">Page preview links</h2>
             <ul className="aqr-card-grid" role="list">
               {previewCards.map((card) => (
                 <li key={card.title} className="aqr-card-list-item">
@@ -215,9 +151,7 @@ function AQR({ onNavigateWhy, onNavigateOverview, onNavigatePosters, onNavigateC
                     <p className="aqr-card-eyebrow">{card.eyebrow}</p>
                     <h3 className="aqr-card-title">{card.title}</h3>
                     <p>{card.body}</p>
-                    <a className="aqr-card-link" href={card.href} onClick={card.onClick}>
-                      {card.cta}
-                    </a>
+                    <a className="aqr-card-link" href={card.href} onClick={card.onClick}>{card.cta}</a>
                   </div>
                 </li>
               ))}
@@ -227,24 +161,11 @@ function AQR({ onNavigateWhy, onNavigateOverview, onNavigatePosters, onNavigateC
 
         <section className="aqr-section aqr-section-silver" id="why-preview" aria-labelledby="aqr-why-preview-title">
           <div className="aqr-wrap aqr-split aqr-why-preview-copy">
-            <div>
+            <div className="aqr-overview-preview">
               <p className="aqr-kicker aqr-kicker-bright">Why AQR</p>
               <h2 className="aqr-heading-dark" id="aqr-why-preview-title">A real pathway in modern mathematics.</h2>
-              <p>
-                Applied Quantitative Reasoning belongs to the broader world of
-                quantitative reasoning: data, modeling, evidence, uncertainty,
-                decision-making, and practical application.
-              </p>
-              <a
-                className="aqr-button aqr-button-dark"
-                href="#/why-aqr"
-                onClick={(event) => {
-                  event.preventDefault();
-                  navigateWhy();
-                }}
-              >
-                Open the full Why AQR page
-              </a>
+              <p>Applied Quantitative Reasoning belongs to the broader world of quantitative reasoning: data, modeling, evidence, uncertainty, decision-making, and practical application.</p>
+              <a className="aqr-button aqr-button-dark" href="#/why-aqr" onClick={(event) => { event.preventDefault(); navigateWhy(); }}>Open the full Why AQR page</a>
             </div>
             <div className="aqr-quote-column">
               <div className="aqr-quote-panel aqr-quote-panel-bright">
@@ -256,26 +177,11 @@ function AQR({ onNavigateWhy, onNavigateOverview, onNavigatePosters, onNavigateC
 
         <section className="aqr-banner-section" aria-labelledby="aqr-banner-title">
           <div className="aqr-wrap aqr-banner-wrap">
-            <h2 className="aqr-visually-hidden" id="aqr-banner-title">
-              Course overview visual
-            </h2>
+            <h2 className="aqr-visually-hidden" id="aqr-banner-title">Course overview visual</h2>
             <div className="aqr-banner-card">
               <picture className="aqr-banner-picture">
-                <source
-                  type="image/webp"
-                  srcSet="/AQR_How_It_Works_Banner-1024.webp 1024w, /AQR_How_It_Works_Banner-1600.webp 1600w, /AQR_How_It_Works_Banner.webp 2048w"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 92vw, 1060px"
-                />
-                <img
-                  src="/AQR_How_It_Works_Banner.png"
-                  alt="Illustrated banner showing the AQR course overview"
-                  width={2048}
-                  height={868}
-                  decoding="async"
-                  fetchPriority="high"
-                  loading="eager"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 92vw, 1060px"
-                />
+                <source type="image/webp" srcSet="/AQR_How_It_Works_Banner-1024.webp 1024w, /AQR_How_It_Works_Banner-1600.webp 1600w, /AQR_How_It_Works_Banner.webp 2048w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 92vw, 1060px" />
+                <img src="/AQR_How_It_Works_Banner.png" alt="Illustrated banner showing the AQR course overview" width={2048} height={868} decoding="async" fetchPriority="high" loading="eager" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 92vw, 1060px" />
               </picture>
             </div>
           </div>
@@ -285,19 +191,8 @@ function AQR({ onNavigateWhy, onNavigateOverview, onNavigatePosters, onNavigateC
           <div className="aqr-wrap aqr-overview-preview">
             <p className="aqr-kicker aqr-kicker-bright">Course Overview</p>
             <h2 className="aqr-heading-dark" id="aqr-course-overview-title">See the year structure at a glance.</h2>
-            <p className="aqr-overview-preview-text">
-              The course overview page lays out the course facts, the quarter-by-quarter structure, the mini-themes, and the tool focus.
-            </p>
-            <a
-              className="aqr-button aqr-button-dark"
-              href="#/course-overview"
-              onClick={(event) => {
-                event.preventDefault();
-                navigateOverview();
-              }}
-            >
-              Open Course Overview
-            </a>
+            <p className="aqr-overview-preview-text">The course overview page lays out the course facts, the quarter-by-quarter structure, the mini-themes, and the tool focus.</p>
+            <a className="aqr-button aqr-button-dark" href="#/course-overview" onClick={(event) => { event.preventDefault(); navigateOverview(); }}>Open Course Overview</a>
           </div>
         </section>
 
@@ -305,16 +200,7 @@ function AQR({ onNavigateWhy, onNavigateOverview, onNavigatePosters, onNavigateC
           <div className="aqr-wrap aqr-overview-preview">
             <p className="aqr-kicker">Contact</p>
             <h2 className="aqr-heading-light" id="aqr-contact-title">Questions or comments?</h2>
-            <a
-              className="aqr-button aqr-button-top"
-              href="#/contact"
-              onClick={(event) => {
-                event.preventDefault();
-                navigateContact();
-              }}
-            >
-              Contact AQR
-            </a>
+            <a className="aqr-button aqr-button-top" href="#/contact" onClick={(event) => { event.preventDefault(); navigateContact(); }}>Contact AQR</a>
           </div>
         </section>
       </main>
