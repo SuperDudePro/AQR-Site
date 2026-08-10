@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, follow" />
+    <meta
+      name="description"
+      content="The requested page was not found on the Applied Quantitative Reasoning site."
+    />
+    <title>Page Not Found | Applied Quantitative Reasoning</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #000000;
+        --panel: #151a20;
+        --panel-light: #1f2630;
+        --text: #e8f4ff;
+        --muted: #a9bfd3;
+        --line: rgba(255, 255, 255, 0.12);
+        --neon: #39a8ff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at 50% 0%, rgba(57, 168, 255, 0.18), transparent 34rem),
+          var(--bg);
+        color: var(--text);
+        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .site-header {
+        border-bottom: 1px solid var(--line);
+        background: rgba(0, 0, 0, 0.78);
+      }
+
+      .header-inner,
+      main {
+        width: min(1100px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .header-inner {
+        min-height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .brand {
+        text-decoration: none;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+      }
+
+      .home-link {
+        color: var(--muted);
+        text-decoration: none;
+      }
+
+      .home-link:hover,
+      .home-link:focus-visible {
+        color: var(--text);
+      }
+
+      main {
+        padding: 72px 0 80px;
+      }
+
+      .error-card {
+        padding: clamp(28px, 5vw, 56px);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        background: linear-gradient(145deg, rgba(31, 38, 48, 0.92), rgba(21, 26, 32, 0.9));
+        box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
+      }
+
+      .code {
+        margin: 0;
+        color: var(--neon);
+        font-size: clamp(4rem, 14vw, 9rem);
+        font-weight: 900;
+        line-height: 0.9;
+        letter-spacing: -0.06em;
+        text-shadow: 0 0 22px rgba(57, 168, 255, 0.5);
+      }
+
+      h1 {
+        margin: 22px 0 12px;
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        line-height: 1.05;
+      }
+
+      .intro {
+        max-width: 700px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 1.08rem;
+        line-height: 1.7;
+      }
+
+      .primary-link {
+        display: inline-flex;
+        margin-top: 28px;
+        padding: 13px 20px;
+        border-radius: 999px;
+        background: var(--neon);
+        color: #06111d;
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      .primary-link:hover,
+      .primary-link:focus-visible {
+        filter: brightness(1.12);
+      }
+
+      .link-groups {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 28px;
+      }
+
+      .link-group {
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: rgba(0, 0, 0, 0.28);
+      }
+
+      .link-group h2 {
+        margin: 0 0 14px;
+        font-size: 1rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .link-group ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .link-group li + li {
+        margin-top: 10px;
+      }
+
+      .link-group a {
+        color: var(--muted);
+        text-decoration-thickness: 1px;
+        text-underline-offset: 4px;
+      }
+
+      .link-group a:hover,
+      .link-group a:focus-visible {
+        color: var(--text);
+      }
+
+      @media (max-width: 760px) {
+        .link-groups {
+          grid-template-columns: 1fr;
+        }
+
+        .header-inner {
+          min-height: 62px;
+        }
+
+        main {
+          padding-top: 40px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/">AQR</a>
+        <a class="home-link" href="/">Return home</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="error-card" aria-labelledby="page-title">
+        <p class="code" aria-hidden="true">404</p>
+        <h1 id="page-title">That page is not here.</h1>
+        <p class="intro">
+          The address may be mistyped, outdated, or no longer used. The main AQR pages are all linked below, so this does not have to be a dead end.
+        </p>
+        <a class="primary-link" href="/">Go to the AQR homepage</a>
+
+        <div class="link-groups">
+          <nav class="link-group" aria-labelledby="core-pages-heading">
+            <h2 id="core-pages-heading">Core pages</h2>
+            <ul>
+              <li><a href="/why-aqr">Why AQR</a></li>
+              <li><a href="/course-overview">Course overview</a></li>
+              <li><a href="/classroom-posters">Classroom posters</a></li>
+              <li><a href="/contact">Contact</a></li>
+            </ul>
+          </nav>
+
+          <nav class="link-group" aria-labelledby="quarters-heading">
+            <h2 id="quarters-heading">Course quarters</h2>
+            <ul>
+              <li><a href="/quarter-1">Quarter 1</a></li>
+              <li><a href="/quarter-2">Quarter 2</a></li>
+              <li><a href="/quarter-3">Quarter 3</a></li>
+              <li><a href="/quarter-4">Quarter 4</a></li>
+            </ul>
+          </nav>
+
+          <nav class="link-group" aria-labelledby="poster-groups-heading">
+            <h2 id="poster-groups-heading">Poster collections</h2>
+            <ul>
+              <li><a href="/classroom-posters/all">All posters</a></li>
+              <li><a href="/classroom-posters/aqr-identity">AQR identity</a></li>
+              <li><a href="/classroom-posters/qr-questions">Quantitative reasoning questions</a></li>
+              <li><a href="/classroom-posters/data-anti-bs">Data and anti-BS</a></li>
+              <li><a href="/classroom-posters/decision-model">Decision model</a></li>
+              <li><a href="/classroom-posters/ai-tool-use">AI and tool use</a></li>
+              <li><a href="/classroom-posters/pass-path-work-habits">Pass path and work habits</a></li>
+              <li><a href="/classroom-posters/thinking-moves">Thinking moves</a></li>
+              <li><a href="/classroom-posters/quotation-posters">Quotation posters</a></li>
+            </ul>
+          </nav>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

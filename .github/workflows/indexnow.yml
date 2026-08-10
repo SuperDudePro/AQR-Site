@@ -1,0 +1,29 @@
+name: Submit sitemap to IndexNow
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexnow-production
+  cancel-in-progress: true
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Wait for production and submit URLs
+        run: node scripts/submit-indexnow.mjs
+        env:
+          SITE_URL: https://appliedquantitativereasoning.com
+          INDEXNOW_KEY: 4c7734206acab032a9aadf7c30e43c4b
+          DEPLOY_SHA: ${{ github.sha }}
