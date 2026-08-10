@@ -1,0 +1,286 @@
+import type { MouseEvent } from "react";
+import type { PosterAsset } from "./posterData";
+import { getPosterType, publishedPosterTypes } from "./posterData";
+import { posterPreview } from "./posterPreviews";
+import "./ClassroomPosters.css";
+
+type ClassroomPostersProps = {
+  currentHash?: string;
+  onNavigateHome?: () => void;
+  onNavigateOverview?: () => void;
+};
+
+function getPosterSlugFromHash(currentHash = window.location.hash) {
+  const prefix = "#/classroom-posters/";
+  if (!currentHash.startsWith(prefix)) return null;
+  return currentHash.slice(prefix.length).replace(/\/$/, "") || null;
+}
+
+type PosterWithType = PosterAsset & {
+  typeTitle: string;
+  typeSlug: string;
+};
+
+const allPublishedPosters: PosterWithType[] = publishedPosterTypes.flatMap((type) =>
+  type.posters.map((poster) => ({
+    ...poster,
+    typeTitle: type.title,
+    typeSlug: type.slug,
+  })),
+);
+
+function ClassroomPosters({ currentHash, onNavigateHome, onNavigateOverview }: ClassroomPostersProps) {
+  const activeSlug = getPosterSlugFromHash(currentHash);
+  const isAllPostersPage = activeSlug === "all";
+  const activeType = getPosterType(activeSlug);
+  const activePosterType = activeType && activeType.posters.length > 0 ? activeType : null;
+  const isUnknownPosterRoute = activeSlug !== null && !isAllPostersPage && !activePosterType;
+
+  const goHome = (event?: MouseEvent<HTMLAnchorElement>) => {
+    if (event) event.preventDefault();
+
+    if (onNavigateHome) {
+      onNavigateHome();
+      return;
+    }
+
+    window.location.hash = "#/";
+    window.scrollTo({ top: 0, behavior: "auto" });
+  };
+
+  const goOverview = (event?: MouseEvent<HTMLAnchorElement>) => {
+    if (event) event.preventDefault();
+
+    if (onNavigateOverview) {
+      onNavigateOverview();
+      return;
+    }
+
+    window.location.hash = "#/course-overview";
+    window.scrollTo({ top: 0, behavior: "auto" });
+  };
+
+  return (
+    <div className="poster-site-shell">
+      <a className="poster-skip-link" href="#poster-main-content">
+        Skip to main content
+      </a>
+
+      <header className="poster-site-header poster-hero">
+        <div className="poster-topbar poster-wrap">
+          <a className="poster-brand" href="#/" onClick={goHome}>
+            <span className="poster-brand-mark">AQR</span>
+            <span className="poster-brand-name">Applied Quantitative Reasoning</span>
+          </a>
+
+          <nav className="poster-topnav" aria-label="Classroom Posters navigation">
+            <a href="#/" onClick={goHome}>Home</a>
+            <a href="#/course-overview" onClick={goOverview}>Course Overview</a>
+            <a href="#/classroom-posters" aria-current={!activePosterType && !isAllPostersPage && !isUnknownPosterRoute ? "page" : undefined}>Posters</a>
+            <a href="#/classroom-posters/all" aria-current={isAllPostersPage ? "page" : undefined}>All Posters</a>
+          </nav>
+        </div>
+      </header>
+
+      <main className="poster-page" id="poster-main-content">
+        {!activePosterType && !isAllPostersPage && !isUnknownPosterRoute ? (
+          <>
+            <section className="poster-hero poster-hero-main" aria-labelledby="poster-page-title">
+              <div className="poster-wrap poster-hero-inner">
+                <p className="poster-kicker">Classroom Posters</p>
+                <h1 id="poster-page-title">AQR posters you can view and recreate.</h1>
+                <p className="poster-hero-lead">
+                  These are the finished AQR classroom poster designs, shown here as references.
+                  Each type starts with a sample; open the type page to see the rest, then recreate the ones you want in your own tools.
+                </p>
+              </div>
+            </section>
+
+            <section className="poster-section poster-section-silver" aria-labelledby="poster-types-title">
+              <div className="poster-wrap">
+                <div className="poster-section-head poster-section-head-dark">
+                  <p className="poster-section-kicker">Available poster types</p>
+                  <h2 id="poster-types-title">Finished sets appear here.</h2>
+                  <p>
+                    Each card shows one poster from that type. Types stay hidden until at least one design is finished.
+                  </p>
+                </div>
+
+                {publishedPosterTypes.length > 0 ? (
+                  <>
+                    <a className="poster-all-card" href="#/classroom-posters/all">
+                      <div>
+                        <p className="poster-card-kicker">All Posters</p>
+                        <h3>See every finished poster in one place.</h3>
+                        <p>
+                          Browse the full collection without choosing a category first.
+                        </p>
+                      </div>
+                      <span className="poster-count">
+                        {allPublishedPosters.length} poster design{allPublishedPosters.length === 1 ? "" : "s"}
+                      </span>
+                    </a>
+
+                    <ul className="poster-type-grid" role="list">
+                      {publishedPosterTypes.map((type) => {
+                        const samplePoster = type.posters[0];
+
+                        return (
+                          <li className="poster-type-list-item" key={type.slug}>
+                            <a className="poster-type-card" href={`#/classroom-posters/${type.slug}`}>
+                              <div className="poster-type-preview">
+                                <img
+                                  src={posterPreview(samplePoster.png)}
+                                  alt={`Sample ${type.title} design: ${samplePoster.title}`}
+                                  loading="lazy"
+                                  width={1200}
+                                  height={1800}
+                                />
+                              </div>
+                              <div className="poster-type-copy">
+                                <p className="poster-card-kicker">{type.eyebrow}</p>
+                                <h3>{type.title}</h3>
+                                <p>{type.summary}</p>
+                                <span className="poster-count">
+                                  {type.posters.length} poster design{type.posters.length === 1 ? "" : "s"}
+                                </span>
+                                <span className="poster-card-link">Open poster type</span>
+                              </div>
+                            </a>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </>
+                ) : (
+                  <div className="poster-empty-panel">
+                    <p className="poster-panel-label">No files published yet</p>
+                    <p>Add at least one poster PNG/PDF pair in <code>posterData.ts</code> to make a poster type appear.</p>
+                  </div>
+                )}
+              </div>
+            </section>
+          </>
+        ) : isAllPostersPage ? (
+          <>
+            <section className="poster-hero poster-hero-main" aria-labelledby="poster-all-title">
+              <div className="poster-wrap poster-hero-inner">
+                <p className="poster-kicker">All Posters</p>
+                <h1 id="poster-all-title">Every finished AQR poster.</h1>
+                <p className="poster-hero-lead">
+                  Browse the full collection in one grid. Each card still shows its poster type so the collection does not become a junk drawer.
+                </p>
+              </div>
+            </section>
+
+            <section className="poster-section poster-section-silver" aria-labelledby="poster-all-files-title">
+              <div className="poster-wrap">
+                <div className="poster-section-head poster-section-head-dark">
+                  <p className="poster-section-kicker">Full collection</p>
+                  <h2 id="poster-all-files-title">See every poster design.</h2>
+                  <p>
+                    These are reference images of the finished 24x36 posters. Recreate the ones you want in whatever design tool you use.
+                  </p>
+                </div>
+
+                <div className="poster-file-grid">
+                  {allPublishedPosters.map((poster) => (
+                    <article className="poster-file-card" key={`${poster.typeSlug}-${poster.title}-${poster.png}`}>
+                      <a className="poster-image-link" href={posterPreview(poster.png)}>
+                        <img src={posterPreview(poster.png)} alt={poster.alt} loading="lazy" width={1200} height={1800} />
+                      </a>
+                      <div className="poster-file-copy">
+                        <p className="poster-card-kicker poster-type-label">{poster.typeTitle}</p>
+                        <h3>{poster.title}</h3>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+
+                <nav className="poster-back-link" aria-label="Poster page navigation">
+                  <a href="#/classroom-posters">Back to poster types</a>
+                </nav>
+              </div>
+            </section>
+          </>
+        ) : activePosterType ? (
+          <>
+            <section className="poster-hero poster-hero-main" aria-labelledby="poster-detail-title">
+              <div className="poster-wrap poster-hero-inner">
+                <p className="poster-kicker">{activePosterType.eyebrow}</p>
+                <h1 id="poster-detail-title">{activePosterType.title}</h1>
+                <p className="poster-hero-lead">{activePosterType.summary}</p>
+                <p className="poster-hero-note">{activePosterType.audienceUse}</p>
+              </div>
+            </section>
+
+            <section className="poster-section poster-section-silver" aria-labelledby="poster-files-title">
+              <div className="poster-wrap">
+                <div className="poster-section-head poster-section-head-dark">
+                  <p className="poster-section-kicker">The designs</p>
+                  <h2 id="poster-files-title">The finished poster designs.</h2>
+                  <p>
+                    These are reference images of the finished 24x36 posters. Recreate the ones you want in whatever design tool you use.
+                  </p>
+                </div>
+
+                <div className="poster-file-grid">
+                  {activePosterType.posters.map((poster) => (
+                    <article className="poster-file-card" key={`${poster.title}-${poster.png}`}>
+                      <a className="poster-image-link" href={posterPreview(poster.png)}>
+                        <img src={posterPreview(poster.png)} alt={poster.alt} loading="lazy" width={1200} height={1800} />
+                      </a>
+                      <div className="poster-file-copy">
+                        <h3>{poster.title}</h3>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+
+                <nav className="poster-back-link" aria-label="Poster page navigation">
+                  <a href="#/classroom-posters">Back to all poster types</a>
+                  <a href="#/classroom-posters/all">See all posters</a>
+                </nav>
+              </div>
+            </section>
+          </>
+        ) : (
+          <>
+            <section className="poster-hero poster-hero-main" aria-labelledby="poster-not-found-title">
+              <div className="poster-wrap poster-hero-inner">
+                <p className="poster-kicker">Classroom Posters</p>
+                <h1 id="poster-not-found-title">Poster type not found.</h1>
+                <p className="poster-hero-lead">
+                  That poster link does not match a published poster type. Use the poster index to find the current files.
+                </p>
+              </div>
+            </section>
+
+            <section className="poster-section poster-section-silver" aria-labelledby="poster-not-found-actions-title">
+              <div className="poster-wrap">
+                <div className="poster-empty-panel">
+                  <p className="poster-panel-label" id="poster-not-found-actions-title">Available routes</p>
+                  <p>Open the poster index or the all-posters view.</p>
+                  <nav className="poster-back-link" aria-label="Poster page navigation">
+                    <a href="#/classroom-posters">Back to poster types</a>
+                    <a href="#/classroom-posters/all">See all posters</a>
+                  </nav>
+                </div>
+              </div>
+            </section>
+          </>
+        )}
+      </main>
+
+      <footer className="poster-footer">
+        <div className="poster-wrap poster-footer-inner">
+          <p>
+            © 2026 Applied Quantitative Reasoning • <span className="site-footer-school">Vista PEAK Prep</span>
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+export default ClassroomPosters;
