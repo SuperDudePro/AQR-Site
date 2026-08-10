@@ -15,6 +15,7 @@ type PageMeta = { title: string; description: string };
 const GA_TRACKING_ID = "G-L6Y4XCS8L7";
 export const SITE_ORIGIN = "https://appliedquantitativereasoning.com";
 const TRACKED_HOSTS = new Set(["appliedquantitativereasoning.com", "www.appliedquantitativereasoning.com"]);
+// eslint-disable-next-line react-refresh/only-export-components
 export const PAGE_META: Record<Page, PageMeta> = {
   home: { title: "Applied Quantitative Reasoning | Vista PEAK Prep", description: "Applied Quantitative Reasoning at Vista PEAK Prep: serious math for real decisions, real data, real tools, and real communication." },
   why: { title: "Why AQR | Applied Quantitative Reasoning", description: "Why Applied Quantitative Reasoning is a serious modern math pathway built around data, evidence, uncertainty, modeling, and practical decisions." },
@@ -38,6 +39,7 @@ let analyticsInitialized = false;
 declare global { interface Window { dataLayer?: unknown[]; gtag?: (...args: unknown[]) => void } }
 function normalizePath(pathname: string) { const path = pathname.replace(/\/{2,}/g, "/").replace(/\/$/, ""); return path || "/"; }
 function legacyHashToPath(hash: string) { return hash.startsWith("#/") ? normalizePath(hash.slice(1)) : null; }
+// eslint-disable-next-line react-refresh/only-export-components
 export function getPage(pathname: string): Page {
   const path = normalizePath(pathname);
   if (path === "/why-aqr") return "why";
@@ -121,6 +123,7 @@ function App() {
 
 // Pure route -> element mapping. Shared by the client (App) and the build-time
 // prerender so both always agree on which component renders for a given path.
+// eslint-disable-next-line react-refresh/only-export-components
 export function pageElement(route: RouteState) {
   if (route.page === "why") return <WhyAQR />;
   if (route.page === "overview") return <CourseOverview />;
