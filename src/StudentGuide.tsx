@@ -11,7 +11,7 @@ const sections = [
       "Bring the materials and charged device needed for the day.",
       "Start the entry task, discussion prompt, or checkpoint as directed.",
       "Use the posted locations for supplies, supports, examples, and submission links.",
-      "Follow the official Vista PEAK phone and tardy expectations used across the school.",
+      "Follow school policy for phones and tardies.",
       "Close class by saving work, submitting visible evidence, and completing the exit routine.",
     ],
   },
@@ -24,6 +24,7 @@ const sections = [
       "Complete the small checkpoints that keep the project moving.",
       "Submit partial but real work instead of disappearing when the full task is not finished.",
       "Use screenshots, drafts, tables, notes, prototypes, and short explanations as proof of progress.",
+      "Use the Weekly Catcher to show honest evidence of your work and progress.",
       "Revise after feedback, testing, or a conference.",
       "Use Gemini and other tools for help, not as a replacement for your decisions or explanations.",
       "Keep responsibility for the sources, numbers, claims, and final work you submit.",
@@ -99,8 +100,7 @@ export default function StudentGuide() {
         <section className="guide-policy-note" aria-labelledby="guide-policy-title">
           <div className="guide-wrap guide-policy-card">
             <p className="guide-kicker">Schoolwide consistency</p>
-            <h2 id="guide-policy-title">Phone and tardy expectations follow the official Vista PEAK materials.</h2>
-            <p>AQR will use the school-created policy language and visuals rather than inventing a separate classroom version. Those official materials will be posted in the room and embedded here when the final source files are available.</p>
+            <h2 id="guide-policy-title">AQR follows school policy for phones and tardies.</h2>
           </div>
         </section>
       </main>
