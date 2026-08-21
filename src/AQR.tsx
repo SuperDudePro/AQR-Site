@@ -126,7 +126,7 @@ function AQR({ onNavigateWhy, onNavigateOverview, onNavigatePosters, onNavigateC
       <main className="aqr-page" id="main-content">
         <section className="aqr-hero aqr-hero-main" id="top" aria-labelledby="aqr-home-title">
           <div className="aqr-wrap aqr-hero-inner">
-            <p className="aqr-eyebrow">Vista PEAK Prep • Launching Fall 2026</p>
+            <p className="aqr-eyebrow">Vista PEAK Prep • 2026–27</p>
             <h1 className="aqr-mark" id="aqr-home-title">
               <span className="aqr-mark-text">AQR</span>
               <span className="aqr-full-name">Applied Quantitative Reasoning</span>
