@@ -4,7 +4,7 @@ import { publishedPosterTypes } from "./posterData";
 const coreResources = [
   { title: "Why AQR", kind: "Course page", href: "/why-aqr", summary: "The purpose, legitimacy, and modern-math case for Applied Quantitative Reasoning." },
   { title: "Course Overview", kind: "Course page", href: "/course-overview", summary: "The year structure, major projects, focus windows, tools, and expectations." },
-  { title: "2026–27 Course Syllabus", kind: "Course information", href: "https://appliedquantitativereasoning.com/syllabus.html", summary: "Student-facing AQR syllabus with grading, Weekly Proof, technology, attendance, tardy, cell phone, revision, materials, and course expectations." },
+  { title: "2026–27 Course Syllabus", kind: "Course information", href: "https://appliedquantitativereasoning.com/syllabus.html", summary: "Student-facing AQR syllabus with grading, Weekly Catchers, technology, attendance, tardy, cell phone, revision, materials, and course expectations." },
   { title: "Student Guide", kind: "Student resource", href: "/student-guide", summary: "Classroom routines, progress expectations, responsible tool use, discussion norms, language support, and getting help." },
   { title: "AQR Vocabulary", kind: "Student resource", href: "/vocabulary", summary: "Core AQR language and Quarter 1 through Quarter 4 vocabulary sections using one consistent entry format." },
   { title: "Quarter 1 — Know Yourself", kind: "Quarter", href: "/quarter-1", summary: "Learner profile, personalized support, measurement, misleading claims, and revision." },
