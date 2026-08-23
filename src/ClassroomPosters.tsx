@@ -186,9 +186,9 @@ function ClassroomPosters({ currentHash, onNavigateHome, onNavigateOverview }: C
                 <div className="poster-file-grid">
                   {allPublishedPosters.map((poster) => (
                     <article className="poster-file-card" key={`${poster.typeSlug}-${poster.title}-${poster.png}`}>
-                      <a className="poster-image-link" href={posterPreview(poster.png)}>
+                      <div className="poster-image-frame">
                         <img src={posterPreview(poster.png)} alt={poster.alt} loading="lazy" width={1200} height={1800} />
-                      </a>
+                      </div>
                       <div className="poster-file-copy">
                         <p className="poster-card-kicker poster-type-label">{poster.typeTitle}</p>
                         <h3>{poster.title}</h3>
@@ -227,9 +227,9 @@ function ClassroomPosters({ currentHash, onNavigateHome, onNavigateOverview }: C
                 <div className="poster-file-grid">
                   {activePosterType.posters.map((poster) => (
                     <article className="poster-file-card" key={`${poster.title}-${poster.png}`}>
-                      <a className="poster-image-link" href={posterPreview(poster.png)}>
+                      <div className="poster-image-frame">
                         <img src={posterPreview(poster.png)} alt={poster.alt} loading="lazy" width={1200} height={1800} />
-                      </a>
+                      </div>
                       <div className="poster-file-copy">
                         <h3>{poster.title}</h3>
                       </div>

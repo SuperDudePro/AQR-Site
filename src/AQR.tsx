@@ -91,7 +91,7 @@ function AQR({ onNavigateWhy, onNavigateOverview, onNavigatePosters, onNavigateC
       title: "Classroom Posters",
       eyebrow: "AQR wall materials",
       body:
-        "Printable poster files for classroom thinking moves, data skepticism, decision-making, AI use, and the visible pass path.",
+        "Poster designs for classroom thinking moves, data skepticism, decision-making, AI use, and the visible pass path.",
       href: "#/classroom-posters",
       cta: "Open Posters",
       onClick: (event) => {
@@ -126,7 +126,7 @@ function AQR({ onNavigateWhy, onNavigateOverview, onNavigatePosters, onNavigateC
       <main className="aqr-page" id="main-content">
         <section className="aqr-hero aqr-hero-main" id="top" aria-labelledby="aqr-home-title">
           <div className="aqr-wrap aqr-hero-inner">
-            <p className="aqr-eyebrow">Vista PEAK Prep • Launching Fall 2026</p>
+            <p className="aqr-eyebrow">Vista PEAK Prep • 2026–27</p>
             <h1 className="aqr-mark" id="aqr-home-title">
               <span className="aqr-mark-text">AQR</span>
               <span className="aqr-full-name">Applied Quantitative Reasoning</span>

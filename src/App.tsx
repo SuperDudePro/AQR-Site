@@ -31,8 +31,8 @@ export const PAGE_META: Record<Page, PageMeta> = {
   q2: { title: "Quarter 2: Track Yourself | Applied Quantitative Reasoning", description: "Collect and analyze real data while examining survey quality, sampling, bias, correlation, causation, and honest limitations." },
   q3: { title: "Quarter 3: Build a Decision Tool | Applied Quantitative Reasoning", description: "Build and test a decision tool using options, criteria, tradeoffs, risk, cost, uncertainty, assumptions, weighting, and sensitivity." },
   q4: { title: "Quarter 4: Don’t Get Played | Applied Quantitative Reasoning", description: "Practical skepticism about claims, graphs, statistics, samples, sources, AI output, and misleading evidence." },
-  posters: { title: "Classroom Posters | Applied Quantitative Reasoning", description: "Printable AQR classroom posters for quantitative reasoning, data skepticism, decision-making, AI use, work habits, and thinking moves." },
-  resources: { title: "Resource Finder | Applied Quantitative Reasoning", description: "Search AQR course pages, quarter plans, vocabulary, poster categories, and finished printable posters." },
+  posters: { title: "Classroom Posters | Applied Quantitative Reasoning", description: "AQR classroom poster designs for quantitative reasoning, data skepticism, decision-making, AI use, work habits, and thinking moves." },
+  resources: { title: "Resource Finder | Applied Quantitative Reasoning", description: "Search AQR course pages, quarter plans, vocabulary, poster categories, and finished poster designs." },
   contact: { title: "Contact | Applied Quantitative Reasoning", description: "Contact Applied Quantitative Reasoning at Vista PEAK Prep with questions or comments about the course and public resources." },
 };
 let analyticsInitialized = false;

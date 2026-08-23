@@ -114,8 +114,7 @@
 
 .poster-topnav a:focus-visible,
 .poster-brand:focus-visible,
-.poster-type-card:focus-visible,
-.poster-image-link:focus-visible {
+.poster-type-card:focus-visible {
   outline: 3px solid rgba(255, 255, 255, 0.85);
   outline-offset: 3px;
 }
@@ -316,7 +315,7 @@
   overflow: hidden;
 }
 
-.poster-image-link {
+.poster-image-frame {
   display: block;
   overflow: hidden;
   border-radius: 20px;
@@ -324,7 +323,7 @@
   border: 1px solid rgba(0, 85, 138, 0.18);
 }
 
-.poster-image-link img {
+.poster-image-frame img {
   display: block;
   width: 100%;
   height: auto;
