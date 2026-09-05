@@ -37,19 +37,20 @@ const quarterDetails: Record<QuarterPageKey, QuarterDetailRecord> = {
     title: "Quarter 1 — Know Yourself",
     navLabel: "Quarter 1",
     dates: "Aug 6 to Oct 8, 2026",
-    focus: "Portable learner profile and personalized learning agent",
+    focus: "Portable learner profile, Before/After baseline, and personalized learning agent",
     purpose:
-      "Quarter 1 establishes the course culture, tool norms, pass-path expectations, and first major AQR build. Students gather evidence about how they learn, what helps, what creates friction, and what kind of support they need.",
+      "Quarter 1 establishes the course culture, tool norms, pass-path expectations, and first major AQR build. Students gather evidence about how they learn, preserve an ordinary-Gemini Before Project baseline, and use what they learn to build more useful personalized support.",
     fit:
-      "The learner profile is the source material for the tool. Students use it to create a personalized learning agent, Gemini workflow, Gem, NotebookLM workflow if approved, or structured fallback support system. The goal is useful customization, not a generic chatbot.",
+      "The learner profile is the source material for the tool. Students use it to create a personalized learning agent, Gemini Gem, NotebookLM or another source-grounded workflow where useful, or a structured fallback support system. They then test what changes from the Before Project baseline. The goal is useful customization, not a generic chatbot.",
     plainLanguage:
-      "Students figure out what kind of help actually works for them, build that knowledge into a reusable profile, and use it to create a support tool they can test and improve.",
+      "Students figure out what kind of help actually works for them, capture what ordinary AI does before personalization, build a reusable profile and support tool, and test whether the personalized version actually works better.",
     studentWork: [
       "a simple pass-path spreadsheet model",
+      "an ordinary-Gemini Before Project baseline saved for later comparison",
       "a portable learner profile built from surveys, inventories, reflections, and self-data",
       "personalized learning-agent instructions tied to profile evidence",
       "a working support tool or structured fallback workflow",
-      "one real test, one revision, and a short explanation of what changed",
+      "an After Project comparison, one real test, one revision, and a short explanation of what changed",
     ],
     mathFocus: [
       "modeling the pass path and testing scenarios in a simple spreadsheet",
@@ -73,7 +74,7 @@ const quarterDetails: Record<QuarterPageKey, QuarterDetailRecord> = {
       },
     ],
     closing:
-      "By the end of Q1, students should have a portable learner profile, a useful personalized support workflow, real proof-of-progress habits, and evidence that testing changed the tool.",
+      "By the end of Q1, students should have a portable learner profile, a useful personalized support workflow, real proof-of-progress habits, and Before/After evidence showing what personalization and testing changed.",
     href: "#/quarter-1",
   },
   q2: {
