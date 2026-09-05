@@ -33,6 +33,48 @@ function getProviderErrorMessage(errorText) {
   return errorText || "The email provider rejected the message.";
 }
 
+// Verifies a Cloudflare Turnstile token when TURNSTILE_SECRET is configured.
+// Returns { ok: true } to allow, or { ok: false, error } to reject.
+// If TURNSTILE_SECRET is not set, verification is skipped (backward compatible).
+async function verifyTurnstile(body, request) {
+  const secret = process.env.TURNSTILE_SECRET;
+  if (!secret) return { ok: true };
+
+  const token = getString(body, "cf-turnstile-response");
+  if (!token) {
+    return { ok: false, error: "Please complete the verification challenge and try again." };
+  }
+
+  const remoteip =
+    (request.headers && (request.headers["cf-connecting-ip"] || request.headers["x-forwarded-for"])) ||
+    "";
+
+  try {
+    const params = new URLSearchParams({ secret, response: token });
+    if (remoteip) params.set("remoteip", String(remoteip).split(",")[0].trim());
+
+    const verifyResponse = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: params,
+      }
+    );
+
+    const data = await verifyResponse.json().catch(() => ({ success: false }));
+    if (!data || data.success !== true) {
+      console.warn("Turnstile verification failed:", data && data["error-codes"]);
+      return { ok: false, error: "Verification failed. Please try again." };
+    }
+  } catch (error) {
+    console.error("Turnstile verification error:", error);
+    return { ok: false, error: "Verification is temporarily unavailable. Please try again shortly." };
+  }
+
+  return { ok: true };
+}
+
 export default async function handler(request, response) {
   response.setHeader("Content-Type", "application/json; charset=utf-8");
 
@@ -62,6 +104,11 @@ export default async function handler(request, response) {
 
   if (message.length > 4000) {
     return json(response, 400, { ok: false, error: "Message is too long." });
+  }
+
+  const turnstile = await verifyTurnstile(body, request);
+  if (!turnstile.ok) {
+    return json(response, 400, { ok: false, error: turnstile.error });
   }
 
   const {
