@@ -5,7 +5,11 @@ type FormState = "idle" | "sending" | "sent" | "error";
 
 // Set VITE_TURNSTILE_SITE_KEY in the environment to turn on the bot check.
 // When it is unset, the widget is not rendered and the form behaves exactly as before.
-const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined;
+// Guarded access: import.meta.env exists in the Vite browser build, but NOT when the
+// prerender step evaluates this module in plain Node — so read it defensively.
+const TURNSTILE_SITE_KEY = (import.meta.env?.VITE_TURNSTILE_SITE_KEY ?? undefined) as
+  | string
+  | undefined;
 const TURNSTILE_SCRIPT_SRC =
   "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
 
