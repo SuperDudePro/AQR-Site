@@ -1,11 +1,83 @@
-import { type FormEvent, useState } from "react";
+import { type FormEvent, useEffect, useRef, useState } from "react";
 import "./ContactPage.css";
 
 type FormState = "idle" | "sending" | "sent" | "error";
 
+// Set VITE_TURNSTILE_SITE_KEY in the environment to turn on the bot check.
+// When it is unset, the widget is not rendered and the form behaves exactly as before.
+const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined;
+const TURNSTILE_SCRIPT_SRC =
+  "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (
+        el: HTMLElement,
+        options: { sitekey: string; theme?: "light" | "dark" | "auto" }
+      ) => string;
+      reset: (widgetId?: string) => void;
+    };
+  }
+}
+
 function ContactPage() {
   const [formState, setFormState] = useState<FormState>("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const turnstileRef = useRef<HTMLDivElement>(null);
+  const widgetIdRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (!TURNSTILE_SITE_KEY) return;
+
+    let cancelled = false;
+    let pollId = 0;
+
+    function renderWidget() {
+      if (cancelled || widgetIdRef.current !== null) return;
+      if (!turnstileRef.current || !window.turnstile) return;
+      widgetIdRef.current = window.turnstile.render(turnstileRef.current, {
+        sitekey: TURNSTILE_SITE_KEY as string,
+        theme: "auto",
+      });
+    }
+
+    if (window.turnstile) {
+      renderWidget();
+      return () => {
+        cancelled = true;
+      };
+    }
+
+    const existing = document.querySelector<HTMLScriptElement>(
+      `script[src="${TURNSTILE_SCRIPT_SRC}"]`
+    );
+    if (!existing) {
+      const script = document.createElement("script");
+      script.src = TURNSTILE_SCRIPT_SRC;
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    }
+
+    pollId = window.setInterval(() => {
+      if (window.turnstile) {
+        window.clearInterval(pollId);
+        renderWidget();
+      }
+    }, 200);
+
+    return () => {
+      cancelled = true;
+      if (pollId) window.clearInterval(pollId);
+    };
+  }, []);
+
+  function resetTurnstile() {
+    if (widgetIdRef.current !== null && window.turnstile) {
+      window.turnstile.reset(widgetIdRef.current);
+    }
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -32,8 +104,10 @@ function ContactPage() {
       }
 
       form.reset();
+      resetTurnstile();
       setFormState("sent");
     } catch (error) {
+      resetTurnstile();
       setFormState("error");
       setErrorMessage(error instanceof Error ? error.message : "The message did not send.");
     }
@@ -97,6 +171,12 @@ function ContactPage() {
                 <label htmlFor="message">Message</label>
                 <textarea id="message" name="message" required maxLength={4000} rows={8} />
               </div>
+
+              {TURNSTILE_SITE_KEY && (
+                <div className="contact-field">
+                  <div ref={turnstileRef} className="cf-turnstile" />
+                </div>
+              )}
 
               <button className="contact-button" type="submit" disabled={isSending}>
                 {isSending ? "Sending..." : "Send note"}
