@@ -18,7 +18,7 @@ const TRACKED_HOSTS = new Set(["appliedquantitativereasoning.com", "www.appliedq
 // eslint-disable-next-line react-refresh/only-export-components
 export const PAGE_META: Record<Page, PageMeta> = {
   home: { title: "Applied Quantitative Reasoning | Vista PEAK Prep", description: "Applied Quantitative Reasoning at Vista PEAK Prep: serious math for real decisions, real data, real tools, and real communication." },
-  why: { title: "Why AQR | Applied Quantitative Reasoning", description: "Why Applied Quantitative Reasoning is a serious modern math pathway built around data, evidence, uncertainty, modeling, and practical decisions." },
+  why: { title: "Why AQR | Applied Quantitative Reasoning", description: "Why Applied Quantitative Reasoning is a serious modern math pathway built around data, evidence, practical decisions, and responsible AI use that requires real student thinking." },
   overview: { title: "Course Overview | Applied Quantitative Reasoning", description: "A clear overview of the AQR year arc, quarter project families, sequential quantitative-reasoning focus windows, tools, checkpoints, and course pathways." },
   guide: { title: "Student Guide | Applied Quantitative Reasoning", description: "A practical guide to AQR classroom routines, progress expectations, responsible tool use, discussion, language support, and getting help." },
   vocabulary: { title: "Vocabulary | Applied Quantitative Reasoning", description: "The AQR vocabulary hub, organized into core course language and Quarter 1 through Quarter 4 sections." },
