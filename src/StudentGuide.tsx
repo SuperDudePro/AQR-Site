@@ -31,8 +31,21 @@ const sections = [
     ],
   },
   {
-    id: "support",
+    id: "ai",
     number: "03",
+    title: "Use AI to learn — not to avoid thinking",
+    lead: "AI is allowed in AQR because learning how to use powerful tools responsibly is part of the course. The student must still understand, check, explain, and defend the work.",
+    items: [
+      "Use AI to get another explanation, organize information, brainstorm approaches, recall a method, test an idea, revise, or get unstuck.",
+      "Do not submit AI-produced work that you cannot explain, check, defend, or use again.",
+      "Stay responsible for every source, number, claim, assumption, choice, and conclusion in the work you submit.",
+      "Be ready to explain why you chose an approach, where a number came from, what changed, and what the result means.",
+      "Helping you gain understanding is allowed. Doing the thinking for you is failing.",
+    ],
+  },
+  {
+    id: "support",
+    number: "04",
     title: "Think, talk, and get support",
     lead: "Students are expected to contribute ideas, listen closely, ask questions, and use the supports that make rigorous work accessible.",
     items: [
