@@ -164,9 +164,9 @@ function WhyAQR() {
           </div>
         </section>
 
-        <section className="why-section why-section-silver" aria-labelledby="why-colorado-title">
+        <section className="why-section why-section-black" aria-labelledby="why-colorado-title">
           <div className="why-wrap why-grid">
-            <div className="why-text-dark">
+            <div>
               <p className="why-section-kicker">Colorado standards</p>
               <h2 id="why-colorado-title">Colorado has adopted this kind of math too.</h2>
               <p>
