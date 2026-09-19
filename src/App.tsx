@@ -8,8 +8,9 @@ import ResourceLibrary from "./ResourceLibrary";
 import StudentGuide from "./StudentGuide";
 import VocabularyPage from "./VocabularyPage";
 import WhyAQR from "./WhyAQR";
+import WhyAI from "./WhyAI";
 
-type Page = "home" | "why" | "overview" | "guide" | "vocabulary" | "vocabCore" | "vocabQ1" | "vocabQ2" | "vocabQ3" | "vocabQ4" | "q1" | "q2" | "q3" | "q4" | "posters" | "resources" | "contact";
+type Page = "home" | "why" | "ai" | "overview" | "guide" | "vocabulary" | "vocabCore" | "vocabQ1" | "vocabQ2" | "vocabQ3" | "vocabQ4" | "q1" | "q2" | "q3" | "q4" | "posters" | "resources" | "contact";
 export type RouteState = { page: Page; path: string };
 type PageMeta = { title: string; description: string };
 const GA_TRACKING_ID = "G-L6Y4XCS8L7";
@@ -19,6 +20,7 @@ const TRACKED_HOSTS = new Set(["appliedquantitativereasoning.com", "www.appliedq
 export const PAGE_META: Record<Page, PageMeta> = {
   home: { title: "Applied Quantitative Reasoning | Vista PEAK Prep", description: "Applied Quantitative Reasoning at Vista PEAK Prep: serious math for real decisions, real data, real tools, and real communication." },
   why: { title: "Why AQR | Applied Quantitative Reasoning", description: "Why Applied Quantitative Reasoning is a serious modern math pathway built around data, evidence, practical decisions, and responsible AI use that requires real student thinking." },
+  ai: { title: "Why AI? | Applied Quantitative Reasoning", description: "AQR's position on AI: students should never surrender their thinking, but they should learn how to question, test, and use powerful AI tools to become more capable." },
   overview: { title: "Course Overview | Applied Quantitative Reasoning", description: "A clear overview of the AQR year arc, quarter project families, sequential quantitative-reasoning focus windows, tools, checkpoints, and course pathways." },
   guide: { title: "Student Guide | Applied Quantitative Reasoning", description: "A practical guide to AQR classroom routines, progress expectations, responsible tool use, discussion, language support, and getting help." },
   vocabulary: { title: "Vocabulary | Applied Quantitative Reasoning", description: "The AQR vocabulary hub, organized into core course language and Quarter 1 through Quarter 4 sections." },
@@ -43,6 +45,7 @@ function legacyHashToPath(hash: string) { return hash.startsWith("#/") ? normali
 export function getPage(pathname: string): Page {
   const path = normalizePath(pathname);
   if (path === "/why-aqr") return "why";
+  if (path === "/why-ai") return "ai";
   if (path === "/course-overview") return "overview";
   if (path === "/student-guide") return "guide";
   if (path === "/vocabulary") return "vocabulary";
@@ -126,6 +129,7 @@ function App() {
 // eslint-disable-next-line react-refresh/only-export-components
 export function pageElement(route: RouteState) {
   if (route.page === "why") return <WhyAQR />;
+  if (route.page === "ai") return <WhyAI />;
   if (route.page === "overview") return <CourseOverview />;
   if (route.page === "guide") return <StudentGuide />;
   if (route.page === "vocabulary") return <VocabularyPage />;
