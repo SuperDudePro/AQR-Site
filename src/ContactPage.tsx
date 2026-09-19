@@ -135,6 +135,7 @@ function ContactPage() {
           <nav className="contact-topnav" aria-label="Contact navigation">
             <a href="#/">Home</a>
             <a href="#/why-aqr">Why AQR</a>
+            <a href="/why-ai">Why AI?</a>
             <a href="#/course-overview">Course Overview</a>
             <a href="#/classroom-posters">Posters</a>
             <a href="#/contact" aria-current="page">Contact</a>

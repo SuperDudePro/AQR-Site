@@ -74,7 +74,7 @@ function ClassroomPosters({ currentHash, onNavigateHome, onNavigateOverview }: C
           </a>
 
           <nav className="poster-topnav" aria-label="Classroom Posters navigation">
-            <a href="#/" onClick={goHome}>Home</a>
+            <a href="#/" onClick={goHome}>Home</a><a href="/why-ai">Why AI?</a>
             <a href="#/course-overview" onClick={goOverview}>Course Overview</a>
             <a href="#/classroom-posters" aria-current={!activePosterType && !isAllPostersPage && !isUnknownPosterRoute ? "page" : undefined}>Posters</a>
             <a href="#/classroom-posters/all" aria-current={isAllPostersPage ? "page" : undefined}>All Posters</a>

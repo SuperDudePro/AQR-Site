@@ -69,6 +69,7 @@ function WhyAQR() {
           <nav className="why-topnav" aria-label="Why AQR navigation">
             <a href="#/">Home</a>
             <a href="#/course-overview">Course Overview</a>
+            <a href="/why-ai">Why AI?</a>
             <a href="#/classroom-posters">Posters</a>
             <a href="#/contact">Contact</a>
             <a href="#/why-aqr" aria-current="page">
@@ -121,98 +122,15 @@ function WhyAQR() {
           <div className="why-wrap">
             <div className="why-ai-heading">
               <p className="why-section-kicker">The AI Question</p>
-              <h2 id="why-ai-title">Can students use AI to complete their AQR projects?</h2>
+              <h2 id="why-ai-title">Students should never surrender their thinking to artificial intelligence.</h2>
               <p className="why-ai-lead">
-                <strong>Yes</strong> — to help them understand, plan, test, revise, and improve their work.
-                <br />
-                <strong>No</strong> — to replace their understanding, judgment, or reasoning.
+                AI is part of AQR on purpose. Students learn to question it, test it, use it when it helps, and remain responsible for their own understanding and judgment.
               </p>
               <p>
-                AI is part of AQR on purpose. The goal is to teach students how to think, learn,
-                solve problems, and make decisions while using the best tools available to them.
-                The student must remain responsible for the thinking and the result.
+                The goal is not to make student work look smarter. The goal is to help students become more capable. That means learning where AI is useful, where it fails, how to challenge its answers, and when to stop listening to it and think for yourself.
               </p>
+              <a className="why-standards-link" href="/why-ai">Read the full AQR position on AI</a>
             </div>
-
-            <div className="why-ai-boundary" aria-label="The AQR standard for AI use">
-              <article className="why-ai-boundary-card why-ai-allowed">
-                <p className="why-ai-status">Allowed</p>
-                <h3>Helping you gain understanding</h3>
-                <p>
-                  Ask for another explanation. Organize messy information. Brainstorm approaches.
-                  Recall a method. Test an idea. Check reasoning. Revise. Troubleshoot when stuck.
-                </p>
-              </article>
-
-              <article className="why-ai-boundary-card why-ai-failing">
-                <p className="why-ai-status">Failing</p>
-                <h3>Doing the thinking for you</h3>
-                <p>
-                  Submit work you cannot explain. Accept claims you did not check. Present choices
-                  you did not make. Use polished output to hide a lack of understanding.
-                </p>
-              </article>
-            </div>
-
-            <div className="why-ai-qa-grid">
-              <article className="why-ai-qa why-ai-qa-featured">
-                <p className="why-ai-question">How can you tell whether a student actually did the work?</p>
-                <h3>Usually within about two questions.</h3>
-                <div className="why-ai-sample-questions" aria-label="Examples of questions students may be asked">
-                  <p>“Why did you do it this way?”</p>
-                  <p>“What would happen if I changed this?”</p>
-                  <p>“Where did this number come from?”</p>
-                  <p>“What does this result actually tell us?”</p>
-                </div>
-                <p>
-                  A student who built the work — even with substantial AI help — can explain the
-                  goal, the approach, the evidence, the assumptions, the revisions, and why the
-                  result makes sense. If a student pasted something they do not understand, that
-                  becomes obvious very quickly.
-                </p>
-              </article>
-
-              <article className="why-ai-qa">
-                <p className="why-ai-question">What if AI gives a student most of the answer?</p>
-                <h3>Then the question is whether the student learned from it.</h3>
-                <p>
-                  A student may begin unable to solve something, use AI for an explanation or
-                  example, and then understand it well enough to explain, change, apply, and defend
-                  it. That is learning. A correct answer without understanding is not enough.
-                </p>
-              </article>
-
-              <article className="why-ai-qa">
-                <p className="why-ai-question">Aren&apos;t students becoming dependent on AI?</p>
-                <h3>Dependence is one of the risks we teach them to recognize.</h3>
-                <p>
-                  The goal is greater capability: knowing what help you need, how to use it, whether
-                  to trust it, and when you understand enough to take responsibility yourself.
-                </p>
-              </article>
-
-              <article className="why-ai-qa why-ai-qa-wide">
-                <p className="why-ai-question">Why teach this now?</p>
-                <h3>Because these students are months away from problems beyond their current abilities.</h3>
-                <p>
-                  College, job training, the military, workplaces, and adult life will ask them to
-                  do things they do not already know how to do. There will not always be a teacher
-                  nearby who has broken the problem into steps. Students need to learn how to find
-                  useful information, ask good questions, choose tools, judge the answers, test a
-                  result, and adjust when it does not work. Without that independence, the future
-                  will hold fewer options.
-                </p>
-              </article>
-            </div>
-
-            <aside className="why-ai-bottom-line" aria-label="The simplest AQR rule for AI">
-              <p className="why-panel-label">The simplest rule</p>
-              <p>
-                <strong>Use every appropriate tool available to help you think.</strong>
-                <span>Do not use a tool to avoid thinking.</span>
-              </p>
-              <a href="/student-guide">See the student-facing AI expectations</a>
-            </aside>
           </div>
         </section>
 
