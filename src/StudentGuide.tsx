@@ -68,7 +68,7 @@ export default function StudentGuide() {
         <div className="guide-topbar guide-wrap">
           <a className="guide-brand" href="/"><span className="guide-brand-mark">AQR</span><span className="guide-brand-name">Applied Quantitative Reasoning</span></a>
           <nav className="guide-topnav" aria-label="Student Guide navigation">
-            <a href="/">Home</a>
+            <a href="/">Home</a><a href="/why-ai">Why AI?</a>
             <a href="/course-overview">Course Overview</a>
             <a href="/student-guide" aria-current="page">Student Guide</a>
             <a href="/classroom-posters">Posters</a>
