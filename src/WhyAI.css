@@ -1,0 +1,120 @@
+.ai-position-page {
+  background: #040608;
+}
+
+.ai-position-hero .why-hero-inner {
+  max-width: 1020px;
+}
+
+.ai-position-hero .why-hero-lead {
+  max-width: 900px;
+}
+
+.ai-copy {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.ai-copy p {
+  max-width: 850px;
+}
+
+.ai-copy-dark,
+.ai-copy-dark h2,
+.ai-copy-dark p {
+  color: #111820;
+}
+
+.ai-copy-dark .why-section-kicker {
+  color: #00558a;
+}
+
+.ai-position-emphasis {
+  margin: 30px 0 0 !important;
+  padding: 22px 24px;
+  border-left: 5px solid #00558a;
+  background: rgba(255, 255, 255, 0.7);
+  font-size: 1.18rem !important;
+  font-weight: 800;
+}
+
+.ai-position-emphasis-dark {
+  border-left-color: var(--neon);
+  background: rgba(57, 168, 255, 0.08);
+  color: #ffffff !important;
+}
+
+.ai-scale-compare {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin: 32px 0;
+}
+
+.ai-scale-compare > div {
+  padding: 24px;
+  border: 1px solid rgba(122, 206, 255, 0.32);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.ai-scale-compare strong {
+  display: block;
+  margin: 8px 0;
+  color: var(--neon);
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  line-height: 1;
+}
+
+.ai-scale-compare span {
+  display: block;
+  color: #dce9f3;
+  line-height: 1.5;
+}
+
+.ai-scale-label {
+  color: #ffffff !important;
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.ai-position-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.ai-secondary-link {
+  background: #ffffff;
+  color: #0d1a25;
+  border: 2px solid #253c82;
+}
+
+.ai-secondary-link:hover,
+.ai-secondary-link:focus-visible {
+  background: #eef6fb;
+  color: #07111a;
+}
+
+@media (max-width: 640px) {
+  .ai-scale-compare {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-position-emphasis {
+    padding: 18px 18px;
+  }
+
+  .ai-position-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ai-position-actions a {
+    width: 100%;
+  }
+}
