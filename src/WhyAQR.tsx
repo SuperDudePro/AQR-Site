@@ -134,7 +134,7 @@ function WhyAQR() {
           </div>
         </section>
 
-        <section className="why-section why-section-black" aria-labelledby="why-college-title">
+        <section className="why-section why-section-silver" aria-labelledby="why-college-title">
           <div className="why-wrap">
             <div className="why-section-head">
               <p className="why-section-kicker">College signal</p>
@@ -209,7 +209,7 @@ function WhyAQR() {
           </div>
         </section>
 
-        <section className="why-section why-section-black" aria-labelledby="why-students-title">
+        <section className="why-section why-section-silver" aria-labelledby="why-students-title">
           <div className="why-wrap">
             <div className="why-section-head">
               <p className="why-section-kicker">Student fit</p>
