@@ -14,7 +14,7 @@ function VocabularyHeader() {
           <span className="vocab-brand-name">Applied Quantitative Reasoning</span>
         </a>
         <nav className="vocab-topnav" aria-label="Vocabulary navigation">
-          <a href="/">Home</a>
+          <a href="/">Home</a><a href="/why-ai">Why AI?</a>
           <a href="/course-overview">Course Overview</a>
           <a href="/student-guide">Student Guide</a>
           <a href="/vocabulary" aria-current="page">Vocabulary</a>
