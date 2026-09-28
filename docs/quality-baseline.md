@@ -7,7 +7,7 @@ Recorded from a clean production build on 2026-09-28. This is an engineering bas
 | Measure | Baseline |
 | --- | ---: |
 | Initial JavaScript (uncompressed) | 366,117 bytes |
-| Initial CSS (uncompressed) | 57,242 bytes |
+| Initial CSS (uncompressed) | 57,305 bytes |
 | All built images (across routes) | 16,160,539 bytes (48 files) |
 | Largest built image | 2,512,275 bytes |
 
