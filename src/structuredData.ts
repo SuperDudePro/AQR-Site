@@ -11,12 +11,21 @@ function absoluteUrl(path: string) {
 function pageLabel(path: string) {
   const labels: Record<string, string> = {
     "/why-aqr": "Why AQR",
+    "/why-ai": "Why AI?",
     "/course-overview": "Course Overview",
+    "/student-guide": "Student Guide",
+    "/vocabulary": "Vocabulary",
+    "/vocabulary/core": "Core AQR Vocabulary",
+    "/vocabulary/quarter-1": "Quarter 1 Vocabulary",
+    "/vocabulary/quarter-2": "Quarter 2 Vocabulary",
+    "/vocabulary/quarter-3": "Quarter 3 Vocabulary",
+    "/vocabulary/quarter-4": "Quarter 4 Vocabulary",
     "/quarter-1": "Quarter 1",
     "/quarter-2": "Quarter 2",
     "/quarter-3": "Quarter 3",
     "/quarter-4": "Quarter 4",
     "/classroom-posters": "Classroom Posters",
+    "/resources": "Resource Finder",
     "/contact": "Contact",
   };
   if (path.startsWith("/classroom-posters/")) return "Classroom Posters";
