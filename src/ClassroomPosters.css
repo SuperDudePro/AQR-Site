@@ -207,6 +207,10 @@
   font-weight: 600;
 }
 
+.poster-section-silver label .poster-card-kicker {
+  color: #00558a;
+}
+
 .poster-type-grid,
 .poster-file-grid {
   list-style: none;
