@@ -1,4 +1,4 @@
-const SITE_ORIGIN = "https://appliedquantitativereasoning.com";
+import { getRoute, SITE_ORIGIN } from "./routeRegistry";
 const WEBSITE_ID = `${SITE_ORIGIN}/#website`;
 const COURSE_ID = `${SITE_ORIGIN}/#course`;
 
@@ -8,33 +8,11 @@ function absoluteUrl(path: string) {
   return new URL(path, SITE_ORIGIN).href;
 }
 
-function pageLabel(path: string) {
-  const labels: Record<string, string> = {
-    "/why-aqr": "Why AQR",
-    "/why-ai": "Why AI?",
-    "/course-overview": "Course Overview",
-    "/student-guide": "Student Guide",
-    "/vocabulary": "Vocabulary",
-    "/vocabulary/core": "Core AQR Vocabulary",
-    "/vocabulary/quarter-1": "Quarter 1 Vocabulary",
-    "/vocabulary/quarter-2": "Quarter 2 Vocabulary",
-    "/vocabulary/quarter-3": "Quarter 3 Vocabulary",
-    "/vocabulary/quarter-4": "Quarter 4 Vocabulary",
-    "/quarter-1": "Quarter 1",
-    "/quarter-2": "Quarter 2",
-    "/quarter-3": "Quarter 3",
-    "/quarter-4": "Quarter 4",
-    "/classroom-posters": "Classroom Posters",
-    "/resources": "Resource Finder",
-    "/contact": "Contact",
-  };
-  if (path.startsWith("/classroom-posters/")) return "Classroom Posters";
-  return labels[path] ?? "Applied Quantitative Reasoning";
-}
-
 // Pure builder: returns the JSON-LD object for a route. No DOM access, so it is
 // safe to call at build time (prerender) and in the browser (applyStructuredData).
-export function buildStructuredData(path: string, title: string, description: string) {
+export function buildStructuredData(path: string) {
+  const route = getRoute(path);
+  const { title, description } = route;
   const canonicalUrl = absoluteUrl(path === "/" ? "/" : path);
   const graph: JsonLd[] = [
     {
@@ -71,20 +49,16 @@ export function buildStructuredData(path: string, title: string, description: st
     const items: JsonLd[] = [
       { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_ORIGIN}/` },
     ];
-    if (path.startsWith("/classroom-posters/")) {
-      items.push({ "@type": "ListItem", position: 2, name: "Classroom Posters", item: `${SITE_ORIGIN}/classroom-posters` });
-      items.push({ "@type": "ListItem", position: 3, name: pageLabel(path), item: canonicalUrl });
-    } else {
-      items.push({ "@type": "ListItem", position: 2, name: pageLabel(path), item: canonicalUrl });
-    }
+    if (route.parentPath) items.push({ "@type": "ListItem", position: 2, name: getRoute(route.parentPath).breadcrumbLabel, item: absoluteUrl(route.parentPath) });
+    items.push({ "@type": "ListItem", position: items.length + 1, name: route.breadcrumbLabel, item: canonicalUrl });
     graph.push({ "@type": "BreadcrumbList", itemListElement: items });
   }
 
   return { "@context": "https://schema.org", "@graph": graph };
 }
 
-export function applyStructuredData(path: string, title: string, description: string) {
-  const data = buildStructuredData(path, title, description);
+export function applyStructuredData(path: string) {
+  const data = buildStructuredData(path);
   let element = document.head.querySelector<HTMLScriptElement>("script[data-site-jsonld]");
   if (!element) {
     element = document.createElement("script");

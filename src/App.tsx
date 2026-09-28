@@ -9,65 +9,19 @@ import StudentGuide from "./StudentGuide";
 import VocabularyPage from "./VocabularyPage";
 import WhyAQR from "./WhyAQR";
 import WhyAI from "./WhyAI";
+import { getRoute, normalizeRoute, SITE_ORIGIN, type Page } from "./routeRegistry";
 
-type Page = "home" | "why" | "ai" | "overview" | "guide" | "vocabulary" | "vocabCore" | "vocabQ1" | "vocabQ2" | "vocabQ3" | "vocabQ4" | "q1" | "q2" | "q3" | "q4" | "posters" | "resources" | "contact";
 export type RouteState = { page: Page; path: string };
-type PageMeta = { title: string; description: string };
 const GA_TRACKING_ID = "G-L6Y4XCS8L7";
-export const SITE_ORIGIN = "https://appliedquantitativereasoning.com";
 const TRACKED_HOSTS = new Set(["appliedquantitativereasoning.com", "www.appliedquantitativereasoning.com"]);
-// eslint-disable-next-line react-refresh/only-export-components
-export const PAGE_META: Record<Page, PageMeta> = {
-  home: { title: "Applied Quantitative Reasoning | Vista PEAK Prep", description: "Applied Quantitative Reasoning at Vista PEAK Prep: serious math for real decisions, real data, real tools, and real communication." },
-  why: { title: "Why AQR | Applied Quantitative Reasoning", description: "Why Applied Quantitative Reasoning is a serious modern math pathway built around data, evidence, practical decisions, and responsible AI use that requires real student thinking." },
-  ai: { title: "Why AI? | Applied Quantitative Reasoning", description: "AQR's position on AI: students should never surrender their thinking, but they should learn how to question, test, and use powerful AI tools to become more capable." },
-  overview: { title: "Course Overview | Applied Quantitative Reasoning", description: "A clear overview of the AQR year arc, quarter project families, sequential quantitative-reasoning focus windows, tools, checkpoints, and course pathways." },
-  guide: { title: "Student Guide | Applied Quantitative Reasoning", description: "A practical guide to AQR classroom routines, progress expectations, responsible tool use, discussion, language support, and getting help." },
-  vocabulary: { title: "Vocabulary | Applied Quantitative Reasoning", description: "The AQR vocabulary hub, organized into core course language and Quarter 1 through Quarter 4 sections." },
-  vocabCore: { title: "Core AQR Vocabulary | Applied Quantitative Reasoning", description: "Core language used across AQR for evidence, decisions, models, tradeoffs, uncertainty, revision, and explanation." },
-  vocabQ1: { title: "Quarter 1 Vocabulary | Applied Quantitative Reasoning", description: "Quarter 1 vocabulary for self-data, measurement, learner evidence, claims, visuals, and AI confidence." },
-  vocabQ2: { title: "Quarter 2 Vocabulary | Applied Quantitative Reasoning", description: "Quarter 2 vocabulary for surveys, samples, bias, data displays, correlation, causation, and limitations." },
-  vocabQ3: { title: "Quarter 3 Vocabulary | Applied Quantitative Reasoning", description: "Quarter 3 vocabulary for criteria, tradeoffs, risk, cost, uncertainty, assumptions, weighting, and sensitivity." },
-  vocabQ4: { title: "Quarter 4 Vocabulary | Applied Quantitative Reasoning", description: "Quarter 4 vocabulary for claims, evidence, misleading displays, source trust, reasonable belief, and critique." },
-  q1: { title: "Quarter 1: Know Yourself | Applied Quantitative Reasoning", description: "Build a portable learner profile, capture an ordinary-AI baseline, and test what changes with personalized learning support." },
-  q2: { title: "Quarter 2: Track Yourself | Applied Quantitative Reasoning", description: "Collect and analyze real data while examining survey quality, sampling, bias, correlation, causation, and honest limitations." },
-  q3: { title: "Quarter 3: Build a Decision Tool | Applied Quantitative Reasoning", description: "Build and test a decision tool using options, criteria, tradeoffs, risk, cost, uncertainty, assumptions, weighting, and sensitivity." },
-  q4: { title: "Quarter 4: Don’t Get Played | Applied Quantitative Reasoning", description: "Practical skepticism about claims, graphs, statistics, samples, sources, AI output, and misleading evidence." },
-  posters: { title: "Classroom Posters | Applied Quantitative Reasoning", description: "AQR classroom poster designs for quantitative reasoning, data skepticism, decision-making, AI use, work habits, and thinking moves." },
-  resources: { title: "Resource Finder | Applied Quantitative Reasoning", description: "Search AQR course pages, quarter plans, vocabulary, poster categories, and finished poster designs." },
-  contact: { title: "Contact | Applied Quantitative Reasoning", description: "Contact Applied Quantitative Reasoning at Vista PEAK Prep with questions or comments about the course and public resources." },
-};
 let analyticsInitialized = false;
 declare global { interface Window { dataLayer?: unknown[]; gtag?: (...args: unknown[]) => void } }
-function normalizePath(pathname: string) { const path = pathname.replace(/\/{2,}/g, "/").replace(/\/$/, ""); return path || "/"; }
-function legacyHashToPath(hash: string) { return hash.startsWith("#/") ? normalizePath(hash.slice(1)) : null; }
-// eslint-disable-next-line react-refresh/only-export-components
-export function getPage(pathname: string): Page {
-  const path = normalizePath(pathname);
-  if (path === "/why-aqr") return "why";
-  if (path === "/why-ai") return "ai";
-  if (path === "/course-overview") return "overview";
-  if (path === "/student-guide") return "guide";
-  if (path === "/vocabulary") return "vocabulary";
-  if (path === "/vocabulary/core") return "vocabCore";
-  if (path === "/vocabulary/quarter-1") return "vocabQ1";
-  if (path === "/vocabulary/quarter-2") return "vocabQ2";
-  if (path === "/vocabulary/quarter-3") return "vocabQ3";
-  if (path === "/vocabulary/quarter-4") return "vocabQ4";
-  if (path === "/quarter-1") return "q1";
-  if (path === "/quarter-2") return "q2";
-  if (path === "/quarter-3") return "q3";
-  if (path === "/quarter-4") return "q4";
-  if (path === "/classroom-posters" || path.startsWith("/classroom-posters/")) return "posters";
-  if (path === "/resources") return "resources";
-  if (path === "/contact") return "contact";
-  return "home";
-}
+function legacyHashToPath(hash: string) { return hash.startsWith("#/") ? normalizeRoute(hash.slice(1)) : null; }
 function getRouteState(): RouteState {
   const legacyPath = legacyHashToPath(window.location.hash);
   if (legacyPath) window.history.replaceState({}, "", `${legacyPath}${window.location.search}`);
-  const path = normalizePath(window.location.pathname);
-  return { page: getPage(path), path };
+  const path = normalizeRoute(window.location.pathname);
+  return { page: getRoute(path).page, path };
 }
 function ensureGoogleAnalytics() {
   if (analyticsInitialized) return;
@@ -93,10 +47,10 @@ function upsertProperty(property: string, content: string) {
   meta.content = content;
 }
 function rewriteLegacyLinks() {
-  document.querySelectorAll<HTMLAnchorElement>("a[href^='#/']").forEach((anchor) => { const href = anchor.getAttribute("href"); if (href) anchor.setAttribute("href", normalizePath(href.slice(1))); });
+  document.querySelectorAll<HTMLAnchorElement>("a[href^='#/']").forEach((anchor) => { const href = anchor.getAttribute("href"); if (href) anchor.setAttribute("href", normalizeRoute(href.slice(1))); });
 }
 function setChrome(route: RouteState) {
-  const meta = PAGE_META[route.page];
+  const meta = getRoute(route.path);
   document.title = meta.title;
   upsertMeta("description", meta.description);
   let canonical = document.querySelector("link[rel='canonical']") as HTMLLinkElement | null;
@@ -120,10 +74,10 @@ function App() {
       const anchor = (event.target as Element | null)?.closest("a") as HTMLAnchorElement | null;
       const href = anchor?.getAttribute("href");
       if (!href) return;
-      const nextPath = href.startsWith("#/") ? normalizePath(href.slice(1)) : href.startsWith("/") && !href.startsWith("//") ? normalizePath(href) : null;
+      const nextPath = href.startsWith("#/") ? normalizeRoute(href.slice(1)) : href.startsWith("/") && !href.startsWith("//") ? normalizeRoute(href) : null;
       if (!nextPath || anchor?.hasAttribute("download")) return;
       event.preventDefault();
-      if (nextPath !== normalizePath(window.location.pathname)) window.history.pushState({}, "", nextPath);
+      if (nextPath !== normalizeRoute(window.location.pathname)) window.history.pushState({}, "", nextPath);
       applyRoute();
     };
     applyRoute();

@@ -8,7 +8,7 @@ function syncStructuredData() {
   const signature = `${path}|${document.title}|${description}`;
   if (signature === lastSignature) return;
   lastSignature = signature;
-  applyStructuredData(path, document.title, description);
+  applyStructuredData(path);
 }
 
 const observer = new MutationObserver(() => window.requestAnimationFrame(syncStructuredData));
