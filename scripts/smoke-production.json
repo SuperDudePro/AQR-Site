@@ -1,0 +1,13 @@
+{
+  "origin": "https://appliedquantitativereasoning.com",
+  "alternateOrigin": "https://www.appliedquantitativereasoning.com",
+  "alternatePath": "/why-aqr",
+  "alternateMustRedirect": true,
+  "minimumSitemapUrls": 25,
+  "routes": [
+    "/",
+    "/why-aqr",
+    "/classroom-posters/all"
+  ],
+  "browser": "posters"
+}
