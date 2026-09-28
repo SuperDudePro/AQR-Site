@@ -57,6 +57,20 @@ function renderRoute(path) {
     /<link rel="canonical"[^>]*>/,
     `<link rel="canonical" href="${escapeAttr(canonical)}" />`,
   );
+  for (const [property, content] of [
+    ["og:url", canonical], ["og:title", meta.title], ["og:description", meta.description],
+  ]) {
+    html = html.replace(
+      new RegExp(`<meta property="${property}"[^>]*>`),
+      `<meta property="${property}" content="${escapeAttr(content)}" />`,
+    );
+  }
+  for (const [name, content] of [["twitter:title", meta.title], ["twitter:description", meta.description]]) {
+    html = html.replace(
+      new RegExp(`<meta\\s+name="${name}"[\\s\\S]*?\\/>`),
+      `<meta name="${name}" content="${escapeAttr(content)}" />`,
+    );
+  }
   html = html.replace(
     /<script type="application\/ld\+json" data-site-jsonld>[\s\S]*?<\/script>/,
     `<script type="application/ld+json" data-site-jsonld>${jsonld}</script>`,

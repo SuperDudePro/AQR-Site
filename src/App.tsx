@@ -87,6 +87,11 @@ function upsertMeta(name: string, content: string) {
   if (!meta) { meta = document.createElement("meta"); meta.name = name; document.head.appendChild(meta); }
   meta.content = content;
 }
+function upsertProperty(property: string, content: string) {
+  let meta = document.querySelector(`meta[property='${property}']`) as HTMLMetaElement | null;
+  if (!meta) { meta = document.createElement("meta"); meta.setAttribute("property", property); document.head.appendChild(meta); }
+  meta.content = content;
+}
 function rewriteLegacyLinks() {
   document.querySelectorAll<HTMLAnchorElement>("a[href^='#/']").forEach((anchor) => { const href = anchor.getAttribute("href"); if (href) anchor.setAttribute("href", normalizePath(href.slice(1))); });
 }
@@ -97,6 +102,11 @@ function setChrome(route: RouteState) {
   let canonical = document.querySelector("link[rel='canonical']") as HTMLLinkElement | null;
   if (!canonical) { canonical = document.createElement("link"); canonical.rel = "canonical"; document.head.appendChild(canonical); }
   canonical.href = `${SITE_ORIGIN}${route.path === "/" ? "/" : route.path}`;
+  upsertProperty("og:url", canonical.href);
+  upsertProperty("og:title", meta.title);
+  upsertProperty("og:description", meta.description);
+  upsertMeta("twitter:title", meta.title);
+  upsertMeta("twitter:description", meta.description);
 }
 function App() {
   const [route, setRoute] = useState<RouteState>(() => getRouteState());
