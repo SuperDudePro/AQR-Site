@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "check": "npm run lint && npm run build",
     "preview": "vite preview",
-    "sitemap": "node scripts/generate-sitemap.mjs",
+    "sitemap": "node --import tsx scripts/generate-sitemap.mjs",
     "deployment:marker": "node scripts/write-deployment-marker.mjs",
     "sync:redirects": "node scripts/sync-redirects.mjs",
     "validate:redirects": "node scripts/validate-redirects.mjs",

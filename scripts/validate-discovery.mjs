@@ -37,7 +37,7 @@ const source = existsSync(sitemapPath) ? readFileSync(sitemapPath, 'utf8') : '';
 if (mode === '--sitemap') {
   if (!generator) throw new Error('A sitemap generator path is required');
   // Compare route coverage, not lastmod timestamps, which can change every day.
-  execFileSync(process.execPath, [generator], { stdio: 'inherit' });
+  execFileSync(process.execPath, ['--import', 'tsx', generator], { stdio: 'inherit' });
   const expected = sitemapRoutes(readFileSync(sitemapPath, 'utf8'), 'generated sitemap');
   const committed = sitemapRoutes(source, 'checked-in sitemap');
   for (const route of expected) if (!committed.has(route)) fail('public/sitemap.xml', `missing generated route ${route}`);
