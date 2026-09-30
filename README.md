@@ -2,7 +2,7 @@
 
 This is the source for AppliedQuantitativeReasoning.com, a small Vite + React + TypeScript site for the Vista PEAK Prep Applied Quantitative Reasoning course.
 
-The site is intentionally simple: a homepage, course rationale, course overview, quarter detail pages, and classroom poster downloads. It uses hash routes so the static build works on ordinary static hosting without server-side route rewrites.
+The site is intentionally simple: a homepage, course rationale, course overview, quarter detail pages, and classroom poster reference images (the print files are not hosted). It uses hash routes so the static build works on ordinary static hosting without server-side route rewrites.
 
 ## Pages
 

@@ -154,8 +154,8 @@ function ClassroomPosters({ currentHash, onNavigateHome, onNavigateOverview }: C
                   </>
                 ) : (
                   <div className="poster-empty-panel">
-                    <p className="poster-panel-label">No files published yet</p>
-                    <p>Add at least one poster PNG/PDF pair in <code>posterData.ts</code> to make a poster type appear.</p>
+                    <p className="poster-panel-label">No posters published yet</p>
+                    <p>Finished poster designs will appear here.</p>
                   </div>
                 )}
               </div>
@@ -251,7 +251,7 @@ function ClassroomPosters({ currentHash, onNavigateHome, onNavigateOverview }: C
                 <p className="poster-kicker">Classroom Posters</p>
                 <h1 id="poster-not-found-title">Poster type not found.</h1>
                 <p className="poster-hero-lead">
-                  That poster link does not match a published poster type. Use the poster index to find the current files.
+                  That poster link does not match a published poster type. Use the poster index to find the current poster designs.
                 </p>
               </div>
             </section>
