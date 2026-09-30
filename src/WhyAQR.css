@@ -612,3 +612,6 @@
     padding-left: 16px;
   }
 }
+
+/* Callout panels are always white; the neon label color is for dark sections (WCAG AA contrast). */
+.why-callout-panel .why-panel-label { color: #00558a; }

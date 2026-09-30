@@ -60,3 +60,6 @@
 @media (max-width: 1060px) { .vocab-section-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
 @media (max-width: 760px) { .vocab-wrap { width: min(100% - 24px,1200px); } .vocab-topbar { flex-direction: column; align-items: flex-start; } .vocab-hero-inner { text-align: left; } .vocab-intro-grid, .vocab-entry-example, .vocab-term-details div { grid-template-columns: 1fr; } }
 @media (max-width: 560px) { .vocab-topnav, .vocab-topnav a { width: 100%; } .vocab-section-grid { grid-template-columns: 1fr; } .vocab-format-list li { grid-template-columns: 1fr; } .vocab-term-card h3, .vocab-term-details div { padding-left: 18px; padding-right: 18px; } }
+
+/* The neon kicker is meant for dark cards; on white term cards use the site's dark blue for WCAG AA contrast. */
+.vocab-term-card .vocab-card-kicker { color: #00558a; }

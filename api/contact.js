@@ -1,3 +1,75 @@
+const DEFAULT_TIMEOUT_MS = 8_000;
+const MAX_BODY_BYTES = 8_192;
+
+function firstHeader(request, name) {
+  const value = request.headers?.[name];
+  return Array.isArray(value) ? value[0] : value;
+}
+
+function clientIp(request) {
+  return String(firstHeader(request, "x-forwarded-for") || request.socket?.remoteAddress || "unknown")
+    .split(",")[0]
+    .trim();
+}
+
+// Browsers send Origin on cross-site POSTs; reject any that do not match this host.
+function validSameSiteOrigin(request) {
+  const origin = firstHeader(request, "origin");
+  if (!origin) return true;
+  try {
+    const originUrl = new URL(origin);
+    const host = String(firstHeader(request, "x-forwarded-host") || firstHeader(request, "host") || "")
+      .split(",")[0]
+      .trim()
+      .toLowerCase();
+    return originUrl.host.toLowerCase() === host;
+  } catch {
+    return false;
+  }
+}
+
+function requestTooLarge(request) {
+  const length = Number(firstHeader(request, "content-length"));
+  if (Number.isFinite(length) && length > MAX_BODY_BYTES) return true;
+  if (typeof request.body === "string") return Buffer.byteLength(request.body, "utf8") > MAX_BODY_BYTES;
+  if (request.body && typeof request.body === "object") {
+    return Buffer.byteLength(JSON.stringify(request.body), "utf8") > MAX_BODY_BYTES;
+  }
+  return false;
+}
+
+async function fetchWithTimeout(url, options = {}, timeoutMs = DEFAULT_TIMEOUT_MS) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    return await fetch(url, { ...options, signal: controller.signal });
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+// Durable per-key limit through Upstash/Vercel KV REST when KV_REST_API_URL and KV_REST_API_TOKEN are set.
+// Without them the check is skipped so the form keeps working; configure KV to turn rate limiting on.
+async function rateLimited(key, limit, windowMs) {
+  const url = process.env.KV_REST_API_URL;
+  const token = process.env.KV_REST_API_TOKEN;
+  if (!url || !token) return false;
+  try {
+    const script = 'local c = redis.call("INCR", KEYS[1]) if c == 1 then redis.call("PEXPIRE", KEYS[1], ARGV[1]) end return c';
+    const response = await fetchWithTimeout(url, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+      body: JSON.stringify(["EVAL", script, "1", `rate:${key}`, String(windowMs)]),
+    }, 3_000);
+    if (!response.ok) throw new Error(`Redis returned ${response.status}.`);
+    const payload = await response.json();
+    return Number(payload.result) > limit;
+  } catch (error) {
+    console.error("Contact rate limit check failed:", error);
+    return false;
+  }
+}
+
 function getString(body, key) {
   const value = body && typeof body === "object" ? body[key] : undefined;
   return typeof value === "string" ? value.trim() : "";
@@ -21,18 +93,6 @@ function json(response, status, body) {
   return response.status(status).json(body);
 }
 
-function getProviderErrorMessage(errorText) {
-  try {
-    const parsed = JSON.parse(errorText);
-    if (typeof parsed.message === "string") return parsed.message;
-    if (typeof parsed.error === "string") return parsed.error;
-  } catch {
-    // Fall back to raw text below.
-  }
-
-  return errorText || "The email provider rejected the message.";
-}
-
 // Verifies a Cloudflare Turnstile token when TURNSTILE_SECRET is configured.
 // Returns { ok: true } to allow, or { ok: false, error } to reject.
 // If TURNSTILE_SECRET is not set, verification is skipped (backward compatible).
@@ -53,7 +113,7 @@ async function verifyTurnstile(body, request) {
     const params = new URLSearchParams({ secret, response: token });
     if (remoteip) params.set("remoteip", String(remoteip).split(",")[0].trim());
 
-    const verifyResponse = await fetch(
+    const verifyResponse = await fetchWithTimeout(
       "https://challenges.cloudflare.com/turnstile/v0/siteverify",
       {
         method: "POST",
@@ -82,6 +142,12 @@ export default async function handler(request, response) {
     response.setHeader("Allow", "POST");
     return json(response, 405, { ok: false, error: "Method not allowed." });
   }
+  if (!validSameSiteOrigin(request)) {
+    return json(response, 403, { ok: false, error: "Request origin was not accepted." });
+  }
+  if (requestTooLarge(request)) {
+    return json(response, 413, { ok: false, error: "Request is too large." });
+  }
 
   const body = await readBody(request);
 
@@ -90,7 +156,7 @@ export default async function handler(request, response) {
   }
 
   const name = getString(body, "name");
-  const email = getString(body, "email");
+  const email = getString(body, "email").toLowerCase();
   const subject = getString(body, "subject") || "New contact message";
   const message = getString(body, "message");
 
@@ -98,12 +164,26 @@ export default async function handler(request, response) {
     return json(response, 400, { ok: false, error: "Name, email, and message are required." });
   }
 
-  if (!email.includes("@") || !email.includes(".")) {
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return json(response, 400, { ok: false, error: "Use a valid email address." });
   }
 
   if (message.length > 4000) {
     return json(response, 400, { ok: false, error: "Message is too long." });
+  }
+
+  // Mirror the form's maxLength limits; the browser limits are not a server control.
+  if (name.length > 120 || email.length > 180 || subject.length > 160) {
+    return json(response, 400, { ok: false, error: "One of the fields is too long." });
+  }
+
+  const [ipLimited, emailLimited] = await Promise.all([
+    rateLimited(`aqr:contact:ip:${clientIp(request)}`, 8, 60 * 60 * 1000),
+    rateLimited(`aqr:contact:email:${email}`, 4, 24 * 60 * 60 * 1000),
+  ]);
+  if (ipLimited || emailLimited) {
+    response.setHeader("Retry-After", "3600");
+    return json(response, 429, { ok: false, error: "Please wait before sending another message." });
   }
 
   const turnstile = await verifyTurnstile(body, request);
@@ -127,29 +207,31 @@ export default async function handler(request, response) {
   const text = [`Name: ${name}`, `Email: ${email}`, `Subject: ${subject}`, "", message].join("\n");
   const endpoint = "https://api." + "resend.com" + "/emails";
 
-  const sendResponse = await fetch(endpoint, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${RESEND_API_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: CONTACT_FROM_EMAIL,
-      to: [CONTACT_TO_EMAIL],
-      reply_to: email,
-      subject: safeSubject,
-      text,
-    }),
-  });
+  let sendResponse;
+  try {
+    sendResponse = await fetchWithTimeout(endpoint, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: CONTACT_FROM_EMAIL,
+        to: [CONTACT_TO_EMAIL],
+        reply_to: email,
+        subject: safeSubject,
+        text,
+      }),
+    });
+  } catch (error) {
+    console.error("Contact email request failed:", error);
+    return json(response, 502, { ok: false, error: "Message could not be sent. Please try again later." });
+  }
 
   if (!sendResponse.ok) {
     const errorText = await sendResponse.text();
-    const providerError = getProviderErrorMessage(errorText);
     console.error(`Contact email failed (${sendResponse.status}):`, errorText);
-    return json(response, 502, {
-      ok: false,
-      error: `Message could not be sent. Provider said: ${providerError}`,
-    });
+    return json(response, 502, { ok: false, error: "Message could not be sent. Please try again later." });
   }
 
   return json(response, 200, { ok: true });

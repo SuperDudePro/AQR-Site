@@ -187,9 +187,11 @@ function ContactPage() {
                 {isSending ? "Sending..." : "Send note"}
               </button>
 
+            </form>
+            <div className="contact-status-region" aria-live="polite">
               {formState === "sent" && <p className="contact-status">Message sent.</p>}
               {formState === "error" && <p className="contact-status contact-status-error">{errorMessage}</p>}
-            </form>
+            </div>
           </div>
         </section>
       </main>
