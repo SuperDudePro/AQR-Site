@@ -60,3 +60,6 @@
   .guide-topnav a { width: 100%; }
   .guide-section { padding: 62px 0; }
 }
+
+/* The white policy card needs a darker kicker than the neon used on dark sections (WCAG AA contrast). */
+.guide-policy-card .guide-kicker { color: #00558a; }

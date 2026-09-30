@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { extname, join, relative, resolve, sep } from 'node:path';
 
@@ -115,6 +116,29 @@ for (const route of routes) {
   const vocabularyCovered = /^\/vocabulary(?:\/(?:core|quarter-[1-4]))?$/.test(route) && vercel.includes('vocabulary(?:/(core|quarter-[1-4]))?');
   const token = route.startsWith('/classroom-posters/') ? route.split('/').at(-1) : route.slice(1);
   if (!quarterCovered && !vocabularyCovered && !vercel.includes(token)) fail('vercel.json', route, 'sitemap route is not represented in the SPA rewrites');
+}
+
+// Every inline script in the built pages must be allowed by hash in the vercel.json CSP.
+function builtHtml(path) {
+  if (!existsSync(path)) return [];
+  return readdirSync(path, { withFileTypes: true }).flatMap((entry) => {
+    const full = join(path, entry.name);
+    return entry.isDirectory() ? builtHtml(full) : entry.name.endsWith('.html') ? [full] : [];
+  });
+}
+const cspValues = (JSON.parse(readFileSync(resolve('vercel.json'), 'utf8')).routes ?? [])
+  .flatMap((route) => Object.entries(route.headers ?? {}))
+  .filter(([key]) => /^content-security-policy/i.test(key))
+  .map(([, value]) => value);
+const inlineScript = /<script\b(?![^>]*\bsrc=)(?![^>]*application\/ld\+json)[^>]*>([\s\S]*?)<\/script[^>]*>/gi;
+for (const file of builtHtml(resolve('dist'))) {
+  for (const [, script] of readFileSync(file, 'utf8').matchAll(inlineScript)) {
+    if (!script.trim()) continue;
+    const hash = `'sha256-${createHash('sha256').update(script).digest('base64')}'`;
+    if (!cspValues.length || cspValues.some((value) => !value.includes(hash))) {
+      fail(rel(file), hash, 'inline script is not allowed by the vercel.json CSP; update the script-src hash');
+    }
+  }
 }
 
 if (errors.length) {

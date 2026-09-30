@@ -50,7 +50,7 @@ function renderRoute(meta) {
     ["og:url", canonical], ["og:title", meta.title], ["og:description", meta.description],
   ]) {
     html = html.replace(
-      new RegExp(`<meta property="${property}"[^>]*>`),
+      new RegExp(`<meta\\s+property="${property}"[^>]*>`),
       `<meta property="${property}" content="${escapeAttr(content)}" />`,
     );
   }
