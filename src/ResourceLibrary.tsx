@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { publishedPosterTypes } from "./posterData";
 
 const coreResources = [
-  { title: "Why AQR", kind: "Course page", href: "/why-aqr", summary: "The purpose, legitimacy, and modern-math case for Applied Quantitative Reasoning." },
+  { title: "What Is AQR Math?", kind: "Course page", href: "/why-aqr", summary: "A plain-language explanation of Applied Quantitative Reasoning, what students do in AQR class, and why it is a serious fourth-year math pathway." },
   { title: "Why AI?", kind: "Course page", href: "/why-ai", summary: "AQR's position on using AI without surrendering student understanding, judgment, or responsibility." },
   { title: "Course Overview", kind: "Course page", href: "/course-overview", summary: "The year structure, major projects, focus windows, tools, and expectations." },
   { title: "2026–27 Course Syllabus", kind: "Course information", href: "https://appliedquantitativereasoning.com/syllabus.html", summary: "Student-facing AQR syllabus with grading, Weekly Catchers, technology, attendance, tardy, cell phone, revision, materials, and course expectations." },
