@@ -12,7 +12,7 @@ export type RouteDefinition = {
 };
 
 const staticRoutes: RouteDefinition[] = [
-  { path: "/", page: "home", breadcrumbLabel: "Home", title: "Applied Quantitative Reasoning | Vista PEAK Prep", description: "Applied Quantitative Reasoning at Vista PEAK Prep: serious math for real decisions, real data, real tools, and real communication." },
+  { path: "/", page: "home", breadcrumbLabel: "Home", title: "Applied Quantitative Reasoning (AQR) | Fourth-Year High School Math", description: "Applied Quantitative Reasoning (AQR) at Vista PEAK Prep is a fourth-year high school math course built around real decisions, data, modeling, evidence, tools, and communication." },
   { path: "/why-aqr", page: "why", breadcrumbLabel: "Why AQR", title: "What Is AQR Math? | Applied Quantitative Reasoning", description: "AQR stands for Applied Quantitative Reasoning, a serious fourth-year high school math class built around data, decisions, modeling, evidence, tools, and real-world reasoning." },
   { path: "/why-ai", page: "ai", breadcrumbLabel: "Why AI?", title: "Why AI? | Applied Quantitative Reasoning", description: "AQR's position on AI: students should never surrender their thinking, but they should learn how to question, test, and use powerful AI tools to become more capable." },
   { path: "/course-overview", page: "overview", breadcrumbLabel: "Course Overview", title: "Course Overview | Applied Quantitative Reasoning", description: "A clear overview of the AQR year arc, quarter project families, sequential quantitative-reasoning focus windows, tools, checkpoints, and course pathways." },

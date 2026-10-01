@@ -64,12 +64,12 @@ function AQR({ onNavigateWhy, onNavigateOverview, onNavigatePosters, onNavigateC
 
   const previewCards: PreviewCard[] = [
     {
-      title: "Why AQR",
-      eyebrow: "Why this course matters",
+      title: "What Is AQR?",
+      eyebrow: "What the course is",
       body:
-        "Colorado alignment, university recognition, and real-world relevance. This is the core signal page for the course.",
+        "A plain-language explanation of AQR math, what students do in the class, and why quantitative reasoning is a serious fourth-year pathway.",
       href: "#/why-aqr",
-      cta: "Open Why AQR",
+      cta: "Learn what AQR math is",
       onClick: (event) => {
         event.preventDefault();
         navigateWhy();
@@ -132,10 +132,10 @@ function AQR({ onNavigateWhy, onNavigateOverview, onNavigatePosters, onNavigateC
               <span className="aqr-mark-text">AQR</span>
               <span className="aqr-full-name">Applied Quantitative Reasoning</span>
             </h1>
-            <h2 className="aqr-lead">Serious math for real decisions.</h2>
-            <p className="aqr-hero-text">A modern fourth-year math option built around real decisions, real data, real tools, and real communication.</p>
+            <h2 className="aqr-lead">Serious fourth-year math for real decisions.</h2>
+            <p className="aqr-hero-text">Applied Quantitative Reasoning (AQR) is a modern fourth-year high school math option built around real decisions, real data, real tools, and real communication.</p>
             <div className="aqr-hero-actions" role="group" aria-label="Page actions">
-              <a className="aqr-button aqr-button-top" href="#/why-aqr" onClick={(event) => { event.preventDefault(); navigateWhy(); }}>Why AQR</a>
+              <a className="aqr-button aqr-button-top" href="#/why-aqr" onClick={(event) => { event.preventDefault(); navigateWhy(); }}>What Is AQR?</a>
               <a className="aqr-button aqr-button-top" href="#/course-overview" onClick={(event) => { event.preventDefault(); navigateOverview(); }}>Course Overview</a>
               <a className="aqr-button aqr-button-top" href="#/classroom-posters" onClick={(event) => { event.preventDefault(); navigatePosters(); }}>Posters</a>
             </div>
@@ -163,10 +163,10 @@ function AQR({ onNavigateWhy, onNavigateOverview, onNavigatePosters, onNavigateC
         <section className="aqr-section aqr-section-silver" id="why-preview" aria-labelledby="aqr-why-preview-title">
           <div className="aqr-wrap aqr-split aqr-why-preview-copy">
             <div className="aqr-overview-preview">
-              <p className="aqr-kicker aqr-kicker-bright">Why AQR</p>
+              <p className="aqr-kicker aqr-kicker-bright">What is AQR?</p>
               <h2 className="aqr-heading-dark" id="aqr-why-preview-title">A real pathway in modern mathematics.</h2>
               <p>Applied Quantitative Reasoning belongs to the broader world of quantitative reasoning: data, modeling, evidence, uncertainty, decision-making, and practical application.</p>
-              <a className="aqr-button aqr-button-dark" href="#/why-aqr" onClick={(event) => { event.preventDefault(); navigateWhy(); }}>Open the full Why AQR page</a>
+              <a className="aqr-button aqr-button-dark" href="#/why-aqr" onClick={(event) => { event.preventDefault(); navigateWhy(); }}>Learn what AQR math is</a>
             </div>
             <div className="aqr-quote-column">
               <div className="aqr-quote-panel aqr-quote-panel-bright">
