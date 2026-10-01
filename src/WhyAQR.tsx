@@ -82,13 +82,37 @@ function WhyAQR() {
       <main className="why-page" id="why-main-content">
         <section className="why-hero why-hero-main" aria-labelledby="why-page-title">
           <div className="why-wrap why-hero-inner">
-            <p className="why-kicker">Why AQR</p>
-            <h1 id="why-page-title">Applied Quantitative Reasoning is serious math for real decisions.</h1>
+            <p className="why-kicker">What is AQR?</p>
+            <h1 id="why-page-title">What Is AQR Math? Applied Quantitative Reasoning Explained</h1>
             <p className="why-hero-lead">
-              AQR is a project-based fourth-year math option built around real decisions, real data,
-              real tools, and real communication. It is designed for students who want mathematics
-              to connect to life, work, information, and the choices they actually have to make.
+              <strong>AQR stands for Applied Quantitative Reasoning.</strong> It is a project-based
+              fourth-year high school math class built around real decisions, real data, real tools,
+              and real communication. Students use mathematics to analyze information, work with data
+              and models, weigh evidence and uncertainty, and make defensible decisions.
             </p>
+          </div>
+        </section>
+
+        <section className="why-section why-section-black" aria-labelledby="why-class-title">
+          <div className="why-wrap why-grid">
+            <div>
+              <p className="why-section-kicker">Inside the class</p>
+              <h2 id="why-class-title">What do students do in an AQR class?</h2>
+              <p>
+                AQR uses real contexts to make students practice quantitative reasoning instead of
+                treating mathematics as a list of isolated procedures.
+              </p>
+            </div>
+            <aside className="why-callout-panel">
+              <ul className="why-check-list">
+                <li>work with real data, graphs, statistics, rates, probability, and models</li>
+                <li>examine assumptions, risk, uncertainty, and tradeoffs</li>
+                <li>build and test decision tools</li>
+                <li>evaluate claims and evidence</li>
+                <li>use digital and AI tools while remaining responsible for the reasoning</li>
+                <li>explain, test, and revise conclusions</li>
+              </ul>
+            </aside>
           </div>
         </section>
 
@@ -118,21 +142,24 @@ function WhyAQR() {
           </div>
         </section>
 
-        <section className="why-section why-ai-section" aria-labelledby="why-ai-title">
+        <section className="why-section why-section-silver" aria-labelledby="why-students-title">
           <div className="why-wrap">
-            <div className="why-ai-heading">
-              <p className="why-section-kicker">The AI Question</p>
-              <h2 id="why-ai-title">Students should never surrender their thinking to artificial intelligence.</h2>
-              <p className="why-ai-lead">
-                AI is part of AQR on purpose. Students learn to question it, test it, use it when it helps, and remain responsible for their own understanding and judgment.
+            <div className="why-section-head">
+              <p className="why-section-kicker">Student fit</p>
+              <h2 id="why-students-title">AQR gives students another serious way to do fourth-year math.</h2>
+              <p>
+                Traditional math still matters, especially for students heading toward fields that
+                require that route. AQR exists for students who need a rigorous, usable pathway
+                focused on interpreting information, weighing options, using tools, and making
+                defensible decisions.
               </p>
               <p>
-                The goal is not to make student work look smarter. The goal is to help students become more capable. That means learning where AI is useful, where it fails, how to challenge its answers, and when to stop listening to it and think for yourself.
+                That is real math. It just has a different shape.
               </p>
-              <a className="why-standards-link" href="/why-ai">Read the full AQR position on AI</a>
             </div>
           </div>
         </section>
+
 
         <section className="why-section why-section-silver" aria-labelledby="why-college-title">
           <div className="why-wrap">
@@ -209,19 +236,50 @@ function WhyAQR() {
           </div>
         </section>
 
-        <section className="why-section why-section-silver" aria-labelledby="why-students-title">
+        <section className="why-section why-ai-section" aria-labelledby="why-ai-title">
           <div className="why-wrap">
-            <div className="why-section-head">
-              <p className="why-section-kicker">Student fit</p>
-              <h2 id="why-students-title">AQR gives students another serious way to do fourth-year math.</h2>
-              <p>
-                Traditional math still matters, especially for students heading toward fields that
-                require that route. AQR exists for students who need a rigorous, usable pathway
-                focused on interpreting information, weighing options, using tools, and making
-                defensible decisions.
+            <div className="why-ai-heading">
+              <p className="why-section-kicker">The AI Question</p>
+              <h2 id="why-ai-title">Students should never surrender their thinking to artificial intelligence.</h2>
+              <p className="why-ai-lead">
+                AI is part of AQR on purpose. Students learn to question it, test it, use it when it helps, and remain responsible for their own understanding and judgment.
               </p>
               <p>
-                That is real math. It just has a different shape.
+                The goal is not to make student work look smarter. The goal is to help students become more capable. That means learning where AI is useful, where it fails, how to challenge its answers, and when to stop listening to it and think for yourself.
+              </p>
+              <a className="why-standards-link" href="/why-ai">Read the full AQR position on AI</a>
+            </div>
+          </div>
+        </section>
+
+        <section className="why-section why-section-silver" aria-labelledby="why-faq-title">
+          <div className="why-wrap">
+            <div className="why-section-head">
+              <p className="why-section-kicker">Common questions</p>
+              <h2 id="why-faq-title">AQR math: quick answers</h2>
+
+              <h3>What does AQR stand for?</h3>
+              <p>Applied Quantitative Reasoning.</p>
+
+              <h3>What is AQR math in high school?</h3>
+              <p>
+                AQR is a fourth-year high school mathematics option focused on using quantitative
+                reasoning, data, models, evidence, and mathematical tools in real decisions and
+                unfamiliar situations.
+              </p>
+
+              <h3>Is AQR a real math class?</h3>
+              <p>
+                Yes. The mathematics has a different shape from a traditional Algebra 2 or calculus
+                course, but students work with quantities, data, models, statistics, probability,
+                rates, measurement, assumptions, uncertainty, and mathematical reasoning.
+              </p>
+
+              <h3>Is AQR an easy math class?</h3>
+              <p>
+                AQR is designed to be accessible, but it is not a non-math or watered-down
+                alternative. Students are expected to reason with evidence, use mathematics in
+                unfamiliar contexts, explain decisions, test ideas, and revise their work.
               </p>
             </div>
           </div>
