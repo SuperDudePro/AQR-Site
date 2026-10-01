@@ -93,7 +93,7 @@ function WhyAQR() {
           </div>
         </section>
 
-        <section className="why-section why-section-black" aria-labelledby="why-class-title">
+        <section className="why-section why-section-silver" aria-labelledby="why-class-title">
           <div className="why-wrap why-grid">
             <div>
               <p className="why-section-kicker">Inside the class</p>
@@ -116,9 +116,9 @@ function WhyAQR() {
           </div>
         </section>
 
-        <section className="why-section why-section-silver" aria-labelledby="why-pathway-title">
+        <section className="why-section why-section-black" aria-labelledby="why-pathway-title">
           <div className="why-wrap why-grid">
-            <div className="why-text-dark">
+            <div>
               <p className="why-section-kicker">A real pathway</p>
               <h2 id="why-pathway-title">This direction is not random, local, or fake-easy.</h2>
               <p>
@@ -161,7 +161,7 @@ function WhyAQR() {
         </section>
 
 
-        <section className="why-section why-section-silver" aria-labelledby="why-college-title">
+        <section className="why-section why-section-black" aria-labelledby="why-college-title">
           <div className="why-wrap">
             <div className="why-section-head">
               <p className="why-section-kicker">College signal</p>
@@ -191,7 +191,7 @@ function WhyAQR() {
           </div>
         </section>
 
-        <section className="why-section why-section-black" aria-labelledby="why-colorado-title">
+        <section className="why-section why-section-silver" aria-labelledby="why-colorado-title">
           <div className="why-wrap why-grid">
             <div>
               <p className="why-section-kicker">Colorado standards</p>
