@@ -24,7 +24,7 @@ const sections = [
       "Complete the small checkpoints that keep the project moving.",
       "Submit partial but real work instead of disappearing when the full task is not finished.",
       "Use screenshots, drafts, tables, notes, prototypes, and short explanations as proof of progress.",
-      "Use the Weekly Catcher to show honest evidence of your work and progress.",
+      "Use the Learning Catcher to show honest evidence of your work and progress.",
       "Revise after feedback, testing, or a conference.",
       "Use Gemini and other tools for help, not as a replacement for your decisions or explanations.",
       "Keep responsibility for the sources, numbers, claims, and final work you submit.",
