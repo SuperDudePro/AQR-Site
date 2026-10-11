@@ -58,6 +58,17 @@ const sections = [
       "Use extension choices to deepen the reasoning, not just add decoration.",
     ],
   },
+  {
+    id: "graduation",
+    number: "05",
+    title: "Math graduation option and Q1 recovery",
+    lead: "AQR offers two different things: an approved way to demonstrate the district's math graduation competency and an independent route to recover an unsuccessful first quarter.",
+    items: [
+      "For 2026–27, AQR performance assessments count toward APS's Mathematics Menu of Options graduation competency requirement.",
+      "A C (70%) or higher on the approved performance task qualifies when its grade is separately recorded in Infinite Campus. A passing course grade by itself is not the Menu of Options record.",
+      "Students who did not pass Q1 can complete independent recovery and show their work in a teacher Final Check. Successful Q1 recovery is capped at a D; it does not automatically meet the C-level Menu of Options threshold.",
+      "Current AQR students: in Google Classroom, open Classwork → Credit Recovery → AQR Q1 Recovery - Student Start Here. Follow the posted steps and deadline; the Gem Directory is also near the top of Classroom.",
+    ],
 ];
 
 export default function StudentGuide() {
