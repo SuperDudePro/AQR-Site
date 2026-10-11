@@ -210,10 +210,10 @@ export const posterTypes: PosterType[] = [
   },
   {
     slug: "pass-path-work-habits",
-    title: "Work-Habit / Pass-Path Posters",
+    title: "Work Habits and Progress Posters",
     eyebrow: "Stay alive this week",
     summary:
-      "Posters that make the pass path visible: checkpoints, partial-but-real work, proof of progress, revision, and asking earlier.",
+      "Posters about visible progress: checkpoints, partial-but-real work, proof of progress, revision, and asking earlier.",
     audienceUse:
       "Use these near assignment boards, weekly checkpoint areas, or conferencing spaces.",
     posters: [
