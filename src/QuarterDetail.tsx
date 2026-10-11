@@ -39,13 +39,13 @@ const quarterDetails: Record<QuarterPageKey, QuarterDetailRecord> = {
     dates: "Aug 6 to Oct 8, 2026",
     focus: "Portable learner profile, Before/After baseline, and personalized learning agent",
     purpose:
-      "Quarter 1 establishes the course culture, tool norms, pass-path expectations, and first major AQR build. Students gather evidence about how they learn, preserve an ordinary-Gemini Before Project baseline, and use what they learn to build more useful personalized support.",
+      "Quarter 1 establishes the course culture, tool norms, Grade Tracker expectations, and first major AQR build. Students gather evidence about how they learn, preserve an ordinary-Gemini Before Project baseline, and use what they learn to build more useful personalized support.",
     fit:
-      "The learner profile is the source material for the tool. Students use it to create a personalized learning agent, Gemini Gem, NotebookLM or another source-grounded workflow where useful, or a structured fallback support system. They then test what changes from the Before Project baseline. The goal is useful customization, not a generic chatbot.",
+      "The learner profile is the source material for the tool. Students use it to create a personalized learning agent, Gemini Gem or a structured, source-grounded fallback support system. They then test what changes from the Before Project baseline. The goal is useful customization, not a generic chatbot.",
     plainLanguage:
       "Students figure out what kind of help actually works for them, capture what ordinary AI does before personalization, build a reusable profile and support tool, and test whether the personalized version actually works better.",
     studentWork: [
-      "a simple pass-path spreadsheet model",
+      "a simple Grade Tracker spreadsheet model",
       "an ordinary-Gemini Before Project baseline saved for later comparison",
       "a portable learner profile built from surveys, inventories, reflections, and self-data",
       "personalized learning-agent instructions tied to profile evidence",
@@ -53,7 +53,7 @@ const quarterDetails: Record<QuarterPageKey, QuarterDetailRecord> = {
       "an After Project comparison, one real test, one revision, and a short explanation of what changed",
     ],
     mathFocus: [
-      "modeling the pass path and testing scenarios in a simple spreadsheet",
+      "modeling grades and testing scenarios in a simple Grade Tracker spreadsheet",
       "interpreting self-data without confusing confidence, preference, habit, mood, and ability",
       "questioning what a scale, survey, or rating actually measures",
       "organizing evidence into a usable profile",
@@ -84,16 +84,16 @@ const quarterDetails: Record<QuarterPageKey, QuarterDetailRecord> = {
     dates: "Oct 19 to Dec 17, 2026",
     focus: "Self-tracking, time use, survey/data analysis, and pattern finding",
     purpose:
-      "Quarter 2 is the data quarter. Students collect, clean, display, and interpret real information tied to their own lives, habits, time use, or a bounded class-approved question.",
+      "Quarter 2 begins with a simple question about where time goes: students compare their estimates with what they can reconstruct. They then collect, organize, display, and interpret real data about a manageable question.",
     fit:
-      "The goal is one honest data story: a clear question, real collected data, at least one useful display, one supported claim, and a careful explanation of what the data does and does not prove.",
+      "The goal is one honest data story: a clear question, real data, a useful display, a supported claim, a limitation, and a practical decision or next step.",
     plainLanguage:
-      "Students stop guessing and start measuring. They use their own data or class data to find patterns, make a claim, and explain the limits of that claim.",
+      "Students compare estimates with evidence, gather manageable data, make a defensible claim, explain its limits, and decide what to do next.",
     studentWork: [
-      "a simple tracking system or class-approved survey",
+      "a simple tracking method and, where useful, a short comparison or survey",
       "a cleaned dataset in a manageable format",
       "a chart, table, or summary that reveals a pattern",
-      "a short data story with one supported claim and one limitation",
+      "a short data story with a supported claim, a limitation, and a practical decision",
     ],
     mathFocus: [
       "collecting and organizing real data",
@@ -117,7 +117,7 @@ const quarterDetails: Record<QuarterPageKey, QuarterDetailRecord> = {
       },
     ],
     closing:
-      "By the end of Q2, students should be able to make a supported claim from data and be honest about the limitations, bias, uncertainty, or alternative explanations around that claim.",
+      "By the end of Q2, students should be able to make a supported claim from real data, explain its limitations, and use it to defend a reasonable next step.",
     href: "#/quarter-2",
   },
   q3: {
