@@ -91,7 +91,7 @@ function AQR({ onNavigateWhy, onNavigateOverview, onNavigatePosters, onNavigateC
       title: "Classroom Posters",
       eyebrow: "AQR wall materials",
       body:
-        "Poster designs for classroom thinking moves, data skepticism, decision-making, AI use, and the visible pass path.",
+        "Poster designs for classroom thinking moves, data skepticism, decision-making, AI use, and visible progress and follow-through.",
       href: "#/classroom-posters",
       cta: "Open Posters",
       onClick: (event) => {
