@@ -69,6 +69,7 @@ const sections = [
       "Students who did not pass Q1 can complete independent recovery and show their work in a teacher Final Check. Successful Q1 recovery is capped at a D; it does not automatically meet the C-level Menu of Options threshold.",
       "Current AQR students: in Google Classroom, open Classwork → Credit Recovery → AQR Q1 Recovery - Student Start Here. Follow the posted steps and deadline; the Gem Directory is also near the top of Classroom.",
     ],
+  },
 ];
 
 export default function StudentGuide() {
