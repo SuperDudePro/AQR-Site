@@ -139,8 +139,8 @@ export const q2Terms: VocabularyTerm[] = [
   {
     term: "Numerical data",
     group: "Recognize and begin using",
-    fullDefinition: "Numerical data are values recorded as numbers for which arithmetic operations or meaningful quantitative comparisons can be made, such as time, distance, count, or rating.",
-    plainLanguage: "Data recorded as meaningful numbers.",
+    fullDefinition: "Numerical data represent measured or counted quantities for which numerical comparisons or calculations are meaningful, such as time, distance, or number of assignments. A rating coded 1–5 may show order without making differences between scores equal.",
+    plainLanguage: "Numbers that measure or count something, not just labels written as numbers.",
     aqrUse: "You will choose appropriate summaries and graphs based partly on whether a variable is numerical.",
     questionStem: "This variable is numerical because ______.",
   },
