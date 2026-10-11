@@ -14,7 +14,7 @@ const courseRoutes = publicRoutes.filter((route) => !posterRoutes.includes(route
 const lines = [
   '# Applied Quantitative Reasoning (AQR)',
   '',
-  '> Applied Quantitative Reasoning is a project-based high school math elective at Vista PEAK Preparatory (grades 11-12) built around real decisions, real data, real tools, and clear communication, including responsible AI use.',
+  '> Applied Quantitative Reasoning is a project-based high school math elective at Vista PEAK Preparatory (currently taught to grade 12 students) built around real decisions, real data, real tools, and clear communication, including responsible AI use.',
   '',
   `The course syllabus is at ${SITE_ORIGIN}/syllabus.html.`,
   '',
