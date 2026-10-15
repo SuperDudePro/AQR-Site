@@ -33,13 +33,65 @@ const staticRoutes: RouteDefinition[] = [
 ];
 
 const posterRoute = staticRoutes.find((route) => route.page === "posters")!;
+
+// Search metadata describes each published collection; visible poster content
+// remains owned by posterData.ts.
+const posterCategoryMetadata: Record<string, Pick<RouteDefinition, "title" | "description">> = {
+  "aqr-identity": {
+    title: "AQR Identity Posters — Real Math, Real Decisions",
+    description: "AQR classroom posters on real mathematics, decisions, data, tools, and communication. Explore the course's core ideas through visual reminders.",
+  },
+  "qr-questions": {
+    title: "Quantitative Reasoning Question Posters",
+    description: "Quantitative reasoning questions for the classroom: compared to what, per what, what does this prove, and what are we measuring?",
+  },
+  "data-anti-bs": {
+    title: "Data Literacy & Misleading Graph Posters",
+    description: "Classroom posters on misleading graphs, sampling bias, weak evidence, bad surveys, cherry-picked data, and correlation versus causation.",
+  },
+  "decision-model": {
+    title: "Mathematical Decision-Making Posters",
+    description: "AQR decision-making posters covering criteria, tradeoffs, model assumptions, weighting, sensitivity checks, and testing recommendations.",
+  },
+  "ai-tool-use": {
+    title: "Responsible AI Use in Learning — Posters",
+    description: "Classroom posters on responsible AI use, source grounding, critical judgment, and student ownership of tool-supported thinking.",
+  },
+  "pass-path-work-habits": {
+    title: "Progress, Revision & Work Habits Posters",
+    description: "AQR work-habits posters about checkpoints, showing genuine progress, revising from evidence, and asking for help earlier.",
+  },
+  "thinking-moves": {
+    title: "Quantitative Reasoning Thinking-Move Posters",
+    description: "AQR thinking-move posters on naming claims, checking evidence, finding flaws, stating limits, and explaining reasoning clearly.",
+  },
+  "quotation-posters": {
+    title: "Classroom Quotation Posters",
+    description: "AQR classroom quotation posters on courage, learning, humility, truth, revision, responsibility, persistence, and simplicity.",
+  },
+};
+
+if (
+  posterTypes.length !== Object.keys(posterCategoryMetadata).length ||
+  posterTypes.some(({ slug }) => !posterCategoryMetadata[slug])
+) throw new Error("Poster category metadata must cover every published category");
+
 export const publicRoutes: RouteDefinition[] = [
   ...staticRoutes,
-  { ...posterRoute, path: "/classroom-posters/all", parentPath: posterRoute.path },
-  ...posterTypes.map(({ slug }): RouteDefinition => ({
+  {
     ...posterRoute,
+    path: "/classroom-posters/all",
+    parentPath: posterRoute.path,
+    title: "All AQR Classroom Posters | Applied Quantitative Reasoning",
+    description: "Browse the complete AQR classroom poster gallery, including data literacy, quantitative reasoning, decision-making, AI use, and thinking habits.",
+    breadcrumbLabel: "All Posters",
+  },
+  ...posterTypes.map(({ slug, title }): RouteDefinition => ({
+    ...posterRoute,
+    ...posterCategoryMetadata[slug],
     path: `/classroom-posters/${slug}`,
     parentPath: posterRoute.path,
+    breadcrumbLabel: title,
   })),
 ];
 
