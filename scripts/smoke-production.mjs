@@ -91,7 +91,8 @@ if (config.articlePrefix) {
 }
 
 let homeHead;
-for (const path of config.routes) {
+// Probe every public sitemap URL, not just the three representative browser scenarios.
+for (const path of paths) {
   const response = await get(absolute(path));
   assert.equal(response.status, 200, `${path}: HTTP ${response.status}`);
   assert.match(response.headers.get('content-type') || '', /text\/html/i, `${path}: not HTML`);
@@ -153,4 +154,4 @@ if (process.env.SMOKE_BROWSER === '1') {
   } finally { await browser.close(); }
 }
 
-console.log(`Production smoke passed for ${origin}: ${config.routes.length} routes, sitemap, metadata, client asset, canonical host${process.env.SMOKE_BROWSER === '1' ? `, and ${config.browser} interaction` : ''}.`);
+console.log(`Production smoke passed for ${origin}: ${paths.size} routes, sitemap, metadata, client asset, canonical host${process.env.SMOKE_BROWSER === '1' ? `, and ${config.browser} interaction` : ''}.`);
