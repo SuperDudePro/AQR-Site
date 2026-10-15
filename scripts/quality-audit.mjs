@@ -7,7 +7,7 @@ import { chromium } from 'playwright-core';
 const root = resolve(import.meta.dirname, '..');
 const dist = join(root, 'dist');
 const routes = JSON.parse(readFileSync(join(root, 'scripts/quality-routes.json'), 'utf8'));
-const sitemapPaths = [...readFileSync(join(root, 'public/sitemap.xml'), 'utf8').matchAll(/<loc>\\s*([^<]+)\\s*<\\/loc>/g)]
+const sitemapPaths = [...readFileSync(join(root, 'public/sitemap.xml'), 'utf8').matchAll(/<loc>\s*([^<]+)\s*<\/loc>/g)]
   .map(([, loc]) => new URL(loc.trim()).pathname);
 assert.equal(new Set(routes).size, routes.length, 'Quality routes contain duplicates');
 assert.deepEqual([...routes].sort(), sitemapPaths.sort(), 'Quality audit must cover every sitemap route');
