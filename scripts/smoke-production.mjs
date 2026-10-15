@@ -96,10 +96,45 @@ for (const path of paths) {
   const response = await get(absolute(path));
   assert.equal(response.status, 200, `${path}: HTTP ${response.status}`);
   assert.match(response.headers.get('content-type') || '', /text\/html/i, `${path}: not HTML`);
+  if (path === '/') {
+    const csp = response.headers.get('content-security-policy');
+    assert.ok(csp?.includes("default-src 'self'"), 'Production CSP must be enforced');
+    assert.ok(csp.includes('https://analytics.google.com') && csp.includes('https://stats.g.doubleclick.net'),
+      'Production CSP missing legitimate analytics endpoints');
+    assert.equal(response.headers.get('content-security-policy-report-only'), null,
+      'Old report-only CSP should not remain enabled');
+  }
   const head = metadata(await response.text(), path);
+  const socialTags = [...head.matchAll(/<meta\\b[^>]*>/gi)].map(([tag]) => attributes(tag));
+  const og = socialTags.find((tag) => tag.property === 'og:image');
+  const twitter = socialTags.find((tag) => tag.name === 'twitter:image');
+  assert.ok(og?.content?.startsWith(origin + '/'), `${path}: missing same-origin social image`);
+  assert.equal(twitter?.content, og.content, `${path}: Twitter and Open Graph images differ`);
   if (path === '/') homeHead = head;
   console.log(`Checked ${absolute(path)}`);
 }
+
+// Validate the shared social image once, not 27 times.
+const socialImage = await get(`${origin}/AQR_How_It_Works_Banner-1600.webp`);
+assert.equal(socialImage.status, 200, 'Social image unavailable');
+assert.match(socialImage.headers.get('content-type') || '', /image\\/webp/i, 'Social image has wrong MIME type');
+assert.ok((await socialImage.arrayBuffer()).byteLength > 10000, 'Social image is empty');
+
+// Safe production contact contract: no test message is delivered to an inbox.
+const contactGet = await get(`${origin}/api/contact`);
+assert.equal(contactGet.status, 405, 'Contact endpoint should reject GET');
+const contactWrongOrigin = await get(`${origin}/api/contact`, {
+  method: 'POST',
+  headers: { origin: 'https://example.invalid', 'content-type': 'application/json' },
+  body: JSON.stringify({}),
+});
+assert.equal(contactWrongOrigin.status, 403, 'Contact endpoint should reject foreign origins');
+const contactMissingFields = await get(`${origin}/api/contact`, {
+  method: 'POST',
+  headers: { origin, 'content-type': 'application/json' },
+  body: JSON.stringify({}),
+});
+assert.equal(contactMissingFields.status, 400, 'Contact endpoint should require fields');
 
 // A missing client bundle can leave metadata intact but break every interactive page.
 const moduleTag = [...homeHead.matchAll(/<script\b[^>]*type=["']module["'][^>]*>/gi)].map(([tag]) => attributes(tag)).find((tag) => tag.src?.startsWith('/assets/'));
