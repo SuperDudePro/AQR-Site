@@ -33,12 +33,15 @@ function sitemapRoutes(xml, label) {
 
 if (!existsSync(sitemapPath)) fail('public/sitemap.xml', 'file is missing');
 const source = existsSync(sitemapPath) ? readFileSync(sitemapPath, 'utf8') : '';
+if (/<lastmod\b/i.test(source)) fail('public/sitemap.xml', 'lastmod is not allowed without an authoritative page-change date');
 
 if (mode === '--sitemap') {
   if (!generator) throw new Error('A sitemap generator path is required');
-  // Compare route coverage, not lastmod timestamps, which can change every day.
+  // AQR has no authoritative per-route modification timestamps. Do not publish build-date lastmod values.
   execFileSync(process.execPath, ['--import', 'tsx', generator], { stdio: 'inherit' });
-  const expected = sitemapRoutes(readFileSync(sitemapPath, 'utf8'), 'generated sitemap');
+  const generated = readFileSync(sitemapPath, 'utf8');
+  if (/<lastmod\b/i.test(generated)) fail('generated sitemap', 'lastmod is not allowed without an authoritative page-change date');
+  const expected = sitemapRoutes(generated, 'generated sitemap');
   const committed = sitemapRoutes(source, 'checked-in sitemap');
   for (const route of expected) if (!committed.has(route)) fail('public/sitemap.xml', `missing generated route ${route}`);
   for (const route of committed) if (!expected.has(route)) fail('public/sitemap.xml', `obsolete route ${route}`);
