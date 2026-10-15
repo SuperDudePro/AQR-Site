@@ -107,16 +107,19 @@ const asset = await get(`${origin}${moduleTag.src}`);
 assert.equal(asset.status, 200, `client module returned HTTP ${asset.status}`);
 assert.ok((await asset.text()).length > 100, 'client module is empty');
 
-const alternate = await get(`${config.alternateOrigin}${config.alternatePath}`);
-if (config.alternateMustRedirect) {
-  assert.ok([301, 308].includes(alternate.status), `alternate host returned ${alternate.status}, expected permanent redirect`);
-  assert.equal(new URL(alternate.headers.get('location'), config.alternateOrigin).href, absolute(config.alternatePath), 'alternate host redirects to wrong URL');
-} else if ([301, 308].includes(alternate.status)) {
-  assert.equal(new URL(alternate.headers.get('location'), config.alternateOrigin).href, absolute(config.alternatePath), 'alternate host redirects to wrong URL');
-} else {
-  assert.equal(alternate.status, 200, `alternate host returned ${alternate.status}`);
-  metadata(await alternate.text(), config.alternatePath);
-  console.log('Alternate host serves HTML with the canonical URL (no host redirect).');
+for (const alternatePath of config.alternatePaths) {
+  const alternate = await get(`${config.alternateOrigin}${alternatePath}`);
+  if (config.alternateMustRedirect) {
+    assert.ok([301, 308].includes(alternate.status), `alternate host returned ${alternate.status}, expected permanent redirect`);
+    assert.equal(new URL(alternate.headers.get('location'), config.alternateOrigin).href, absolute(alternatePath), 'alternate host redirects to wrong URL');
+  } else if ([301, 308].includes(alternate.status)) {
+    assert.equal(new URL(alternate.headers.get('location'), config.alternateOrigin).href, absolute(alternatePath), 'alternate host redirects to wrong URL');
+  } else {
+    assert.equal(alternate.status, 200, `alternate host returned ${alternate.status}`);
+    metadata(await alternate.text(), alternatePath);
+    console.log('Alternate host serves HTML with the canonical URL (no host redirect).');
+  }
+  
 }
 
 if (process.env.SMOKE_BROWSER === '1') {
