@@ -29,3 +29,4 @@ jobs:
         env:
           DEPLOY_SHA: ${{ github.event.pull_request.base.sha || github.sha }}
           SMOKE_BROWSER: '1'
+          EXPECT_ENFORCED_CSP: ${{ github.event_name == 'push' && '1' || '0' }}
