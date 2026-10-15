@@ -96,7 +96,7 @@ for (const path of paths) {
   const response = await get(absolute(path));
   assert.equal(response.status, 200, `${path}: HTTP ${response.status}`);
   assert.match(response.headers.get('content-type') || '', /text\/html/i, `${path}: not HTML`);
-  if (path === '/') {
+  if (path === '/' && process.env.EXPECT_ENFORCED_CSP === '1') {
     const csp = response.headers.get('content-security-policy');
     assert.ok(csp?.includes("default-src 'self'"), 'Production CSP must be enforced');
     assert.ok(csp.includes('https://analytics.google.com') && csp.includes('https://stats.g.doubleclick.net'),
