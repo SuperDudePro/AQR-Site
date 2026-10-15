@@ -7,6 +7,10 @@ import { chromium } from 'playwright-core';
 const root = resolve(import.meta.dirname, '..');
 const dist = join(root, 'dist');
 const routes = JSON.parse(readFileSync(join(root, 'scripts/quality-routes.json'), 'utf8'));
+const sitemapPaths = [...readFileSync(join(root, 'public/sitemap.xml'), 'utf8').matchAll(/<loc>\\s*([^<]+)\\s*<\\/loc>/g)]
+  .map(([, loc]) => new URL(loc.trim()).pathname);
+assert.equal(new Set(routes).size, routes.length, 'Quality routes contain duplicates');
+assert.deepEqual([...routes].sort(), sitemapPaths.sort(), 'Quality audit must cover every sitemap route');
 const baselinePath = join(root, 'scripts/quality-baseline.json');
 const mode = process.argv[2] || '--check';
 const output = join(root, 'quality-report.json');
@@ -45,6 +49,11 @@ server.stderr.on('data', (part) => { serverError += part; });
 const axeSource = readFileSync(join(root, 'node_modules/axe-core/axe.min.js'), 'utf8');
 const failures = [];
 const report = { site: JSON.parse(readFileSync(join(root, 'package.json'))).name, sizes, routes: [] };
+const viewports = [
+  { name: 'desktop', width: 1365, height: 900 },
+  { name: 'mobile', width: 390, height: 844 },
+];
+const imageChecked = new Set();
 try {
   let ready = false;
   for (let attempt = 0; attempt < 50; attempt++) {
@@ -59,7 +68,9 @@ try {
   });
   try {
     for (const path of routes) {
-      const page = await browser.newPage({ viewport: { width: 1365, height: 900 } });
+      for (const viewport of viewports) {
+      const label = `${path} [${viewport.name}]`;
+      const page = await browser.newPage({ viewport: { width: viewport.width, height: viewport.height } });
       try {
         await page.addInitScript(() => {
           window.__quality = { lcp: 0, cls: 0 };
@@ -69,7 +80,7 @@ try {
             .observe({ type: 'layout-shift', buffered: true });
         });
         const response = await page.goto(`${origin}${path}`, { waitUntil: 'networkidle', timeout: 30000 });
-        assert.equal(response?.status(), 200, `${path}: route failed`);
+        assert.equal(response?.status(), 200, `${label}: route failed`);
         await page.locator('main').first().waitFor();
         await page.addScriptTag({ content: axeSource });
         const result = await page.evaluate(() => window.axe.run(document, {
@@ -89,7 +100,7 @@ try {
         });
         const landmarks = await page.locator('main').count();
         const headings = await page.locator('h1').count();
-        if (landmarks !== 1 || headings !== 1) failures.push(`${path}: expected one main and one h1 (got ${landmarks}, ${headings})`);
+        if (landmarks !== 1 || headings !== 1) failures.push(`${label}: expected one main and one h1 (got ${landmarks}, ${headings})`);
         await page.keyboard.press('Tab');
         await page.waitForTimeout(300); // Let the skip-link focus animation finish.
         const keyboard = await page.evaluate(() => {
@@ -97,14 +108,32 @@ try {
           const rect = el?.getBoundingClientRect();
           return { label: el?.textContent?.trim().slice(0, 80), visible: Boolean(rect && rect.width && rect.height && rect.bottom > 0 && rect.right > 0 && rect.top < innerHeight && rect.left < innerWidth && getComputedStyle(el).visibility !== 'hidden' && getComputedStyle(el).opacity !== '0') };
         });
-        if (!keyboard.visible) failures.push(`${path}: first keyboard target is not visible`);
+        if (!keyboard.visible) failures.push(`${label}: first keyboard target is not visible`);
         const violations = result.violations.map((item) => ({ id: item.id, impact: item.impact, nodes: item.nodes.map((node) => node.target) }));
         for (const violation of violations.filter((item) => ['critical', 'serious'].includes(item.impact)))
-          failures.push(`${path}: ${violation.impact} ${violation.id} (${violation.nodes.length} nodes)`);
-        report.routes.push({ path, metrics, keyboard, violations, incomplete: result.incomplete.map((item) => item.id) });
-        console.log(`${path}: axe ${violations.length} violations, FCP ${metrics.fcpMs}ms, LCP ${metrics.lcpMs}ms, CLS ${metrics.cls}`);
-      } catch (error) { failures.push(`${path}: ${error.message}`); }
+          failures.push(`${label}: ${violation.impact} ${violation.id} (${violation.nodes.length} nodes)`);
+        // Verify every rendered same-origin image, including lazily loaded poster previews.
+        const images = await page.locator('img').evaluateAll((nodes) =>
+          nodes.map((node) => ({ src: node.currentSrc || node.src, alt: node.getAttribute('alt') })));
+        for (const image of images) {
+          if (image.alt === null) failures.push(`${label}: image missing alt attribute (${image.src})`);
+          if (!image.src.startsWith(origin) || imageChecked.has(image.src)) continue;
+          imageChecked.add(image.src);
+          const asset = await page.request.get(image.src);
+          if (!asset.ok() || !/^image\\//i.test(asset.headers()['content-type'] || '')) {
+            failures.push(`${label}: image asset unavailable (${asset.status()} ${image.src})`);
+          }
+        }
+        const horizontalOverflow = await page.evaluate(() =>
+          Math.max(0, document.documentElement.scrollWidth - document.documentElement.clientWidth));
+        if (viewport.name === 'mobile' && horizontalOverflow > 4) {
+          failures.push(`${label}: horizontal overflow ${horizontalOverflow}px`);
+        }
+        report.routes.push({ path, viewport: viewport.name, metrics, keyboard, violations, imageCount: images.length, horizontalOverflow, incomplete: result.incomplete.map((item) => item.id) });
+        console.log(`${label}: axe ${violations.length} violations, images ${images.length}, overflow ${horizontalOverflow}px, FCP ${metrics.fcpMs}ms, CLS ${metrics.cls}`);
+      } catch (error) { failures.push(`${label}: ${error.message}`); }
       finally { await page.close(); }
+      }
     }
   } finally { await browser.close(); }
 } finally {
