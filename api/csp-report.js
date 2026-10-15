@@ -16,13 +16,24 @@ async function readRawBody(request) {
   return Buffer.concat(chunks).toString("utf8");
 }
 
+// Strip query strings and fragments: CSP reports may include analytics IDs or form data.
+function safeUrl(value) {
+  if (typeof value !== "string") return undefined;
+  try {
+    const parsed = new URL(value);
+    return `${parsed.origin}${parsed.pathname.slice(0, 256)}`;
+  } catch {
+    return value.split(/[?#]/)[0].slice(0, 256);
+  }
+}
+
 function summarize(report) {
   const body = report?.["csp-report"] ?? report?.body ?? report ?? {};
   return {
-    documentUri: body["document-uri"] ?? body.documentURL,
+    documentUri: safeUrl(body["document-uri"] ?? body.documentURL),
     directive: body["effective-directive"] ?? body["violated-directive"] ?? body.effectiveDirective,
-    blockedUri: body["blocked-uri"] ?? body.blockedURL,
-    sourceFile: body["source-file"] ?? body.sourceFile,
+    blockedUri: safeUrl(body["blocked-uri"] ?? body.blockedURL),
+    sourceFile: safeUrl(body["source-file"] ?? body.sourceFile),
     line: body["line-number"] ?? body.lineNumber,
   };
 }
@@ -37,8 +48,8 @@ export default async function handler(request, response) {
     const raw = await readRawBody(request);
     if (raw) {
       const parsed = JSON.parse(raw);
-      for (const report of Array.isArray(parsed) ? parsed : [parsed]) {
-        console.warn("CSP violation (report-only):", JSON.stringify(summarize(report)));
+      for (const report of (Array.isArray(parsed) ? parsed : [parsed]).slice(0, 3)) {
+        console.warn("CSP violation:", JSON.stringify(summarize(report)));
       }
     }
   } catch {
