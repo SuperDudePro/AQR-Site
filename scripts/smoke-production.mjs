@@ -105,7 +105,7 @@ for (const path of paths) {
       'Old report-only CSP should not remain enabled');
   }
   const head = metadata(await response.text(), path);
-  const socialTags = [...head.matchAll(/<meta\\b[^>]*>/gi)].map(([tag]) => attributes(tag));
+  const socialTags = [...head.matchAll(/<meta\b[^>]*>/gi)].map(([tag]) => attributes(tag));
   const og = socialTags.find((tag) => tag.property === 'og:image');
   const twitter = socialTags.find((tag) => tag.name === 'twitter:image');
   assert.ok(og?.content?.startsWith(origin + '/'), `${path}: missing same-origin social image`);
@@ -117,7 +117,7 @@ for (const path of paths) {
 // Validate the shared social image once, not 27 times.
 const socialImage = await get(`${origin}/AQR_How_It_Works_Banner-1600.webp`);
 assert.equal(socialImage.status, 200, 'Social image unavailable');
-assert.match(socialImage.headers.get('content-type') || '', /image\\/webp/i, 'Social image has wrong MIME type');
+assert.match(socialImage.headers.get('content-type') || '', /image\/webp/i, 'Social image has wrong MIME type');
 assert.ok((await socialImage.arrayBuffer()).byteLength > 10000, 'Social image is empty');
 
 // Safe production contact contract: no test message is delivered to an inbox.
