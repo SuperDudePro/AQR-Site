@@ -120,7 +120,7 @@ try {
           if (!image.src.startsWith(origin) || imageChecked.has(image.src)) continue;
           imageChecked.add(image.src);
           const asset = await page.request.get(image.src);
-          if (!asset.ok() || !/^image\\//i.test(asset.headers()['content-type'] || '')) {
+          if (!asset.ok() || !/^image\//i.test(asset.headers()['content-type'] || '')) {
             failures.push(`${label}: image asset unavailable (${asset.status()} ${image.src})`);
           }
         }
