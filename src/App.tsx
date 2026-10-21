@@ -7,6 +7,7 @@ import QuarterDetail from "./QuarterDetail";
 import ResourceLibrary from "./ResourceLibrary";
 import StudentGuide from "./StudentGuide";
 import VocabularyPage from "./VocabularyPage";
+import VocabularyArcade from "./VocabularyArcade";
 import WhyAQR from "./WhyAQR";
 import WhyAI from "./WhyAI";
 import { getRoute, normalizeRoute, SITE_ORIGIN, type Page } from "./routeRegistry";
@@ -97,6 +98,7 @@ export function pageElement(route: RouteState) {
   if (route.page === "overview") return <CourseOverview />;
   if (route.page === "guide") return <StudentGuide />;
   if (route.page === "vocabulary") return <VocabularyPage />;
+  if (route.page === "vocabArcade") return <VocabularyArcade />;
   if (route.page === "vocabCore") return <VocabularyPage section="core" />;
   if (route.page === "vocabQ1") return <VocabularyPage section="q1" />;
   if (route.page === "vocabQ2") return <VocabularyPage section="q2" />;
