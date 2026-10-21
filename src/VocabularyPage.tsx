@@ -62,6 +62,7 @@ function VocabularyHub() {
               <h2 id="vocab-sections-title">Start with core language, then move through the year.</h2>
               <p>All five sections are published from the approved AQR Vocabulary Booklet for 2026-27.</p>
             </div>
+            <p><a className="vocab-back-link" href="/vocabulary/arcade">Play Vocabulary Arcade — randomized, instant-feedback practice →</a></p>
             <ol className="vocab-section-grid">
               {vocabularySections.map((item, index) => (
                 <li key={item.key}>
