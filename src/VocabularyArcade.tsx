@@ -1,4 +1,4 @@
-import {useMemo,useState} from "react";
+import {useState} from "react";
 import {q2Terms} from "./vocabularyQ2";
 import {q1Terms} from "./vocabularyQ1";
 import {coreTerms} from "./vocabularyCore";
@@ -52,7 +52,6 @@ export default function VocabularyArcade(){
  const [choice,setChoice]=useState<number|null>(null);
  const [show,setShow]=useState(false);
  const [showSentence,setShowSentence]=useState(false);
- const available=useMemo(()=>allQuestions.filter(q=>mode==="all"||(mode==="q2"?q2Terms.some(t=>t.term.toLowerCase()===q.term.toLowerCase()):history.some(h=>!h.ok&&h.term===q.term))),[mode,history]);
  const next=(newHistory:Outcome[],newMode=mode)=>{const pool=allQuestions.filter(q=>newMode==="all"||(newMode==="q2"?q2Terms.some(t=>t.term.toLowerCase()===q.term.toLowerCase()):newHistory.some(h=>!h.ok&&h.term===q.term)));setQuestion(pick(pool,newHistory,question?.format||""));setChoice(null);setShow(false);};
  const start=(selected:typeof mode)=>{setMode(selected);setHistory([]);setStarted(true);setShowSentence(false);const pool=allQuestions.filter(q=>selected==="all"||(selected==="q2"&&q2Terms.some(t=>t.term.toLowerCase()===q.term.toLowerCase())));setQuestion(pick(pool,[],""));};
  const submit=()=>{if(choice===null||!question||show)return;setHistory(p=>[...p,{id:question.id,term:question.term,ok:choice===question.correct}]);setShow(true);};
