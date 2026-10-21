@@ -1,7 +1,7 @@
 import { posterTypes } from "./posterData";
 
 export const SITE_ORIGIN = "https://appliedquantitativereasoning.com";
-export type Page = "home" | "why" | "ai" | "overview" | "guide" | "vocabulary" | "vocabCore" | "vocabQ1" | "vocabQ2" | "vocabQ3" | "vocabQ4" | "q1" | "q2" | "q3" | "q4" | "posters" | "resources" | "contact";
+export type Page = "home" | "why" | "ai" | "overview" | "guide" | "vocabulary" | "vocabArcade" | "vocabCore" | "vocabQ1" | "vocabQ2" | "vocabQ3" | "vocabQ4" | "q1" | "q2" | "q3" | "q4" | "posters" | "resources" | "contact";
 export type RouteDefinition = {
   path: string;
   page: Page;
@@ -18,6 +18,7 @@ const staticRoutes: RouteDefinition[] = [
   { path: "/course-overview", page: "overview", breadcrumbLabel: "Course Overview", title: "Course Overview | Applied Quantitative Reasoning", description: "A clear overview of the AQR year arc, quarter project families, sequential quantitative-reasoning focus windows, tools, checkpoints, and course pathways." },
   { path: "/student-guide", page: "guide", breadcrumbLabel: "Student Guide", title: "Student Guide | Applied Quantitative Reasoning", description: "A practical guide to AQR classroom routines, progress expectations, responsible tool use, discussion, language support, and getting help." },
   { path: "/vocabulary", page: "vocabulary", breadcrumbLabel: "Vocabulary", title: "Vocabulary | Applied Quantitative Reasoning", description: "The AQR vocabulary hub, organized into core course language and Quarter 1 through Quarter 4 sections." },
+  { path: "/vocabulary/arcade", page: "vocabArcade", breadcrumbLabel: "Vocabulary Arcade", parentPath: "/vocabulary", title: "Vocabulary Arcade | AQR Practice Game", description: "AQR vocabulary challenge with deterministic answers, shuffled question styles, and the complete Quarter 2 vocabulary." },
   { path: "/vocabulary/core", page: "vocabCore", breadcrumbLabel: "Core AQR Vocabulary", title: "Core AQR Vocabulary | Applied Quantitative Reasoning", description: "Core language used across AQR for evidence, decisions, models, tradeoffs, uncertainty, revision, and explanation." },
   { path: "/vocabulary/quarter-1", page: "vocabQ1", breadcrumbLabel: "Quarter 1 Vocabulary", title: "Quarter 1 Vocabulary | Applied Quantitative Reasoning", description: "Quarter 1 vocabulary for self-data, measurement, learner evidence, claims, visuals, and AI confidence." },
   { path: "/vocabulary/quarter-2", page: "vocabQ2", breadcrumbLabel: "Quarter 2 Vocabulary", title: "Quarter 2 Vocabulary | Applied Quantitative Reasoning", description: "Quarter 2 vocabulary for surveys, samples, bias, data displays, correlation, causation, and limitations." },
