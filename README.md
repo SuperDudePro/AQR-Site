@@ -39,4 +39,4 @@ The quality audit requires a completed build and a local Chrome executable (CI s
 ## Notes
 
 - Public poster files live in `public/posters`; poster category metadata lives in `src/posterData.ts`.
-- Google Analytics is loaded only on `appliedquantitativereasoning.com` or `www.appliedquantitativereasoning.com`, respecting Do Not Track.
+- Page-view events are sent only when the page is hosted at `appliedquantitativereasoning.com` or `www.appliedquantitativereasoning.com`; the Google tag script itself is included in `index.html`. Verify runtime/privacy behavior separately before changing the tracking policy.
