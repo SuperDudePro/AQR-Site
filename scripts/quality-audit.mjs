@@ -6,11 +6,12 @@ import { chromium } from 'playwright-core';
 
 const root = resolve(import.meta.dirname, '..');
 const dist = join(root, 'dist');
-const routes = JSON.parse(readFileSync(join(root, 'scripts/quality-routes.json'), 'utf8'));
-const sitemapPaths = [...readFileSync(join(root, 'public/sitemap.xml'), 'utf8').matchAll(/<loc>\s*([^<]+)\s*<\/loc>/g)]
+// The checked-in sitemap is validated against the route registry during the build.
+// Audit every sitemap route directly so new pages cannot be omitted from a manual list.
+const routes = [...readFileSync(join(root, 'public/sitemap.xml'), 'utf8').matchAll(/<loc>\s*([^<]+)\s*<\/loc>/g)]
   .map(([, loc]) => new URL(loc.trim()).pathname);
+assert.ok(routes.length > 0, 'Quality audit requires at least one sitemap route');
 assert.equal(new Set(routes).size, routes.length, 'Quality routes contain duplicates');
-assert.deepEqual([...routes].sort(), sitemapPaths.sort(), 'Quality audit must cover every sitemap route');
 const baselinePath = join(root, 'scripts/quality-baseline.json');
 const mode = process.argv[2] || '--check';
 const output = join(root, 'quality-report.json');
