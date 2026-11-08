@@ -40,7 +40,7 @@ export default function VocabularyGameModes({ kind, onBack }: {kind: GameKind; o
   const [matched, setMatched] = useState<string[]>([]);
   const [feedback, setFeedback] = useState("");
   const [proofOpen, setProofOpen] = useState(false);
-  const [rightOrder, setRightOrder] = useState<string[]>(() => shuffled(freshSet("q2").map(x => x.term)));
+  const [rightOrder, setRightOrder] = useState<string[]>(() => shuffled(cards.map(x => x.term)));
 
   // The same three terms must be used on both sides of Match Pairs.
   const choosePool = (next: PoolKind) => {
