@@ -5,6 +5,7 @@ import {q3Terms} from "./vocabularyQ3";
 import {q4Terms} from "./vocabularyQ4";
 import {coreTerms} from "./vocabularyCore";
 import {lockedQuestions,type BankQuestion} from "./vocabArcadeBank";
+import VocabularyGameModes from "./VocabularyGameModes";
 import "./VocabularyArcade.css";
 
 type Question = {id:string;term:string;format:string;prompt:string;choices:string[];correct:number;explanation:string;priority:number};
@@ -51,6 +52,7 @@ function pick(pool:Question[],history:Outcome[],lastFormat:string):Question|null
  return shuffled(top)[0]?.q||null;
 }
 export default function VocabularyArcade(){
+ const [gameKind,setGameKind]=useState<"flip"|"pairs"|null>(null);
  const [mode,setMode]=useState<PracticeMode>("all");
  const [started,setStarted]=useState(false);
  const [history,setHistory]=useState<Outcome[]>([]);
@@ -68,9 +70,11 @@ export default function VocabularyArcade(){
  const studied=[...new Set(history.map(h=>h.term))];
  const modeLabel=mode==="all"?"All AQR":mode==="core"?"Core":mode==="review"?"Missed words":mode.toUpperCase();
  const proofText=`AQR VOCABULARY ARCADE — PRACTICE SESSION\nPractice pool: ${modeLabel}\nStarted: ${startedAt?.toLocaleString()||"Unknown"}\nEnded: ${new Date().toLocaleString()}\nQuestions attempted: ${finished}\nAnswers correct: ${correct}\nWords practiced: ${studied.join(", ")}\nPractice only — student-submitted record; not independently verified.`;
+ if(gameKind)return <VocabularyGameModes kind={gameKind} onBack={()=>setGameKind(null)}/>;
  return <div className="va-shell"><header className="va-header"><a href="/vocabulary">← Vocabulary</a><span>AQR / GAME LAB</span></header>
  <main className="va-main"><p className="va-kicker">Vocabulary Arcade</p><h1>Quick thinking. Real words. No waiting.</h1>
- <p className="va-intro">Every question has a fixed answer key. Questions and formats rotate. Play as many rounds as you have time for.</p>
+ <p className="va-intro">Choose a game, make a genuine attempt, and save your practice receipt. Accuracy is feedback, not a practice grade.</p>
+ {!started&&<section className="va-card"><h2>Choose a game</h2><div className="va-game-menu"><div><h3>Quick Quiz</h3><p>Choose your question pool below. Answer and check as you go.</p></div><button type="button" onClick={()=>setGameKind("flip")}>Flip &amp; Recall — reveal the meaning</button><button type="button" onClick={()=>setGameKind("pairs")}>Match Pairs — connect words to meanings</button></div></section>}
  {!started?<section className="va-card"><h2>Choose your run</h2><div className="va-buttons">{(["q1","q2","q3","q4","core","all"] as const).map(p=><button key={p} onClick={()=>start(p)}>{p==="all"?"All vocabulary":p==="core"?"Core skills":p.toUpperCase()}</button>)}</div><p>Choose your quarter, core terms, or the complete AQR vocabulary. All terms in the selected pool are eligible. No account or personal data needed.</p></section>:
  <><div className="va-status"><span>{modeLabel} · ROUND {finished+(show?0:1)}</span><span>{correct} correct / {finished} attempted</span><span>{question?.format||"Review"}</span></div>
  {question?<section className="va-card" aria-live="polite"><p className="va-id">QUESTION {question.id}</p><h2>{question.prompt}</h2><div className="va-choices">{question.choices.map((answer,index)=><button type="button" key={index} disabled={show} onClick={()=>setChoice(index)} className={["va-option",choice===index?"selected":"",show&&index===question.correct?"right":"",show&&choice===index&&index!==question.correct?"wrong":""].join(" ")}><strong>{labels[index]}</strong>{answer}</button>)}</div>
