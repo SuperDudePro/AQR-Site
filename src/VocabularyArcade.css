@@ -2,3 +2,14 @@
 .va-proof{border:3px solid #287bb7;background:#fff}.va-proof .va-id{color:#155b87}.va-proof p{overflow-wrap:anywhere}@media print{.va-header,.va-bottom,.va-intro,.va-status,.va-footnote{display:none!important}.va-proof{box-shadow:none;margin:0}}
 
 .va-game-menu{display:flex;flex-wrap:wrap;align-items:center;gap:1rem}.va-game-menu>div{flex:1 1 100%}.va-game-menu h3{margin:.3rem 0}.va-game-menu p{margin:.2rem 0}.va-play-card{min-height:260px}.va-game-pools{margin:1.5rem 0}.va-game-pools button[aria-pressed="true"]{background:#d9f6e8;color:#174c31;border-color:#167845}.va-pairs-grid{display:grid;grid-template-columns:1fr 1.35fr;gap:1rem}.va-pair-column{display:flex;flex-direction:column;gap:.75rem}.va-shell button.va-pair-button{min-height:86px;background:#fff;color:#172b40;border:2px solid #b8cce0;text-align:left;line-height:1.35}.va-shell button.va-pair-button[aria-pressed="true"]{border-color:#0779c9;background:#e6f4ff}.va-shell button.va-pair-button:disabled{background:#e8f4ed;color:#29583c;border-color:#a4cfb2;opacity:1}@media(max-width:610px){.va-pairs-grid{grid-template-columns:1fr 1fr;gap:.5rem}.va-shell button.va-pair-button{padding:.65rem;min-height:110px;font-size:.9rem}}
+
+/* Three equally prominent game choices; never hide the original quiz behind a heading. */
+.va-game-menu{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:1rem;margin-top:1rem}
+.va-shell button.va-game-choice{display:flex;flex-direction:column;align-items:flex-start;gap:.6rem;background:#11395c;color:#fff;border:2px solid #377ca9;text-align:left;min-height:154px;padding:1.15rem}
+.va-game-choice strong{font-size:1.3rem;line-height:1.2}.va-game-choice span{font-weight:400;line-height:1.45;color:#d8eafa}
+.va-mystery-blanks{font-size:clamp(1.25rem,3vw,2rem);font-weight:900;letter-spacing:.1em;overflow-wrap:anywhere;line-height:1.8}
+.va-mystery-form{display:flex;flex-direction:column;gap:.75rem;max-width:620px}.va-mystery-form label{font-weight:700}
+.va-mystery-form input{font:inherit;border:2px solid #91b8d4;border-radius:8px;padding:.8rem;min-width:0;color:#101c2a;background:#fff}
+.va-mystery-form input:focus-visible{outline:3px solid #3dadff;outline-offset:2px}
+.va-mystery-feedback{font-weight:700}
+@media(max-width:700px){.va-game-menu{grid-template-columns:1fr}.va-shell button.va-game-choice{min-height:96px}}

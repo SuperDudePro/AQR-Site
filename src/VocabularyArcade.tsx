@@ -52,9 +52,10 @@ function pick(pool:Question[],history:Outcome[],lastFormat:string):Question|null
  return shuffled(top)[0]?.q||null;
 }
 export default function VocabularyArcade(){
- const [gameKind,setGameKind]=useState<"flip"|"pairs"|null>(null);
+ const [gameKind,setGameKind]=useState<"mystery"|"pairs"|null>(null);
  const [mode,setMode]=useState<PracticeMode>("all");
  const [started,setStarted]=useState(false);
+ const [gameChosen,setGameChosen]=useState(false);
  const [history,setHistory]=useState<Outcome[]>([]);
  const [question,setQuestion]=useState<Question|null>(null);
  const [choice,setChoice]=useState<number|null>(null);
@@ -70,19 +71,23 @@ export default function VocabularyArcade(){
  const studied=[...new Set(history.map(h=>h.term))];
  const modeLabel=mode==="all"?"All AQR":mode==="core"?"Core":mode==="review"?"Missed words":mode.toUpperCase();
  const proofText=`AQR VOCABULARY ARCADE — PRACTICE SESSION\nPractice pool: ${modeLabel}\nStarted: ${startedAt?.toLocaleString()||"Unknown"}\nEnded: ${new Date().toLocaleString()}\nQuestions attempted: ${finished}\nAnswers correct: ${correct}\nWords practiced: ${studied.join(", ")}\nPractice only — student-submitted record; not independently verified.`;
- if(gameKind)return <VocabularyGameModes kind={gameKind} onBack={()=>setGameKind(null)}/>;
+ if(gameKind)return <VocabularyGameModes kind={gameKind} onBack={()=>{setGameKind(null);setGameChosen(false);}}/>;
  return <div className="va-shell"><header className="va-header"><a href="/vocabulary">← Vocabulary</a><span>AQR / GAME LAB</span></header>
  <main className="va-main"><p className="va-kicker">Vocabulary Arcade</p><h1>Quick thinking. Real words. No waiting.</h1>
  <p className="va-intro">Choose a game, make a genuine attempt, and save your practice receipt. Accuracy is feedback, not a practice grade.</p>
- {!started&&<section className="va-card"><h2>Choose a game</h2><div className="va-game-menu"><div><h3>Quick Quiz</h3><p>Choose your question pool below. Answer and check as you go.</p></div><button type="button" onClick={()=>setGameKind("flip")}>Flip &amp; Recall — reveal the meaning</button><button type="button" onClick={()=>setGameKind("pairs")}>Match Pairs — connect words to meanings</button></div></section>}
- {!started?<section className="va-card"><h2>Choose your run</h2><div className="va-buttons">{(["q1","q2","q3","q4","core","all"] as const).map(p=><button key={p} onClick={()=>start(p)}>{p==="all"?"All vocabulary":p==="core"?"Core skills":p.toUpperCase()}</button>)}</div><p>Choose your quarter, core terms, or the complete AQR vocabulary. All terms in the selected pool are eligible. No account or personal data needed.</p></section>:
- <><div className="va-status"><span>{modeLabel} · ROUND {finished+(show?0:1)}</span><span>{correct} correct / {finished} attempted</span><span>{question?.format||"Review"}</span></div>
+ {!started&&!gameChosen?<section className="va-card"><h2>Choose a game</h2><p>Pick one to start. All three count as vocabulary practice.</p><div className="va-game-menu">
+ <button type="button" className="va-game-choice" onClick={()=>setGameChosen(true)}><strong>Quick Quiz</strong><span>Pick the correct answer. Review missed words.</span></button>
+ <button type="button" className="va-game-choice" onClick={()=>setGameKind("pairs")}><strong>Match Pairs</strong><span>Connect three words to their meanings.</span></button>
+ <button type="button" className="va-game-choice" onClick={()=>setGameKind("mystery")}><strong>Mystery Word</strong><span>Solve word clues, earn points, build a streak.</span></button>
+ </div></section>:null}
+ {!started&&gameChosen?<section className="va-card"><button type="button" onClick={()=>setGameChosen(false)}>← Choose another game</button><h2>Quick Quiz — choose your vocabulary</h2><div className="va-buttons">{(["q1","q2","q3","q4","core","all"] as const).map(p=><button key={p} onClick={()=>start(p)}>{p==="all"?"All vocabulary":p==="core"?"Core skills":p.toUpperCase()}</button>)}</div><p>Choose a quarter, Core, or All. All terms in that pool can appear.</p></section>:null}
+ {started?<><div className="va-status"><span>{modeLabel} · ROUND {finished+(show?0:1)}</span><span>{correct} correct / {finished} attempted</span><span>{question?.format||"Review"}</span></div>
  {question?<section className="va-card" aria-live="polite"><p className="va-id">QUESTION {question.id}</p><h2>{question.prompt}</h2><div className="va-choices">{question.choices.map((answer,index)=><button type="button" key={index} disabled={show} onClick={()=>setChoice(index)} className={["va-option",choice===index?"selected":"",show&&index===question.correct?"right":"",show&&choice===index&&index!==question.correct?"wrong":""].join(" ")}><strong>{labels[index]}</strong>{answer}</button>)}</div>
  {show?<div className="va-feedback"><strong>{choice===question.correct?"Right answer.":"Review this one."}</strong><p>{question.explanation}</p><button onClick={()=>next(history)}>Next question →</button></div>:<button className="va-submit" disabled={choice===null} onClick={submit}>Check answer</button>}
  </section>:<section className="va-card"><h2>You've used every available question in this run.</h2><button onClick={()=>start(mode)}>Shuffle and play again</button></section>}
- <div className="va-bottom"><button onClick={()=>setProofOpen(true)} disabled={finished===0}>Finish & show proof</button><button onClick={()=>setShowSentence(v=>!v)}>Class sentence challenge</button><button onClick={()=>start(mode==="review"?"all":mode)}>Restart {modeLabel}</button><button onClick={()=>setStarted(false)}>Choose a different pool</button>{history.some(h=>!h.ok)&&<button onClick={()=>{setMode("review");next(history,"review")}}>Review missed terms</button>}</div>
+ <div className="va-bottom"><button onClick={()=>setProofOpen(true)} disabled={finished===0}>Finish & show proof</button><button onClick={()=>setShowSentence(v=>!v)}>Class sentence challenge</button><button onClick={()=>start(mode==="review"?"all":mode)}>Restart {modeLabel}</button><button onClick={()=>setStarted(false)}>Choose a different pool</button><button onClick={()=>{setStarted(false);setGameChosen(false)}}>Choose another game</button>{history.some(h=>!h.ok)&&<button onClick={()=>{setMode("review");next(history,"review")}}>Review missed terms</button>}</div>
  {proofOpen&&<section className="va-card va-proof" aria-label="Practice session summary"><p className="va-id">PRACTICE RECEIPT — SCREENSHOT THIS</p><h2>My vocabulary practice</h2><p><strong>Practice pool:</strong> {modeLabel}</p><p><strong>Started:</strong> {startedAt?.toLocaleString()||"Not available"}</p><p><strong>Ended:</strong> {new Date().toLocaleString()}</p><p><strong>Questions attempted:</strong> {finished}</p><p><strong>Correct:</strong> {correct}</p><p><strong>Words practiced:</strong> {studied.join(", ")}</p><p>Practice participation evidence only. No account or identity verification.</p><p>Take a screenshot and submit it through the assigned Classroom item if your teacher asks for proof.</p><button onClick={()=>{if(navigator.clipboard?.writeText)void navigator.clipboard.writeText(proofText)}}>Copy practice summary</button> <button onClick={()=>setProofOpen(false)}>Continue playing</button></section>}
  {showSentence&&<section className="va-card"><h2>Share it without stretching it</h2><p>Use <b>sample</b> or <b>bias</b> in one believable high-school sentence. If you can use both naturally, even better. Be ready to share it aloud. No text submission needed.</p></section>}
- </>}
+ </>:null}
  <p className="va-footnote">Practice is not a graded formative or summative. Scores here are instant local practice feedback, not a Classroom grade.</p></main></div>;
 }
