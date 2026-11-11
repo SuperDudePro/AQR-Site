@@ -1,3 +1,4 @@
+import ResponsiveNav from "./ResponsiveNav";
 import type { MouseEvent } from "react";
 import "./AQR.css";
 
@@ -114,13 +115,13 @@ function AQR({ onNavigateWhy, onNavigateOverview, onNavigatePosters, onNavigateC
             <span className="aqr-brand-name">Applied Quantitative Reasoning</span>
           </a>
 
-          <nav className="aqr-topnav" aria-label="Primary" role="navigation">
+          <ResponsiveNav className="aqr-topnav" ariaLabel="Primary">
             <a href="#/why-aqr" onClick={(event) => { event.preventDefault(); navigateWhy(); }}>Why AQR</a>
             <a href="/why-ai">Why AI?</a>
             <a href="#/course-overview" onClick={(event) => { event.preventDefault(); navigateOverview(); }}>Course Overview</a>
             <a href="#/classroom-posters" onClick={(event) => { event.preventDefault(); navigatePosters(); }}>Posters</a>
             <a href="#/contact" onClick={(event) => { event.preventDefault(); navigateContact(); }}>Contact</a>
-          </nav>
+          </ResponsiveNav>
         </div>
       </header>
 

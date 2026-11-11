@@ -1,3 +1,4 @@
+import ResponsiveNav from "./ResponsiveNav";
 import type { MouseEvent } from "react";
 import "./QuarterDetail.css";
 
@@ -256,12 +257,12 @@ function QuarterDetail({ quarter, onNavigateHome, onNavigateOverview }: QuarterD
             <span className="quarter-brand-name">Applied Quantitative Reasoning</span>
           </a>
 
-          <nav className="quarter-topnav" aria-label="Quarter page navigation">
+          <ResponsiveNav className="quarter-topnav" ariaLabel="Quarter page navigation">
             <a href="#/" onClick={goHome}>Home</a><a href="/why-ai">Why AI?</a>
             <a href="#/course-overview" onClick={goOverview}>Course Overview</a>
             <a href="#/classroom-posters">Posters</a>
             <a href={detail.href} aria-current="page">{detail.navLabel}</a>
-          </nav>
+          </ResponsiveNav>
         </div>
       </header>
 

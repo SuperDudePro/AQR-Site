@@ -1,3 +1,4 @@
+import ResponsiveNav from "./ResponsiveNav";
 import "./VocabularyPage.css";
 import { getVocabularySection, vocabularySections, type VocabularySectionKey } from "./vocabularyData";
 
@@ -13,12 +14,12 @@ function VocabularyHeader() {
           <span className="vocab-brand-mark">AQR</span>
           <span className="vocab-brand-name">Applied Quantitative Reasoning</span>
         </a>
-        <nav className="vocab-topnav" aria-label="Vocabulary navigation">
+        <ResponsiveNav className="vocab-topnav" ariaLabel="Vocabulary navigation">
           <a href="/">Home</a><a href="/why-ai">Why AI?</a>
           <a href="/course-overview">Course Overview</a>
           <a href="/student-guide">Student Guide</a>
           <a href="/vocabulary" aria-current="page">Vocabulary</a>
-        </nav>
+        </ResponsiveNav>
       </div>
     </header>
   );

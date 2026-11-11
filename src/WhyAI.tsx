@@ -1,3 +1,4 @@
+import ResponsiveNav from "./ResponsiveNav";
 import "./WhyAQR.css";
 import "./WhyAI.css";
 
@@ -15,14 +16,14 @@ function WhyAI() {
             <span className="why-brand-name">Applied Quantitative Reasoning</span>
           </a>
 
-          <nav className="why-topnav" aria-label="Why AI navigation">
+          <ResponsiveNav className="why-topnav" ariaLabel="Why AI navigation">
             <a href="/">Home</a>
             <a href="/why-aqr">Why AQR</a>
             <a href="/why-ai" aria-current="page">Why AI?</a>
             <a href="/course-overview">Course Overview</a>
             <a href="/student-guide">Student Guide</a>
             <a href="/contact">Contact</a>
-          </nav>
+          </ResponsiveNav>
         </div>
       </header>
 

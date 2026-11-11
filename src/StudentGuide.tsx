@@ -1,3 +1,4 @@
+import ResponsiveNav from "./ResponsiveNav";
 import "./StudentGuide.css";
 
 const sections = [
@@ -79,12 +80,12 @@ export default function StudentGuide() {
       <header className="guide-site-header">
         <div className="guide-topbar guide-wrap">
           <a className="guide-brand" href="/"><span className="guide-brand-mark">AQR</span><span className="guide-brand-name">Applied Quantitative Reasoning</span></a>
-          <nav className="guide-topnav" aria-label="Student Guide navigation">
+          <ResponsiveNav className="guide-topnav" ariaLabel="Student Guide navigation">
             <a href="/">Home</a><a href="/why-aqr">What is AQR?</a><a href="/why-ai">Why AI?</a>
             <a href="/course-overview">Course Overview</a>
             <a href="/student-guide" aria-current="page">Student Guide</a>
             <a href="/classroom-posters">Posters</a>
-          </nav>
+          </ResponsiveNav>
         </div>
       </header>
 

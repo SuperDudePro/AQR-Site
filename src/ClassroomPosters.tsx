@@ -1,3 +1,4 @@
+import ResponsiveNav from "./ResponsiveNav";
 import type { MouseEvent } from "react";
 import type { PosterAsset } from "./posterData";
 import { getPosterType, publishedPosterTypes } from "./posterData";
@@ -73,12 +74,12 @@ function ClassroomPosters({ currentHash, onNavigateHome, onNavigateOverview }: C
             <span className="poster-brand-name">Applied Quantitative Reasoning</span>
           </a>
 
-          <nav className="poster-topnav" aria-label="Classroom Posters navigation">
+          <ResponsiveNav className="poster-topnav" ariaLabel="Classroom Posters navigation">
             <a href="#/" onClick={goHome}>Home</a><a href="/why-ai">Why AI?</a>
             <a href="#/course-overview" onClick={goOverview}>Course Overview</a>
             <a href="#/classroom-posters" aria-current={!activePosterType && !isAllPostersPage && !isUnknownPosterRoute ? "page" : undefined}>Posters</a>
             <a href="#/classroom-posters/all" aria-current={isAllPostersPage ? "page" : undefined}>All Posters</a>
-          </nav>
+          </ResponsiveNav>
         </div>
       </header>
 
