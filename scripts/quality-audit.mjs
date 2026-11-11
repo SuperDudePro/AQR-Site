@@ -137,11 +137,11 @@ try {
             const brandRect = brand?.getBoundingClientRect();
             const navRect = nav.getBoundingClientRect();
             return { compact, links: inline?.querySelectorAll('a').length ?? 0,
-              barHeight: barRect?.height ?? 0, brandTop: brandRect?.top ?? 0,
-              navTop: navRect.top, inlineScroll: inline?.scrollWidth ?? 0,
+              barHeight: barRect?.height ?? 0, brandCenter: brandRect ? brandRect.top + brandRect.height / 2 : 0,
+              navCenter: navRect.top + navRect.height / 2, inlineScroll: inline?.scrollWidth ?? 0,
               available: navRect.width };
           });
-          if (Math.abs(navState.brandTop - navState.navTop) > 4)
+          if (Math.abs(navState.brandCenter - navState.navCenter) > 4)
             failures.push(`${label}: header brand and navigation are not on one row`);
           if (!navState.links) failures.push(`${label}: navigation links missing`);
           if (!navState.compact && navState.inlineScroll > navState.available + 2)
