@@ -125,6 +125,42 @@ try {
             failures.push(`${label}: image asset unavailable (${asset.status()} ${image.src})`);
           }
         }
+        // The site header must never wrap into a second navigation row.
+        const responsiveNav = page.locator('.aqr-responsive-nav');
+        if (await responsiveNav.count()) {
+          const navState = await responsiveNav.evaluate((nav) => {
+            const bar = nav.parentElement;
+            const brand = bar?.querySelector('a[class*="brand"]');
+            const inline = nav.querySelector('.aqr-nav-inline');
+            const compact = nav.classList.contains('aqr-nav-compact');
+            const barRect = bar?.getBoundingClientRect();
+            const brandRect = brand?.getBoundingClientRect();
+            const navRect = nav.getBoundingClientRect();
+            return { compact, links: inline?.querySelectorAll('a').length ?? 0,
+              barHeight: barRect?.height ?? 0, brandTop: brandRect?.top ?? 0,
+              navTop: navRect.top, inlineScroll: inline?.scrollWidth ?? 0,
+              available: navRect.width };
+          });
+          if (Math.abs(navState.brandTop - navState.navTop) > 4)
+            failures.push(`${label}: header brand and navigation are not on one row`);
+          if (!navState.links) failures.push(`${label}: navigation links missing`);
+          if (!navState.compact && navState.inlineScroll > navState.available + 2)
+            failures.push(`${label}: header links overflow instead of switching to Menu`);
+          if (navState.compact) {
+            const menuButton = responsiveNav.getByRole('button', { name: /Menu/ });
+            if (!(await menuButton.isVisible())) failures.push(`${label}: menu button missing`);
+            else {
+              await menuButton.click();
+              if (!(await responsiveNav.locator('.aqr-nav-menu-panel a').count()))
+                failures.push(`${label}: opened menu has no links`);
+              if ((await menuButton.getAttribute('aria-expanded')) !== 'true')
+                failures.push(`${label}: menu expanded state is not announced`);
+              await page.keyboard.press('Escape');
+              if ((await menuButton.getAttribute('aria-expanded')) !== 'false')
+                failures.push(`${label}: Escape did not close menu`);
+            }
+          }
+        }
         const horizontalOverflow = await page.evaluate(() =>
           Math.max(0, document.documentElement.scrollWidth - document.documentElement.clientWidth));
         if (viewport.name === 'mobile' && horizontalOverflow > 4) {
