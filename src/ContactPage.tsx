@@ -1,3 +1,4 @@
+import ResponsiveNav from "./ResponsiveNav";
 import { type FormEvent, useEffect, useRef, useState } from "react";
 import "./ContactPage.css";
 
@@ -132,14 +133,14 @@ function ContactPage() {
             <span className="contact-brand-name">Applied Quantitative Reasoning</span>
           </a>
 
-          <nav className="contact-topnav" aria-label="Contact navigation">
+          <ResponsiveNav className="contact-topnav" ariaLabel="Contact navigation">
             <a href="#/">Home</a>
             <a href="#/why-aqr">Why AQR</a>
             <a href="/why-ai">Why AI?</a>
             <a href="#/course-overview">Course Overview</a>
             <a href="#/classroom-posters">Posters</a>
             <a href="#/contact" aria-current="page">Contact</a>
-          </nav>
+          </ResponsiveNav>
         </div>
       </header>
 
