@@ -9,7 +9,8 @@ type ResponsiveNavProps = {
 
 /** Keep the entire header navigation on one line, or replace it with a menu. */
 export default function ResponsiveNav({ className, ariaLabel, children }: ResponsiveNavProps) {
-  const [compact, setCompact] = useState(true);
+  // Keep navigation links available in prerendered HTML and when JavaScript is disabled.
+  const [compact, setCompact] = useState(false);
   const [open, setOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const inlineRef = useRef<HTMLDivElement>(null);
