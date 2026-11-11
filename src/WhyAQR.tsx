@@ -1,3 +1,4 @@
+import ResponsiveNav from "./ResponsiveNav";
 import "./WhyAQR.css";
 
 type SourceCard = {
@@ -66,7 +67,7 @@ function WhyAQR() {
             <span className="why-brand-name">Applied Quantitative Reasoning</span>
           </a>
 
-          <nav className="why-topnav" aria-label="Why AQR navigation">
+          <ResponsiveNav className="why-topnav" ariaLabel="Why AQR navigation">
             <a href="#/">Home</a>
             <a href="#/course-overview">Course Overview</a>
             <a href="/why-ai">Why AI?</a>
@@ -75,7 +76,7 @@ function WhyAQR() {
             <a href="#/why-aqr" aria-current="page">
               Why AQR
             </a>
-          </nav>
+          </ResponsiveNav>
         </div>
       </header>
 
