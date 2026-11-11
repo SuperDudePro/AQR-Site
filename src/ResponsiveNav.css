@@ -1,0 +1,101 @@
+/* AQR site header: either one complete row of links or a compact menu. */
+.aqr-topbar, .why-topbar, .overview-topbar, .quarter-topbar,
+.poster-topbar, .contact-topbar, .guide-topbar, .vocab-topbar {
+  flex-direction: row !important;
+  align-items: center !important;
+}
+.aqr-topbar > a[class*="brand"], .why-topbar > a[class*="brand"],
+.overview-topbar > a[class*="brand"], .quarter-topbar > a[class*="brand"],
+.poster-topbar > a[class*="brand"], .contact-topbar > a[class*="brand"],
+.guide-topbar > a[class*="brand"], .vocab-topbar > a[class*="brand"] {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+.aqr-responsive-nav {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: nowrap !important;
+  width: auto !important;
+}
+.aqr-nav-inline {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
+  gap: 14px;
+  width: max-content;
+  max-width: none;
+  white-space: nowrap;
+}
+.aqr-nav-inline a {
+  flex: 0 0 auto;
+  width: auto !important;
+  white-space: nowrap;
+}
+.aqr-nav-compact .aqr-nav-inline {
+  position: absolute;
+  visibility: hidden;
+  pointer-events: none;
+}
+.aqr-nav-menu-button {
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 3px solid #7aceff;
+  background: #253c82;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.aqr-nav-menu-icon { margin-left: 8px; font-size: 1.1em; }
+.aqr-nav-menu-button:hover, .aqr-nav-menu-button:focus-visible,
+.aqr-nav-menu-button[aria-expanded="true"] {
+  background: #004a78;
+  border-color: #fff;
+}
+.aqr-nav-menu-button:focus-visible, .aqr-nav-menu-panel a:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+.aqr-nav-menu-panel {
+  position: absolute;
+  z-index: 200;
+  top: calc(100% + 10px);
+  right: 0;
+  width: max-content;
+  min-width: 210px;
+  max-width: min(90vw, 340px);
+  max-height: min(70vh, 560px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px;
+  border: 2px solid #7aceff;
+  border-radius: 18px;
+  background: #111923;
+  box-shadow: 0 16px 44px rgba(0,0,0,.65);
+}
+.aqr-nav-menu-panel a {
+  display: flex;
+  min-height: 44px;
+  width: 100% !important;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 9px 16px;
+  border-radius: 12px;
+  white-space: normal;
+  line-height: 1.3;
+}
+@media (max-width: 560px) {
+  .aqr-topbar, .why-topbar, .overview-topbar, .quarter-topbar,
+  .poster-topbar, .contact-topbar, .guide-topbar, .vocab-topbar { gap: 10px !important; }
+  .aqr-topbar a[class*="brand-name"], .why-topbar a[class*="brand-name"] { display: none; }
+  .aqr-brand-name, .why-brand-name, .overview-brand-name, .quarter-brand-name,
+  .poster-brand-name, .contact-brand-name, .guide-brand-name, .vocab-brand-name { display: none; }
+}
