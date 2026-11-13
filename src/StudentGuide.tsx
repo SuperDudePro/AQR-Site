@@ -95,6 +95,7 @@ export default function StudentGuide() {
             <p className="guide-kicker">Student Guide</p>
             <h1>How to work, make progress, and get support in AQR.</h1>
             <p className="guide-hero-lead">One page for the routines, supports, and expectations students actually need. The goal is not more rules. The goal is a class that is clear, usable, and hard to get lost in.</p>
+            <p className="guide-hero-lead">Looking for a course page, quarter plan, vocabulary, or classroom poster? <a href="/resources">Find it in the AQR Resource Finder</a>.</p>
             <nav className="guide-jump-links" aria-label="Jump to a guide section">
               {sections.map((section) => <a key={section.id} href={`#${section.id}`}>{section.number} {section.title}</a>)}
             </nav>
