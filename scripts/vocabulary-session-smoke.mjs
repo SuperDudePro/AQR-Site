@@ -100,6 +100,35 @@ try {
         matchesTotal(await statusText(page), 0);
         await checkLayout(page, viewport.name + " new session");
         console.log(`${viewport.name}: homepage link, three-game cumulative count, combined receipt, reset and overflow passed`);
+
+        // Verify real student routes, including legacy hash-based quarter links.
+        await page.goto(origin, { waitUntil: "networkidle" });
+        await page.getByRole("link", { name: "Find AQR Resources" }).click();
+        assert.equal(new URL(page.url()).pathname, "/resources", "Homepage resource link should open the finder");
+        assert.ok(await page.getByRole("heading", { name: /Find the AQR page/ }).isVisible());
+        await page.getByRole("textbox", { name: "Search AQR resources" }).fill("nothing-will-match-99999");
+        assert.ok(await page.getByText("No resources match your search. Try different words or choose All resource types.").isVisible());
+        await page.getByRole("textbox", { name: "Search AQR resources" }).fill("Student Guide");
+        await page.getByRole("link", { name: /Student Guide.*Open resource/s }).click();
+        assert.equal(new URL(page.url()).pathname, "/student-guide");
+        assert.ok(await page.getByRole("link", { name: "Find it in the AQR Resource Finder" }).isVisible());
+        await page.getByRole("link", { name: "Find it in the AQR Resource Finder" }).click();
+        assert.equal(new URL(page.url()).pathname, "/resources");
+        await page.goto(`${origin}/quarter-2`, { waitUntil: "networkidle" });
+        await page.getByRole("link", { name: "Find AQR resources" }).click();
+        assert.equal(new URL(page.url()).pathname, "/resources");
+        await page.goto(`${origin}/quarter-2`, { waitUntil: "networkidle" });
+        if (await page.getByRole("navigation", { name: "Quarter page navigation" }).getByRole("button", { name: /Menu/ }).isVisible()) await page.getByRole("navigation", { name: "Quarter page navigation" }).getByRole("button", { name: /Menu/ }).click();
+        await page.getByRole("navigation", { name: "Quarter page navigation" }).getByRole("link", { name: "Course Overview" }).click();
+        await page.waitForURL(/\/course-overview$/);
+        assert.ok(await page.getByRole("heading", { name: "A clear look at how AQR is built." }).isVisible(), "Legacy quarter navigation must update actual page content");
+        await page.goto(`${origin}/quarter-2`, { waitUntil: "networkidle" });
+        if (await page.getByRole("navigation", { name: "Quarter page navigation" }).getByRole("button", { name: /Menu/ }).isVisible()) await page.getByRole("navigation", { name: "Quarter page navigation" }).getByRole("button", { name: /Menu/ }).click();
+        await page.getByRole("navigation", { name: "Quarter page navigation" }).getByRole("link", { name: "Home" }).click();
+        await page.waitForURL(new RegExp(origin.replaceAll(".", "\\.") + "/?$"));
+        assert.ok(await page.getByRole("heading", { name: /Applied Quantitative Reasoning/i }).count() > 0);
+        await checkLayout(page, viewport.name + " student navigation");
+        console.log(`${viewport.name}: student resource discovery, search empty state, and quarter navigation passed`);
       } finally {
         await page.close();
       }
