@@ -118,10 +118,12 @@ try {
         await page.getByRole("link", { name: "Find AQR resources" }).click();
         assert.equal(new URL(page.url()).pathname, "/resources");
         await page.goto(`${origin}/quarter-2`, { waitUntil: "networkidle" });
+        if (await page.getByRole("navigation", { name: "Quarter page navigation" }).getByRole("button", { name: /Menu/ }).isVisible()) await page.getByRole("navigation", { name: "Quarter page navigation" }).getByRole("button", { name: /Menu/ }).click();
         await page.getByRole("navigation", { name: "Quarter page navigation" }).getByRole("link", { name: "Course Overview" }).click();
         await page.waitForURL(/\/course-overview$/);
         assert.ok(await page.getByRole("heading", { name: "A clear look at how AQR is built." }).isVisible(), "Legacy quarter navigation must update actual page content");
         await page.goto(`${origin}/quarter-2`, { waitUntil: "networkidle" });
+        if (await page.getByRole("navigation", { name: "Quarter page navigation" }).getByRole("button", { name: /Menu/ }).isVisible()) await page.getByRole("navigation", { name: "Quarter page navigation" }).getByRole("button", { name: /Menu/ }).click();
         await page.getByRole("navigation", { name: "Quarter page navigation" }).getByRole("link", { name: "Home" }).click();
         await page.waitForURL(new RegExp(origin.replaceAll(".", "\\.") + "/?$"));
         assert.ok(await page.getByRole("heading", { name: /Applied Quantitative Reasoning/i }).count() > 0);
