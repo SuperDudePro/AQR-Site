@@ -119,6 +119,7 @@ function AQR({ onNavigateWhy, onNavigateOverview, onNavigatePosters, onNavigateC
             <a href="#/why-aqr" onClick={(event) => { event.preventDefault(); navigateWhy(); }}>Why AQR</a>
             <a href="/why-ai">Why AI?</a>
             <a href="#/course-overview" onClick={(event) => { event.preventDefault(); navigateOverview(); }}>Course Overview</a>
+            <a href="/vocabulary">Vocabulary</a>
             <a href="#/classroom-posters" onClick={(event) => { event.preventDefault(); navigatePosters(); }}>Posters</a>
             <a href="#/contact" onClick={(event) => { event.preventDefault(); navigateContact(); }}>Contact</a>
           </ResponsiveNav>
@@ -138,6 +139,7 @@ function AQR({ onNavigateWhy, onNavigateOverview, onNavigatePosters, onNavigateC
             <div className="aqr-hero-actions" role="group" aria-label="Page actions">
               <a className="aqr-button aqr-button-top" href="#/why-aqr" onClick={(event) => { event.preventDefault(); navigateWhy(); }}>What Is AQR?</a>
               <a className="aqr-button aqr-button-top" href="#/course-overview" onClick={(event) => { event.preventDefault(); navigateOverview(); }}>Course Overview</a>
+              <a className="aqr-button aqr-button-top" href="/vocabulary/arcade">Play Vocabulary Arcade</a>
               <a className="aqr-button aqr-button-top" href="#/classroom-posters" onClick={(event) => { event.preventDefault(); navigatePosters(); }}>Posters</a>
             </div>
           </div>
