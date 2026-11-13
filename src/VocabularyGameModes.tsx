@@ -18,10 +18,8 @@ const blanks=(value:string,revealed:string[])=>[...value].map((c,i)=>!/[\p{L}\p{
 
 export default function VocabularyGameModes({kind,onBack,onAttempt,session,onResetSession}:{kind:GameKind;onBack:()=>void;onAttempt:(term:string,ok:boolean)=>void;session:PracticeSession;onResetSession:()=>void}){
  const [pool,setPool]=useState<PoolKind|null>(null);
- const [startedAt,setStartedAt]=useState<Date>(()=>new Date());
  const [cards,setCards]=useState<VocabularyTerm[]>([]);
  const [attempts,setAttempts]=useState(0);
- const [practiced,setPracticed]=useState<string[]>([]);
  const [leftPick,setLeftPick]=useState<string|null>(null);
  const [matched,setMatched]=useState<string[]>([]);
  const [rightOrder,setRightOrder]=useState<string[]>([]);
@@ -38,14 +36,14 @@ export default function VocabularyGameModes({kind,onBack,onAttempt,session,onRes
  const [usedTerms,setUsedTerms]=useState<string[]>([]);
  const label=kind==="pairs"?"Match Pairs":"Mystery Word";
  const current=cards[0];
- const record=(term:string,ok:boolean)=>{setAttempts(n=>n+1);setPracticed(v=>v.includes(term)?v:[...v,term]);onAttempt(term,ok);};
+ const record=(term:string,ok:boolean)=>{setAttempts(n=>n+1);onAttempt(term,ok);};
  const loadSet=(selected:PoolKind,exclude:string[]=[])=>{
   const next=freshSet(selected,kind==="pairs"?3:1,exclude);
   setCards(next);setRightOrder(shuffle(next.map(x=>x.term)));setLeftPick(null);setMatched([]);setFeedback("");
   setGuess("");setMisses(0);setHints([]);setSolved(null);setProofOpen(false);
  };
  const selectPool=(selected:PoolKind)=>{
-  setPool(selected);setStartedAt(new Date());setAttempts(0);setPracticed([]);setStreak(0);setPoints(0);setSolvedCount(0);setMysteryCount(0);setUsedTerms([]);loadSet(selected);
+  setPool(selected);setAttempts(0);setStreak(0);setPoints(0);setSolvedCount(0);setMysteryCount(0);setUsedTerms([]);loadSet(selected);
  };
  const nextSet=()=>{
   if(!pool)return;
