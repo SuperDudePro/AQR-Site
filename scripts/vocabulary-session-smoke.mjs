@@ -92,7 +92,7 @@ try {
         await page.getByRole("button", { name: /Choose another game \(keep session total\)/ }).click();
         matchesTotal(await statusText(page), 3);
         await page.getByRole("button", { name: "View combined practice receipt" }).click();
-        assert.match(await page.locator(".va-proof").innerText(), /Session attempts:\\s*3/);
+        assert.match(await page.locator(".va-proof").innerText(), /Session attempts:\s*3/);
         await page.getByRole("button", { name: /^Quick Quiz/ }).click();
         await page.getByRole("button", { name: "Q2" }).click();
         matchesTotal(await statusText(page), 3);
