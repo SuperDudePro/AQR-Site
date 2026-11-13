@@ -39,6 +39,9 @@ try {
     for (const viewport of [{ name: "Chromebook", width: 1366, height: 768 }, { name: "mobile", width: 390, height: 844 }]) {
       const page = await browser.newPage({ viewport: { width: viewport.width, height: viewport.height } });
       try {
+        await page.addInitScript(() => {
+          Object.defineProperty(navigator, "clipboard", { configurable: true, value: { writeText: async (text) => { window.__lastCopiedPractice = text; } } });
+        });
         const response = await page.goto(origin, { waitUntil: "networkidle" });
         assert.equal(response?.status(), 200);
         assert.equal(await page.locator("a[href='/vocabulary']").count() > 0, true, "Homepage must link to public vocabulary");
@@ -50,8 +53,12 @@ try {
         matchesTotal(await statusText(page), 0);
         await page.getByRole("button", { name: /^Quick Quiz/ }).click();
         await page.getByRole("button", { name: "Q2" }).click();
+        assert.equal(await page.locator(".va-card h2[tabindex='-1']").count(), 1, "Quiz question must be keyboard focusable");
         await page.locator(".va-option").first().click();
+        assert.equal(await page.locator(".va-option").first().getAttribute("aria-pressed"), "true", "Answer selection must be announced");
         await page.getByRole("button", { name: "Check answer" }).click();
+        assert.equal(await page.locator(".va-feedback").getAttribute("role"), "status");
+        await page.waitForFunction(() => document.activeElement?.classList.contains("va-feedback"));
         matchesTotal(await statusText(page), 1);
 
         await page.getByRole("button", { name: /Choose another game \(keep session total\)/ }).click();
@@ -77,10 +84,15 @@ try {
         assert.match(receipt, /Quick Quiz 1/);
         assert.match(receipt, /Match Pairs 1/);
         assert.match(receipt, /Mystery Word 1/);
+        await page.getByRole("button", { name: "Copy practice summary" }).click();
+        assert.match(await page.locator(".va-proof [role='status']").innerText(), /copied/i);
+        assert.match(await page.evaluate(() => window.__lastCopiedPractice), /Session attempts: 3/);
         await checkLayout(page, viewport.name + " receipt");
 
         await page.getByRole("button", { name: /Choose another game \(keep session total\)/ }).click();
         matchesTotal(await statusText(page), 3);
+        await page.getByRole("button", { name: "View combined practice receipt" }).click();
+        assert.match(await page.locator(".va-proof").innerText(), /Session attempts:\s*3/);
         await page.getByRole("button", { name: /^Quick Quiz/ }).click();
         await page.getByRole("button", { name: "Q2" }).click();
         matchesTotal(await statusText(page), 3);

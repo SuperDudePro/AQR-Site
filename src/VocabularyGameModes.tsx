@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect,useRef,useState} from "react";
 import type {PracticeSession} from "./VocabularyArcade";
 import {q1Terms} from "./vocabularyQ1";
 import {q2Terms} from "./vocabularyQ2";
@@ -25,6 +25,9 @@ export default function VocabularyGameModes({kind,onBack,onAttempt,session,onRes
  const [rightOrder,setRightOrder]=useState<string[]>([]);
  const [feedback,setFeedback]=useState("");
  const [proofOpen,setProofOpen]=useState(false);
+ const [copyStatus,setCopyStatus]=useState("");
+ const receiptRef=useRef<HTMLHeadingElement>(null);
+ useEffect(()=>{if(proofOpen)receiptRef.current?.focus();},[proofOpen]);
  const [guess,setGuess]=useState("");
  const [misses,setMisses]=useState(0);
  const [hints,setHints]=useState<string[]>([]);
@@ -83,6 +86,7 @@ export default function VocabularyGameModes({kind,onBack,onAttempt,session,onRes
   setUsedTerms(nextUsed);setMysteryCount(v=>v+1);
   if(!pool)return;loadSet(pool,nextUsed);
  };
+ const copyReceipt=async()=>{try{if(!navigator.clipboard?.writeText)throw new Error("Clipboard unavailable");await navigator.clipboard.writeText(receiptText);setCopyStatus("Practice summary copied.");}catch{setCopyStatus("Copy unavailable. Select the receipt text or take a screenshot.");}};
  const receiptText=[
   "AQR VOCABULARY ARCADE — PRACTICE SESSION","Activity: "+label,"Practice pool: "+(pool?poolNames[pool]:"Not selected"),
   "Started: "+(session.startedAt?.toLocaleString()||"Unknown"),"Ended: "+new Date().toLocaleString(),"Session attempts: "+session.attempts,"Correct attempts: "+session.correct,
@@ -111,8 +115,8 @@ export default function VocabularyGameModes({kind,onBack,onAttempt,session,onRes
  <div className="va-feedback"><strong>{solved?"You solved it!":"Good practice — keep going."}</strong><p>Answer: <strong>{current?.term}</strong></p><p>{current?.fullDefinition}</p><button type="button" onClick={nextMystery}>Next mystery word →</button></div>}
  {feedback&&<p className="va-mystery-feedback" role="status">{feedback}</p>}
  </section>}
- <div className="va-bottom"><button type="button" onClick={onResetSession}>Start a new session</button><button type="button" disabled={session.attempts===0} onClick={()=>setProofOpen(true)}>Finish & show proof</button>{kind==="pairs"&&<button type="button" onClick={nextSet}>New set</button>}<button type="button" onClick={()=>setPool(null)}>Change vocabulary pool</button></div>
- {proofOpen&&<section className="va-card va-proof" aria-label="Practice session summary"><p className="va-id">PRACTICE RECEIPT — SCREENSHOT OR COPY</p><h2>My vocabulary practice</h2><p><strong>Activity:</strong> {label}</p><p><strong>Practice pool:</strong> {poolNames[pool]}</p><p><strong>Started:</strong> {session.startedAt?.toLocaleString()||"Unknown"}</p><p><strong>Ended:</strong> {new Date().toLocaleString()}</p><p><strong>Session attempts:</strong> {session.attempts}</p><p><strong>Correct attempts:</strong> {session.correct}</p><p><strong>Games played:</strong> Quick Quiz {session.games.quiz} · Match Pairs {session.games.pairs} · Mystery Word {session.games.mystery}</p>{kind==="mystery"&&<p><strong>Words solved:</strong> {solvedCount} · <strong>Points:</strong> {points}</p>}<p><strong>Words practiced across games:</strong> {session.words.join(", ")}</p><p>Practice participation evidence only. No identity verification or mastery grade.</p><button type="button" onClick={()=>{if(navigator.clipboard?.writeText)void navigator.clipboard.writeText(receiptText);}}>Copy practice summary</button> <button type="button" onClick={()=>setProofOpen(false)}>Keep playing</button></section>}
+ <div className="va-bottom"><button type="button" onClick={onResetSession}>Start a new session</button><button type="button" disabled={session.attempts===0} onClick={()=>{setCopyStatus("");setProofOpen(true)}}>Finish & show proof</button>{kind==="pairs"&&<button type="button" onClick={nextSet}>New set</button>}<button type="button" onClick={()=>setPool(null)}>Change vocabulary pool</button></div>
+ {proofOpen&&<section className="va-card va-proof" aria-label="Practice session summary"><p className="va-id">PRACTICE RECEIPT — SCREENSHOT OR COPY</p><h2 ref={receiptRef} tabIndex={-1}>My vocabulary practice</h2><p><strong>Activity:</strong> {label}</p><p><strong>Practice pool:</strong> {poolNames[pool]}</p><p><strong>Started:</strong> {session.startedAt?.toLocaleString()||"Unknown"}</p><p><strong>Ended:</strong> {new Date().toLocaleString()}</p><p><strong>Session attempts:</strong> {session.attempts}</p><p><strong>Correct attempts:</strong> {session.correct}</p><p><strong>Games played:</strong> Quick Quiz {session.games.quiz} · Match Pairs {session.games.pairs} · Mystery Word {session.games.mystery}</p>{kind==="mystery"&&<p><strong>Words solved:</strong> {solvedCount} · <strong>Points:</strong> {points}</p>}<p><strong>Words practiced across games:</strong> {session.words.join(", ")}</p><p>Practice participation evidence only. No identity verification or mastery grade.</p><button type="button" onClick={()=>void copyReceipt()}>Copy practice summary</button> <p role="status" aria-live="polite">{copyStatus}</p> <button type="button" onClick={()=>setProofOpen(false)}>Keep playing</button></section>}
  </>}
  <p className="va-footnote">Attempts count as practice. The receipt is not a graded assessment or verified record.</p></main></div>;
 }

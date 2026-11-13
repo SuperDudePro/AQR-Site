@@ -13,3 +13,8 @@
 .va-mystery-form input:focus-visible{outline:3px solid #3dadff;outline-offset:2px}
 .va-mystery-feedback{font-weight:700}
 @media(max-width:700px){.va-game-menu{grid-template-columns:1fr}.va-shell button.va-game-choice{min-height:96px}}
+
+/* Programmatic focus after a new question, feedback, or receipt remains visibly located. */
+.va-card [tabindex="-1"]:focus{outline:3px solid #0779c9;outline-offset:5px}
+.va-feedback[tabindex="-1"]:focus{outline:3px solid #176eaf;outline-offset:4px}
+.va-card p[role="status"]:empty{display:none}
