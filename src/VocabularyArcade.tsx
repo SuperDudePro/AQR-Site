@@ -67,13 +67,11 @@ export default function VocabularyArcade(){
  const [show,setShow]=useState(false);
  const [showSentence,setShowSentence]=useState(false);
  const [proofOpen,setProofOpen]=useState(false);
- const [startedAt,setStartedAt]=useState<Date|null>(null);
  const next=(newHistory:Outcome[],newMode:PracticeMode=mode)=>{setQuestion(pick(poolFor(newMode,newHistory),newHistory,question?.format||""));setChoice(null);setShow(false);};
- const start=(selected:PracticeMode)=>{setMode(selected);setHistory([]);setStarted(true);setShowSentence(false);setProofOpen(false);setStartedAt(new Date());setQuestion(pick(poolFor(selected,[]),[],""));};
+ const start=(selected:PracticeMode)=>{setMode(selected);setHistory([]);setStarted(true);setShowSentence(false);setProofOpen(false);setQuestion(pick(poolFor(selected,[]),[],""));};
  const submit=()=>{if(choice===null||!question||show)return;setHistory(p=>[...p,{id:question.id,term:question.term,ok:choice===question.correct}]);addAttempt(question.term,choice===question.correct,"quiz");setShow(true);};
  const finished=history.length;
  const correct=history.filter(h=>h.ok).length;
- const studied=[...new Set(history.map(h=>h.term))];
  const modeLabel=mode==="all"?"All AQR":mode==="core"?"Core":mode==="review"?"Missed words":mode.toUpperCase();
  const proofText=`AQR VOCABULARY ARCADE — PRACTICE SESSION\nLast quiz pool: ${modeLabel}\nStarted: ${session.startedAt?.toLocaleString()||"Unknown"}\nEnded: ${new Date().toLocaleString()}\nSession attempts: ${session.attempts}\nCorrect attempts: ${session.correct}\nQuick Quiz: ${session.games.quiz}; Match Pairs: ${session.games.pairs}; Mystery Word: ${session.games.mystery}\nWords practiced: ${session.words.join(", ")}\nPractice only — student-submitted record; not independently verified.`;
  if(gameKind)return <VocabularyGameModes kind={gameKind} session={session} onAttempt={(term,ok)=>addAttempt(term,ok,gameKind)} onResetSession={resetSession} onBack={()=>{setGameKind(null);setStarted(false);setGameChosen(false);}}/>;
