@@ -82,8 +82,8 @@ function App() {
       applyRoute();
     };
     applyRoute();
-    window.addEventListener("popstate", applyRoute); document.addEventListener("click", handleInternalLink);
-    return () => { window.removeEventListener("popstate", applyRoute); document.removeEventListener("click", handleInternalLink); };
+    window.addEventListener("popstate", applyRoute); window.addEventListener("hashchange", applyRoute); document.addEventListener("click", handleInternalLink);
+    return () => { window.removeEventListener("popstate", applyRoute); window.removeEventListener("hashchange", applyRoute); document.removeEventListener("click", handleInternalLink); };
   }, []);
   useEffect(() => { window.requestAnimationFrame(rewriteLegacyLinks); }, [route.path]);
   return pageElement(route);
