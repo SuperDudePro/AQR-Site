@@ -50,6 +50,16 @@ try {
         await cta.click();
         assert.match(page.url(), /\/vocabulary\/arcade/);
 
+        // Vocabulary hub must show the Arcade as a primary action without scrolling past content.
+        await page.goto(`${origin}/vocabulary`, { waitUntil: "networkidle" });
+        const topArcade = page.locator(".vocab-hero-main .vocab-arcade-cta");
+        assert.equal(await topArcade.count(), 1, "Exactly one prominent Vocabulary Arcade action belongs in the hub hero");
+        assert.ok(await topArcade.isVisible(), "Vocabulary Arcade action should be visible in the top section");
+        const ctaBox = await topArcade.boundingBox();
+        assert.ok(ctaBox && ctaBox.y < viewport.height, `${viewport.name}: Arcade button must begin within the initial viewport`);
+        await checkLayout(page, viewport.name + " vocabulary hub");
+        await topArcade.click();
+        assert.equal(new URL(page.url()).pathname, "/vocabulary/arcade", "Hub Arcade action must open the game");
         matchesTotal(await statusText(page), 0);
         await page.getByRole("button", { name: /^Quick Quiz/ }).click();
         await page.getByRole("button", { name: "Q2" }).click();

@@ -20,6 +20,16 @@
 .vocab-hero h1 { margin: 0; color: #39a8ff; font-size: clamp(2.5rem, 5vw, 4.3rem); line-height: 1.02; letter-spacing: -.04em; text-shadow: 0 0 18px rgba(57,168,255,.42), 0 0 42px rgba(57,168,255,.2); }
 .vocab-hero-lead { max-width: 800px; margin: 22px auto 0; color: var(--text); font-size: clamp(1.04rem, 1.7vw, 1.24rem); line-height: 1.74; }
 .vocab-back-link { display: inline-flex; margin-top: 24px; color: #9bdcff; font-weight: 800; }
+/* The Arcade is a primary action on the vocabulary hub, not a link below the explanation. */
+.vocab-arcade-feature { max-width: 700px; margin: 32px auto 0; padding: 24px; border: 2px solid #7aceff; border-radius: 24px; background: linear-gradient(135deg, #172b5d, #004a78); box-shadow: 0 16px 32px rgba(0,0,0,.35); text-align: center; }
+.vocab-arcade-feature .vocab-arcade-eyebrow { margin: 0 0 8px; color: #bce6ff; font-size: .82rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.vocab-arcade-feature h2 { margin: 0; color: #fff; font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.2; }
+.vocab-arcade-feature p:not(.vocab-arcade-eyebrow) { max-width: 580px; margin: 12px auto 20px; color: #f0f8ff; font-size: 1rem; line-height: 1.5; }
+.vocab-arcade-cta { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 50px; padding: 12px 24px; border: 2px solid #fff; border-radius: 999px; background: #fff; color: #063454; font-weight: 900; text-decoration: none; }
+.vocab-arcade-cta:hover { background: #d7f0ff; color: #063454; }
+.vocab-arcade-cta:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+@media (max-width: 760px) { .vocab-arcade-feature { margin: 24px 0 0; padding: 20px 16px; } .vocab-arcade-cta { width: 100%; } }
+
 .vocab-section { padding: 78px 0; }
 .vocab-section-silver { background: #d8dde2; color: #111820; }
 .vocab-section-black { background: #040608; color: var(--text); }
