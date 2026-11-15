@@ -140,6 +140,7 @@ function AQR({ onNavigateWhy, onNavigateOverview, onNavigatePosters, onNavigateC
               <a className="aqr-button aqr-button-top" href="#/why-aqr" onClick={(event) => { event.preventDefault(); navigateWhy(); }}>What Is AQR?</a>
               <a className="aqr-button aqr-button-top" href="#/course-overview" onClick={(event) => { event.preventDefault(); navigateOverview(); }}>Course Overview</a>
               <a className="aqr-button aqr-button-top" href="/vocabulary/arcade">Play Vocabulary Arcade</a>
+              <a className="aqr-button aqr-button-top" href="/resources">Find AQR Resources</a>
               <a className="aqr-button aqr-button-top" href="#/classroom-posters" onClick={(event) => { event.preventDefault(); navigatePosters(); }}>Posters</a>
             </div>
           </div>
