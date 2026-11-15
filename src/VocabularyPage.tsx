@@ -36,6 +36,12 @@ function VocabularyHub() {
             <p className="vocab-kicker">AQR Vocabulary</p>
             <h1 id="vocab-page-title">Learn the language of the course.</h1>
             <p className="vocab-hero-lead">Vocabulary is organized in the same order students encounter it: core words first, then Quarter 1 through Quarter 4.</p>
+            <div className="vocab-arcade-feature">
+              <p className="vocab-arcade-eyebrow">Ready to practice?</p>
+              <h2>Play Vocabulary Arcade</h2>
+              <p>Try Quick Quiz, Match Pairs, or Mystery Word. Switch games and keep your practice total.</p>
+              <a className="vocab-arcade-cta" href="/vocabulary/arcade">Play Vocabulary Arcade <span aria-hidden="true">→</span></a>
+            </div>
           </div>
         </section>
 
@@ -63,7 +69,6 @@ function VocabularyHub() {
               <h2 id="vocab-sections-title">Start with core language, then move through the year.</h2>
               <p>All five sections are published from the approved AQR Vocabulary Booklet for 2026-27.</p>
             </div>
-            <p><a className="vocab-back-link" href="/vocabulary/arcade">Play Vocabulary Arcade — randomized, instant-feedback practice →</a></p>
             <ol className="vocab-section-grid">
               {vocabularySections.map((item, index) => (
                 <li key={item.key}>
