@@ -273,6 +273,7 @@ function QuarterDetail({ quarter, onNavigateHome, onNavigateOverview }: QuarterD
             <h1 id="quarter-page-title">{detail.title}</h1>
             <h2 className="quarter-hero-lead">{detail.dates}</h2>
             <p className="quarter-hero-lead"><a href="/resources">Find AQR resources</a> for vocabulary, course guidance, and classroom posters.</p>
+            {quarter === "q2" && <p className="quarter-hero-lead">For vocabulary practice, <a href="/vocabulary/arcade">open the three-game AQR Vocabulary Arcade</a>.</p>}
             <nav className="quarter-hero-links" aria-label="Jump to a quarter page">
               {quarterNavOrder.map((item) => (
                 <a
