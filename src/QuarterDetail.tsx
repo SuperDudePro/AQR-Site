@@ -83,23 +83,23 @@ const quarterDetails: Record<QuarterPageKey, QuarterDetailRecord> = {
     title: "Quarter 2 — Track Yourself",
     navLabel: "Quarter 2",
     dates: "Oct 19 to Dec 17, 2026",
-    focus: "Self-tracking, time use, survey/data analysis, and pattern finding",
+    focus: "Time-use questions, spreadsheet investigations, and evidence-based conclusions",
     purpose:
-      "Quarter 2 begins with a simple question about where time goes: students compare their estimates with what they can reconstruct. They then collect, organize, display, and interpret real data about a manageable question.",
+      "Quarter 2 starts with students estimating, reconstructing, and trying to track their time. That real attempt reveals how messy measurement can be. Students then work with supplied datasets, including clearly labeled fictional examples, to inspect, calculate, repair, compare, and interpret numbers.",
     fit:
-      "The goal is one honest data story: a clear question, real data, a useful display, a supported claim, a limitation, and a practical decision or next step.",
+      "The goal is useful quantitative judgment: check a calculation, distinguish missing information from a reported zero, investigate unusual values, compare groups fairly, and say what a sample supports—and what it does not. Students build toward clearer explanations and reasonable decisions without requiring a perfect personal tracking system.",
     plainLanguage:
-      "Students compare estimates with evidence, gather manageable data, make a defensible claim, explain its limits, and decide what to do next.",
+      "Start with your own time-use questions. Then test the numbers in supplied datasets, explain what they show, and challenge claims that go further than the evidence.",
     studentWork: [
-      "a simple tracking method and, where useful, a short comparison or survey",
-      "a cleaned dataset in a manageable format",
-      "a chart, table, or summary that reveals a pattern",
-      "a short data story with a supported claim, a limitation, and a practical decision",
+      "an honest time-use estimate, reconstruction, or tracking attempt, including any gaps",
+      "spreadsheet investigations with supplied data: formulas, summaries, missing values, and unusual results",
+      "fair group comparisons supported by relevant totals, averages, medians, or tables",
+      "short explanations that name the numerical evidence, a defensible claim, and its limits",
     ],
     mathFocus: [
-      "collecting and organizing real data",
-      "choosing displays that match the data",
-      "summarizing patterns without overstating them",
+      "defining measurements and judging the quality of collected or supplied data",
+      "calculating and checking spreadsheet summaries and formula ranges",
+      "comparing quantities and summaries without overstating patterns",
       "identifying sample, bias, and measurement problems",
       "separating association from proof of cause",
     ],
@@ -118,7 +118,7 @@ const quarterDetails: Record<QuarterPageKey, QuarterDetailRecord> = {
       },
     ],
     closing:
-      "By the end of Q2, students should be able to make a supported claim from real data, explain its limitations, and use it to defend a reasonable next step.",
+      "By the end of Q2, students should be able to check and use data from a real or clearly labeled fictional case, defend a bounded claim, question weak evidence, and explain a reasonable next step.",
     href: "#/quarter-2",
   },
   q3: {
@@ -273,6 +273,7 @@ function QuarterDetail({ quarter, onNavigateHome, onNavigateOverview }: QuarterD
             <h1 id="quarter-page-title">{detail.title}</h1>
             <h2 className="quarter-hero-lead">{detail.dates}</h2>
             <p className="quarter-hero-lead"><a href="/resources">Find AQR resources</a> for vocabulary, course guidance, and classroom posters.</p>
+            {quarter === "q2" && <p className="quarter-hero-lead">For vocabulary practice, <a href="/vocabulary/arcade">open the three-game AQR Vocabulary Arcade</a>.</p>}
             <nav className="quarter-hero-links" aria-label="Jump to a quarter page">
               {quarterNavOrder.map((item) => (
                 <a
