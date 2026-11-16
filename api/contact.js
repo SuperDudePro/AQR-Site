@@ -95,10 +95,10 @@ function json(response, status, body) {
 
 // Verifies a Cloudflare Turnstile token when TURNSTILE_SECRET is configured.
 // Returns { ok: true } to allow, or { ok: false, error } to reject.
-// If TURNSTILE_SECRET is not set, verification is skipped (backward compatible).
+// A missing verifier is a configuration failure, never permission to bypass verification.
 async function verifyTurnstile(body, request) {
   const secret = process.env.TURNSTILE_SECRET;
-  if (!secret) return { ok: true };
+  if (!secret) return { ok: false, unavailable: true, error: "Verification is temporarily unavailable." };
 
   const token = getString(body, "cf-turnstile-response");
   if (!token) {
@@ -188,7 +188,7 @@ export default async function handler(request, response) {
 
   const turnstile = await verifyTurnstile(body, request);
   if (!turnstile.ok) {
-    return json(response, 400, { ok: false, error: turnstile.error });
+    return json(response, turnstile.unavailable ? 503 : 400, { ok: false, error: turnstile.error });
   }
 
   const {

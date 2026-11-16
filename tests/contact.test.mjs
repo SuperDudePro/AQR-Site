@@ -67,3 +67,25 @@ test('contact requires Turnstile and sends only after successful verification', 
     for (const key of keys) original[key] === undefined ? delete process.env[key] : process.env[key] = original[key];
   }
 });
+
+test('contact fails closed if Turnstile verifier is missing', async () => {
+  const keys = ['TURNSTILE_SECRET', 'RESEND_API_KEY', 'CONTACT_TO_EMAIL', 'CONTACT_FROM_EMAIL'];
+  const before = Object.fromEntries(keys.map(key => [key, process.env[key]]));
+  const oldFetch = globalThis.fetch;
+  try {
+    delete process.env.TURNSTILE_SECRET;
+    process.env.RESEND_API_KEY = 'test-only';
+    process.env.CONTACT_TO_EMAIL = 'owner@example.invalid';
+    process.env.CONTACT_FROM_EMAIL = 'sender@example.invalid';
+    let calls = 0;
+    globalThis.fetch = async () => { calls += 1; throw new Error('No outgoing calls expected'); };
+    const res = responseMock();
+    await handler(requestMock({ name: 'A', email: 'test@example.invalid', message: 'Hello', 'cf-turnstile-response': 'fake-token' }), res);
+    assert.equal(res.code, 503);
+    assert.equal(res.body.ok, false);
+    assert.equal(calls, 0);
+  } finally {
+    globalThis.fetch = oldFetch;
+    for (const key of keys) before[key] === undefined ? delete process.env[key] : process.env[key] = before[key];
+  }
+});
