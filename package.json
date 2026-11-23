@@ -20,6 +20,7 @@
     "validate:discovery": "node scripts/validate-discovery.mjs https://appliedquantitativereasoning.com --built",
     "audit:quality": "node scripts/quality-audit.mjs --check",
     "test:vocabulary": "node scripts/vocabulary-session-smoke.mjs",
+    "test:data-detective": "node scripts/data-detective-smoke.mjs",
     "baseline:quality": "node scripts/quality-audit.mjs --record"
   },
   "dependencies": {

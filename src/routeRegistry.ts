@@ -1,7 +1,7 @@
 import { posterTypes } from "./posterData";
 
 export const SITE_ORIGIN = "https://appliedquantitativereasoning.com";
-export type Page = "home" | "why" | "ai" | "overview" | "guide" | "vocabulary" | "vocabArcade" | "vocabCore" | "vocabQ1" | "vocabQ2" | "vocabQ3" | "vocabQ4" | "q1" | "q2" | "q3" | "q4" | "posters" | "resources" | "contact";
+export type Page = "home" | "why" | "ai" | "overview" | "guide" | "vocabulary" | "vocabArcade" | "vocabCore" | "vocabQ1" | "vocabQ2" | "vocabQ3" | "vocabQ4" | "q1" | "q2" | "q3" | "q4" | "posters" | "resources" | "dataDetective" | "contact";
 export type RouteDefinition = {
   path: string;
   page: Page;
@@ -29,6 +29,7 @@ const staticRoutes: RouteDefinition[] = [
   { path: "/quarter-3", page: "q3", breadcrumbLabel: "Quarter 3", title: "Quarter 3: Build a Decision Tool | Applied Quantitative Reasoning", description: "Build and test a decision tool using options, criteria, tradeoffs, risk, cost, uncertainty, assumptions, weighting, and sensitivity." },
   { path: "/quarter-4", page: "q4", breadcrumbLabel: "Quarter 4", title: "Quarter 4: Don’t Get Played | Applied Quantitative Reasoning", description: "Practical skepticism about claims, graphs, statistics, samples, sources, AI output, and misleading evidence." },
   { path: "/classroom-posters", page: "posters", breadcrumbLabel: "Classroom Posters", title: "Classroom Posters | Applied Quantitative Reasoning", description: "AQR classroom poster designs for quantitative reasoning, data skepticism, decision-making, AI use, work habits, and thinking moves." },
+  { path: "/data-detective", page: "dataDetective", breadcrumbLabel: "Data Detective Lab", parentPath: "/resources", title: "Data Detective Lab | AQR Interactive Practice", description: "Investigate four fictional datasets: missing versus zero, misleading axes, outliers, and fair percentage comparisons." },
   { path: "/resources", page: "resources", breadcrumbLabel: "Resource Finder", title: "Resource Finder | Applied Quantitative Reasoning", description: "Search AQR course pages, quarter plans, vocabulary, poster categories, and finished poster designs." },
   { path: "/contact", page: "contact", breadcrumbLabel: "Contact", title: "Contact | Applied Quantitative Reasoning", description: "Contact Applied Quantitative Reasoning at Vista PEAK Prep with questions or comments about the course and public resources." },
 ];
