@@ -8,6 +8,7 @@ const coreResources = [
   { title: "Course Overview", kind: "Course page", href: "/course-overview", summary: "The year structure, major projects, focus windows, tools, and expectations." },
   { title: "2026–27 Course Syllabus", kind: "Course information", href: "https://appliedquantitativereasoning.com/syllabus.html", summary: "Student-facing AQR syllabus with grading, Weekly Catchers, technology, attendance, tardy, cell phone, revision, materials, and course expectations." },
   { title: "Student Guide", kind: "Student resource", href: "/student-guide", summary: "Classroom routines, progress expectations, responsible tool use, discussion norms, language support, and getting help." },
+  { title: "Data Detective Lab", kind: "Student practice", href: "/data-detective", summary: "Solve four fictional data cases: missing versus zero, misleading chart axes, unusual values and comparing groups fairly. Includes feedback and an evidence summary." },
   { title: "Vocabulary Arcade", kind: "Student practice", href: "/vocabulary/arcade", summary: "Practice core and Quarter 1–4 words through Quick Quiz, Match Pairs, and Mystery Word; keep one combined practice session." },
   { title: "AQR Vocabulary", kind: "Student resource", href: "/vocabulary", summary: "Core AQR language and Quarter 1 through Quarter 4 vocabulary sections using one consistent entry format." },
   { title: "Quarter 1 — Know Yourself", kind: "Quarter", href: "/quarter-1", summary: "Learner profile, personalized support, measurement, misleading claims, and revision." },
