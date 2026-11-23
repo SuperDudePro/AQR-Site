@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import AQR from "./AQR";
+import DataDetectiveLab from "./DataDetectiveLab";
 import ClassroomPosters from "./ClassroomPosters";
 import ContactPage from "./ContactPage";
 import CourseOverview from "./CourseOverview";
@@ -106,6 +107,7 @@ export function pageElement(route: RouteState) {
   if (route.page === "vocabQ4") return <VocabularyPage section="q4" />;
   if (route.page === "posters") return <ClassroomPosters currentHash={`#${route.path}`} />;
   if (route.page === "resources") return <ResourceLibrary />;
+  if (route.page === "dataDetective") return <DataDetectiveLab />;
   if (route.page === "contact") return <ContactPage />;
   if (route.page === "q1") return <QuarterDetail quarter="q1" />;
   if (route.page === "q2") return <QuarterDetail quarter="q2" />;
