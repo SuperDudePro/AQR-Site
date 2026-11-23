@@ -14,7 +14,7 @@ const poolNames:Record<PoolKind,string>={q1:"Quarter 1",q2:"Quarter 2",q3:"Quart
 const shuffle=<T,>(items:T[]):T[]=>{const a=[...items];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
 function freshSet(pool:PoolKind,count:number,exclude:string[]=[]){const unused=shuffle(pools[pool].filter(item=>!exclude.includes(item.term)));return (unused.length>=count?unused:shuffle(pools[pool])).slice(0,count);}
 const normalize=(value:string)=>value.trim().toLocaleLowerCase().replace(/[^\p{L}\p{N}]+/gu,"");
-const blanks=(value:string,revealed:string[])=>[...value].map((c,i)=>!/[\p{L}\p{N}]/u.test(c)||revealed.includes(String(i))?c:"_").join(" ");
+const blanks=(value:string,revealed:string[],offset=0)=>[...value].map((c,i)=>!/[\p{L}\p{N}]/u.test(c)||revealed.includes(String(i+offset))?c:"_").join(" ");
 
 export default function VocabularyGameModes({kind,onBack,onAttempt,session,onResetSession}:{kind:GameKind;onBack:()=>void;onAttempt:(term:string,ok:boolean)=>void;session:PracticeSession;onResetSession:()=>void}){
  const [pool,setPool]=useState<PoolKind|null>(null);
@@ -108,7 +108,7 @@ export default function VocabularyGameModes({kind,onBack,onAttempt,session,onRes
  </section>:
  <section className="va-card va-play-card"><p className="va-id">MYSTERY WORD {mysteryCount+1} · {misses} / 3 WRONG GUESSES</p>
  <h2>{current?.plainLanguage}</h2>
- <p className="va-mystery-blanks" aria-label="Hidden vocabulary word">{current?blanks(current.term,hints):""}</p>
+ <div className="va-mystery-blanks" aria-label="Hidden vocabulary words">{current?[...current.term.matchAll(/\S+/gu)].map((word,i)=><span className="va-mystery-word" key={`${i}-${word.index}`}>{blanks(word[0],hints,word.index)}</span>):null}</div>
  {solved===null?<form className="va-mystery-form" onSubmit={e=>{e.preventDefault();checkGuess();}}>
  <label htmlFor="va-mystery-guess">Your word or phrase</label><input id="va-mystery-guess" type="text" autoComplete="off" value={guess} onChange={e=>setGuess(e.target.value)} placeholder="Type your answer" />
  <div className="va-buttons"><button type="submit" disabled={!guess.trim()}>Check guess</button><button type="button" onClick={showHint}>Reveal a letter (−20 pts)</button></div></form>:
