@@ -111,6 +111,21 @@ try {
         await checkLayout(page, viewport.name + " new session");
         console.log(`${viewport.name}: homepage link, three-game cumulative count, combined receipt, reset and overflow passed`);
 
+        // With a fixed shuffle, Q2 starts on "Interquartile range". Verify that
+        // multiword answers show distinct blocks and hints retain phrase offsets.
+        await page.addInitScript(() => { Math.random = () => 0.4; });
+        await page.goto(`${origin}/vocabulary/arcade`, { waitUntil: "networkidle" });
+        await page.getByRole("button", { name: /^Mystery Word/ }).click();
+        await page.getByRole("button", { name: "Q2" }).click();
+        const mysteryWords = page.locator(".va-mystery-word");
+        assert.equal(await mysteryWords.count(), 2, "Multiword mystery answer should have one block per word");
+        assert.deepEqual(await mysteryWords.allTextContents(), ["_".repeat("Interquartile".length), "_".repeat("range".length)], "Word blocks must preserve each word's length");
+        await page.evaluate(() => { Math.random = () => 0.9999; });
+        await page.getByRole("button", { name: /Reveal a letter/ }).click();
+        assert.deepEqual(await mysteryWords.allTextContents(), ["_".repeat("Interquartile".length), "____e"], "Hint should reveal a letter in the correct word block");
+        await checkLayout(page, viewport.name + " multiword mystery");
+        console.log(`${viewport.name}: separate mystery word blocks, letter hint offsets and responsive layout passed`);
+
         // Verify real student routes, including legacy hash-based quarter links.
         await page.goto(origin, { waitUntil: "networkidle" });
         await page.getByRole("link", { name: "Find AQR Resources" }).click();
