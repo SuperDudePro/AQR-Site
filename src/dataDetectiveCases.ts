@@ -5,7 +5,7 @@ export type DetectiveCase = {
   title: string;
   setup: string;
   prompt: string;
-  headers: [string, string][];
+  headers: [string, string];
   rows: [string, string][];
   options: [string, string, string];
   correct: number;
