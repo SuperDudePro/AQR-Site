@@ -14,7 +14,7 @@ const poolNames:Record<PoolKind,string>={q1:"Quarter 1",q2:"Quarter 2",q3:"Quart
 const shuffle=<T,>(items:T[]):T[]=>{const a=[...items];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
 function freshSet(pool:PoolKind,count:number,exclude:string[]=[]){const unused=shuffle(pools[pool].filter(item=>!exclude.includes(item.term)));return (unused.length>=count?unused:shuffle(pools[pool])).slice(0,count);}
 const normalize=(value:string)=>value.trim().toLocaleLowerCase().replace(/[^\p{L}\p{N}]+/gu,"");
-const blanks=(value:string,revealed:string[],offset=0)=>[...value].map((c,i)=>!/[\p{L}\p{N}]/u.test(c)||revealed.includes(String(i+offset))?c:"_").join(" ");
+const blanks=(value:string,revealed:string[],offset=0)=>[...value].map((c,i)=>!/[\p{L}\p{N}]/u.test(c)||revealed.includes(String(i+offset))?c:"_").join("");
 
 export default function VocabularyGameModes({kind,onBack,onAttempt,session,onResetSession}:{kind:GameKind;onBack:()=>void;onAttempt:(term:string,ok:boolean)=>void;session:PracticeSession;onResetSession:()=>void}){
  const [pool,setPool]=useState<PoolKind|null>(null);
