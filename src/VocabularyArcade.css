@@ -7,7 +7,8 @@
 .va-game-menu{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:1rem;margin-top:1rem}
 .va-shell button.va-game-choice{display:flex;flex-direction:column;align-items:flex-start;gap:.6rem;background:#11395c;color:#fff;border:2px solid #377ca9;text-align:left;min-height:154px;padding:1.15rem}
 .va-game-choice strong{font-size:1.3rem;line-height:1.2}.va-game-choice span{font-weight:400;line-height:1.45;color:#d8eafa}
-.va-mystery-blanks{font-size:clamp(1.25rem,3vw,2rem);font-weight:900;letter-spacing:.1em;overflow-wrap:anywhere;line-height:1.8}
+.va-mystery-blanks{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;font-size:clamp(1.25rem,3vw,2rem);font-weight:900;letter-spacing:.1em;line-height:1.8}
+.va-mystery-word{display:inline-block;padding:.05em .4em;background:#eef5fb;border:2px solid #b8cce0;border-radius:8px;white-space:nowrap;letter-spacing:.1em}@media(max-width:610px){.va-mystery-word{font-size:clamp(.95rem,4.5vw,1.35rem);letter-spacing:.06em;padding:.05em .25em}}
 .va-mystery-form{display:flex;flex-direction:column;gap:.75rem;max-width:620px}.va-mystery-form label{font-weight:700}
 .va-mystery-form input{font:inherit;border:2px solid #91b8d4;border-radius:8px;padding:.8rem;min-width:0;color:#101c2a;background:#fff}
 .va-mystery-form input:focus-visible{outline:3px solid #3dadff;outline-offset:2px}
