@@ -91,6 +91,11 @@ function WhyAQR() {
               and real communication. Students use mathematics to analyze information, work with data
               and models, weigh evidence and uncertainty, and make defensible decisions.
             </p>
+            <nav className="why-topnav" aria-label="Explore AQR resources" style={{ justifyContent: "center", marginTop: 24 }}>
+              <a href="/course-overview">Course Overview</a>
+              <a href="/resources">Classroom Resources</a>
+              <a href="/classroom-posters">Classroom Posters</a>
+            </nav>
           </div>
         </section>
 
